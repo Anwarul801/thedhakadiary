@@ -150,9 +150,16 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="tags">Tags</label>
-                                    <input value="{{$data->tags}}" class="form-control" type="text" id="tags" name="tags" placeholder="Tags">
+                                    <input type="text"
+                                           id="tags"
+                                           name="tags"
+                                           data-role="tagsinput"
+                                           class="form-control"
+                                           value="{{ $data->tags }}"
+                                           placeholder="Add tags">
                                 </div>
                             </div>
+
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="order">Order</label>
@@ -191,21 +198,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="">Breaking News</label> <br>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <input {{$data->breaking_news == 1 ? 'checked' : ''}} type="radio" id="breaking_news1" value="1" name="breaking_news">
-                                                <label for="breaking_news1">Yes</label>
-                                            </div>
-                                            <div class="col-4">
-                                                <input {{$data->breaking_news == 0 ? 'checked' : ''}} type="radio" id="breaking_news0" value="0" name="breaking_news">
-                                                <label for="breaking_news0">No</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+{{--                                <div class="col-md-6">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="">Breaking News</label> <br>--}}
+{{--                                        <div class="row">--}}
+{{--                                            <div class="col-4">--}}
+{{--                                                <input {{$data->breaking_news == 1 ? 'checked' : ''}} type="radio" id="breaking_news1" value="1" name="breaking_news">--}}
+{{--                                                <label for="breaking_news1">Yes</label>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-4">--}}
+{{--                                                <input {{$data->breaking_news == 0 ? 'checked' : ''}} type="radio" id="breaking_news0" value="0" name="breaking_news">--}}
+{{--                                                <label for="breaking_news0">No</label>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                             </div>
                             <div class="form-group account-btn text-center">
                                 <div class="col-12">
@@ -265,12 +272,6 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="media_source">Source</label>
-                                    <input value="{{old('media_source')}}" class="form-control" type="text" id="media_source" name="media_source" placeholder="Feature Image Source">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
                                     <label for="image">Image (640x427px)</label>
                                     <input class="form-control" type="file" id="image" name="image">
                                 </div>
@@ -285,18 +286,63 @@
 
 
 @endsection
-@section('js')
-    <script>
 
+@section('js')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap Tagsinput JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+    <script>
         tinymce.init({
             selector: 'textarea#news_details',
             plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
         });
 
+        $(document).ready(function () {
+
+            $("#upload_media_form").submit(function (formAction) {
+                formAction.preventDefault();
+
+                var myElement = document.getElementById('popup');
+                myElement.classList.add('f-in');
+
+                // get form data
+                var formData = new FormData(this);
+
+                // ajax request start
+                $.ajax({
+                    url: "{{ route('media.store') }}",
+                    method: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        $("#upload_media_form")[0].reset();
+                        myElement.classList.remove('f-in');
+                        $("#create_media").modal('hide');
+                        toastr.success('Media Uploaded', 'Success', {
+                            closeButton: true,
+                            progressBar: true
+                        });
+                        $("#media_container").append(data.response_html);
+                    },
+                    error: function (data){
+                        myElement.classList.remove('f-in');
+                    }
+                });
+
+            });
+
+        });
 
         var clickedCheckbox = document.getElementById('is_video');
         var videoBox = document.getElementById('video_input');
+        var videoDuration = document.getElementById('video_duration');
+        var videoId = document.getElementById('video_id');
         clickedCheckbox.addEventListener('change', function (){
             if(this.checked){
                 videoBox.classList.remove('d-none');
@@ -304,5 +350,103 @@
                 videoBox.classList.add('d-none');
             }
         });
+
+
+        function showOthers(id){
+            var checkedItem = document.getElementById(id).value;
+            if(checkedItem == "Others"){
+                document.getElementById("others_input").classList.remove("d-none");
+            }else{
+                document.getElementById("others_input").classList.add("d-none");
+            }
+        }
     </script>
+@endsection
+
+@section('css')
+    <style>
+        .popup {
+            width: 100%;
+            height: 100%;
+            visibility: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.75);
+            text-align: center;
+        }
+        .f-in {
+            transition: visibility 1s linear 100ms, opacity 100ms;
+            visibility: visible !important;
+            opacity: 1;
+        }
+        .popup:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            margin-right: -4px;
+            vertical-align: middle;
+        }
+        .loader {
+            width: 70px;
+            height: 70px;
+            background: none;
+            -webkit-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
+            border-top: 10px solid #ED018C;
+            border-bottom: 10px solid #FC8A1A;
+            border-left: 10px solid #01AFF1;
+            border-right: 10px solid #00A650;
+            border-radius: 50%;
+            box-sizing: border-box;
+        }
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+        .popup-inner {
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            max-width: 90%;
+            text-align: center;
+        }
+        .loader:after {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #fff;
+            height: 30px;
+            width: 30px;
+            content: "";
+    border-radius: 50%;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+    }
+    </style>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Tagsinput CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet">
+    <style>
+        .bootstrap-tagsinput {
+            width: 100% !important;
+            min-height: calc(1.5em + .75rem + 2px);
+            padding: 0.375rem 0.75rem;
+            line-height: 1.5;
+        }
+        .bootstrap-tagsinput .tag {
+            margin-right: 2px;
+            color: white;
+            background-color: #0d6efd;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.25rem;
+        }
+    </style>
 @endsection

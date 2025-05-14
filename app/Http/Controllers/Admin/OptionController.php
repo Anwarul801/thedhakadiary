@@ -43,7 +43,7 @@ class OptionController extends Controller
         foreach ($options as $option){
             $field_name = $option->title;
 
-            if ($option->id == 5 || $option->id == 6 || $option->id == 7 || $option->id == 20){
+            if ($option->title == 'logo' || $option->title == 'favicon' || $option->title == 'shared_image'){
                 $this->uploadImage($option, $request);
                 continue;
             }
@@ -57,67 +57,32 @@ class OptionController extends Controller
 
     public function uploadImage($option, $request)
     {
+        $imageFields = [
+            'logo'             => [342, 60],
+            'favicon'          => [65, 65],
+            'shared_image'     => [940, 788],
+        ];
 
-        if ($option->title == "logo"){
-            if ($request->has('logo')){
-                $request->validate([
-                    'logo' => 'image|max:1000'
-                ]);
-                Storage::delete($option->value);
-                $logo = $request->file('logo')->store('options');
-                $logo_public_path = public_path('storage/' . $logo);
-                Image::make($logo_public_path)->resize(260, 45)->save();
-                $option->update([
-                    'value' => $logo
-                ]);
-            }
-        }
+        $field = $option->title;
 
-        if ($option->title == "favicon"){
-            if ($request->has('favicon')){
-                $request->validate([
-                    'favicon' => 'image|max:1000'
-                ]);
-                Storage::delete($option->value);
-                $favicon = $request->file('favicon')->store('options');
-                $favicon_public_path = public_path('storage/' . $favicon);
-                Image::make($favicon_public_path)->resize(15, 15)->save();
-                $option->update([
-                    'value' => $favicon
-                ]);
-            }
-        }
+        if (array_key_exists($field, $imageFields) && $request->has($field)) {
+            $request->validate([
+                $field => 'image',
+            ]);
+            Storage::delete($option->value);
+            $uploaded = $request->file($field)->store('options');
+            $path  = public_path('storage/' . $uploaded);
 
-        if ($option->title == "logo_for_mobile"){
-            if ($request->has('logo_for_mobile')){
-                $request->validate([
-                    'logo_for_mobile' => 'image|max:1000'
-                ]);
-                Storage::delete($option->value);
-                $logo_for_mobile = $request->file('logo_for_mobile')->store('options');
-                $logo_for_mobile_public_path = public_path('storage/' . $logo_for_mobile);
-                Image::make($logo_for_mobile_public_path)->resize(260, 45)->save();
-                $option->update([
-                    'value' => $logo_for_mobile
-                ]);
-            }
-        }
+            [$width, $height] = $imageFields[$field];
 
-        if ($option->title == "shared_image"){
-            if ($request->has('shared_image')){
-                $request->validate([
-                    'logo_for_mobile' => 'image|max:2000'
-                ]);
-                Storage::delete($option->value);
-                $shared_image = $request->file('shared_image')->store('options');
-                $shared_image_public_path = public_path('storage/' . $shared_image);
-                Image::make($shared_image_public_path)->resize(940, 788)->save();
-                $option->update([
-                    'value' => $shared_image
-                ]);
-            }
+            Image::make($path)->resize($width, $height)->save();
+
+            $option->update([
+                'value' => $uploaded
+            ]);
         }
     }
+
     /**
      * Display the specified resource.
      *

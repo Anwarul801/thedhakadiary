@@ -1,0 +1,8 @@
+text-area-card@font-face {
+  font-family: 'PlayfairDisplay-VariableFont_wght';
+  src: url(./PlayfairDisplay-VariableFont_wght.eot);
+  src: url(./PlayfairDisplay-VariableFont_wght.eot?#iefix) format('embedded-opentype'),
+       url(./PlayfairDisplay-VariableFont_wght.ttf) format('truetype'),
+       url(./PlayfairDisplay-VariableFont_wght.woff) format('woff'),
+       url(./PlayfairDisplay-VariableFont_wght.svg#PlayfairDisplay-VariableFont_wght) format('svg');
+}

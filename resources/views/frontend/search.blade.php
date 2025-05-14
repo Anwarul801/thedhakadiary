@@ -1,37 +1,63 @@
+@php use Illuminate\Support\Str; @endphp
 @extends('layouts.frontend_layout')
 
-@section('page_title') সার্চ @endsection
+@section('page_title') {{__('lang.search')}} @endsection
 
 @section('main_content')
-    <section class="news-details pt-40 pb-40">
-        <div class="container">
-            <div class="category_title">
-                <h1 class="text-center">সার্চ করুন</h1>
-                <form action="" method="get">
-                    <input type="text" placeholder="সার্চ করুন ..." name="search" class="form-control">
-                    <button class="btn btn-success"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
-            <div class="row pt-40 pb-40">
-                @forelse($posts as $post)
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="first-snd-single pb-20">
-                            <div class="second_image">
-                                <a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">
-                                    <img src="{{ asset('storage') }}/{{ $post->media->xs_thumbnail }}" alt="ad">
-                                </a>
-                            </div>
-                            <div class="second-content">
-                                <h3><a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">{{ $post->title }}</a></h3>
+    <main class="site-content flex-1">
+        <section class="section-padding">
+            <div class="container">
+
+                <div class="page-title-wrap border-b border-stock-color md:pb-6 pb-4 md:mb-6 mb-4">
+                    <h1 class="page-title mb-4 md:mb-6">{{__('lang.search')}}</h1>
+                    <form action="{{route('search')}}" class="">
+                        <div class="grid cols-12 md:gap-6 gap-4 items-end">
+                            <!-- Text search -->
+                            <div>
+                                <label class="block mb-1 font-semibold md:text-base text-sm">{{__('lang.search')}} :</label>
+                                <input value="{{request()->get('search')}}" type="text" name="search" placeholder="{{__('lang.search_placeholder')}}"
+                                       class="w-full md:text-base text-sm border border-gray-300 px-3 md:py-2 py-1 focus:outline-none focus:ring focus:ring-blue-200" />
                             </div>
                         </div>
-                    </div>
-                @empty
-                    <h4 class="col-12 text-center">কোন পোস্ট পাওয়া যায়নি!</h4>
-                @endforelse
+
+                        <!-- Submit Button -->
+                        <div class="mt-6 flex justify-center">
+                            <button type="submit"
+                                    class="bg-stock-color cursor-pointer hover:bg-black text-primary hover:text-white font-bold py-2 px-10 transition">
+                               <i class="fa fa-search"></i> {{__('lang.search')}}
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="grid grid-cols-12 md:gap-6 gap-4">
+                    @forelse($posts as $post)
+                        <div class="lg:col-span-3 md:col-span-4 col-span-6">
+                            <div class="news-card">
+                                <div class="thumbnail">
+                                    <a href="#"><img src="{{asset('storage')}}/{{$post->media->thumbnail??null}}" alt="Thumbnail"></a>
+                                </div>
+                                <h1 class="title">
+                                    <a href="#">{{Str::limit($post->title, 100)}}</a>
+                                </h1>
+                                <div class="date">
+                                    <p>{{isEnglish()?date_maker($post->publishing_date, 'd F, Y'): formatBanglaDate($post->publishing_date)}}</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="col-span-12 text-center ">
+                            <h3 class="text-2xl">{{__('lang.no_data_found')}}</h3>
+                        </div>
+                    @endforelse
+                </div>
+
+                <!-- pagination -->
+                    {{$posts->links('vendor.pagination.custom')}}
+
             </div>
-            {{ $posts->appends(Request::except('page'))->links() }}
-        </div>
-    </section>
+        </section>
+    </main>
 @endsection
 

@@ -1,0 +1,82 @@
+/* Main menu items */
+.header-horizontal-menu .menu-content > li {
+  display: inline-block;
+  position: relative;
+}
+
+/* Mega Menu container */
+.header-horizontal-menu .mega-sub-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  padding: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  transform-origin: top;
+  transform: rotateX(-90deg);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 99;
+}
+
+/* Show menu on hover */
+.menu-item-has-children:hover > .mega-sub-menu {
+  transform: rotateX(0deg);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mega menu column items */
+.mega-sub-menu .submenu-item {
+  flex: 1 1 22%;
+  min-width: 200px;
+}
+
+/* Column title */
+.mega-sub-menu .menu-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+/* Sub-links */
+.mega-sub-menu .submenu-item ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mega-sub-menu .submenu-item ul li {
+  margin-bottom: 10px;
+}
+
+.mega-sub-menu .submenu-item ul li a {
+  font-size: 14px;
+  color: #555;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.mega-sub-menu .submenu-item ul li a:hover {
+  color: #000000;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .mega-sub-menu {
+    flex-direction: column;
+  }
+
+  .mega-sub-menu .submenu-item {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+}

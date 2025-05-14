@@ -66,12 +66,12 @@
 {{--                        <span> Poll </span>--}}
 {{--                    </a>--}}
 {{--                </li>--}}
-{{--                <li>--}}
-{{--                    <a href="{{ route('media.index') }}">--}}
-{{--                        <i class="fe-image"></i>--}}
-{{--                        <span> Media </span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+                <li>
+                    <a href="{{ route('media.index') }}">
+                        <i class="fe-image"></i>
+                        <span> Media </span>
+                    </a>
+                </li>
 {{--                <li>--}}
 {{--                    <a href="{{ route('author.index') }}">--}}
 {{--                        <i class="fe-edit-1"></i>--}}

@@ -1,94 +1,255 @@
+@php use Carbon\Carbon; @endphp
 @extends('layouts.frontend_layout')
 @section('page_title')
-{{ $news->title }}
+    {{ $news->title }}
 @endsection
-@section('og_image'){{ asset('storage') }}/{{ $news->media->image }}@endsection
-@section('og_title'){{ $news->title }}@endsection
-@section('og_subtitle'){{ $news->subtitle }}@endsection
-@section('meta_keywords'){{ $news->meta_keywords }}@endsection
-@section('meta_description'){{ $news->meta_description }}@endsection
+@section('css')
+    <style>
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            .news-details_section, .news-details_section * {
+                visibility: visible;
+            }
+
+            .news-details_section {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+
+            .no_print {
+                display: none !important;
+            }
+        }
+    </style>
+@endsection
+@section('og_image')
+    {{ asset('storage') }}/{{ $news->media->image }}
+@endsection
+@section('og_title')
+    {{ $news->title }}
+@endsection
+@section('meta_keywords')
+    {{ $news->meta_keywords }}
+@endsection
+@section('meta_description')
+    {{ $news->meta_description }}
+@endsection
 @section('main_content')
-    <section class="news-details pt-40 pb-40">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="page-detail-infor print_area">
-                        <div class="news-detail-title">
-                            <h5>
-                                <a style="margin-right: 5px;  color: black; font-size: 15px" href="{{ route('index_page') }}">প্রচ্ছদ /</a>
-                                @foreach($news->categories as $cat)
-                                    <a style="margin-right: 5px;  color: black; font-size: 15px" href="{{ route('category_view', $cat->slug) }}">{{ $cat->name }} /</a>
-                                @endforeach
-                            </h5>
-                            <h2>{{$news->shoulder}}</h2>
-                            <h1 class="news_title_h1">{{$news->title}}</h1>
-                            <p>{{$news->subtitle}} </p>
-                        </div>
-                        <div class="social-add">
-                            <div class="author-name">
-                                <div class="">
-                                <div style="width: 45px; height: 10px; background-color: var(--soft-white); margin-bottom: 9px;"></div>
+    <main class="site-content flex-1">
+        <section class="news-details_section section-padding">
+            <div class="container">
+                <div class="grid grid-cols-12 md:gap-6 gap-4 ">
+                    <div class="lg:col-span-10 col-span-12 lg:col-start-2 col-start-auto">
+                        <!-- Sub-grid here -->
+                        <div class="grid grid-cols-12 md:gap-6 gap-4">
+                            <div class="md:col-span-8 col-span-12">
+                                <div class="page-title-wrap border-b border-stock-color md:pb-6 pb-4">
+                                    <!-- only print logo -->
+                                    <div class="border-b-[1px] border-gray-400 mb-3">
+                                        <img src="{{asset('frontend/assets')}}/image/main_logo_dark.png"
+                                             alt="The Dhaka Diary"
+                                             class="w-1/2 m-auto hidden print:block break-after-avoid mb-3"/>
+                                    </div>
+                                    <!-- only print logo end -->
+                                    <h1 class="page-title">{{$news->title}}</h1>
+                                    <div class="flex justify-between items-end flex-wrap gap-3">
+                                        <div
+                                            class="date-wrap print:flex-auto print:flex print:justify-between print:items-end">
+                                            <div>
+                                                @if($news->source == 'Author')
+                                                    <a href="auther-post-list.html" class="present inline-block">{{isEnglish()?($news->author->name_en):($news->author->name??null)}}</a>
+                                                @else
+                                                    <a class="present inline-block">{{$news->source}}</a>
+                                                @endif
+                                                <p class="update">দ্যা ঢাকা ডায়েরী</p>
+                                            </div>
+                                            @php
+                                                $ago_bn = Carbon::parse($news->updated_at)->locale('bn')->diffForHumans();
+                                                $update_bn = "আপডেট: ".formatBanglaDate(date_maker($news->updated_at, 'd F Y')).", ".bangla_number($ago_bn);
+                                                $ago_en = Carbon::parse($news->updated_at)->locale('en')->diffForHumans();
+                                                $update_en = "Updated: ".date_maker($news->updated_at, 'd F Y').", ".$ago_en;
+
+
+                                               $created = Carbon::parse($news->created_at);
+                                                // Bangla Format
+                                                $date_bn = formatBanglaDate($created->format('d F Y'));
+                                                $time_bn = bangla_number($created->format('H:i'));
+                                                $create_bn = "প্রকাশিত: {$date_bn}, {$time_bn}";
+
+                                                // English Format
+                                                $date_en = $created->format('d F Y');
+                                                $time_en = $created->format('H:i');
+                                                $create_en = "Published: {$date_en}, {$time_en}";
+                                            @endphp
+                                            <p class="update"><span
+                                                    class="updated">{{isEnglish()?$update_en:$update_bn}}</span> <span
+                                                    class="prokash hidden">{{isEnglish()?$create_en:$create_bn}}</span>
+                                                <img style="width: 20px; display: inline-block" class="cursor-pointer update_prokash_btn ms-1 print:hidden" src="{{asset('frontend/assets/image/up-and-down-arrow.png')}}" alt="">
+                                            </p>
+                                        </div>
+                                        <div class="flex justify-center items-center  gap-1.5 print:hidden">
+                                            @php
+                                                $url = urlencode(url()->current());
+                                            @endphp
+
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}" class="social_icon text-sm" target="_blank">
+                                                <i class="fa-brands fa-facebook-f"></i>
+                                            </a>
+
+                                            <a href="https://twitter.com/intent/tweet?url={{ $url }}" class="social_icon text-sm" target="_blank">
+                                                <i class="fa-brands fa-x-twitter"></i>
+                                            </a>
+
+                                            <a href="https://www.instagram.com/" class="social_icon text-sm" target="_blank">
+                                                <i class="fa-brands fa-instagram"></i>
+                                            </a>
+
+                                            <a href="https://wa.me/?text={{ $url }}" class="social_icon text-sm" target="_blank">
+                                                <i class="fa-brands fa-whatsapp"></i>
+                                            </a>
+
+                                            <a href="#" class="social_icon text-sm" id="zoomIn"><i
+                                                    class="fa-solid fa-magnifying-glass-plus"></i></a>
+                                            <a href="#" class="social_icon text-sm" id="zoomOut"><i
+                                                    class="fa-solid fa-magnifying-glass-minus"></i></a>
+                                            <a href="#" class="social_icon text-sm" onclick="window.print()"><i
+                                                    class="fa-solid fa-print"></i></a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h5 class="name">{{$news->source}} <span class="locaton"></span></h5>
-                                <p class="date">প্রকাশ: {{ date_maker($news->publishing_date, 'd m, y', true)}}</p>
                             </div>
                         </div>
+                        <!-- Sub-grid here -->
+                        <div class="grid grid-cols-12 md:gap-x-6 gap-x-4">
+                            <div class="md:col-span-8 col-span-12 md:mt-6 mt-4">
+                                <figure class="news-title-image md:mb-8 sm:mb-6 mb-4">
+                                    <img src="{{asset('storage')}}/{{$news->media->image??null}}" alt="Thumbnail">
+                                    <figcaption
+                                        class="sm:text-base text-sm text-secondary text-center md:mt-3 mt-2 news-content">
+                                        {{$news->media->caption??null}}
+                                    </figcaption>
+                                </figure>
+                                <div class="text-area-card news-content">
+                                    {!! $news->news_details !!}
+                                </div>
+                            </div>
+                            <div class="md:col-span-4 col-span-12 md:mt-0 mt-4 no_print">
+                                @include('layouts.partials.news_item.latest_news')
+
+                                <!-- ad area start -->
+                                <div class="adSmall no_print">
+                                    <a href="#">
+                                        <img src="{{asset('frontend/assets')}}/image/small-ad-2.png" alt="ad image">
+                                    </a>
+                                    <div class="ad-close">
+                                        <i class="fa-solid fa-circle-exclamation"></i>
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </div>
+                                </div>
+                                <!-- ad area end -->
+                                <!-- ad area start -->
+                                <div class="adSmall no_print">
+                                    <a href="#">
+                                        <img src="{{asset('frontend/assets')}}/image/samll-ad-1.png" alt="ad image">
+                                    </a>
+                                    <div class="ad-close">
+                                        <i class="fa-solid fa-circle-exclamation"></i>
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </div>
+                                </div>
+                                <!-- ad area end -->
+
+                                <!-- ad area start -->
+                                <div class="adSmall no_print">
+                                    <a href="#">
+                                        <img src="{{asset('frontend/assets')}}/image/small-ad-2.png" alt="ad image">
+                                    </a>
+                                    <div class="ad-close">
+                                        <i class="fa-solid fa-circle-exclamation"></i>
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </div>
+
+                                </div>
+                                <!-- ad area end -->
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            <div class="row pt-40 pb-40">
-                <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12">
-                    <div class="news-element print_area">
-                        <div class="social_share no_print">
-                            <a href="{{ fb_share(url()->current()) }}" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="{{twitter_share(url()->current())}}" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="{{whatsapp_share(url()->current())}}" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
-                            <a href="{{ route('print_news', $news->id) }}" target="_blank" class="print"><i class="fas fa-print"></i></a>
-                            <a href="javascript:;" onclick="navigator.clipboard.writeText('{{url()->current()}}');alert('link Copied')" class=""><i class="fas fa-copy"></i></a>
-                        </div>
+        </section>
 
-                        <div class="img" id="get_width">
-                            @if($news->video_id !== null)
-                                <iframe id="video_iframe" width="100%" src="https://www.youtube.com/embed/{{$news->video_id}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            @else
-                                <img class="img_full_image" src="{{asset('storage')}}/{{$news->media->xs_thumbnail}}" alt="1">
-                                @if($news->media->caption)
-                                    <i>{{ $news->media->caption }} </i>
-                                @endif
-                            @endif
+        <section class="Others-news_section md:pb-12 sm:pb-8 pb-6 {{$related_post->count() == 0 ? 'hidden' : ''}}">
+            <div class="container">
+                <h2 class="others-news-title">অন্যান্য খবর</h2>
 
-                        </div>
-                        <div class="element-content">
-                            <div class="bold_tag_customize">
-                                {!! $news->news_details!!}
-                            </div>
-                            <div class="tags-news">
-                                <ul>
-                                    @php
-                                        $tags = explode(",", rtrim($news->tags, ','));
-                                    @endphp
-                                    @foreach($tags as $tag)
-                                        <li><a href="{{ route('search') }}?search={{ $tag }}">{{$tag}}</a></li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                    <!-- Card 1 -->
+                    @foreach($related_post as $rpost)
+                        <a href="{{route('news_details', ['id' => $rpost->id, 'slug' => $rpost->slug])}}" class="otners-news-item">
+                            <h3 class="news-nmbr">{{isEnglish()?$loop->iteration:bangla_number($loop->iteration)}}</h3>
+                            <p class="news-title">{{$rpost->title}}</p>
+                        </a>
+                    @endforeach
+
+
                 </div>
-                <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 no_print">
-                    @include('layouts.partials.last_published_news')
-                </div>
+
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
+
 @endsection
 
 @section('js')
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const newsElements = document.querySelectorAll('.news-content');
+            let fontSize = 1; // em
+
+            document.getElementById('zoomIn').addEventListener('click', function (e) {
+                e.preventDefault();
+                if (fontSize < 2) {
+                    fontSize += 0.1;
+                    newsElements.forEach(el => {
+                        el.style.fontSize = fontSize + 'em';
+                    });
+                }
+            });
+
+            document.getElementById('zoomOut').addEventListener('click', function (e) {
+                e.preventDefault();
+                if (fontSize > 0.6) {
+                    fontSize -= 0.1;
+                    newsElements.forEach(el => {
+                        el.style.fontSize = fontSize + 'em';
+                    });
+                }
+            });
+        });
+
+        document.querySelectorAll('.update_prokash_btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const parent = btn.closest('.update'); // parent .update block
+                const updated = parent.querySelector('.updated');
+                const prokash = parent.querySelector('.prokash');
+
+                updated.classList.toggle('hidden');
+                prokash.classList.toggle('hidden');
+            });
+        });
+    </script>
+    <script>
         $(function () {
             var div_width = $('#get_width').width();
-            var div_height = div_width * 56 /100;
-            $('#video_iframe').css({ 'height' : div_height + 'px'});
+            var div_height = div_width * 56 / 100;
+            $('#video_iframe').css({'height': div_height + 'px'});
         });
     </script>
 @endsection

@@ -32,8 +32,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [FrontendController::class, 'index_page'])->name('index_page');
+Route::get('/change_lang', [FrontendController::class, 'change_lang'])->name('change_lang');
+Route::get('/videos', [FrontendController::class, 'videos'])->name('videos');
 Route::get('/news/{id}/{slug?}', [FrontendController::class, 'news_details'])->name('news_details');
-Route::get('/pages/{id}', [FrontendController::class, 'page_view'])->name('page_view');
+Route::get('/news/videos/{id}/{slug?}', [FrontendController::class, 'video_details'])->name('video_details');
+Route::get('/pages/{id}/{slug?}', [FrontendController::class, 'page_view'])->name('page_view');
 Route::get('/category/{slug}', [FrontendController::class, 'category_view'])->name('category_view');
 Route::get('/search/', [FrontendController::class, 'search'])->name('search');
 Route::get('/archive/', [FrontendController::class, 'archive'])->name('archive');

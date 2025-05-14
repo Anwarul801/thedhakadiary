@@ -6,8 +6,41 @@ use App\Models\Option;
 function getOptionData($title)
 {
     $option = Option::where('title', $title)->first();
-    return $option->value;
+    return $option->value??null;
 }
+
+if (!function_exists('isEnglish')) {
+    function isEnglish()
+    {
+        return app()->getLocale() === 'en';
+    }
+}
+
+function formatBanglaDate($date) {
+    $months = [
+        'January' => 'জানুয়ারি',
+        'February' => 'ফেব্রুয়ারি',
+        'March' => 'মার্চ',
+        'April' => 'এপ্রিল',
+        'May' => 'মে',
+        'June' => 'জুন',
+        'July' => 'জুলাই',
+        'August' => 'আগস্ট',
+        'September' => 'সেপ্টেম্বর',
+        'October' => 'অক্টোবর',
+        'November' => 'নভেম্বর',
+        'December' => 'ডিসেম্বর'
+    ];
+
+    $banglaDigits = ['0','1','2','3','4','5','6','7','8','9'];
+    $banglaDigitsConverted = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+
+    $formatted = \Carbon\Carbon::parse($date)->format('d F, Y');
+    $formatted = str_replace(array_keys($months), array_values($months), $formatted);
+    return str_replace($banglaDigits, $banglaDigitsConverted, $formatted);
+}
+
+
 
 function getImageTag($id, $true = false){
     $media = Media::find($id);

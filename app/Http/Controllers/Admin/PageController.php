@@ -45,8 +45,10 @@ class  PageController extends Controller
 
         $page = new Page;
         $page->name = $request->name;
+        $page->name_en = $request->name_en;
         $page->slug = Str::slug($request->name,'-');
         $page->description = $request->description;
+        $page->description_en = $request->description_en;
         $page->save();
         $page->order = $page->id;
         $page->save();
@@ -94,8 +96,10 @@ class  PageController extends Controller
 
         $page = Page::findOrFail($id);
         $page->name = $request->name;
-        $page->slug = Str::slug($request->name,'-');
+        $page->name_en = $request->name_en;
+        $page->slug = Str::slug($request->name_en??$request->name,'-');
         $page->description = $request->description;
+        $page->description_en = $request->description_en;
         $page->order = $request->order;
         $page->status = $request->status;
         $page->save();

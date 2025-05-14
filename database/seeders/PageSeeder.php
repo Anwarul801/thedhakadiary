@@ -31,7 +31,7 @@ Following the basic fundamental principles of the Bangladesh constitution, The D
 The Dhaka Diary is committed to the fundamental values of the country, especially, national sovereignty, democracy and secularism. In addition, The Dhaka Diary will speak for the human and civil rights of the citizen of the country.",
                 'description_en' => 'Same as description',
                 'order' => 1,
-                'deletable' => 1
+                'deletable' => 0
             ],
             [
                 'name' => 'গোপনীয়তার নীতি',
@@ -40,7 +40,7 @@ The Dhaka Diary is committed to the fundamental values of the country, especiall
                 'description' => 'Default Privacy Policy',
                 'description_en' => 'Default Privacy Policy',
                 'order' => 2,
-                'deletable' => 1
+                'deletable' => 0
             ],
             [
                 'name' => 'ব্যবহারের শর্তাবলি',
@@ -49,25 +49,7 @@ The Dhaka Diary is committed to the fundamental values of the country, especiall
                 'description' => 'Default Terms And Condition',
                 'description_en' => 'Default Terms And Condition',
                 'order' => 3,
-                'deletable' => 1
-            ],
-            [
-                'name' => 'বিজ্ঞাপন',
-                'name_en' => 'Advertisement',
-                'slug' => 'advertisement',
-                'description' => 'Default Advertisement',
-                'description_en' => 'Default Advertisement',
-                'order' => 4,
-                'deletable' => 1
-            ],
-            [
-                'name' => 'যোগাযোগ',
-                'name_en' => 'Contact',
-                'slug' => 'contact',
-                'description' => 'Default Contact',
-                'description_en' => 'Default Contact',
-                'order' => 5,
-                'deletable' => 1
+                'deletable' => 0
             ],
         ]);
 

@@ -1,0 +1,231 @@
+
+.header-bottom.sticky {
+	position: fixed;
+	z-index: 999;
+	width: 100%;
+	background-color: white;
+	top: 0;
+	-webkit-transition: 0.5s;
+	-o-transition: 0.5s;
+	transition: 0.5s;
+	-webkit-box-shadow: 0 0 30px rgba(51, 51, 51, 0.1);
+	box-shadow: 0 0 30px rgba(51, 51, 51, 0.1);
+	animation: sticky 1s;
+	left: 0;
+}
+
+@keyframes sticky {
+	0% {
+		-webkit-transform: translateY(-100%);
+		transform: translateY(-100%);
+	}
+
+	100% {
+		-webkit-transform: translateY(0%);
+		transform: translateY(0%);
+	}
+}
+/*=========== Mobile  ========================================*/
+.mobile-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1294D2;
+}
+
+.mobile-menu-open {
+  font-size: 18px;
+  padding: 5px;
+  display: inline;
+}
+@media only screen and (max-width: 575px) {
+  .mobile-menu-open {
+    font-size: 18px;
+    padding-right: 10px;
+  }
+}
+
+.logo-wrap{
+  background: #000000;
+}
+
+/*OVERLY Start*/
+.overlay {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  z-index: 99;
+  visibility: visible;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.overlay.open {
+  opacity: 0.6;
+  visibility: visible;
+}
+
+/*END OVERLY*/
+.mobile-off-canvas-menu {
+  position: fixed;
+  top: 0;
+  left: -350px;
+  background: #FFFFFF;
+  z-index: 999;
+  width: 350px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.mobile-off-canvas-menu.open {
+  left: 0;
+}
+
+.mobile-canvas-close {
+  background: #FFFFFF;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-mobile-menu {
+  cursor: pointer;
+}
+
+.mobile-canvas-close p {
+  line-height: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.mobile-canvas-close p i {
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 6;
+}
+
+.mobile-main-menu .menu-content li {
+  position: relative;
+}
+
+.mobile-main-menu .menu-content li a {
+  display: block;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 5px 35px;
+  padding-right: 50px;
+  line-height: 30px;
+  text-transform: capitalize;
+  border-top: 1px solid #e5e5e5;
+}
+@media only screen and (max-width: 575px) {
+  .mobile-main-menu .menu-content li a {
+    font-size: 14px;
+    padding: 4px 24px;
+    line-height: 30px;
+  }
+}
+
+.mobile-main-menu .menu-content li.active a,
+.mobile-main-menu .menu-content li a:hover {
+  background-color: #EEFAFF;
+  color: #1294D2;
+}
+
+.mobile-main-menu .menu-content li a i {
+  display: none;
+}
+
+.mobile-main-menu .menu-content li .mobile-menu-expand {
+  position: absolute;
+  right: 35px;
+  top: 13px;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.mobile-main-menu .menu-content li .mobile-menu-expand::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: #FFFFFF;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.mobile-main-menu .menu-content li .mobile-menu-expand::after {
+  position: absolute;
+  content: "";
+  width: 2px;
+  height: 100%;
+  background-color: #FFFFFF;
+  left: 50%;
+  bottom: 0;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.mobile-main-menu .menu-content li.active-expand > .mobile-menu-expand::after {
+  height: 0;
+}
+
+.mobile-main-menu .menu-content li .sub-menu li a {
+  font-weight: 400;
+  padding-left: 50px;
+}
+
+.mobile-main-menu .menu-content li .sub-menu li .submenu-item li a,
+.mobile-main-menu .menu-content li .sub-menu li .sub-menu li a {
+  padding-left: 65px;
+}
+
+.mobile-main-menu .menu-content li .sub-menu li img {
+  padding: 10px;
+  padding-right: 20px;
+}
+
+.header-horizontal-menu .menu-content li:hover .sub-menu,
+.header-horizontal-menu .menu-content li:hover .mega-sub-menu {
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  -ms-transform: rotateX(0deg);
+  -o-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}

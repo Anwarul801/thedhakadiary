@@ -36,22 +36,25 @@
                                     <input type="text" name="editor_name" value="{{ getOptionData('editor_name') }}" class="form-control">
                                 </div>
                                 <div class="form-group">
+                                    <label for="">Editor's Name English</label>
+                                    <input type="text" name="editor_name_en" value="{{ getOptionData('editor_name_en') }}" class="form-control">
+                                </div>
+                                <div class="form-group">
                                     <label for="">Address</label>
                                     <input type="text" name="address" value="{{ getOptionData('address') }}" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Logo (260x45px)</label> <br>
-                                    <img src="{{ asset('storage') }}/{{ getOptionData('logo') }}" style="height: 50px; margin: 5px 0" alt="">
+                                    <label for="">Address English</label>
+                                    <input type="text" name="address_en" value="{{ getOptionData('address_en') }}" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Logo (342x60px)</label> <br>
+                                    <img src="{{ asset('storage') }}/{{ getOptionData('logo') }}" style="height: 50px; margin: 5px 0; background: black" alt="">
                                     <input type="file" name="logo" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Logo For Mobile (260x45px)</label> <br>
-                                    <img src="{{ asset('storage') }}/{{ getOptionData('logo_for_mobile') }}" style="height: 50px; margin: 5px 0" alt="">
-                                    <input type="file" name="logo_for_mobile" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Favicon (15x15px)</label><br>
-                                    <img src="{{ asset('storage') }}/{{ getOptionData('favicon') }}" style="height: 50px; margin: 5px 0" alt="">
+                                    <label for="">Favicon (65x65px)</label><br>
+                                    <img src="{{ asset('storage') }}/{{ getOptionData('favicon') }}" style="height: 50px; margin: 5px 0; background: black" alt="">
                                     <input type="file" name="favicon" class="form-control">
                                 </div>
                                 <div class="form-group">
@@ -82,32 +85,20 @@
                                     <input type="text" name="fb" value="{{ getOptionData('fb') }}" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">YouTube</label>
-                                    <input type="text" name="youtube" value="{{ getOptionData('youtube') }}" class="form-control">
-                                </div>
-                                <div class="form-group">
                                     <label for="">Twitter</label>
                                     <input type="text" name="twitter" value="{{ getOptionData('twitter') }}" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Linkedin</label>
-                                    <input type="text" name="linkedin" value="{{ getOptionData('linkedin') }}" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Telegram</label>
-                                    <input type="text" name="telegram" value="{{ getOptionData('telegram') }}" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Whats App</label>
-                                    <input type="text" name="whats_app" value="{{ getOptionData('whats_app') }}" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Instagram</label>
                                     <input type="text" name="instagram" value="{{ getOptionData('instagram') }}" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="footer_description">Footer Description</label>
-                                    <textarea class="form-control" name="footer_description" id="footer_description" cols="30" rows="10">{{ getOptionData('footer_description') }}</textarea>
+                                    <label for="">Telegram</label>
+                                    <input type="text" name="telegram" value="{{ getOptionData('telegram') }}" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">WhatsApp</label>
+                                    <input type="text" name="whats_app" value="{{ getOptionData('whats_app') }}" class="form-control">
                                 </div>
                             </div>
                         </div>

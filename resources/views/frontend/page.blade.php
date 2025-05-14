@@ -1,19 +1,92 @@
 @extends('layouts.frontend_layout')
 
-@section('page_title') {{ $page->name }} @endsection
-
+@section('page_title') {{ isEnglish()?$page->name_en:$page->name }} @endsection
 @section('main_content')
-    <section class="news-details pt-40 pb-40">
-        <div class="container">
-            <div class="row pt-40 pb-40 justify-content-center">
-                <div class="col-md-7 col-lg-6 col-sm-9 col-xs-12">
-                    <h1 class="text-center category_title">{{ $page->name }}</h1>
-                    <div class="element-content">
-                        {!! $page->description !!}
+    <main class="site-content flex-1">
+        <section class="privacy_policy_section section-padding">
+            <div class="container">
+                <div class="grid grid-cols-12 gap-6 ">
+                    <div class="lg:col-span-10 col-span-12 lg:col-start-2 col-start-auto">
+                        <!-- Sub-grid here -->
+                        <div class="grid grid-cols-12 gap-4">
+                            <div class="col-span-12">
+                                <div class="page-title-wrap border-b border-stock-color md:pb-6 pb-4 md:mb-6 mb-4">
+                                    <h1 class="page-title">{{isEnglish()? $page->name_en: $page->name}}</h1>
+                                    <p class="present">{{isEnglish()? date('d F Y'): formatBanglaDate(date('d F Y'))}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sub-grid here -->
+                        <div class="grid grid-cols-12 gap-x-6">
+                            <div class="md:col-span-8 col-span-12">
+                                <div class="about-content-wrap">
+                                    <div class="text-area-card">
+                                        {!! isEnglish()?$page->description_en:$page->description !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md:col-span-4 col-span-12 md:mt-0 mt-4">
+                                <div class="grid grid-cols-12 gap-4 ">
+                                    <div class="col-span-12">
+                                        <div class="section-title-wrap">
+                                            <h2 class="section-title">বাছাইকৃত খবর</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-6 md:col-span-12">
+                                        <div class="news-card">
+                                            <div class="thumbnail">
+                                                <a href="#"><img src="{{asset('frontend/assets')}}/image/image-gallery/side-1.png" alt="Thumbnail"></a>
+                                            </div>
+                                            <h1 class="title"><a href="#">স্বাধীনতার জন্য আমাদের অঙ্গীকার: শেষ রক্ত বিন্দু পর্যন্ত!</a></h1>
+                                            <div class="date">
+                                                <p>৩০ আগষ্ট  ২০২২</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-6 md:col-span-12">
+                                        <div class="news-card">
+                                            <div class="thumbnail">
+                                                <a href="#"><img src="{{asset('frontend/assets')}}/image/image-gallery/side-2.png" alt="Thumbnail"></a>
+                                            </div>
+                                            <h1 class="title"><a href="#">দেশের স্বাধীনতা রক্ষায় আমাদের প্রতিজ্ঞা: জীবন দান!</a></h1>
+                                            <div class="date">
+                                                <p>৩০ আগষ্ট  ২০২২</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-6 md:col-span-12">
+                                        <div class="news-card">
+                                            <div class="thumbnail">
+                                                <a href="#"><img src="{{asset('frontend/assets')}}/image/image-gallery/side-1.png" alt="Thumbnail"></a>
+                                            </div>
+                                            <h1 class="title"><a href="#">স্বাধীনতার জন্য আমাদের অঙ্গীকার: শেষ রক্ত বিন্দু পর্যন্ত!</a></h1>
+                                            <div class="date">
+                                                <p>৩০ আগষ্ট  ২০২২</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-12">
+                                        <!-- ad area start -->
+                                        <div class="adSmall">
+                                            <a href="#">
+                                                <img src="{{asset('frontend/assets')}}/image/small-ad-2.png" alt="ad image">
+                                            </a>
+                                            <div class="ad-close">
+                                                <i class="fa-solid fa-circle-exclamation"></i>
+                                                <i class="fa-solid fa-xmark"></i>
+                                            </div>
+                                        </div>
+                                        <!-- ad area end -->
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 @endsection
 

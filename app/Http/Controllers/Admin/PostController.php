@@ -92,7 +92,7 @@ class PostController extends Controller
             $image_public_path = public_path('storage/' . $image);
             $thumbnail_public_path = public_path('storage/' . $thumbnail);
             $xs_thumbnail_public_path = public_path('storage/' . $xs_thumbnail);
-            Image::make($image_public_path)->resize('640', '427')->save();
+            Image::make($image_public_path)->resize('648', '486')->save();
             Image::make($thumbnail_public_path)->resize('300', '200')->save();
             Image::make($xs_thumbnail_public_path)->resize('150', '100')->save();
             $media->image = $image;
@@ -255,7 +255,7 @@ class PostController extends Controller
                 $image_public_path = public_path('storage/' . $image);
                 $thumbnail_public_path = public_path('storage/' . $thumbnail);
                 $xs_thumbnail_public_path = public_path('storage/' . $xs_thumbnail);
-                Image::make($image_public_path)->resize('640', '427')->save();
+                Image::make($image_public_path)->resize('648', '486')->save();
                 Image::make($thumbnail_public_path)->resize('300', '200')->save();
                 Image::make($xs_thumbnail_public_path)->resize('150', '100')->save();
                 $media->image = $image;

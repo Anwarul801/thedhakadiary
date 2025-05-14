@@ -1,193 +1,355 @@
+@php use Illuminate\Support\Str; @endphp
 @extends('layouts.frontend_layout')
 @section('page_title')
-        Asian Mail24 : Home
+    {{isEnglish()? 'The Dhaka Diary' : 'দ্যা ঢাকা ডায়েরী'}}
 @endsection
-
-@section('marque')
-    <div class="container mt-3 {{$marque->type == 'In-Active' ? 'd-none' : ''}}">
-        <div class="header-top-wrap">
-            <div class="ticker">
-                <div class="news-title">
-                    <h5>ব্রেকিং নিউজ:</h5>
+@section('css')
+@endsection
+@section('main_content')
+    <main class="site-content flex-1">
+        <!-- ad area -->
+        <div class="container">
+            <div class="ad-full">
+                <a href="">
+                    <img src="{{asset('frontend/assets')}}/image/ad-full.png" alt="ad image">
+                </a>
+                <div class="ad-close">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <i class="fa-solid fa-xmark"></i>
                 </div>
-                <div class="news">
-                    <marquee class="news-content"  scrollamount="6" onmouseover="this.stop();" onmouseout="this.start();">
-                        @foreach($breaking_news as $bn)
-                            <a href="{{route('news_details', ['id' => $bn->id, 'slug' => $bn->slug])}}">
-                                <p style="cursor: pointer">
-                                    {{$bn->title}}
-                                </p>
+            </div>
+        </div>
+        <!-- ad area end-->
+        <!-- ==========Top_Section ======== -->
+        <section class="top_section section-padding-top">
+            <div class="container">
+                <div class="grid grid-cols-12 md:gap-6 gap-4">
+                    <div class="xl:col-span-9 col-span-12">
+                        <div class="grid grid-cols-12 md:gap-6 gap-4">
+                            @foreach($header_posts as $header_post)
+                                @if($loop->iteration==2)
+                                    @break
+                                @endif
+                                <div class="xl:col-span-8 sm:col-span-7 col-span-12">
+                                    <!-- news card -->
+                                    <div class="news-card">
+                                        <div class="thumbnail">
+                                            <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}"><img
+                                                    src="{{asset('storage')}}/{{$header_post->media->image??null}}"
+                                                    alt="Thumbnail"></a>
+                                        </div>
+                                        <h1 class="title title-lg">
+                                            <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{Str::limit($header_post->title, 100)}}</a>
+                                        </h1>
+                                        <div class="short-description">
+                                            <p>
+                                                <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{$header_post->subtitle}}</a>
+                                            </p>
+                                        </div>
+                                        <div class="date">
+                                            <p>{{isEnglish()?date_maker($header_post->publishing_date, 'd F, Y'): formatBanglaDate($header_post->publishing_date)}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                            <div class="xl:col-span-4 sm:col-span-5 col-span-12">
+                                <div class="grid grid-cols-12 md:gap-y-6 gap-4">
+                                    <!-- First side news card -->
+
+                                    @foreach($header_posts as $header_post)
+                                        @if($loop->iteration==1)
+                                            @continue
+                                        @endif
+                                        @if($loop->iteration==4)
+                                            @break
+                                        @endif
+                                            <div class="sm:col-span-12 col-span-6">
+                                                <div class="news-card">
+                                                    <div class="thumbnail">
+                                                        <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}"><img
+                                                                src="{{asset('storage')}}/{{$header_post->media->thumbnail??null}}"
+                                                                alt="Thumbnail"></a>
+                                                    </div>
+                                                    <h1 class="title">
+                                                        <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{Str::limit($header_post->title, 100)}}</a>
+                                                    </h1>
+                                                    <div class="date">
+                                                        <p>{{isEnglish()?date_maker($header_post->publishing_date, 'd F, Y'): formatBanglaDate($header_post->publishing_date)}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    @endforeach
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="grid grid-cols-12 md:gap-6 gap-4 mt-4">
+                            @foreach($header_posts as $header_post)
+                                @if($loop->iteration<4)
+                                    @continue
+                                @endif
+                                    <div class="md:col-span-4 col-span-6">
+                                        <div class="news-card">
+                                            <div class="thumbnail">
+                                                <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}"><img
+                                                        src="{{asset('frontend/assets')}}/image/image-gallery/side-6.png"
+                                                        alt="Thumbnail"></a>
+                                            </div>
+                                            <h1 class="title"><a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{Str::limit($header_post->title, 100)}}</a></h1>
+                                            <div class="date">
+                                                <p>{{isEnglish()?date_maker($header_post->publishing_date, 'd F, Y'): formatBanglaDate($header_post->publishing_date)}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                            @endforeach
+                        </div>
+
+
+                    </div>
+
+                    <div class="xl:col-span-3 col-span-12">
+                        @include('layouts.partials.news_item.latest_news')
+
+                        <div class="send-video-wrap">
+                            <h1 class="title">আপনার চোখে ধরা পড়া খবর ছবি বা ভিডিও আমাদের পাঠান</h1>
+
+                            <div class="using-mathod">
+                                <a href="https://wa.me/{{getOptionData('whats_app')}}" class="item">
+                                    <div class="left-part flex items-center gap-4">
+                                        <div class="left-icon">
+                                            <img src="{{asset('frontend/assets')}}/image/whatsapp.svg" alt="What's up">
+                                        </div>
+                                        <h3 class="name">What's app</h3>
+                                    </div>
+                                    <div class="right-icon">
+                                        <img src="{{asset('frontend/assets')}}/image/arrow-right.svg" alt="arrow right">
+                                    </div>
+                                </a>
+                                <a href="mailto:{{getOptionData('email')}}" class="item">
+                                    <div class="left-part flex items-center gap-4">
+                                        <div class="left-icon">
+                                            <img src="{{asset('frontend/assets')}}/image/gmail.svg" alt="What's up">
+                                        </div>
+                                        <h3 class="name">Email</h3>
+                                    </div>
+                                    <div class="right-icon">
+                                        <img src="{{asset('frontend/assets')}}/image/arrow-right.svg" alt="arrow right">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- ad area start -->
+                        <div class="adSmall">
+                            <a href="#">
+                                <img src="{{asset('frontend/assets')}}/image/small-ad-2.png" alt="ad image">
                             </a>
+                            <div class="ad-close">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <i class="fa-solid fa-xmark"></i>
+                            </div>
+                        </div>
+                        <!-- ad area end -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--========Dynamic category wise post====== -->
+        @foreach($categories as $category)
+            <section class="education_section section_short-padding">
+                <div class="container">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">{{isEnglish()?$category->name_en: $category->name}}</h2>
+                        <div class="section-button-wrap">
+                            <a href="{{route('category_view', $category->slug)}}" class="section_button">{{__('lang.read_more')}} <i class="fa-solid fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-12 md:gap-6 gap-4 md:pb-7.5 sm:pb-6 pb-4 border-b border-stock-color">
+                        @foreach($category->posts as $news)
+                            <div class="lg:col-span-3 md:col-span-4 col-span-6">
+                                <div class="news-card">
+                                    <div class="thumbnail">
+                                        <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}"><img src="{{asset('storage')}}/{{$news->media->thumbnail??null}}"
+                                                         alt="Thumbnail"></a>
+                                    </div>
+                                    <h1 class="title">
+                                        <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}">{{Str::limit($news->title, 100)}}</a>
+                                    </h1>
+                                    <div class="date">
+                                        <p>{{isEnglish()?date_maker($news->publishing_date, 'd F, Y'): formatBanglaDate($news->publising_date)}}</p>
+                                    </div>
+                                </div>
+                            </div>
                         @endforeach
-                    </marquee>
+
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-@endsection
-    @section('main_content')
+            </section>
+        @endforeach
 
-{{--        popup ad--}}
-    @foreach($ads as $ad)
-        @if($ad->placement_id == 1 && $ad != null)
-            <div id="popup-background"></div>
-<div id="popup-container">
-    <button id="popup-close"><i class="fas fa-times"></i></button>
-            @if($ad->placement_id == 1 && ($ad->file_type == 'GIF' || $ad->file_type == 'Image'))
-            <a target="_blank" href="{{$ad->link}}">
-                <img src="{{asset('storage')}}/{{$ad->file}}" alt="Popup Ad Image">
-            </a>
-    @endif
-        @if($ad->placement_id == 1 && $ad->file_type == "Video")
-        <a target="_blank" href="{{$ad->link}}">
-            <video src="{{asset('storage')}}/{{$ad->file}}"></video>
-        </a>
-        @endif
 
-</div>
-        @endif
-    @endforeach
-{{--end popup ad--}}
-<section class="rajniit-section pt-20 pb-40">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9 col-sm-12 col-xs-12">
-                @foreach($header_posts as $post)
-                    @if($loop->iteration == 1)
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                @include('layouts.partials.news_item.large_news')
+        <!--=========Video_Section=========== -->
+        <section class="video_section section_short-padding {{$videos->count() == 0 ? 'hidden' : ''}}">
+            <div class="container">
+                <div class="section-title-wrap">
+                    <h2 class="section-title">{{__('lang.video')}}</h2>
+                    <div class="section-button-wrap">
+                        <a href="{{route('videos')}}" class="section_button">{{__('lang.see_more')}} <i
+                                class="fa-solid fa-angle-right"></i></a>
+                    </div>
+                </div>
+                <div class="grid grid-cols-12 md:gap-6 gap-4 md:pb-7.5 sm:pb-6 pb-4 border-b border-stock-color">
+                    @foreach($videos as $video)
+                        <div class="lg:col-span-3 sm:col-span-6 col-span-12">
+                            <div class="news-card">
+                                <div class="video_thumbnail">
+                                    <a href="{{route('video_details', ['id' => $video->id, 'slug' => $video->slug])}}"><img
+                                            src="{{asset('storage')}}/{{$video->media->thumbnail??null}}"
+                                            alt="Thumbnail"></a>
+                                    <a href="{{route('video_details', ['id' => $video->id, 'slug' => $video->slug])}}" class="video-icon-wrap">
+                                    <span class="video-icon animate-ripple-blue-vdo"><i
+                                            class="fa-solid fa-play"></i></span>
+                                    </a>
+                                    <span class="video_duration">{{$video->video_duration}}</span>
+                                </div>
+                                <h1 class="title">
+                                    <a href="{{route('video_details', ['id' => $video->id, 'slug' => $video->slug])}}">{{Str::limit($video->title, 100)}}</a>
+                                </h1>
+                                <div class="date">
+                                    <p>{{isEnglish()?date_maker($video->publishing_date, 'd F, Y'): formatBanglaDate($video->publising_date)}}</p>
+
+                                </div>
                             </div>
-                        </div>
-                    @else
-                        @break
-                    @endif
-                @endforeach
-
-                <div class="row pt-20">
-                    @foreach($header_posts as $post)
-                        @if($loop->iteration == 1)
-                            @continue
-                        @endif
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
-                            @include('layouts.partials.news_item.medium_news')
                         </div>
                     @endforeach
                 </div>
             </div>
-            <!-- col-widget now -->
-            <div class="col-md-3 col-sm-12 col-xs-12">
-                <div class="right-single2" style="margin-bottom: 20px;">
-                        <div style="width: 300px; height: 250px;">
-                    @foreach($ads as $ad)
-                                @if($ad->placement_id == 3 && ($ad->file_type == 'GIF' || $ad->file_type == 'Image') && $ad->type  == 'Internal')
-                                    <a style="width: 100%;" href="{{$ad->link}}" target="_blank">
-                                        <img style="margin: 0 auto;" src="{{asset('storage')}}/{{$ad->file}}" alt="Ad Image">
-                                    </a>
-                                @endif
-                                @if($ad->placement_id == 3 && $ad->file_type == "Video" && $ad->type  == 'Internal')
-                                    <a style="width: 100%;" target="_blank" href="{{$ad->link}}">
-                                        <video src="{{asset('storage')}}/{{$ad->file}}"></video>
-                                    </a>
-                                @endif
-                                @if($ad->placement_id == 3 && $ad->type == 'External')
-                                    {!! $ad->code !!}
-                                @endif
-                    @endforeach
-                        </div>
+        </section>
 
+        <!--=========Photo_Section=========== -->
+        <section class="photo-section ">
+            <div class="container">
+                <div class="section-title-wrap">
+                    <h2 class="section-title">ছবি</h2>
+                    <div class="section-button-wrap">
+                        <a href="photo-gallery.html" class="section_button">{{__('lang.see_more')}} <i
+                                class="fa-solid fa-angle-right"></i></a>
+                    </div>
                 </div>
-                <div class="right-content-widget">
-                    <h4 class="sidebar_title"><a href="{{route('last_published')}}">সর্বশেষ<i class="fa fa-arrow-right"></i></a></h4>
-                   @foreach($sorbosesh as $sb)
-                        @if($loop->iteration == 5)
-                            @break
-                        @endif
-                        <div class="right-single">
-                            <div class="widget-content">
-{{--                                <p class="time"><i class="far fa-clock"></i><span>{{ date_maker($sb->publishing_date, 'd m, y', true)  }}</span></p>--}}
-                                <h3><a href="{{route('news_details', ['id' => $sb->id, 'slug' => $sb->slug])}}">{{$sb->title}}</a></h3>
+                <div class="grid grid-cols-12 md:gap-6 gap-4">
+                    <div class="md:col-span-3 col-span-12">
+                        <div class="grid grid-cols-12 md:gap-y-4 gap-y-0 gap-x-4 md:gap-x-0">
+                            <div class="md:col-span-12 col-span-6">
+                                <div class="news-card">
+                                    <div class="image-thumbnail">
+                                        <a href="photo-gallery-details.html"><img
+                                                src="{{asset('frontend/assets')}}/image/thumbnail/image-gallery-1.png"
+                                                alt="Thumbnail"></a>
+                                        <span class="image-icon"><i class="fa-solid fa-images"></i></span>
+                                    </div>
+                                    <h1 class="title">
+                                        <a href="photo-gallery-details.html">স্বাধীনতার প্রতীক হিসেবে আমাদের দেশের </a>
+                                    </h1>
+                                    <div class="date">
+                                        <p>৩০ আগষ্ট ২০২২</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md:col-span-12 col-span-6">
+                                <div class="news-card">
+                                    <div class="image-thumbnail">
+                                        <a href="photo-gallery-details.html"><img
+                                                src="{{asset('frontend/assets')}}/image/thumbnail/image-gallery-2.png"
+                                                alt="Thumbnail"></a>
+                                        <span class="image-icon"><i class="fa-solid fa-images"></i></span>
+                                    </div>
+                                    <h1 class="title">
+                                        <a href="photo-gallery-details.html">স্বাধীনতার প্রতীক হিসেবে আমাদের দেশের </a>
+                                    </h1>
+                                    <div class="date">
+                                        <p>৩০ আগষ্ট ২০২২</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                   @endforeach
+                    </div>
+                    <div class="md:col-span-6 col-span-12">
+                        <div class="news-card">
+                            <div class="image-thumbnail">
+                                <a href="photo-gallery-details.html"><img
+                                        src="{{asset('frontend/assets')}}/image/thumbnail/image-gallery-5.png"
+                                        alt="Thumbnail"></a>
+                                <span class="image-icon"><i class="fa-solid fa-images"></i></span>
+                            </div>
+                            <h1 class="title title-lg">
+                                <a href="photo-gallery-details.html">এই সংগ্রামে শহীদদের আত্মত্যাগের মাধ্যমে অর্জিত
+                                    হয়েছে আমাদের
+                                    স্বাধীনতা।</a>
+                            </h1>
+                            <div class="date">
+                                <p>৩০ আগষ্ট ২০২২</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:col-span-3 col-span-12">
+                        <div class="grid grid-cols-12 md:gap-y-4 gap-y-0 gap-x-4 md:gap-x-0">
+                            <div class="md:col-span-12 col-span-6">
+                                <div class="news-card">
+                                    <div class="image-thumbnail">
+                                        <a href="photo-gallery-details.html"><img
+                                                src="{{asset('frontend/assets')}}/image/thumbnail/image-gallery-3.png"
+                                                alt="Thumbnail"></a>
+                                        <span class="image-icon"><i class="fa-solid fa-images"></i></span>
+                                    </div>
+                                    <h1 class="title">
+                                        <a href="photo-gallery-details.html">স্বাধীনতার প্রতীক হিসেবে আমাদের দেশের </a>
+                                    </h1>
+                                    <div class="date">
+                                        <p>৩০ আগষ্ট ২০২২</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md:col-span-12 col-span-6">
+                                <div class="news-card">
+                                    <div class="image-thumbnail">
+                                        <a href="photo-gallery-details.html"><img
+                                                src="{{asset('frontend/assets')}}/image/thumbnail/image-gallery-4.png"
+                                                alt="Thumbnail"></a>
+                                        <span class="image-icon"><i class="fa-solid fa-images"></i></span>
+                                    </div>
+                                    <h1 class="title">
+                                        <a href="photo-gallery-details.html">স্বাধীনতার প্রতীক হিসেবে আমাদের দেশের </a>
+                                    </h1>
+                                    <div class="date">
+                                        <p>৩০ আগষ্ট ২০২২</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
+        <!-- footer ad area -->
 
-<div id="home_extra">
-    @include('layouts.partials.home_extra')
-</div>
-
+{{--        <div class="ad-full footer_ad hidden">--}}
+{{--            <div class="footer-wraper">--}}
+{{--                <div class="container">--}}
+{{--                    <a href="">--}}
+{{--                        <img src="{{asset('frontend/assets')}}/image/ad-full.png" alt="ad image">--}}
+{{--                    </a>--}}
+{{--                    <div class="ad-close close_only">--}}
+{{--                        <i class="fa-solid fa-xmark"></i>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+        <!-- footer ad area end-->
+    </main>
 @endsection
 
 @section('js')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const popupContainer = document.getElementById('popup-container');
-            const popupBackground = document.getElementById('popup-background');
-            const popupCloseButton = document.getElementById('popup-close');
 
-            // Function to open the popup
-            function openPopup() {
-                popupBackground.style.display = 'block';
-                popupContainer.style.display = 'block';
-                popupContainer.classList.add('popup-open');
-            }
-
-            // Function to close the popup
-            function closePopup() {
-                popupContainer.classList.remove('popup-open');
-                setTimeout(function() {
-                    popupBackground.style.display = 'none';
-                    popupContainer.style.display = 'none';
-                }, 300); // Time for the fade-out animation
-            }
-
-            // Event listeners to open and close the popup
-            popupBackground.addEventListener('click', closePopup);
-            popupCloseButton.addEventListener('click', closePopup);
-
-            // Open the popup after a delay (adjust the delay as needed)
-            setTimeout(openPopup, 100);
-        });
-    </script>
 @endsection
-{{--@section('js')--}}
-{{--    <script>--}}
-{{--        function call_ajax(){--}}
-{{--            jQuery.ajax({--}}
-{{--                url: "{{url( route('index_page') )}}",--}}
-{{--                headers: {--}}
-{{--                    'X-CSRF-TOKEN': "{{csrf_token()}}"--}}
-{{--                },--}}
-{{--                method: "GET",--}}
-{{--                success: function (data) {--}}
-{{--                    document.getElementById('home_extra').innerHTML = data.home_extra--}}
-{{--                    setTimeout(function (){--}}
-{{--                        $("img.img_thumb").each(function() {--}}
-{{--                            var currentSrc = $(this).attr("src");--}}
-{{--                            var newSrc = currentSrc.replace("media_xs", "media_thumbnail");--}}
-{{--                            $(this).attr("src", newSrc);--}}
-{{--                        });--}}
-{{--                        $("img.img_full_image").each(function() {--}}
-{{--                            var currentSrc = $(this).attr("src");--}}
-{{--                            var newSrc = currentSrc.replace("media_xs", "media_image");--}}
-{{--                            $(this).attr("src", newSrc);--}}
-{{--                        });--}}
-{{--                    }, 100);--}}
-{{--                }--}}
-{{--            });--}}
-{{--        }--}}
-
-
-{{--        $(document).ready(function() {--}}
-{{--            setTimeout(call_ajax, 10);--}}
-{{--        });--}}
-{{--    </script>--}}
-
-
-
-{{--@endsection--}}
-

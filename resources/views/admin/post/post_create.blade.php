@@ -4,6 +4,8 @@
     Post Create
 @endsection
 @section('main_content')
+    <!-- Bootstrap CSS -->
+
     <form class="form-horizontal" action="{{ route('post.store') }}" method="Post" enctype="multipart/form-data">
         @csrf
     <div class="row">
@@ -137,9 +139,13 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="form-group tags-default">
+                            <div class="form-group">
                                 <label for="tags">Tags</label>
-                                <input data-role="tagsinput" value="{{old('tags')}}" class="form-control" type="text" id="tags" name="tags" placeholder="Add Tags">
+                                <input type="text" id="tags" name="tags"
+                                       value="{{ old('tags') }}"
+                                       data-role="tagsinput"
+                                       class="form-control"
+                                       placeholder="Add tags (press Enter or comma)">
                             </div>
                         </div>
                     </div>
@@ -174,21 +180,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Breaking News</label> <br>
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <input type="radio" id="breaking_news1" value="1" {{old('breaking_news') == 1 ? 'checked' : ''}} name="breaking_news">
-                                            <label for="breaking_news1">Yes</label>
-                                        </div>
-                                        <div class="col-4">
-                                            <input type="radio" id="breaking_news0" value="0" {{old('breaking_news') == 0 ? 'checked' : ''}} name="breaking_news">
-                                            <label for="breaking_news0">No</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="col-md-6">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="">Breaking News</label> <br>--}}
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col-4">--}}
+{{--                                            <input type="radio" id="breaking_news1" value="1" {{old('breaking_news') == 1 ? 'checked' : ''}} name="breaking_news">--}}
+{{--                                            <label for="breaking_news1">Yes</label>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-4">--}}
+{{--                                            <input type="radio" id="breaking_news0" value="0" {{old('breaking_news') == 0 ? 'checked' : ''}} name="breaking_news">--}}
+{{--                                            <label for="breaking_news0">No</label>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
 
                         <div class="form-group account-btn text-center">
@@ -245,7 +251,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="caption">Caption</label>
-                                <input value="{{old('caption')}}" class="form-control" type="text" id="caption" name="caption"  placeholder="Caption">
+                                <input required value="{{old('caption')}}" class="form-control" type="text" id="caption" name="caption"  placeholder="Caption">
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -257,17 +263,17 @@
                     </div>
                 </div>
             </div>
-{{--            <div class="card">--}}
-{{--                <div class="card-header">--}}
-{{--                    <h4 class="m-0 d-flex justify-content-between">--}}
-{{--                        <span>Media</span>--}}
-{{--                        <i class="fa fa-plus" data-toggle="modal" data-target="#create_media" style="background-color: black; color: white; height: 20px; width: 20px; border-radius: 50%; text-align: center; line-height: 20px; font-size: 12px; cursor:pointer;"></i>--}}
-{{--                    </h4>--}}
-{{--                </div>--}}
-{{--                <div class="card-body">--}}
-{{--                     <div class="row" id="media_container"></div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="m-0 d-flex justify-content-between">
+                        <span>Media</span>
+                        <i class="fa fa-plus" data-toggle="modal" data-target="#create_media" style="background-color: black; color: white; height: 20px; width: 20px; border-radius: 50%; text-align: center; line-height: 20px; font-size: 12px; cursor:pointer;"></i>
+                    </h4>
+                </div>
+                <div class="card-body">
+                     <div class="row" id="media_container"></div>
+                </div>
+            </div>
         </div>
     </div>
     </form>
@@ -317,6 +323,13 @@
     </div>
 @endsection
 @section('js')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap Tagsinput JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
     <script>
         tinymce.init({
             selector: 'textarea#news_details',
@@ -449,6 +462,26 @@
             border-radius: 50%;
             -webkit-animation: spin 1s linear infinite;
             animation: spin 1s linear infinite;
+        }
+    </style>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Tagsinput CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet">
+    <style>
+        .bootstrap-tagsinput {
+            width: 100% !important;
+            min-height: calc(1.5em + .75rem + 2px);
+            padding: 0.375rem 0.75rem;
+            line-height: 1.5;
+        }
+        .bootstrap-tagsinput .tag {
+            margin-right: 2px;
+            color: white;
+            background-color: #0d6efd;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.25rem;
         }
     </style>
 @endsection

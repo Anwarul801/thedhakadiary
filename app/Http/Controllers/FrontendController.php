@@ -13,87 +13,146 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
+    public function change_lang()
+    {
+        $locale = session('locale') === 'en' ? 'bn' : 'en';
+        session(['locale' => $locale]);
+        return back();
+    }
     public function index_page(Request $request)
     {
-        $data['header_posts'] = Section::findOrFail(1)->posts()->where(checkPost())->orderBy('order', 'DESC')->take(4)->get();
+       $data['header_posts'] = Section::findOrFail(1)->posts()
+            ->select(
+                'posts.id',
+                'posts.order',
+                'posts.title',
+                'posts.slug',
+                'posts.subtitle',
+                'posts.media_id',
+                'posts.publishing_date',
+            )
+            ->where([[checkPost()],['language', isEnglish()?'en':'bn']])->orderBy('order', 'DESC')->take(6)->get();
 
-        $data['category_jatio'] = Category::findOrFail(1);
-        $data['category_motamot'] = Category::findOrFail(2);
-        $data['category_rajniti'] = Category::findOrFail(3);
-        $data['category_saradesh'] = Category::findOrFail(4);
-        $data['category_digital'] = Category::findOrFail(5);
-        $data['category_antorjatik'] = Category::findOrFail(6);
-        $data['category_binodon'] = Category::findOrFail(7);
-        $data['category_khela'] = Category::findOrFail(8);
-        $data['category_orthoniti'] = Category::findOrFail(9);
-        $data['category_corporate'] = Category::findOrFail(10);
-        $data['category_campus'] = Category::findOrFail(11);
-        $data['category_dhormo'] = Category::findOrFail(12);
-        $data['category_sahitto'] = Category::findOrFail(13);
-        $data['category_feature'] = Category::findOrFail(14);
-        $data['category_tottho'] = Category::findOrFail(15);
-        $data['category_lifestyle'] = Category::findOrFail(16);
-        $data['category_sastho'] = Category::findOrFail(17);
-        $data['category_probash'] = Category::findOrFail(18);
-        $data['category_netdonia'] = Category::findOrFail(21);
-        $data['category_cakri'] = Category::findOrFail(22);
-        $data['category_tour'] = Category::findOrFail(23);
-        $data['category_book_review'] = Category::findOrFail(24);
-        $data['category_adalat'] = Category::findOrFail(19);
-        $data['category_rajdhani'] = Category::findOrFail(25);
-        $data['national_post'] = $data['category_jatio']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(5)->get();
-        $data['opinion_post'] = $data['category_motamot']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(6)->get();
-        $data['international_post'] = $data['category_antorjatik']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(3)->get();
-        $data['sports_post'] = $data['category_khela']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(2)->get();
-        $data['economy_post'] = $data['category_orthoniti']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(8)->get();
-        $data['corporate_post'] = $data['category_corporate']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(2)->get();
-        $data['campus_post'] = $data['category_campus']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(2)->get();
-        $data['religion_post'] = $data['category_dhormo']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(2)->get();
-        $data['book_review_post'] = $data['category_book_review']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(2)->get();
-        $data['politics_post'] = $data['category_rajniti']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(5)->get();
-        $data['saradesh_post'] = $data['category_saradesh']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(3)->get();
-        $data['digital_post'] = $data['category_digital']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(4)->get();
-        $data['rajdhani_post'] = $data['category_rajdhani']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(4)->get();
-        $data['entertainment_post'] = $data['category_binodon']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(5)->get();
-        $data['literature_post'] = $data['category_sahitto']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(4)->get();
-        $data['feature_post'] = $data['category_feature']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(4)->get();
-        $data['it_post'] = $data['category_tottho']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(4)->get();
-        $data['lifestyle_post'] = $data['category_lifestyle']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(4)->get();
-        $data['sastho_post'] = $data['category_sastho']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(4)->get();
-        $data['probash_post'] = $data['category_probash']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(4)->get();
-        $data['adalat_post'] = $data['category_adalat']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(4)->get();
-        $data['netdonia_post'] = $data['category_netdonia']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(5)->get();
-        $data['cakri_post'] = $data['category_cakri']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(5)->get();
-        $data['tour_post'] = $data['category_tour']->posts()->where(checkPost())->orderBy('order', 'DESC')->take(3)->get();
+        $data['categories'] = Category::where('status', 'active')
+            ->whereHas('posts', function ($query) {
+                $query->where([[checkPost()],['language', isEnglish()?'en':'bn'],['video_id', null]]); // Filter posts as per your checkPost() logic
+            })
+            ->get();
+        $data['categories'] = $data['categories']->map(function ($category) {
+            $category->posts = $category->posts()
+                ->select(
+                    'posts.id',
+                    'posts.title',
+                    'posts.slug',
+                    'posts.media_id',
+                    'posts.publishing_date',
+                )
+                ->where([[checkPost()],['language', isEnglish()?'en':'bn'],['video_id', null]])->take(4)->get();
+            return $category;
+        });
 
-//        if($request->ajax()){
-//           $view = view('layouts.partials.home_extra', $data)->render();
-//            return response()->json([
-//                'home_extra' => $view
-//            ]);
-//        }
-        if (Marque::doesntExist()){
-            Marque::create(['type' => 'Active']);
-        }
-        $data['marque'] = Marque::first();
+        $data['videos'] = Post::where('video_id', '!=', null)
+            ->where([[checkPost()],['language', isEnglish()?'en':'bn']])
+            ->orderBy('order', 'DESC')
+            ->take(4)
+            ->get();
+
+
         return view('frontend.homePage.index', $data);
     }
     public function news_details(Request $request, $id)
     {
-
-        $data['breaking_news'] = Post::where('breaking_news', 1)->orderBy('id','DESC')->take(5)->get();
         $data['news'] = Post::where('id', $id)->firstOrFail();
-        if ($request->type != 'admin'){ 
-            $data['news']->hit = $data['news']->hit + 1;
-            $data['news']->save();
+
+        if ($request->type != 'admin') {
+            $data['news']->increment('hit');
         }
+
+        // Related post নেয়ার লজিক
+        $categories = $data['news']->categories()->inRandomOrder()->get();
+
+        $related = collect();
+
+        foreach ($categories as $category) {
+            $posts = $category->posts()
+                ->select('posts.id', 'posts.slug', 'posts.title')
+                ->where('posts.id', '!=', $data['news']->id)
+                ->where([[checkPost()], ['posts.language', isEnglish() ? 'en' : 'bn']])
+                ->latest()
+                ->take(5)
+                ->get();
+
+            if ($posts->isNotEmpty()) {
+                $related = $posts;
+                break;
+            }
+        }
+
+        $data['related_post'] = $related;
+
         return view('frontend.news_details.news_details', $data)->withShortcodes();
     }
+
+
+    public function videos()
+    {
+        $data['videos'] = Post::select(
+            'posts.id',
+            'posts.title',
+            'posts.slug',
+            'posts.media_id',
+            'posts.video_duration',
+        )->where('video_id', '!=', null)
+            ->where([[checkPost()], ['language', isEnglish() ? 'en' : 'bn']])
+            ->orderBy('order', 'DESC')
+            ->paginate(20);
+        return view('frontend.videos', $data);
+    }
+    public function video_details(Request $request, $id)
+    {
+        $data['news'] = Post::where('id', $id)->firstOrFail();
+        if ($request->type != 'admin') {
+            $data['news']->increment('hit');
+        }
+        $data['latest_videos'] = Post::where([[checkPost()], ['video_id', '!=', null], ['language', isEnglish() ? 'en' : 'bn'], ['id', '!=', $id]])
+            ->select(
+                'posts.id',
+                'posts.title',
+                'posts.slug',
+                'posts.media_id',
+                'posts.video_duration',
+            )
+            ->orderBy('id', 'DESC')
+            ->take(4)
+            ->get();
+        return view('frontend.news_details.video_details', $data)->withShortcodes();
+    }
+
 
     public function category_view($slug)
     {
         $data['category'] = Category::where('slug', $slug)->firstOrFail();
-        $data['posts'] = $data['category']->posts()->where(checkPost())->orderBy('order', 'DESC')->paginate(12);
+        $data['posts'] = $data['category']->posts()
+            ->select(
+                'posts.id',
+                'posts.title',
+                'posts.slug',
+                'posts.media_id',
+                'posts.publishing_date',
+                'posts.created_at',
+                'posts.updated_at'
+            )
+            ->where([[checkPost()], ['language', isEnglish()?'en':'bn']])
+            ->orderBy('order', 'DESC')
+            ->paginate(20);
+        $data['last_post'] = $data['category']->posts()
+            ->select(
+                'posts.created_at',
+                'posts.updated_at'
+            )
+            ->where([[checkPost()], ['language', isEnglish() ? 'en' : 'bn']])
+            ->orderBy('id', 'DESC')
+            ->first();
         return view('frontend.category_view', $data);
     }
 
@@ -101,6 +160,9 @@ class FrontendController extends Controller
     {
         $page = Page::findOrFail($id);
         if ($page->status == "Active"){
+            if ($page->id == 1){
+                return view('frontend.about_us', compact('page'))->withShortcodes();
+            }
             return view('frontend.page', compact('page'))->withShortcodes();
         }
         return back();
@@ -109,9 +171,16 @@ class FrontendController extends Controller
     public function search(Request $request)
     {
         $posts = Post::where(checkPost())
-                ->where('title', 'like', "%" . $request->search . "%")
-                ->orWhere('tags', 'like', "%" . $request->search . "%")
-                ->paginate(12);
+            ->select(
+                'posts.id',
+                'posts.title',
+                'posts.slug',
+                'posts.media_id',
+                'posts.publishing_date',
+            )
+                ->where([['title', 'like', "%" . $request->search . "%"], ['language', isEnglish() ? 'en' : 'bn'], [checkPost()]])
+                ->orWhere([['tags', 'like', "%" . $request->search . "%"], ['language', isEnglish() ? 'en' : 'bn'], [checkPost()]])
+                ->paginate(20);
 
         return view('frontend.search', compact('posts'));
     }
@@ -128,7 +197,7 @@ class FrontendController extends Controller
 
     public function last_published(Request $request)
     {
-        $posts = Post::where([[checkPost()],['latest_news', 1]])->orderBy('id','DESC')->take(12)->get();;
+        $posts = Post::where([[checkPost()],['latest_news', 1]])->orderBy('id','DESC')->take(12)->get();
         return view('frontend.last_published', compact('posts'));
     }
 

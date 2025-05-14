@@ -16,7 +16,7 @@ class SectionSeeder extends Seeder
     {
         Section::truncate();
         Section::insert([
-            ['title' => 'Home News', 'status' => 'Active' , 'order' => 1],
+            ['title' => 'Header News', 'status' => 'Active' , 'order' => 1],
         ]);
     }
 }

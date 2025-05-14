@@ -70,10 +70,8 @@
                         <tr>
                             <th>SL</th>
                             <th>Photo</th>
-                            <th>Gallery</th>
                             <th>Caption</th>
-                            <th>Source</th>
-                            <th>Action</th>
+                            <th>Copy Code</th>
                             <th>Action</th>
                         </tr>
                         @forelse($media as $m)
@@ -84,9 +82,7 @@
                                         <img src="{{ asset('storage') }}/{{ $m->xs_thumbnail }}" style="height: 30px" alt="">
                                     </a>
                                 </td>
-                                <td>{{ $m->photo_gallery->title ?? '' }}</td>
                                 <td>{{ $m->caption }}</td>
-                                <td>{{ $m->source}}</td>
 
                                 <td><button onclick="navigator.clipboard.writeText('[img id={{ "\"" . $m->id . "\"" }}]'); alert('Short Code copied')" class="btn btn-secondary">Copy Image ShortCode</button></td>
                                 <td>
