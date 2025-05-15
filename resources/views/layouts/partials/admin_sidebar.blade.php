@@ -42,13 +42,13 @@
                         <li><a href="{{route('post.index')}}">Post List</a></li>
                     </ul>
                 </li>
-{{--                <li>--}}
-{{--                    <a href="{{ route('photo_gallery.index') }}">--}}
-{{--                        <i class="fe-list"></i>--}}
-{{--                        <span> Photo Gallery </span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
                 <li>
+                    <a href="{{ route('image_gallery.index') }}">
+                        <i class="fe-image"></i>
+                        <span> Image Gallery </span>
+                    </a>
+                </li>
+                    <li>
                     <a href="{{ route('category.index') }}">
                         <i class="fe-layers"></i>
                         <span> Categories </span>
@@ -94,6 +94,13 @@
                     <a href="{{ route('user.index') }}">
                         <i class="fe-user"></i>
                         <span> User List </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('contact_message.index') }}">
+                        <i class="fe-message-square"></i>
+
+                        <span> Contact Messages </span>
                     </a>
                 </li>
                 <li>

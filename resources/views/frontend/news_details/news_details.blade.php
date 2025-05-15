@@ -61,12 +61,12 @@
                                         <div
                                             class="date-wrap print:flex-auto print:flex print:justify-between print:items-end">
                                             <div>
-                                                @if($news->source == 'Author')
-                                                    <a href="auther-post-list.html" class="present inline-block">{{isEnglish()?($news->author->name_en):($news->author->name??null)}}</a>
-                                                @else
-                                                    <a class="present inline-block">{{$news->source}}</a>
+                                                @if($news->source == 'Author'&&$news->author_id!= null)
+                                                    <a href="{{route('author_news', ['id' => $news->author_id, 'name' => $news->author->name_en??null])}}" class="present inline-block">{{isEnglish()?($news->author->name_en):($news->author->name??null)}}</a>
+                                                    @elseif($news->source!='None')
+                                                    <a class="present inline-block">{{__("lang.$news->source")}}</a>
                                                 @endif
-                                                <p class="update">দ্যা ঢাকা ডায়েরী</p>
+                                                <p class="update">{{__('lang.site_title')}}</p>
                                             </div>
                                             @php
                                                 $ago_bn = Carbon::parse($news->updated_at)->locale('bn')->diffForHumans();
@@ -187,7 +187,7 @@
 
         <section class="Others-news_section md:pb-12 sm:pb-8 pb-6 {{$related_post->count() == 0 ? 'hidden' : ''}}">
             <div class="container">
-                <h2 class="others-news-title">অন্যান্য খবর</h2>
+                <h2 class="others-news-title">{{__('lang.others_news')}}</h2>
 
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                     <!-- Card 1 -->

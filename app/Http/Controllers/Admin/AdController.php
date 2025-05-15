@@ -82,23 +82,17 @@ class AdController extends Controller
             $ad->file_type = $request->file_type;
 
 //            image size by placement
-            if ($request->placement_id == 1 || $request->placement_id == 8){
-                $imageWidth = '600';
-                $imageHeight = '500';
-            }elseif ($request->placement_id == 2 || $request->placement_id == 9){
-                $imageWidth = '970';
-                $imageHeight = '90';
-            }elseif ($request->placement_id == 3 || $request->placement_id == 4 || $request->placement_id == 5 || $request->placement_id == 6){
-                $imageWidth = '300';
-                $imageHeight = '250';
-            }elseif ($request->placement_id == 7){
-                $imageWidth = '970';
-                $imageHeight = '250';
+            if ($request->placement_id == 1 || $request->placement_id == 3|| $request->placement_id == 4|| $request->placement_id == 5|| $request->placement_id == 6|| $request->placement_id == 7){
+                $imageWidth = '984';
+                $imageHeight = '120';
+            }else{
+                $imageWidth = '315';
+                $imageHeight = '232';
             }
 //            file check
              if ($request->file_type == 'Image'){
                  $request->validate([
-                     'file' => 'image | max:1024'
+                     'file' => 'image'
                  ]);
                  $file = $request->file("file")->store("ad_image");
                  $file_public_path = public_path('storage/' . $file);
@@ -107,7 +101,7 @@ class AdController extends Controller
                  $ad->save();
              }elseif ($request->file_type == 'GIF'){
                  $request->validate([
-                     'file' => 'file|mimes:gif|max:2048'
+                     'file' => 'file|mimes:gif'
                  ]);
                  $file = $request->file("file")->store("ad_gif");
                  $ad->file = $file;

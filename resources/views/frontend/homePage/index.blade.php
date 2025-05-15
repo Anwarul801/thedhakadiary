@@ -1,4 +1,4 @@
-@php use Illuminate\Support\Str; @endphp
+@php use Carbon\Carbon;use Illuminate\Support\Str; @endphp
 @extends('layouts.frontend_layout')
 @section('page_title')
     {{isEnglish()? 'The Dhaka Diary' : 'দ্যা ঢাকা ডায়েরী'}}
@@ -8,15 +8,11 @@
 @section('main_content')
     <main class="site-content flex-1">
         <!-- ad area -->
-        <div class="container">
+        <div class="container {{$ad1!=null? '' : 'hidden'}}">
             <div class="ad-full">
-                <a href="">
-                    <img src="{{asset('frontend/assets')}}/image/ad-full.png" alt="ad image">
+                <a target="_blank" href="{{$ad1->link??null}}">
+                    <img src="{{asset('storage')}}/{{$ad1->file??null}}" alt="ad image">
                 </a>
-                <div class="ad-close">
-                    <i class="fa-solid fa-circle-exclamation"></i>
-                    <i class="fa-solid fa-xmark"></i>
-                </div>
             </div>
         </div>
         <!-- ad area end-->
@@ -64,21 +60,21 @@
                                         @if($loop->iteration==4)
                                             @break
                                         @endif
-                                            <div class="sm:col-span-12 col-span-6">
-                                                <div class="news-card">
-                                                    <div class="thumbnail">
-                                                        <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}"><img
-                                                                src="{{asset('storage')}}/{{$header_post->media->thumbnail??null}}"
-                                                                alt="Thumbnail"></a>
-                                                    </div>
-                                                    <h1 class="title">
-                                                        <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{Str::limit($header_post->title, 100)}}</a>
-                                                    </h1>
-                                                    <div class="date">
-                                                        <p>{{isEnglish()?date_maker($header_post->publishing_date, 'd F, Y'): formatBanglaDate($header_post->publishing_date)}}</p>
-                                                    </div>
+                                        <div class="sm:col-span-12 col-span-6">
+                                            <div class="news-card">
+                                                <div class="thumbnail">
+                                                    <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}"><img
+                                                            src="{{asset('storage')}}/{{$header_post->media->thumbnail??null}}"
+                                                            alt="Thumbnail"></a>
+                                                </div>
+                                                <h1 class="title">
+                                                    <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{Str::limit($header_post->title, 100)}}</a>
+                                                </h1>
+                                                <div class="date">
+                                                    <p>{{isEnglish()?date_maker($header_post->publishing_date, 'd F, Y'): formatBanglaDate($header_post->publishing_date)}}</p>
                                                 </div>
                                             </div>
+                                        </div>
                                     @endforeach
 
                                 </div>
@@ -90,19 +86,21 @@
                                 @if($loop->iteration<4)
                                     @continue
                                 @endif
-                                    <div class="md:col-span-4 col-span-6">
-                                        <div class="news-card">
-                                            <div class="thumbnail">
-                                                <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}"><img
-                                                        src="{{asset('frontend/assets')}}/image/image-gallery/side-6.png"
-                                                        alt="Thumbnail"></a>
-                                            </div>
-                                            <h1 class="title"><a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{Str::limit($header_post->title, 100)}}</a></h1>
-                                            <div class="date">
-                                                <p>{{isEnglish()?date_maker($header_post->publishing_date, 'd F, Y'): formatBanglaDate($header_post->publishing_date)}}</p>
-                                            </div>
+                                <div class="md:col-span-4 col-span-6">
+                                    <div class="news-card">
+                                        <div class="thumbnail">
+                                            <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}"><img
+                                                    src="{{asset('storage')}}/{{$header_post->media->thumbnail??null}}"
+                                                    alt="Thumbnail"></a>
+                                        </div>
+                                        <h1 class="title"><a
+                                                href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{Str::limit($header_post->title, 100)}}</a>
+                                        </h1>
+                                        <div class="date">
+                                            <p>{{isEnglish()?date_maker($header_post->publishing_date, 'd F, Y'): formatBanglaDate($header_post->publishing_date)}}</p>
                                         </div>
                                     </div>
+                                </div>
                             @endforeach
                         </div>
 
@@ -113,7 +111,7 @@
                         @include('layouts.partials.news_item.latest_news')
 
                         <div class="send-video-wrap">
-                            <h1 class="title">আপনার চোখে ধরা পড়া খবর ছবি বা ভিডিও আমাদের পাঠান</h1>
+                            <h1 class="title">{{__('lang.send_video_title')}}</h1>
 
                             <div class="using-mathod">
                                 <a href="https://wa.me/{{getOptionData('whats_app')}}" class="item">
@@ -121,7 +119,7 @@
                                         <div class="left-icon">
                                             <img src="{{asset('frontend/assets')}}/image/whatsapp.svg" alt="What's up">
                                         </div>
-                                        <h3 class="name">What's app</h3>
+                                        <h3 class="name">{{__('lang.whatsapp')}}</h3>
                                     </div>
                                     <div class="right-icon">
                                         <img src="{{asset('frontend/assets')}}/image/arrow-right.svg" alt="arrow right">
@@ -132,7 +130,7 @@
                                         <div class="left-icon">
                                             <img src="{{asset('frontend/assets')}}/image/gmail.svg" alt="What's up">
                                         </div>
-                                        <h3 class="name">Email</h3>
+                                        <h3 class="name">{{__('lang.email')}}</h3>
                                     </div>
                                     <div class="right-icon">
                                         <img src="{{asset('frontend/assets')}}/image/arrow-right.svg" alt="arrow right">
@@ -163,7 +161,9 @@
                     <div class="section-title-wrap">
                         <h2 class="section-title">{{isEnglish()?$category->name_en: $category->name}}</h2>
                         <div class="section-button-wrap">
-                            <a href="{{route('category_view', $category->slug)}}" class="section_button">{{__('lang.read_more')}} <i class="fa-solid fa-angle-right"></i></a>
+                            <a href="{{route('category_view', $category->slug)}}"
+                               class="section_button">{{__('lang.read_more')}} <i
+                                    class="fa-solid fa-angle-right"></i></a>
                         </div>
                     </div>
                     <div class="grid grid-cols-12 md:gap-6 gap-4 md:pb-7.5 sm:pb-6 pb-4 border-b border-stock-color">
@@ -171,8 +171,9 @@
                             <div class="lg:col-span-3 md:col-span-4 col-span-6">
                                 <div class="news-card">
                                     <div class="thumbnail">
-                                        <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}"><img src="{{asset('storage')}}/{{$news->media->thumbnail??null}}"
-                                                         alt="Thumbnail"></a>
+                                        <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}"><img
+                                                src="{{asset('storage')}}/{{$news->media->thumbnail??null}}"
+                                                alt="Thumbnail"></a>
                                     </div>
                                     <h1 class="title">
                                         <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}">{{Str::limit($news->title, 100)}}</a>
@@ -208,7 +209,8 @@
                                     <a href="{{route('video_details', ['id' => $video->id, 'slug' => $video->slug])}}"><img
                                             src="{{asset('storage')}}/{{$video->media->thumbnail??null}}"
                                             alt="Thumbnail"></a>
-                                    <a href="{{route('video_details', ['id' => $video->id, 'slug' => $video->slug])}}" class="video-icon-wrap">
+                                    <a href="{{route('video_details', ['id' => $video->id, 'slug' => $video->slug])}}"
+                                       class="video-icon-wrap">
                                     <span class="video-icon animate-ripple-blue-vdo"><i
                                             class="fa-solid fa-play"></i></span>
                                     </a>
@@ -232,101 +234,119 @@
         <section class="photo-section ">
             <div class="container">
                 <div class="section-title-wrap">
-                    <h2 class="section-title">ছবি</h2>
+                    <h2 class="section-title">{{__('lang.photo')}}</h2>
                     <div class="section-button-wrap">
-                        <a href="photo-gallery.html" class="section_button">{{__('lang.see_more')}} <i
+                        <a href="{{route('photos')}}" class="section_button">{{__('lang.see_more')}} <i
                                 class="fa-solid fa-angle-right"></i></a>
                     </div>
                 </div>
                 <div class="grid grid-cols-12 md:gap-6 gap-4">
                     <div class="md:col-span-3 col-span-12">
                         <div class="grid grid-cols-12 md:gap-y-4 gap-y-0 gap-x-4 md:gap-x-0">
-                            <div class="md:col-span-12 col-span-6">
-                                <div class="news-card">
-                                    <div class="image-thumbnail">
-                                        <a href="photo-gallery-details.html"><img
-                                                src="{{asset('frontend/assets')}}/image/thumbnail/image-gallery-1.png"
-                                                alt="Thumbnail"></a>
-                                        <span class="image-icon"><i class="fa-solid fa-images"></i></span>
-                                    </div>
-                                    <h1 class="title">
-                                        <a href="photo-gallery-details.html">স্বাধীনতার প্রতীক হিসেবে আমাদের দেশের </a>
-                                    </h1>
-                                    <div class="date">
-                                        <p>৩০ আগষ্ট ২০২২</p>
+                            @foreach($photos as $photo)
+                                @if($loop->iteration==3)
+                                    @break
+                                @endif
+                                @php
+
+                                    $postDateTime = Carbon::parse($photo->date_time);
+                                    $now = Carbon::now();
+                                @endphp
+                                <div class="md:col-span-12 col-span-6">
+                                    <div class="news-card">
+                                        <div class="image-thumbnail">
+                                            <a href="{{route('photo_details', ['id' => $photo->id, 'slug' => $photo->title_en])}}"><img
+                                                    src="{{asset($photo->thumbnail)}}"
+                                                    alt="Thumbnail"></a>
+                                            <span class="image-icon"><i class="fa-solid fa-images"></i></span>
+                                        </div>
+                                        <h1 class="title">
+                                            <a href="{{route('photo_details', ['id' => $photo->id, 'slug' => $photo->title_en])}}">{{Str::limit(isEnglish()?$photo->title_en:$photo->title)}}</a>
+                                        </h1>
+                                        <div class="date">
+
+                                            <p>
+                                                @if ($postDateTime->diffInHours($now) > 24)
+                                                    {{ isEnglish() ? $postDateTime->format('d F, Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
+                                                @else
+                                                    {{ isEnglish() ? $postDateTime->diffForHumans() : bangla_number($postDateTime->diffForHumans()) }}
+                                                @endif
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="md:col-span-12 col-span-6">
-                                <div class="news-card">
-                                    <div class="image-thumbnail">
-                                        <a href="photo-gallery-details.html"><img
-                                                src="{{asset('frontend/assets')}}/image/thumbnail/image-gallery-2.png"
-                                                alt="Thumbnail"></a>
-                                        <span class="image-icon"><i class="fa-solid fa-images"></i></span>
-                                    </div>
-                                    <h1 class="title">
-                                        <a href="photo-gallery-details.html">স্বাধীনতার প্রতীক হিসেবে আমাদের দেশের </a>
-                                    </h1>
-                                    <div class="date">
-                                        <p>৩০ আগষ্ট ২০২২</p>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="md:col-span-6 col-span-12">
-                        <div class="news-card">
-                            <div class="image-thumbnail">
-                                <a href="photo-gallery-details.html"><img
-                                        src="{{asset('frontend/assets')}}/image/thumbnail/image-gallery-5.png"
-                                        alt="Thumbnail"></a>
-                                <span class="image-icon"><i class="fa-solid fa-images"></i></span>
-                            </div>
-                            <h1 class="title title-lg">
-                                <a href="photo-gallery-details.html">এই সংগ্রামে শহীদদের আত্মত্যাগের মাধ্যমে অর্জিত
-                                    হয়েছে আমাদের
-                                    স্বাধীনতা।</a>
-                            </h1>
-                            <div class="date">
-                                <p>৩০ আগষ্ট ২০২২</p>
-                            </div>
-                        </div>
+                        @foreach($photos as $photo)
+                            @if($loop->iteration!=3)
+                                @continue
+                            @endif
+                            @php
+
+                                $postDateTime = Carbon::parse($photo->date_time);
+                                $now = Carbon::now();
+                            @endphp
+                                <div class="news-card">
+                                    <div class="image-thumbnail">
+                                        <a href="{{route('photo_details', ['id' => $photo->id, 'slug' => $photo->title_en])}}"><img
+                                                src="{{asset($photo->thumbnail)}}"
+                                                alt="Thumbnail"></a>
+                                        <span class="image-icon"><i class="fa-solid fa-images"></i></span>
+                                    </div>
+                                    <h1 class="title title-lg">
+                                        <a href="{{route('photo_details', ['id' => $photo->id, 'slug' => $photo->title_en])}}">{{Str::limit(isEnglish()?$photo->title_en:$photo->title)}}</a>
+                                    </h1>
+                                    <div class="date">
+                                        <p>
+                                            @if ($postDateTime->diffInHours($now) > 24)
+                                                {{ isEnglish() ? $postDateTime->format('d F, Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
+                                            @else
+                                                {{ isEnglish() ? $postDateTime->diffForHumans() : bangla_number($postDateTime->diffForHumans()) }}
+                                            @endif
+                                        </p>
+                                    </div>
+                                </div>
+                        @endforeach
+
                     </div>
                     <div class="md:col-span-3 col-span-12">
                         <div class="grid grid-cols-12 md:gap-y-4 gap-y-0 gap-x-4 md:gap-x-0">
-                            <div class="md:col-span-12 col-span-6">
-                                <div class="news-card">
-                                    <div class="image-thumbnail">
-                                        <a href="photo-gallery-details.html"><img
-                                                src="{{asset('frontend/assets')}}/image/thumbnail/image-gallery-3.png"
-                                                alt="Thumbnail"></a>
-                                        <span class="image-icon"><i class="fa-solid fa-images"></i></span>
+
+                            @foreach($photos as $photo)
+                                @if($loop->iteration<4)
+                                    @continue
+                                @endif
+                                @php
+
+                                    $postDateTime = Carbon::parse($photo->date_time);
+                                    $now = Carbon::now();
+                                @endphp
+                                    <div class="md:col-span-12 col-span-6">
+                                        <div class="news-card">
+                                            <div class="image-thumbnail">
+                                                <a href="{{route('photo_details', ['id' => $photo->id, 'slug' => $photo->title_en])}}"><img
+                                                        src="{{asset($photo->thumbnail)}}"
+                                                        alt="Thumbnail"></a>
+                                                <span class="image-icon"><i class="fa-solid fa-images"></i></span>
+                                            </div>
+                                            <h1 class="title">
+                                                <a href="{{route('photo_details', ['id' => $photo->id, 'slug' => $photo->title_en])}}">{{Str::limit(isEnglish()?$photo->title_en:$photo->title)}}</a>
+                                            </h1>
+                                            <div class="date">
+                                                <p>
+                                                    @if ($postDateTime->diffInHours($now) > 24)
+                                                        {{ isEnglish() ? $postDateTime->format('d F, Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
+                                                    @else
+                                                        {{ isEnglish() ? $postDateTime->diffForHumans() : bangla_number($postDateTime->diffForHumans()) }}
+                                                    @endif
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h1 class="title">
-                                        <a href="photo-gallery-details.html">স্বাধীনতার প্রতীক হিসেবে আমাদের দেশের </a>
-                                    </h1>
-                                    <div class="date">
-                                        <p>৩০ আগষ্ট ২০২২</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="md:col-span-12 col-span-6">
-                                <div class="news-card">
-                                    <div class="image-thumbnail">
-                                        <a href="photo-gallery-details.html"><img
-                                                src="{{asset('frontend/assets')}}/image/thumbnail/image-gallery-4.png"
-                                                alt="Thumbnail"></a>
-                                        <span class="image-icon"><i class="fa-solid fa-images"></i></span>
-                                    </div>
-                                    <h1 class="title">
-                                        <a href="photo-gallery-details.html">স্বাধীনতার প্রতীক হিসেবে আমাদের দেশের </a>
-                                    </h1>
-                                    <div class="date">
-                                        <p>৩০ আগষ্ট ২০২২</p>
-                                    </div>
-                                </div>
-                            </div>
+
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -334,18 +354,18 @@
         </section>
         <!-- footer ad area -->
 
-{{--        <div class="ad-full footer_ad hidden">--}}
-{{--            <div class="footer-wraper">--}}
-{{--                <div class="container">--}}
-{{--                    <a href="">--}}
-{{--                        <img src="{{asset('frontend/assets')}}/image/ad-full.png" alt="ad image">--}}
-{{--                    </a>--}}
-{{--                    <div class="ad-close close_only">--}}
-{{--                        <i class="fa-solid fa-xmark"></i>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        {{--        <div class="ad-full footer_ad hidden">--}}
+        {{--            <div class="footer-wraper">--}}
+        {{--                <div class="container">--}}
+        {{--                    <a href="">--}}
+        {{--                        <img src="{{asset('frontend/assets')}}/image/ad-full.png" alt="ad image">--}}
+        {{--                    </a>--}}
+        {{--                    <div class="ad-close close_only">--}}
+        {{--                        <i class="fa-solid fa-xmark"></i>--}}
+        {{--                    </div>--}}
+        {{--                </div>--}}
+        {{--            </div>--}}
+        {{--        </div>--}}
         <!-- footer ad area end-->
     </main>
 @endsection

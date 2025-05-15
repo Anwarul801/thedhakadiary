@@ -44,6 +44,18 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="designation">Designation *</label>
+                                    <input class="form-control" value="{{$page_type!='Create'?$user->designation:''}}" type="text" id="designation" name="designation" placeholder="Designation">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="designation">Designation English</label>
+                                    <input class="form-control" value="{{$page_type!='Create'?$user->designation_en:''}}" type="text" id="designation" name="designation_en" placeholder="Designation">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label for="name">Email *</label>
                                     <input class="form-control" value="{{$page_type!='Create'?$user->email:''}}" type="email" id="email" name="email" required="" placeholder="Email">
                                 </div>

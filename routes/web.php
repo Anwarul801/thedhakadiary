@@ -14,8 +14,10 @@ use App\Http\Controllers\Admin\PollController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageGalleryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +35,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'index_page'])->name('index_page');
 Route::get('/change_lang', [FrontendController::class, 'change_lang'])->name('change_lang');
+Route::get('/contact_us', [FrontendController::class, 'contact_us'])->name('contact_us');
+Route::post('/submit_message', [FrontendController::class, 'submit_message'])->name('submit_message');
+Route::get('/photos', [FrontendController::class, 'photos'])->name('photos');
+Route::get('/photo_details/{id}/{slug?}', [FrontendController::class, 'photo_details'])->name('photo_details');
 Route::get('/videos', [FrontendController::class, 'videos'])->name('videos');
+Route::get('/author/news/{id}/{name?}', [FrontendController::class, 'author_news'])->name('author_news');
 Route::get('/news/{id}/{slug?}', [FrontendController::class, 'news_details'])->name('news_details');
 Route::get('/news/videos/{id}/{slug?}', [FrontendController::class, 'video_details'])->name('video_details');
 Route::get('/pages/{id}/{slug?}', [FrontendController::class, 'page_view'])->name('page_view');
@@ -46,7 +53,8 @@ Route::get('/last_published/', [FrontendController::class, 'last_published'])->n
 Route::get('/status_change/', [PostController::class, 'status_change'])->name('status_change');
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
+Route::delete('/contact-messages/bulk-delete', [ContactMessageController::class, 'bulkDelete'])->name('contact_message.bulk_delete');
+Route::delete('/contact-messages/all-delete', [ContactMessageController::class, 'allDelete'])->name('contact_message.all_delete');
 Route::resource('/post', PostController::class);
 Route::middleware('admin')->group(function (){
 Route::resource('/user', UserController::class);
@@ -60,6 +68,10 @@ Route::resource('/poll', PollController::class);
 Route::resource('/options', OptionController::class);
 Route::resource('/menu', MenuController::class);
 Route::resource('/ad', AdController::class);
+Route::resource('/contact_message', ContactMessageController::class);
+Route::resource('/image_gallery', ImageGalleryController::class);
+Route::get('image_gallery_status_change', [ImageGalleryController::class, 'table_status_change'])->name('image_gallery_status_change');
+
 Route::get('/marque', [FrontendController::class, 'marque'])->name('marque');
 Route::get('/category_status_change', [CategoryController::class, 'category_status_change'])->name('category_status_change');
 

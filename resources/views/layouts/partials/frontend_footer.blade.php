@@ -29,11 +29,11 @@
                     @endphp
                     <ul class="space-y-3">
                         <li><a href="{{route('page_view', ['id' => $about_us->id, 'slug' => $about_us->slug])}}" class="f-link">{{isEnglish()?$about_us->name_en:$about_us->name}}</a></li>
-                        <li><a href="contact-us.html" class="f-link">{{__('lang.contact_us')}}</a></li>
+                        <li><a href="{{route('contact_us')}}" class="f-link">{{__('lang.contact_us')}}</a></li>
                     </ul>
 
                     <!-- Column 2 -->
-                    <div class="md:text-center">
+                    <div class="">
                         <ul class="space-y-3">
                             <li><a href="{{route('page_view', ['id' => $privacy_policy->id, 'slug' => $privacy_policy->slug])}}" class="f-link">{{isEnglish()?$privacy_policy->name_en:$privacy_policy->name}}</a></li>
                             <li><a href="{{route('page_view', ['id' => $terms_and_condition->id, 'slug' => $terms_and_condition->slug])}}" class="f-link">{{isEnglish()?$terms_and_condition->name_en:$terms_and_condition->name}}</a></li>
@@ -41,10 +41,10 @@
                     </div>
 
                     <!-- Column 3 -->
-                    <div class="md:text-center">
-                        <h3 class="text-lg font-semibold mb-4 md:text-center">{{__('lang.editor')}} {{isEnglish()? getOptionData('editor_name_en'): getOptionData('editor_name')}}</h3>
+                    <div class="">
+                        <h3 class="text-lg font-semibold mb-4 ">{{__('lang.editor')}} {{isEnglish()? getOptionData('editor_name_en'): getOptionData('editor_name')}}</h3>
                         <ul class="space-y-3">
-                            <li class="flex items-center md:justify-center">
+                            <li class="flex items-center">
                                 <i class="fa-solid fa-location-dot mr-2"></i>
                                 <a href="#" class="f-link">
                                     {{isEnglish()? getOptionData('address_en'): getOptionData('address')}}

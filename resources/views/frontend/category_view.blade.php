@@ -3,6 +3,19 @@
 @section('page_title') {{ isEnglish()?$category->name_en:$category->name }} @endsection
 
 @section('main_content')
+    <!-- ad area -->
+    <div class="container">
+        <div class="ad-full">
+            <a href="">
+                <img src="{{asset('frontend/assets')}}/image/ad-full.png" alt="ad image">
+            </a>
+            <div class="ad-close">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </div>
+    </div>
+    <!-- ad area end-->
     <main class="site-content flex-1">
         <section class="section-padding">
             <div class="container">

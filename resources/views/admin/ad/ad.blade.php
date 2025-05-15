@@ -58,7 +58,6 @@
                                             <select class="form-control" name="file_type" id="file_type">
                                                 <option selected value="Image">Image (MAX: 1MB)</option>
                                                 <option value="GIF">GIF (MAX: 1MB)</option>
-                                                <option value="Video">Video (MAX: 1MB)</option>
                                             </select>
                                         </div>
                                         <div id="internal2" class="form-group col-md-6">

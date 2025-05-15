@@ -87,20 +87,20 @@
                                         <h4 class="text-left mb-2">Source *</h4>
                                         <div class="row">
                                             <div class="col-4">
-                                                <input type="radio" id="radio_1" onclick="showOthers('radio_1')" {{ $data->source == "নিজস্ব প্রতিবেদক" ? "checked" : ""  }} value="নিজস্ব প্রতিবেদক" name="source">
+                                                <input type="radio" id="radio_1" onclick="showOthers('radio_1')" {{ $data->source == "own_reporter" ? "checked" : ""  }} value="own_reporter" name="source">
                                                 <label class="mt-2" for="radio_1">নিজস্ব প্রতিবেদক</label>
                                             </div>
                                             <div class="col-4">
-                                                <input type="radio" id="radio_2" onclick="showOthers('radio_2')" {{ $data->source == "অনলাইন ডেস্ক" ? "checked" : ""  }} value="অনলাইন ডেস্ক" name="source">
+                                                <input type="radio" id="radio_2" onclick="showOthers('radio_2')" {{ $data->source == "online_desk" ? "checked" : ""  }} value="online_desk" name="source">
                                                 <label class="mt-2" for="radio_2">অনলাইন ডেস্ক</label>
                                             </div>
                                             <div class="col-4">
-                                                <input type="radio" id="radio_3" onclick="showOthers('radio_3')" {{ $data->source == "প্রেস বিজ্ঞপ্তি" ? "checked" : ""  }} value="প্রেস বিজ্ঞপ্তি" name="source">
+                                                <input type="radio" id="radio_3" onclick="showOthers('radio_3')" {{ $data->source == "press_release" ? "checked" : ""  }} value="press_release" name="source">
                                                 <label class="mt-2" for="radio_3">প্রেস বিজ্ঞপ্তি</label>
 
                                             </div>
                                             <div class="col-4">
-                                                <input type="radio" id="radio_4" onclick="showOthers('radio_4')" {{ $data->source == "অনলাইন প্রতিবেদক" ? "checked" : ""  }} value="অনলাইন প্রতিবেদক" name="source">
+                                                <input type="radio" id="radio_4" onclick="showOthers('radio_4')" {{ $data->source == "online_reporter" ? "checked" : ""  }} value="online_reporter" name="source">
                                                 <label class="mt-2" for="radio_4">অনলাইন প্রতিবেদক</label>
 
                                             </div>
@@ -115,9 +115,9 @@
 
                                             </div>
                                             <div class="col-4 d-flex">
-                                                <input class="mr-1" type="radio" {{ $data->source != "নিজস্ব প্রতিবেদক" && $data->source != "অনলাইন ডেস্ক" && $data->source != "প্রেস বিজ্ঞপ্তি" && $data->source != "অনলাইন প্রতিবেদক" && $data->source != "None" && $data->source != "Author" ? "checked" : ""  }} id="radio_6" onclick="showOthers('radio_6')" value="Others" name="source">
+                                                <input class="mr-1" type="radio" {{ $data->source != "own_reporter" && $data->source != "online_desk" && $data->source != "press_release" && $data->source != "online_reporter" && $data->source != "None" && $data->source != "Author" ? "checked" : ""  }} id="radio_6" onclick="showOthers('radio_6')" value="Others" name="source">
                                                 <label class="mr-1 mt-2" for="radio_6">অন্যান্য</label>
-                                                <input id="others_input" class="form-control {{ $data->source != "নিজস্ব প্রতিবেদক" && $data->source != "অনলাইন ডেস্ক" && $data->source != "প্রেস বিজ্ঞপ্তি" && $data->source != "অনলাইন প্রতিবেদক" && $data->source != "None" && $data->source != "Author" ? "" : "d-none"  }}" type="text" value="{{ $data->source }}" name="onnanno" placeholder="অন্যান্য">
+                                                <input id="others_input" class="form-control {{ $data->source != "own_reporter" && $data->source != "online_desk" && $data->source != "press_release" && $data->source != "online_reporter" && $data->source != "None" && $data->source != "Author" ? "" : "d-none"  }}" type="text" value="{{ $data->source }}" name="onnanno" placeholder="অন্যান্য">
                                             </div>
 
                                             <script>
@@ -272,7 +272,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="image">Image (640x427px)</label>
+                                    <label for="image">Image (648x486px)</label>
                                     <input class="form-control" type="file" id="image" name="image">
                                 </div>
                             </div>

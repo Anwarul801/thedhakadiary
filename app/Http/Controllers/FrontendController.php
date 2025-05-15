@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Ad;
 use App\Models\Category;
+use App\Models\ContactMessage;
+use App\Models\ImageGallery;
 use App\Models\Marque;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\Section;
+use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
@@ -57,13 +60,31 @@ class FrontendController extends Controller
             ->take(4)
             ->get();
 
+        $data['photos'] = ImageGallery::where('status', 'Active')->orderby('order', 'DESC')->take(5)->get();
 
+        $placementIds = [1, 2, 3, 4, 5, 6];
+        $ads = Ad::whereIn('placement_id', $placementIds)->where('status', 'Active')->get()->keyBy('placement_id');
+
+        $data['ad1'] = $ads[1] ?? null;
+        $data['ad2'] = $ads[2] ?? null;
+        $data['ad3'] = $ads[3] ?? null;
+        $data['ad4'] = $ads[4] ?? null;
+        $data['ad5'] = $ads[5] ?? null;
+        $data['ad6'] = $ads[6] ?? null;
         return view('frontend.homePage.index', $data);
+    }
+
+
+    public function contact_us()
+    {
+        return view('frontend.contact_us');
     }
     public function news_details(Request $request, $id)
     {
         $data['news'] = Post::where('id', $id)->firstOrFail();
-
+        if ($data['news']->video_id != null) {
+            return redirect(route('video_details', ['id' => $data['news']->id, 'slug' => $data['news']->slug]));
+        }
         if ($request->type != 'admin') {
             $data['news']->increment('hit');
         }
@@ -93,6 +114,46 @@ class FrontendController extends Controller
         return view('frontend.news_details.news_details', $data)->withShortcodes();
     }
 
+    public function submit_message(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email',
+            'message' => 'required',
+        ]);
+        $contact = new ContactMessage();
+        $contact->name = $request->name;
+        $contact->phone = $request->phone;
+        $contact->email = $request->email;
+        $contact->message = $request->message;
+        $contact->save();
+        if(isEnglish()) {
+        return back()->with('success', 'Message Sent Successfully, We will contact you soon');
+        }else{
+            return back()->with('success', 'বার্তা সফলভাবে পাঠানো হয়েছে, আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব');
+        }
+    }
+
+    public function author_news($id)
+    {
+        $data['author'] = User::where([['id', $id], ['role_id', 2]])->firstOrFail();
+        if(!$data['author']){
+            Toastr::error('Author Not Found', 'Error');
+            return back();
+        }
+        $data['news'] = Post::select(
+            'posts.id',
+            'posts.title',
+            'posts.slug',
+            'posts.media_id',
+            'posts.subtitle',
+        )->where('author_id', $id)
+            ->where([[checkPost()], ['language', isEnglish() ? 'en' : 'bn']])
+            ->orderBy('order', 'DESC')
+            ->paginate(8);
+        return view('frontend.author_news', $data);
+    }
 
     public function videos()
     {
@@ -107,6 +168,17 @@ class FrontendController extends Controller
             ->orderBy('order', 'DESC')
             ->paginate(20);
         return view('frontend.videos', $data);
+    }
+
+    public function photos()
+    {
+        $data['photos'] = ImageGallery::where('status', 'Active')->orderby('order', 'DESC')->paginate(13);
+        return view('frontend.photos', $data);
+    }
+    public function photo_details($id)
+    {
+        $data['photo'] = ImageGallery::with('gallery_images')->where('id', $id)->first();
+        return view('frontend.photo_details', $data);
     }
     public function video_details(Request $request, $id)
     {

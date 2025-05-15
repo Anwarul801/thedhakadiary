@@ -11,11 +11,11 @@
                 visibility: hidden;
             }
 
-            .news-details_section, .news-details_section * {
+            .video_section, .video_section * {
                 visibility: visible;
             }
 
-            .news-details_section {
+            .video_section {
                 position: absolute;
                 left: 0;
                 top: 0;
@@ -43,16 +43,19 @@
 @section('main_content')
     <main class="site-content flex-1">
         <!--=========Video_Section=========== -->
-        <section class="video_section section_short-padding">
+        <section class="video_section section_short-padding ">
             <div class="container">
                 <div class="section-title-wrap">
-                    <h2 class="section-title section-single-title">ভিডিও</h2>
+                    <h2 class="section-title section-single-title">{{__('lang.video')}}</h2>
                 </div>
                 <div class="grid grid-cols-12 md:gap-6 gap-4">
                     <div class="lg:col-span-8 col-span-12">
                         <div class="news-card">
                             <div class="video_thumbnail">
-                                <iframe width="100%"
+                                <div class="hidden print:block">
+                                <img src="{{asset('storage')}}/{{$news->media->image??null}}"  alt="Thumbnail">
+                                </div>
+                                <iframe class="no_print" width="100%"
                                         src="https://www.youtube.com/embed/{{$news->video_id}}?si=fhiq4iH84fViSESw"
                                         title="YouTube video player" frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -60,8 +63,8 @@
 
 
                             </div>
-                            <h1 class="title">
-                                <a href="#">{{$news->title}}</a>
+                            <h1 class="title video-content">
+                                {{$news->title}}
                             </h1>
                             <div class="flex items-center gap-1.5 my-2 md:my-4">
                                 @php
@@ -98,16 +101,16 @@
                             </div>
                         </div>
                         <div class="video-gallery-text">
-                            <div class="text-area-card">
+                            <div class="text-area-card video-content">
                                 {!! $news->news_details !!}
                             </div>
                         </div>
                     </div>
 
-                    <div class="lg:col-span-4 col-span-12">
+                    <div class="lg:col-span-4 col-span-12 block print:hidden">
                         <div class="video-gallery-sidebar">
                             <div class="video-sidebar-title">
-                                <h3 class="title">সর্বশেষ ভিডিও</h3>
+                                <h3 class="title">{{__('lang.latest_video')}}</h3>
                             </div>
                             @foreach($latest_videos as $video)
                                 <div class="news-card flex items-center gap-4 mb-10 md:mb-12 lg:mb-7 ">
@@ -136,7 +139,7 @@
 @section('js')
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const newsElements = document.querySelectorAll('.news-content');
+            const newsElements = document.querySelectorAll('.video-content');
             let fontSize = 1; // em
 
             document.getElementById('zoomIn').addEventListener('click', function (e) {

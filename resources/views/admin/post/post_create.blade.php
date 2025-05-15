@@ -88,22 +88,21 @@
                                     <h4 class="text-left mb-2">Source *</h4>
                                     <div class="row">
                                         <div class="col-4">
-                                            <input type="radio" id="radio_1" onclick="showOthers('radio_1')" value="নিজস্ব প্রতিবেদক" {{old('source') == 'নিজস্ব প্রতিবেদক' ? 'checked' : ''}} name="source">
+                                            <input type="radio" id="radio_1" onclick="showOthers('radio_1')" value="own_reporter" {{old('source') == 'own_reporter' ? 'checked' : ''}} name="source">
                                             <label class="mt-2" for="radio_1">নিজস্ব প্রতিবেদক</label>
                                         </div>
                                         <div class="col-4">
-                                            <input type="radio" id="radio_2" checked onclick="showOthers('radio_2')" value="অনলাইন ডেস্ক" {{old('source') == 'অনলাইন ডেস্ক' ? 'checked' : ''}} name="source">
+                                            <input type="radio" id="radio_2" checked onclick="showOthers('radio_2')" value="online_desk" {{old('source') == 'online_desk' ? 'checked' : ''}} name="source">
                                             <label class="mt-2" for="radio_2">অনলাইন ডেস্ক</label>
                                         </div>
                                         <div class="col-4">
-                                            <input type="radio" id="radio_3" onclick="showOthers('radio_3')" value="প্রেস বিজ্ঞপ্তি" {{old('source') == 'প্রেস বিজ্ঞপ্তি' ? 'checked' : ''}} name="source">
+                                            <input type="radio" id="radio_3" onclick="showOthers('radio_3')" value="press_release" {{old('source') == 'press_release' ? 'checked' : ''}} name="source">
                                             <label class="mt-2" for="radio_3">প্রেস বিজ্ঞপ্তি</label>
 
                                         </div>
                                         <div class="col-4">
-                                            <input type="radio" id="radio_4" onclick="showOthers('radio_4')" value="অনলাইন প্রতিবেদক" {{old('source') == 'অনলাইন প্রতিবেদক' ? 'checked' : ''}} name="source">
+                                            <input type="radio" id="radio_4" onclick="showOthers('radio_4')" value="online_reporter" {{old('source') == 'online_reporter' ? 'checked' : ''}} name="source">
                                             <label class="mt-2" for="radio_4">অনলাইন প্রতিবেদক</label>
-
                                         </div>
                                         <div class="col-4">
                                             <input type="radio" id="radio_5" onclick="showOthers('radio_5')" value="None" {{old('source') == 'None' ? 'checked' : ''}} name="source">
@@ -256,7 +255,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="image">Image (640x427px)</label>
+                                <label for="image">Image (648x486px)</label>
                                 <input class="form-control" type="file" id="image" name="image" required="">
                             </div>
                         </div>
@@ -300,7 +299,7 @@
                             <input class="form-control" type="text" id="caption" name="caption" required="" placeholder="Caption">
                         </div>
                         <div class="form-group">
-                            <label for="caption">Image : (640x427px)</label>
+                            <label for="caption">Image : (648x486px)</label>
                             <input class="form-control" type="file" id="image" name="image" required="">
                         </div>
                         <div class="form-group account-btn text-center">

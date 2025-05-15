@@ -61,6 +61,8 @@ class UserController extends Controller
             User::create([
                 'name' => $request->name,
                 'name_en' => $request->name_en,
+                'designation' => $request->designation,
+                'designation_en' => $request->designation_en,
                 'phone_number' => $request->phone_number,
                 'email' => $request->email,
                 'description' => $request->description,
@@ -119,6 +121,8 @@ class UserController extends Controller
             $user->update([
                 'name' => $request->name,
                 'name_en' => $request->name_en,
+                'designation' => $request->designation,
+                'designation_en' => $request->designation_en,
                 'phone_number' => $request->phone_number,
                 'email' => $request->email,
                 'description' => $request->description,
