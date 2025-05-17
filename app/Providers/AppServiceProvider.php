@@ -37,17 +37,13 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         View::composer('*', function ($view) {
             //        ad
-            $ads = Ad::where([
-                ['status', 'Active'],
-            ])->get();
 
             $breaking_news = Post::select('title', 'slug', 'id')->where('breaking_news', 1)->orderBy('id','DESC')->take(10)->get();
             $menu = Menu::with('category', 'page')->orderBy('order', 'asc')->get();
             $pages = Page::where('deletable', 0)->get();
             $view->with('breaking_news', $breaking_news)
                 ->with('menu_header', $menu)
-                ->with('pages', $pages)
-                ->with('ads', $ads);
+                ->with('pages', $pages);
         });
         View::composer('layouts.partials.vote', function ($view) {
             $poll = Poll::orderBy('id', 'desc')->first();

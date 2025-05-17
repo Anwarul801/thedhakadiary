@@ -4,17 +4,7 @@
 
 @section('main_content')
     <!-- ad area -->
-    <div class="container">
-        <div class="ad-full">
-            <a href="">
-                <img src="{{asset('frontend/assets')}}/image/ad-full.png" alt="ad image">
-            </a>
-            <div class="ad-close">
-                <i class="fa-solid fa-circle-exclamation"></i>
-                <i class="fa-solid fa-xmark"></i>
-            </div>
-        </div>
-    </div>
+    @include('layouts.partials.ads.banner_ad', ['ad' => $category_top_ad])
     <!-- ad area end-->
     <main class="site-content flex-1">
         <section class="section-padding">
@@ -25,7 +15,7 @@
                         <div class="date-wrap">
                             <p class="present">{{isEnglish()?date('d F Y') : formatBanglaDate(date('d F Y'))}}</p>
                             @isset($last_post)
-                            <p class="update">{{__('category.updated_at')}} <span>{{isEnglish()?date_maker($last_post->updated_at??$last_post->created_at, 'd F, Y'):formatBanglaDate(date_maker($last_post->updated_at??$last_post->created_at, 'd F Y'))}}</span></p>
+                            <p class="update">{{__('lang.updated_at')}} <span>{{isEnglish()?date_maker($last_post->updated_at??$last_post->created_at, 'd F, Y'):formatBanglaDate(date_maker($last_post->updated_at??$last_post->created_at, 'd F Y'))}}</span></p>
                             @endisset
                         </div>
                     </div>

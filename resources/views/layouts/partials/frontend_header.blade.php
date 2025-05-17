@@ -49,7 +49,7 @@
                             <li class="menu-item-has-children has-sub-menu">
                                 <a href="#" class="nav-link"><i class="fa-solid fa-bars"></i></a>
                                 <ul class="mega-sub-menu">
-                                    @foreach ($chunks as $chunk)
+                                    @forelse ($chunks as $chunk)
                                         <li class="submenu-item">
                                             <ul>
                                                 @foreach ($chunk as $menu)
@@ -63,9 +63,20 @@
                                                         <li><a href="{{ $menu->link }}" class="nav-link">{{ isEnglish()? $menu->title_en : $menu->title }}</a></li>
                                                     @endif
                                                 @endforeach
+                                                @if($loop->last)
+                                                        <li><a href="{{route('archive')}}" class="nav-link">{{__('lang.archive')}}</a></li>
+                                                @endif
                                             </ul>
                                         </li>
-                                    @endforeach
+                                    @empty
+                                        <li class="submenu-item">
+                                            <ul>
+                                                    <li><a href="{{route('archive')}}" class="nav-link">{{__('lang.archive')}}</a></li>
+                                            </ul>
+                                        </li>
+                                    @endforelse
+
+
                                 </ul>
                             </li>
                             <!-- Mega Menu Trigger End -->
@@ -113,39 +124,41 @@
                     </div>
 
                     <div class="mobile-canvas-close shadow-top">
-                        <p class="text-lg font-semibold">মেনু</p>
+                        <p class="text-lg font-semibold">{{__('lang.menu')}}</p>
                         <span class="close-mobile-menu">❌</span>
                     </div>
 
                     <div class="mobile-main-menu p-4">
                         <ul class="space-y-2 md:flex lg:items-center flex-col">
-                            <li><a href="news-list.html" class="nav-link">জাতীয়</a></li>
-                            <li><a href="news-list.html" class="nav-link">রাজনীতি</a></li>
-                            <li><a href="news-list.html" class="nav-link">শিক্ষা</a></li>
-                            <li><a href="news-list.html" class="nav-link">আন্তর্জাতিক</a></li>
-                            <li><a href="news-list.html" class="nav-link">অর্থনীতি</a></li>
-                            <li><a href="news-list.html" class="nav-link">সংস্কৃতি</a></li>
-                            <li><a href="news-list.html" class="nav-link">পথে-প্রান্তরে</a></li>
-                            <li><a href="news-list.html" class="nav-link">খেলা</a></li>
-                            <li><a href="news-list.html" class="nav-link">স্বাস্থ্য</a></li>
+                            @foreach($menu_header as $menu)
+                                @if($menu->type == 'Category')
+                                    <li><a href="{{ route('category_view', $menu->category->slug) }}" class="nav-link">{{ isEnglish()? $menu->title_en : $menu->title }}</a></li>
+                                @endif
+                                @if($menu->type == 'Page')
+                                    <li><a href="{{ route('page_view', $menu->page_id) }}" class="nav-link">{{ isEnglish()? $menu->title_en : $menu->title }}</a></li>
+                                @endif
+                                @if($menu->type == 'Link')
+                                    <li><a href="{{ $menu->link }}" class="nav-link">{{ isEnglish()? $menu->title_en : $menu->title }}</a></li>
+                                @endif
+                            @endforeach
+                                <li><a href="{{route('archive')}}" class="nav-link">{{__('lang.archive')}}</a></li>
+
                         </ul>
                     </div>
 
                     <div class="follower-part p-4 pt-0 flex gap-4 items-center">
-                        <p class="text-base font-bold">অনুসরণ করুন :</p>
+                        <p class="text-base font-bold">{{__('lang.follow_us')}} :</p>
 
                         <ul class="items-center md:space-x-3 space-x-1.5 text-xl flex">
-                            <li><a href="#" class="social_icon"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            <li><a href="#" class="social_icon"><i class="fa-brands fa-x-twitter"></i></a></li>
-                            <li><a href="#" class="social_icon"><i class="fa-brands fa-square-instagram"></i></a></li>
-                            <li><a href="#" class="social_icon"><i class="fa-solid fa-paper-plane"></i></a></li>
+                            <li class="{{getOptionData('fb')==null?'hidden':''}}"><a target="_blank" href="{{getOptionData('fb')}}" class="social_icon"><i class="fa-brands fa-facebook-f"></i></a></li>
+                            <li class="{{getOptionData('twitter')==null?'hidden':''}}"><a target="_blank" href="{{getOptionData('twitter')}}" class="social_icon"><i class="fa-brands fa-x-twitter"></i></a></li>
+                            <li class="{{getOptionData('instagram')==null?'hidden':''}}"><a target="_blank" href="{{getOptionData('instagram')}}" class="social_icon"><i class="fa-brands fa-square-instagram"></i></a></li>
+                            <li class="{{getOptionData('telegram')==null?'hidden':''}}"><a target="_blank" href="{{getOptionData('telegram')}}" class="social_icon"><i class="fa-solid fa-paper-plane"></i></a></li>
                         </ul>
                     </div>
                 </div>
-
                 <div class="overlay"></div>
             </div>
-            <!-- mobile nav -->
 
         </div>
     </div>

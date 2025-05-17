@@ -8,13 +8,7 @@
 @section('main_content')
     <main class="site-content flex-1">
         <!-- ad area -->
-        <div class="container {{$ad1!=null? '' : 'hidden'}}">
-            <div class="ad-full">
-                <a target="_blank" href="{{$ad1->link??null}}">
-                    <img src="{{asset('storage')}}/{{$ad1->file??null}}" alt="ad image">
-                </a>
-            </div>
-        </div>
+        @include('layouts.partials.ads.banner_ad', ['ad' => $ad1])
         <!-- ad area end-->
         <!-- ==========Top_Section ======== -->
         <section class="top_section section-padding-top">
@@ -140,21 +134,19 @@
                         </div>
 
                         <!-- ad area start -->
-                        <div class="adSmall">
-                            <a href="#">
-                                <img src="{{asset('frontend/assets')}}/image/small-ad-2.png" alt="ad image">
-                            </a>
-                            <div class="ad-close">
-                                <i class="fa-solid fa-circle-exclamation"></i>
-                                <i class="fa-solid fa-xmark"></i>
-                            </div>
-                        </div>
+                        @include('layouts.partials.ads.side_ad', ['ad' => $ad2])
                         <!-- ad area end -->
                     </div>
                 </div>
             </div>
         </section>
         <!--========Dynamic category wise post====== -->
+        @php
+            $totalCategories = count($categories);
+            $totalAds = 3;
+            $interval = ceil($totalCategories / $totalAds); // প্রতি কতটা পরপর ad বসবে
+            $adIndex = 1;
+        @endphp
         @foreach($categories as $category)
             <section class="education_section section_short-padding">
                 <div class="container">
@@ -188,6 +180,14 @@
                     </div>
                 </div>
             </section>
+
+            @if($loop->iteration % $interval === 0 && $adIndex <= $totalAds)
+                @php
+                    $adWithIndex = ${'ad' . ($adIndex + 2)};
+                    $adIndex++;
+                @endphp
+                    @include('layouts.partials.ads.banner_ad', ['ad' => $adWithIndex])
+            @endif
         @endforeach
 
 
@@ -231,7 +231,7 @@
         </section>
 
         <!--=========Photo_Section=========== -->
-        <section class="photo-section ">
+        <section class="photo-section mt-4 {{$photos->count() == 0 ? 'hidden' : ''}}">
             <div class="container">
                 <div class="section-title-wrap">
                     <h2 class="section-title">{{__('lang.photo')}}</h2>
@@ -353,23 +353,28 @@
             </div>
         </section>
         <!-- footer ad area -->
-
-        {{--        <div class="ad-full footer_ad hidden">--}}
-        {{--            <div class="footer-wraper">--}}
-        {{--                <div class="container">--}}
-        {{--                    <a href="">--}}
-        {{--                        <img src="{{asset('frontend/assets')}}/image/ad-full.png" alt="ad image">--}}
-        {{--                    </a>--}}
-        {{--                    <div class="ad-close close_only">--}}
-        {{--                        <i class="fa-solid fa-xmark"></i>--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
-        {{--        </div>--}}
+                <div class="ad-full footer_ad hidden">
+                    <div class="footer-wraper">
+                       @include('layouts.partials.ads.banner_ad', ['ad' => $ad6, 'showClose' => true])
+                    </div>
+                </div>
         <!-- footer ad area end-->
     </main>
 @endsection
 
 @section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if(session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: '{{__('lang.error')}}',
+                text: '{{ session('error') }}',
+                confirmButtonText: '{{__('lang.ok')}}',
+                confirmButtonColor: 'black',
+            });
+        </script>
+    @endif
 
 @endsection

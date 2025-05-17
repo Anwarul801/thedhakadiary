@@ -13,9 +13,9 @@
                             <h4 class="m-0">Post List</h4>
                         </div>
                         <div class="col-6 text-right">
-                            <a href="{{route('post.print_all')}}" target="_blank" type="button" class="btn btn-warning"><i class="fa fa-print"></i> Print All</a>
-                            <a href="{{route('marque')}}?type={{$marque->type == 'Active' ? 'Active' : 'In-Active'}}" type="button" class="btn btn-{{$marque->type == 'Active' ? 'danger' : 'primary'}}"><i class="fe-{{$marque->type == 'Active' ? 'x' : 'check'}} "></i> Breaking News
-                                {{$marque->type == 'Active' ? 'In-Active' : 'Active'}}</a>
+{{--                            <a href="{{route('post.print_all')}}" target="_blank" type="button" class="btn btn-warning"><i class="fa fa-print"></i> Print All</a>--}}
+{{--                            <a href="{{route('marque')}}?type={{$marque->type == 'Active' ? 'Active' : 'In-Active'}}" type="button" class="btn btn-{{$marque->type == 'Active' ? 'danger' : 'primary'}}"><i class="fe-{{$marque->type == 'Active' ? 'x' : 'check'}} "></i> Breaking News--}}
+{{--                                {{$marque->type == 'Active' ? 'In-Active' : 'Active'}}</a>--}}
                             <a href="{{route('post.create')}}" type="button" class="btn btn-primary"><i class="fe-plus"></i> New Post</a>
                         </div>
                     </div>
@@ -26,8 +26,9 @@
                         <tr>
                             <th>SL</th>
                             <th>Date</th>
-                            <th>Title</th>
+                            <th style="width: 20%">Title</th>
                             <th>Status</th>
+                            <th>Language</th>
                             <th>Hit</th>
                             <th>Action</th>
                         </tr>
@@ -46,6 +47,13 @@
                                 <option {{$request->status == 'Published'? 'selected' : ''}} value="Published">Published</option>
                                 <option {{$request->status == 'Pending'? 'selected' : ''}} value="Pending">Pending</option>
                                 <option {{$request->status == 'Draft'? 'selected' : ''}} value="Draft">Draft</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="language" id="hit" form="search_form" class="form-control">
+                                <option selected disabled>Select Language</option>
+                                <option {{$request->hit == 'en' ? 'selected' : ''}} value="en">English</option>
+                                <option {{$request->hit == 'bn' ? 'selected' : ''}} value="bn">Bangla</option>
                             </select>
                         </td>
                         <td>
@@ -68,8 +76,13 @@
                                 <td>{{ date_maker($post->created_at, 'd m, y', true)  }}</td>
                                 <td>{{ $post->title }}</td>
                                 <td>
+                                    @if(auth()->user()->role_id==1)
                                     <a href="{{route('status_change')}}?id={{$post->id}}" class="bg-{{$post->status == 'Published' ? 'primary': ($post->status == 'Draft' ? 'secondary': ($post->status == 'Pending' ? 'info':''))}} text-white" style="padding: 5px 10px; cursor:pointer;">{{ $post->status }}</a>
+                                    @else
+                                        <span class="bg-{{$post->status == 'Published' ? 'primary': ($post->status == 'Draft' ? 'secondary': ($post->status == 'Pending' ? 'info':''))}} text-white" style="padding: 5px 10px;">{{ $post->status }}</span>
+                                    @endif
                                 </td>
+                                <td>{{ $post->language=='bn'?'Bangla':'English'}}</td>
                                 <td>{{ $post->hit == null ? 0 : $post->hit }}</td>
                                 <td>
                                     <!-- Example single danger button -->

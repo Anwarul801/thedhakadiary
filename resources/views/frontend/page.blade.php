@@ -29,53 +29,26 @@
                                 <div class="grid grid-cols-12 gap-4 ">
                                     <div class="col-span-12">
                                         <div class="section-title-wrap">
-                                            <h2 class="section-title">বাছাইকৃত খবর</h2>
+                                            <h2 class="section-title">{{__('lang.selected_news')}}</h2>
                                         </div>
                                     </div>
-                                    <div class="col-span-6 md:col-span-12">
-                                        <div class="news-card">
-                                            <div class="thumbnail">
-                                                <a href="#"><img src="{{asset('frontend/assets')}}/image/image-gallery/side-1.png" alt="Thumbnail"></a>
-                                            </div>
-                                            <h1 class="title"><a href="#">স্বাধীনতার জন্য আমাদের অঙ্গীকার: শেষ রক্ত বিন্দু পর্যন্ত!</a></h1>
-                                            <div class="date">
-                                                <p>৩০ আগষ্ট  ২০২২</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-span-6 md:col-span-12">
-                                        <div class="news-card">
-                                            <div class="thumbnail">
-                                                <a href="#"><img src="{{asset('frontend/assets')}}/image/image-gallery/side-2.png" alt="Thumbnail"></a>
-                                            </div>
-                                            <h1 class="title"><a href="#">দেশের স্বাধীনতা রক্ষায় আমাদের প্রতিজ্ঞা: জীবন দান!</a></h1>
-                                            <div class="date">
-                                                <p>৩০ আগষ্ট  ২০২২</p>
+                                    @foreach($side_news as $news)
+                                        <div class="md:col-span-12 col-span-6">
+                                            <div class="news-card">
+                                                <div class="thumbnail">
+                                                    <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}"><img src="{{asset('storage')}}/{{$news->media->thumbnail??null}}" alt="Thumbnail"></a>
+                                                </div>
+                                                <h1 class="title"><a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}">{{Str::limit($news->title, 50)}}</a></h1>
+                                                <div class="date">
+                                                    <p>{{isEnglish()?date_maker($news->publishing_date, 'd F, Y'): formatBanglaDate($news->publishing_date)}}</p>
+
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-span-6 md:col-span-12">
-                                        <div class="news-card">
-                                            <div class="thumbnail">
-                                                <a href="#"><img src="{{asset('frontend/assets')}}/image/image-gallery/side-1.png" alt="Thumbnail"></a>
-                                            </div>
-                                            <h1 class="title"><a href="#">স্বাধীনতার জন্য আমাদের অঙ্গীকার: শেষ রক্ত বিন্দু পর্যন্ত!</a></h1>
-                                            <div class="date">
-                                                <p>৩০ আগষ্ট  ২০২২</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                     <div class="col-span-12">
                                         <!-- ad area start -->
-                                        <div class="adSmall">
-                                            <a href="#">
-                                                <img src="{{asset('frontend/assets')}}/image/small-ad-2.png" alt="ad image">
-                                            </a>
-                                            <div class="ad-close">
-                                                <i class="fa-solid fa-circle-exclamation"></i>
-                                                <i class="fa-solid fa-xmark"></i>
-                                            </div>
-                                        </div>
+                                        @include('layouts.partials.ads.side_ad', ['ad' => $side_ad])
                                         <!-- ad area end -->
                                     </div>
                                 </div>

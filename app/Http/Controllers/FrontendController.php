@@ -110,6 +110,9 @@ class FrontendController extends Controller
         }
 
         $data['related_post'] = $related;
+        $data['ad1'] = Ad::where('placement_id', 8)->where('status', 'Active')->first();
+        $data['ad2'] = Ad::where('placement_id', 9)->where('status', 'Active')->first();
+        $data['ad3'] = Ad::where('placement_id', 10)->where('status', 'Active')->first();
 
         return view('frontend.news_details.news_details', $data)->withShortcodes();
     }
@@ -139,7 +142,7 @@ class FrontendController extends Controller
     {
         $data['author'] = User::where([['id', $id], ['role_id', 2]])->firstOrFail();
         if(!$data['author']){
-            Toastr::error('Author Not Found', 'Error');
+            Toastr::error('AuthorMiddleware Not Found', 'Error');
             return back();
         }
         $data['news'] = Post::select(
@@ -152,6 +155,7 @@ class FrontendController extends Controller
             ->where([[checkPost()], ['language', isEnglish() ? 'en' : 'bn']])
             ->orderBy('order', 'DESC')
             ->paginate(8);
+        $data['side_ad'] = Ad::where('placement_id', 13)->where('status', 'Active')->first();
         return view('frontend.author_news', $data);
     }
 
@@ -178,6 +182,7 @@ class FrontendController extends Controller
     public function photo_details($id)
     {
         $data['photo'] = ImageGallery::with('gallery_images')->where('id', $id)->first();
+        $data['side_ad'] = Ad::where('placement_id', 15)->where('status', 'Active')->first();
         return view('frontend.photo_details', $data);
     }
     public function video_details(Request $request, $id)
@@ -225,17 +230,32 @@ class FrontendController extends Controller
             ->where([[checkPost()], ['language', isEnglish() ? 'en' : 'bn']])
             ->orderBy('id', 'DESC')
             ->first();
+
+        $data['category_top_ad'] = Ad::where('placement_id', 7)->where('status', 'Active')->first();
         return view('frontend.category_view', $data);
     }
 
     public function page_view($id)
     {
         $page = Page::findOrFail($id);
+        $side_news = Section::findOrFail(1)->posts()
+            ->select(
+                'posts.id',
+                'posts.order',
+                'posts.title',
+                'posts.slug',
+                'posts.media_id',
+                'posts.publishing_date',
+            )
+            ->where([[checkPost()],['language', isEnglish()?'en':'bn']])->orderBy('order', 'DESC')->take(3)->get();
         if ($page->status == "Active"){
             if ($page->id == 1){
-                return view('frontend.about_us', compact('page'))->withShortcodes();
+                $ad1 = Ad::where('placement_id', 11)->where('status', 'Active')->first();
+                $ad2 = Ad::where('placement_id', 12)->where('status', 'Active')->first();
+                return view('frontend.about_us', compact('page', 'ad1', 'ad2', 'side_news'))->withShortcodes();
             }
-            return view('frontend.page', compact('page'))->withShortcodes();
+            $side_ad = Ad::where('placement_id', 14)->where('status', 'Active')->first();
+            return view('frontend.page', compact('page', 'side_ad', 'side_news'))->withShortcodes();
         }
         return back();
     }
@@ -259,8 +279,15 @@ class FrontendController extends Controller
 
     public function archive(Request $request)
     {
-        $posts = Post::where(checkPost())
+        $posts = Post::select(
+            'posts.id',
+            'posts.title',
+            'posts.slug',
+            'posts.media_id',
+            'posts.publishing_date',
+        )->where(checkPost())
                 ->where('created_at','like', "%" . $request->date . "%")
+                ->where('language', isEnglish() ? 'en' : 'bn')
                 ->paginate(16);
 
         return view('frontend.archive', compact('posts', 'request'));

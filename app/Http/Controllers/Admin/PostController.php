@@ -36,6 +36,12 @@ class PostController extends Controller
         if ($request->status){
             $search[] = ['status', $request->status];
         }
+        if ($request->language){
+            $search[] = ['language', $request->language];
+        }
+        if (auth()->user()->role_id == 2){
+            $search[] = ['author_id', auth()->user()->id];
+        }
         if ($request->hit){
             if ($request->hit == 'ASC'){
                 $data['posts'] = Post::where($search)->orderBy('hit', 'ASC')->get();
@@ -108,18 +114,24 @@ class PostController extends Controller
         $post->subtitle = $request->subtitle;
         $post->video_duration = $request->video_check ?  $request->video_duration : null;
         $post->video_id = $request->video_check ?  $request->video_id : null;
+        if(auth()->user()->role_id==1){
+        $post->source = $request->source == "Others" ? $request->onnanno : $request->source;
         $post->author_id = $request->author_id ?? null;
+        $post->status = $request->status ?? "Draft";
+        }else{
+            $post->source = 'AuthorMiddleware';
+            $post->author_id = auth()->user()->id;
+            $post->status = "Pending";
+        }
         $post->shoulder = $request->shoulder;
         $post->media_id = $media->id;
         $post->news_details = $request->news_details;
         $post->tags = $request->tags;
-        $post->source = $request->source == "Others" ? $request->onnanno : $request->source;
         $post->publishing_date = $request->publishing_date;
         $post->meta_keywords = $request->meta_keywords;
         $post->meta_description = $request->meta_description;
         $post->latest_news = $request->latest_news ?? 0;
         $post->breaking_news = $request->breaking_news ?? 0;
-        $post->status = $request->status ?? "Draft";
         $post->language = $request->language;
         $post->save();
         $post->order = $post->id;
@@ -209,18 +221,23 @@ class PostController extends Controller
         $post->subtitle = $request->subtitle;
         $post->video_duration = $request->video_check ?  $request->video_duration : null;
         $post->video_id = $request->video_check ?  $request->video_id : null;
-        $post->author_id = $request->author_id ?? null;
+        if(auth()->user()->role_id==1){
+            $post->source = $request->source == "Others" ? $request->onnanno : $request->source;
+            $post->author_id = $request->author_id ?? null;
+            $post->status = $request->status;
+        }else{
+            $post->source = 'AuthorMiddleware';
+            $post->author_id = auth()->user()->id;
+        }
         $post->shoulder = $request->shoulder;
         $post->news_details = $request->news_details;
         $post->tags = $request->tags;
-        $post->source = $request->source == "Others" ? $request->onnanno : $request->source;
         $post->publishing_date = $request->publishing_date;
         $post->meta_keywords = $request->meta_keywords;
         $post->meta_description = $request->meta_description;
         $post->latest_news = $request->latest_news ?? 0;
         $post->breaking_news = $request->breaking_news ?? 0;
         $post->slug = null;
-        $post->status = $request->status;
         $post->language = $request->language;
         $post->order = $request->order;
         $post->categories()->detach();

@@ -1,6 +1,6 @@
 /*
 Template Name: Abstack - Responsive Bootstrap 4 Admin Dashboard
-Author: CoderThemes
+AuthorMiddleware: CoderThemes
 Version: 2.0.0
 Website: https://coderthemes.com/
 Contact: support@coderthemes.com
@@ -171,7 +171,7 @@ function ($) {
         });
     },
 
-    /** 
+    /**
      * Initlizes the menu - top and sidebar
     */
     App.prototype.initMenu = function () {
@@ -239,7 +239,7 @@ function ($) {
 
     },
 
-    /** 
+    /**
      * Init the layout - with broad sidebar or compact side bar
     */
     App.prototype.initLayout = function () {

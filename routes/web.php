@@ -50,12 +50,11 @@ Route::get('/archive/', [FrontendController::class, 'archive'])->name('archive')
 Route::get('/print_news/{id}', [FrontendController::class, 'printNews'])->name('print_news');
 Route::get('/print_all_news', [FrontendController::class, 'print_all_news'])->name('post.print_all');
 Route::get('/last_published/', [FrontendController::class, 'last_published'])->name('last_published');
-Route::get('/status_change/', [PostController::class, 'status_change'])->name('status_change');
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::delete('/contact-messages/bulk-delete', [ContactMessageController::class, 'bulkDelete'])->name('contact_message.bulk_delete');
-Route::delete('/contact-messages/all-delete', [ContactMessageController::class, 'allDelete'])->name('contact_message.all_delete');
-Route::resource('/post', PostController::class);
+
+Route::resource('/post', PostController::class)->middleware('author');
+Route::resource('/image_gallery', ImageGalleryController::class)->middleware('author');
 Route::middleware('admin')->group(function (){
 Route::resource('/user', UserController::class);
 Route::resource('/category', CategoryController::class);
@@ -69,8 +68,11 @@ Route::resource('/options', OptionController::class);
 Route::resource('/menu', MenuController::class);
 Route::resource('/ad', AdController::class);
 Route::resource('/contact_message', ContactMessageController::class);
-Route::resource('/image_gallery', ImageGalleryController::class);
 Route::get('image_gallery_status_change', [ImageGalleryController::class, 'table_status_change'])->name('image_gallery_status_change');
+Route::get('/status_change/', [PostController::class, 'status_change'])->name('status_change');
+
+Route::delete('/contact-messages/bulk-delete', [ContactMessageController::class, 'bulkDelete'])->name('contact_message.bulk_delete');
+Route::delete('/contact-messages/all-delete', [ContactMessageController::class, 'allDelete'])->name('contact_message.all_delete');
 
 Route::get('/marque', [FrontendController::class, 'marque'])->name('marque');
 Route::get('/category_status_change', [CategoryController::class, 'category_status_change'])->name('category_status_change');

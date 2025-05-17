@@ -6,7 +6,7 @@ use Brian2694\Toastr\Toastr;
 use Closure;
 use Illuminate\Http\Request;
 
-class AdminMiddleware
+class AuthorMiddleware
 {
     /**
      * Handle an incoming request.
@@ -18,17 +18,13 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (auth()->check()){
-            if (auth()->user()->role_id == 1) {
+            if (auth()->user()->role_id == 1 || auth()->user()->role_id == 2) {
                 return $next($request);
             }
         }
-
-        \Brian2694\Toastr\Facades\Toastr::Success('You Are Not Admin');
         if (isEnglish()){
-        return redirect()->route('index_page')->with('error', 'You Are Not Eligible to access this page');
+            return redirect()->route('index_page')->with('error', 'You Are Not Eligible to access this page');
         }else{
             return redirect()->route('index_page')->with('error', 'আপনি এই পৃষ্ঠাটি অ্যাক্সেস করার যোগ্য নন।');
-        }
-
-    }
+        }    }
 }

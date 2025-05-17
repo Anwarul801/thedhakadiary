@@ -72,9 +72,7 @@
                             <div class="xl:col-span-3 lg:col-span-4 md:col-span-5 col-span-12 md:mt-0 mt-4">
                              @include('layouts.partials.news_item.latest_news')
                                 <!-- ad area -->
-                                <div class="ad-side-area mt-4">
-                                    <img src="{{asset('frontend/assets')}}/image/image-gallery/add-two.png" alt="ad image" class="w-full">
-                                </div>
+                                @include('layouts.partials.ads.side_ad', ['ad' => $side_ad])
                                 <!-- ad area end-->
                             </div>
                         </div>

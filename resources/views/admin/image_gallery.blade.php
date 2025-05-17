@@ -62,7 +62,8 @@
                         <td scope="row"> {{ ($gallerys->currentpage()-1) * $gallerys->perpage() + $loop->iteration }}</td>
                         <td>{{ $gallery->title }}</td>
                         <td><a href="{{asset($gallery->thumbnail)}}" target="_blank" class="btn btn-sm btn-outline-secondary"><i class="fa fa-eye"></i></a></td>
-                        <td >
+                        @if(auth()->user()->role_id==1)
+                        <td>
                             <form action="{{ route('image_gallery_status_change') }}" method="get"
                                   id="submitform{{ $gallery->id }}">
                                 @csrf
@@ -76,8 +77,12 @@
                                         In-Active</option>
                                 </select>
                             </form>
-
                         </td>
+                        @else
+                            <td>
+                                <span class="badge badge-{{ $gallery->status == 'Active' ? 'success' : 'danger' }}">{{ $gallery->status }}</span>
+                            </td>
+                        @endif
                         <td class="text-center d-sm-flex justify-content-evenly">
                             <div class="dropdown mx-auto">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -86,11 +91,13 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" href="{{route('image_gallery.edit', $gallery->id)}}">Edit</a>
-                                    <form action="{{ route('image_gallery.destroy', $gallery->id) }}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="submit" class="dropdown-item" onclick="return confirm('Are you sure to Delete?')">Delete</button>
-                                    </form>
+                                    @if($gallery->status!='Active')
+                                        <form action="{{ route('image_gallery.destroy', $gallery->id) }}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="dropdown-item" onclick="return confirm('Are you sure to Delete?')">Delete</button>
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
 

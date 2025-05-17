@@ -1,4 +1,4 @@
-@php use Carbon\Carbon; @endphp
+@php use Carbon\Carbon;use Illuminate\Support\Str; @endphp
 @extends('layouts.frontend_layout')
 @section('page_title')
     {{ $news->title }}
@@ -61,9 +61,10 @@
                                         <div
                                             class="date-wrap print:flex-auto print:flex print:justify-between print:items-end">
                                             <div>
-                                                @if($news->source == 'Author'&&$news->author_id!= null)
-                                                    <a href="{{route('author_news', ['id' => $news->author_id, 'name' => $news->author->name_en??null])}}" class="present inline-block">{{isEnglish()?($news->author->name_en):($news->author->name??null)}}</a>
-                                                    @elseif($news->source!='None')
+                                                @if($news->source == 'AuthorMiddleware'&&$news->author_id!= null)
+                                                    <a href="{{route('author_news', ['id' => $news->author_id, 'name' => $news->author->name_en??null])}}"
+                                                       class="present inline-block">{{isEnglish()?($news->author->name_en):($news->author->name??null)}}</a>
+                                                @elseif($news->source!='None')
                                                     <a class="present inline-block">{{__("lang.$news->source")}}</a>
                                                 @endif
                                                 <p class="update">{{__('lang.site_title')}}</p>
@@ -89,7 +90,10 @@
                                             <p class="update"><span
                                                     class="updated">{{isEnglish()?$update_en:$update_bn}}</span> <span
                                                     class="prokash hidden">{{isEnglish()?$create_en:$create_bn}}</span>
-                                                <img style="width: 20px; display: inline-block" class="cursor-pointer update_prokash_btn ms-1 print:hidden" src="{{asset('frontend/assets/image/up-and-down-arrow.png')}}" alt="">
+                                                <img style="width: 20px; display: inline-block"
+                                                     class="cursor-pointer update_prokash_btn ms-1 print:hidden"
+                                                     src="{{asset('frontend/assets/image/up-and-down-arrow.png')}}"
+                                                     alt="">
                                             </p>
                                         </div>
                                         <div class="flex justify-center items-center  gap-1.5 print:hidden">
@@ -97,19 +101,23 @@
                                                 $url = urlencode(url()->current());
                                             @endphp
 
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}" class="social_icon text-sm" target="_blank">
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}"
+                                               class="social_icon text-sm" target="_blank">
                                                 <i class="fa-brands fa-facebook-f"></i>
                                             </a>
 
-                                            <a href="https://twitter.com/intent/tweet?url={{ $url }}" class="social_icon text-sm" target="_blank">
+                                            <a href="https://twitter.com/intent/tweet?url={{ $url }}"
+                                               class="social_icon text-sm" target="_blank">
                                                 <i class="fa-brands fa-x-twitter"></i>
                                             </a>
 
-                                            <a href="https://www.instagram.com/" class="social_icon text-sm" target="_blank">
+                                            <a href="https://www.instagram.com/" class="social_icon text-sm"
+                                               target="_blank">
                                                 <i class="fa-brands fa-instagram"></i>
                                             </a>
 
-                                            <a href="https://wa.me/?text={{ $url }}" class="social_icon text-sm" target="_blank">
+                                            <a href="https://wa.me/?text={{ $url }}" class="social_icon text-sm"
+                                               target="_blank">
                                                 <i class="fa-brands fa-whatsapp"></i>
                                             </a>
 
@@ -142,39 +150,17 @@
                                 @include('layouts.partials.news_item.latest_news')
 
                                 <!-- ad area start -->
-                                <div class="adSmall no_print">
-                                    <a href="#">
-                                        <img src="{{asset('frontend/assets')}}/image/small-ad-2.png" alt="ad image">
-                                    </a>
-                                    <div class="ad-close">
-                                        <i class="fa-solid fa-circle-exclamation"></i>
-                                        <i class="fa-solid fa-xmark"></i>
-                                    </div>
-                                </div>
+                                @include('layouts.partials.ads.side_ad', ['ad' => $ad1])
+
                                 <!-- ad area end -->
                                 <!-- ad area start -->
-                                <div class="adSmall no_print">
-                                    <a href="#">
-                                        <img src="{{asset('frontend/assets')}}/image/samll-ad-1.png" alt="ad image">
-                                    </a>
-                                    <div class="ad-close">
-                                        <i class="fa-solid fa-circle-exclamation"></i>
-                                        <i class="fa-solid fa-xmark"></i>
-                                    </div>
-                                </div>
+                                @include('layouts.partials.ads.side_ad', ['ad' => $ad2])
+
                                 <!-- ad area end -->
 
                                 <!-- ad area start -->
-                                <div class="adSmall no_print">
-                                    <a href="#">
-                                        <img src="{{asset('frontend/assets')}}/image/small-ad-2.png" alt="ad image">
-                                    </a>
-                                    <div class="ad-close">
-                                        <i class="fa-solid fa-circle-exclamation"></i>
-                                        <i class="fa-solid fa-xmark"></i>
-                                    </div>
+                                @include('layouts.partials.ads.side_ad', ['ad' => $ad3])
 
-                                </div>
                                 <!-- ad area end -->
 
                             </div>
@@ -192,9 +178,10 @@
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                     <!-- Card 1 -->
                     @foreach($related_post as $rpost)
-                        <a href="{{route('news_details', ['id' => $rpost->id, 'slug' => $rpost->slug])}}" class="otners-news-item">
+                        <a href="{{route('news_details', ['id' => $rpost->id, 'slug' => $rpost->slug])}}"
+                           class="otners-news-item">
                             <h3 class="news-nmbr">{{isEnglish()?$loop->iteration:bangla_number($loop->iteration)}}</h3>
-                            <p class="news-title">{{$rpost->title}}</p>
+                            <p class="news-title">{{Str::limit($rpost->title, 50)}}</p>
                         </a>
                     @endforeach
 

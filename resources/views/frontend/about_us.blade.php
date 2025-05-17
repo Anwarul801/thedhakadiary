@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Str; @endphp
 @extends('layouts.frontend_layout')
 
 @section('page_title') {{ isEnglish()?$page->name_en:$page->name }} @endsection
@@ -16,10 +17,10 @@
                                     <div class="flex justify-between items-center gap-3">
                                         <div class="date-wrap">
                                             <p class="present">{{isEnglish()? date('d F Y'): formatBanglaDate(date('d F Y'))}}</p>
-                                            <p class="update">আপডেট হয়েছে <span>{{isEnglish()? date_maker($page->updated_at??$page->created_at, 'd F Y'): formatBanglaDate(date_maker($page->updated_at??$page->created_at, 'd F Y'))}}</span></p>
+                                            <p class="update">{{__('lang.updated_at')}} <span>{{isEnglish()? date_maker($page->updated_at??$page->created_at, 'd F Y'): formatBanglaDate(date_maker($page->updated_at??$page->created_at, 'd F Y'))}}</span></p>
                                         </div>
                                         <div class="flex justify-center items-center gap-1.5">
-                                            <p class="text-primary">শেয়ার করুন:</p>
+                                            <p class="text-primary">{{__('lang.share_now')}}:</p>
                                             <a href="#" class="social_icon text-sm"><i class="fa-solid fa-share"></i></a>
                                         </div>
                                     </div>
@@ -39,64 +40,30 @@
                                 <div class="grid grid-cols-12 gap-4 ">
                                     <div class="col-span-12">
                                         <!-- ad area start -->
-                                        <div class="adSmall">
-                                            <a href="#">
-                                                <img src="{{asset('frontend/assets')}}/image/small-ad-2.png" alt="ad image">
-                                            </a>
-                                            <div class="ad-close">
-                                                <i class="fa-solid fa-circle-exclamation"></i>
-                                                <i class="fa-solid fa-xmark"></i>
-                                            </div>
-                                        </div>
+                                        @include('layouts.partials.ads.side_ad', ['ad' => $ad1])
                                         <!-- ad area end -->
                                     </div>
                                     <div class="col-span-12">
-                                        <h2 class="section-title">বাছাইকৃত খবর</h2>
+                                        <h2 class="section-title">{{__('lang.selected_news')}}</h2>
                                     </div>
-                                    <div class="md:col-span-12 col-span-6">
-                                        <div class="news-card">
-                                            <div class="thumbnail">
-                                                <a href="#"><img src="{{asset('frontend/assets')}}/image/image-gallery/side-1.png" alt="Thumbnail"></a>
-                                            </div>
-                                            <h1 class="title"><a href="#">স্বাধীনতার জন্য আমাদের অঙ্গীকার: শেষ রক্ত বিন্দু পর্যন্ত!</a></h1>
-                                            <div class="date">
-                                                <p>৩০ আগষ্ট  ২০২২</p>
+                                    @foreach($side_news as $news)
+                                        <div class="md:col-span-12 col-span-6">
+                                            <div class="news-card">
+                                                <div class="thumbnail">
+                                                    <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}"><img src="{{asset('storage')}}/{{$news->media->thumbnail??null}}" alt="Thumbnail"></a>
+                                                </div>
+                                                <h1 class="title"><a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}">{{Str::limit($news->title, 50)}}</a></h1>
+                                                <div class="date">
+                                                    <p>{{isEnglish()?date_maker($news->publishing_date, 'd F, Y'): formatBanglaDate($news->publishing_date)}}</p>
+
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="md:col-span-12 col-span-6">
-                                        <div class="news-card">
-                                            <div class="thumbnail">
-                                                <a href="#"><img src="{{asset('frontend/assets')}}/image/image-gallery/side-2.png" alt="Thumbnail"></a>
-                                            </div>
-                                            <h1 class="title"><a href="#">দেশের স্বাধীনতা রক্ষায় আমাদের প্রতিজ্ঞা: জীবন দান!</a></h1>
-                                            <div class="date">
-                                                <p>৩০ আগষ্ট  ২০২২</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="md:col-span-12 col-span-6">
-                                        <div class="news-card">
-                                            <div class="thumbnail">
-                                                <a href="#"><img src="{{asset('frontend/assets')}}/image/image-gallery/side-1.png" alt="Thumbnail"></a>
-                                            </div>
-                                            <h1 class="title"><a href="#">স্বাধীনতার জন্য আমাদের অঙ্গীকার: শেষ রক্ত বিন্দু পর্যন্ত!</a></h1>
-                                            <div class="date">
-                                                <p>৩০ আগষ্ট  ২০২২</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
+
                                     <div class="col-span-12">
                                         <!-- ad area start -->
-                                        <div class="adSmall" style="margin-top: 0 !important;">
-                                            <a href="#">
-                                                <img src="{{asset('frontend/assets')}}/image/small-ad-2.png" alt="ad image">
-                                            </a>
-                                            <div class="ad-close">
-                                                <i class="fa-solid fa-circle-exclamation"></i>
-                                                <i class="fa-solid fa-xmark"></i>
-                                            </div>
-                                        </div>
+                                        @include('layouts.partials.ads.side_ad', ['ad' => $ad2])
                                         <!-- ad area end -->
                                     </div>
                                 </div>

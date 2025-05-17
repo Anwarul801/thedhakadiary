@@ -28,6 +28,12 @@
                             <li><a href="{{route('post.index')}}">Post List</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="{{ route('image_gallery.index') }}">
+                            <i class="fe-image"></i>
+                            <span> Photos </span>
+                        </a>
+                    </li>
                 @endif
                 @if(auth()->user()->role_id == 1)
 
@@ -45,7 +51,7 @@
                 <li>
                     <a href="{{ route('image_gallery.index') }}">
                         <i class="fe-image"></i>
-                        <span> Image Gallery </span>
+                        <span> Photos </span>
                     </a>
                 </li>
                     <li>
@@ -75,7 +81,7 @@
 {{--                <li>--}}
 {{--                    <a href="{{ route('author.index') }}">--}}
 {{--                        <i class="fe-edit-1"></i>--}}
-{{--                        <span> Author </span>--}}
+{{--                        <span> AuthorMiddleware </span>--}}
 {{--                    </a>--}}
 {{--                </li>--}}
                 <li>

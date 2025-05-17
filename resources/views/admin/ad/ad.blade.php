@@ -75,12 +75,12 @@
                                                 <option value="In-Active">In-Active</option>
                                             </select>
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-6 d-none">
                                             <label for="start_date">Start Date *</label>
                                             <input class="form-control" type="date" value="{{date('Y-m-d')}}" id="start_date" name="start_date">
                                         </div>
 
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-6 d-none">
                                             <label for="end_date">End Date *</label>
                                             <input id="end_date" type="date" value="{{date('Y-m-d')}}" class="form-control" name="end_date">
                                             @error('password')

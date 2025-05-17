@@ -28,7 +28,7 @@ class AdPlacementSeeder extends Seeder
             ['title' => 'News Details Page Side 3', 'img_size' => '315px by 232px'],
             ['title' => 'About Us Page Side 1', 'img_size' => '315px by 232px'],
             ['title' => 'About Us Page Side 2', 'img_size' => '315px by 232px'],
-            ['title' => 'Author Page Side 1', 'img_size' => '315px by 232px'],
+            ['title' => 'AuthorMiddleware Page Side 1', 'img_size' => '315px by 232px'],
             ['title' => 'Terms & Privacy Page Side 1', 'img_size' => '315px by 232px'],
             ['title' => 'Photo Details Page Side 1', 'img_size' => '315px by 232px'],
         ]);

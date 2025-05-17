@@ -81,13 +81,7 @@
                               @include('layouts.partials.news_item.latest_news')
 
                                 <!-- ad area start -->
-                                <div class="adSmall">
-                                    <img src="{{asset('frontend/assets')}}/image/samll-ad-1.png" alt="ad image">
-                                    <div class="ad-close">
-                                        <i class="fa-solid fa-circle-exclamation"></i>
-                                        <i class="fa-solid fa-xmark"></i>
-                                    </div>
-                                </div>
+                                    @include('layouts.partials.ads.side_ad', ['ad' => $side_ad])
                                 <!-- ad area end -->
 
                             </div>

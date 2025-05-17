@@ -42,6 +42,7 @@
                                     <textarea class="form-control" id="subtitle" name="subtitle" cols="30" rows="3">{{old('subtitle')}}</textarea>
                                 </div>
                             </div>
+                            @if(auth()->user()->role_id==1)
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="author_id">Select Author</label>
@@ -53,6 +54,7 @@
                                     </select>
                                 </div>
                             </div>
+                            @endif
                             <div class="col-md-6 pt-4">
                                 <div class="form-group">
                                     <input name="video_check" class="" type="checkbox" id="is_video">
@@ -82,6 +84,7 @@
                                 </div>
                             </div>
                         </div>
+                    @if(auth()->user()->role_id==1)
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -110,7 +113,7 @@
 
                                         </div>
                                         <div class="col-4">
-                                            <input type="radio" id="radio_7" onclick="showOthers('radio_7')" value="Author" {{old('source') == 'Author' ? 'checked' : ''}} name="source">
+                                            <input type="radio" id="radio_7" onclick="showOthers('radio_7')" value="Author" {{old('source') == 'AuthorMiddleware' ? 'checked' : ''}} name="source">
                                             <label class="mt-2" for="radio_7">Author</label>
 
                                         </div>
@@ -123,6 +126,8 @@
                                 </div>
                             </div>
                         </div>
+                    @endif
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -149,6 +154,7 @@
                         </div>
                     </div>
                         <div class="row">
+                            @if(auth()->user()->role_id==1)
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="status">Status</label>
@@ -160,6 +166,7 @@
                                     </select>
                                 </div>
                             </div>
+                            @endif
                             <div class="col-6">
                                 <label for="publishing_date">Publishing Date *</label>
                                 <input value="{{date('Y-m-d')}}" type="date" name="publishing_date" required id="publishing_date" class="form-control">
@@ -226,6 +233,7 @@
                     @endforeach
                 </div>
             </div>
+            @if(auth()->user()->role_id==1)
             <div class="card">
                 <div class="card-header">
                     <h4 class="m-0">Select Sections</h4>
@@ -239,6 +247,7 @@
                     @endforeach
                 </div>
             </div>
+            @endif
             <div class="card">
                 <div class="card-header">
                     <h4 class="m-0 d-flex justify-content-between">

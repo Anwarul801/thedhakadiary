@@ -51,6 +51,9 @@ class ImageGalleryController extends Controller
         if ($request->date){
             $search[] = ['date',$request->date];
         }
+        if (auth()->user()->role_id==2){
+            $search[] = ['author_id', auth()->id()];
+        }
         return $search;
     }
     /**
@@ -86,13 +89,24 @@ class ImageGalleryController extends Controller
             'title_en' => 'nullable|string|max:255',
             'thumbnail' => 'nullable|image',
         ]);
+
+        if(auth()->user()->role_id==1){
+            $request->validate([
+                'author_id' => 'required|exists:users,id',
+            ]);
+        }
     }
 
 
 
     public function dataInsert($request, $table, $type = 'update')
     {
-        $table->author_id = $request->author_id??auth()->id();
+        if(auth()->user()->role_id==1){
+        $table->author_id = $request->author_id;
+        }else{
+            $table->author_id = auth()->id();
+            $table->status = 'In-Active';
+        }
         $table->title = $request->title;
         $table->title_en = $request->title_en;
         $table->date_time = $request->date_time;

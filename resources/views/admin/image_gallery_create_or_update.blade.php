@@ -32,6 +32,7 @@
                                              aria-labelledby="bangla-tab">
                                             <div class="tab-content">
                                                 <div class="row">
+                                                    @if(auth()->user()->role_id==1)
                                                     <div class="col-6 mb-3">
                                                         <label for="title" class="form-label">Author*</label>
                                                         <select name="author_id" id="" class="form-control">
@@ -41,6 +42,7 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
+                                                    @endif
                                                     <div class="col-6 mb-3">
                                                         <label for="title" class="form-label">Date/Time*</label>
                                                         <input required value="{{$page_type != 'Create' ? $image_gallery->date_time : date('Y-m-d\TH:i')}}" id="title" type="datetime-local"
@@ -63,11 +65,13 @@
                                                             <img style="width: 200px;" src="{{asset($image_gallery->thumbnail)}}" alt="">
                                                         @endif
                                                     </div>
+                                                        @if(auth()->user()->role_id==1)
                                                     <div class="col-6 mb-3">
                                                         <label for="order" class="form-label">Order</label>
                                                         <input value="{{$page_type != 'Create' ? $image_gallery->order : ''}}" id="order" type="text"
                                                                class="form-control" name="order" placeholder="Order">
                                                     </div>
+                                                        @endif
                                                 </div>
                                             </div>
                                         </div>

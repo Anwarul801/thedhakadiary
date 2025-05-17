@@ -41,6 +41,7 @@
                                         <textarea class="form-control" id="subtitle" name="subtitle" cols="30" rows="3">{{$data->subtitle}}</textarea>
                                     </div>
                                 </div>
+                                @if(auth()->user()->role_id==1)
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="author_id">Select Author *</label>
@@ -52,6 +53,7 @@
                                         </select>
                                     </div>
                                 </div>
+                                @endif
                                 <div class="col-md-6">
                                     <div class="form-group pt-4">
                                         <input name="video_check" {{$data->video_id != null ? 'checked' : ''}} class="" type="checkbox" id="is_video">
@@ -81,6 +83,7 @@
                                     </div>
                                 </div>
                             </div>
+                        @if(auth()->user()->role_id==1)
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -110,14 +113,14 @@
 
                                             </div>
                                             <div class="col-4">
-                                                <input type="radio" id="radio_7" onclick="showOthers('radio_7')" {{ $data->source == "Author" ? "checked" : ""  }} value="Author" name="source">
+                                                <input type="radio" id="radio_7" onclick="showOthers('radio_7')" {{ $data->source == "AuthorMiddleware" ? "checked" : ""  }} value="Author" name="source">
                                                 <label class="mt-2" for="radio_7">Author</label>
 
                                             </div>
                                             <div class="col-4 d-flex">
-                                                <input class="mr-1" type="radio" {{ $data->source != "own_reporter" && $data->source != "online_desk" && $data->source != "press_release" && $data->source != "online_reporter" && $data->source != "None" && $data->source != "Author" ? "checked" : ""  }} id="radio_6" onclick="showOthers('radio_6')" value="Others" name="source">
+                                                <input class="mr-1" type="radio" {{ $data->source != "own_reporter" && $data->source != "online_desk" && $data->source != "press_release" && $data->source != "online_reporter" && $data->source != "None" && $data->source != "AuthorMiddleware" ? "checked" : ""  }} id="radio_6" onclick="showOthers('radio_6')" value="Others" name="source">
                                                 <label class="mr-1 mt-2" for="radio_6">অন্যান্য</label>
-                                                <input id="others_input" class="form-control {{ $data->source != "own_reporter" && $data->source != "online_desk" && $data->source != "press_release" && $data->source != "online_reporter" && $data->source != "None" && $data->source != "Author" ? "" : "d-none"  }}" type="text" value="{{ $data->source }}" name="onnanno" placeholder="অন্যান্য">
+                                                <input id="others_input" class="form-control {{ $data->source != "own_reporter" && $data->source != "online_desk" && $data->source != "press_release" && $data->source != "online_reporter" && $data->source != "None" && $data->source != "AuthorMiddleware" ? "" : "d-none"  }}" type="text" value="{{ $data->source }}" name="onnanno" placeholder="অন্যান্য">
                                             </div>
 
                                             <script>
@@ -134,6 +137,7 @@
                                     </div>
                                 </div>
                             </div>
+                        @endif
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -168,6 +172,7 @@
                             </div>
                         </div>
                             <div class="row">
+                                @if(auth()->user()->role_id==1)
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="status">Status</label>
@@ -179,6 +184,7 @@
                                         </select>
                                     </div>
                                 </div>
+                                @endif
                                 <div class="col-6">
                                     <label for="publishing_date">Publishing Date *</label>
                                     <input value="{{$data->publishing_date}}" type="date" name="publishing_date" id="publishing_date" class="form-control">
@@ -243,6 +249,7 @@
                         @endforeach
                     </div>
                 </div>
+                @if(auth()->user()->role_id==1)
                 <div class="card">
                     <div class="card-header">
                         <h4 class="m-0">Select Sections</h4>
@@ -256,6 +263,7 @@
                         @endforeach
                     </div>
                 </div>
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <h4 class="m-0 d-flex justify-content-between">
