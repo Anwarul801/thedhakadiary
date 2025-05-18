@@ -33,46 +33,70 @@
                                             <div class="tab-content">
                                                 <div class="row">
                                                     @if(auth()->user()->role_id==1)
-                                                    <div class="col-6 mb-3">
-                                                        <label for="title" class="form-label">Author*</label>
-                                                        <select name="author_id" id="" class="form-control">
-                                                            <option value="" disabled selected>Select Author</option>
-                                                            @foreach($authors as $author)
-                                                                <option {{$page_type != 'Create' ? ($image_gallery->author_id==$author->id?'selected':'') : ''}} value="{{$author->id}}">{{$author->name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
+                                                        <div class="col-6 mb-3">
+                                                            <label for="title" class="form-label">Author*</label>
+                                                            <select name="author_id" id="" class="form-control">
+                                                                <option value="" disabled selected>Select Author</option>
+                                                                @foreach($authors as $author)
+                                                                    <option {{$page_type != 'Create' ? ($image_gallery->author_id==$author->id?'selected':'') : ''}} value="{{$author->id}}">{{$author->name}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('author_id')
+                                                            <span style="color:red">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
                                                     @endif
+
                                                     <div class="col-6 mb-3">
                                                         <label for="title" class="form-label">Date/Time*</label>
                                                         <input required value="{{$page_type != 'Create' ? $image_gallery->date_time : date('Y-m-d\TH:i')}}" id="title" type="datetime-local"
-                                                               class="form-control" name="date_time" >
+                                                               class="form-control" name="date_time">
+                                                        @error('date_time')
+                                                        <span style="color:red">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
+
                                                     <div class="col-6 mb-3">
                                                         <label for="title" class="form-label">Title*</label>
                                                         <input value="{{$page_type != 'Create' ? $image_gallery->title : ''}}" id="title" type="text"
                                                                class="form-control" name="title" placeholder="Title">
+                                                        @error('title')
+                                                        <span style="color:red">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
+
                                                     <div class="col-6 mb-3">
                                                         <label for="title_en" class="form-label">Title English*</label>
                                                         <input value="{{$page_type != 'Create' ? $image_gallery->title_en : ''}}" id="title_en" type="text"
                                                                class="form-control" name="title_en" placeholder="Title">
+                                                        @error('title_en')
+                                                        <span style="color:red">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
+
                                                     <div class="col-6 mb-3">
                                                         <label for="thumbnail">Thumbnail (648x486px)</label>
                                                         <input type="file" name="thumbnail" class="form-control">
+                                                        @error('thumbnail')
+                                                        <span style="color:red">{{ $message }}</span>
+                                                        @enderror
                                                         @if($page_type=='Update')
                                                             <img style="width: 200px;" src="{{asset($image_gallery->thumbnail)}}" alt="">
                                                         @endif
                                                     </div>
-                                                        @if(auth()->user()->role_id==1)
-                                                    <div class="col-6 mb-3">
-                                                        <label for="order" class="form-label">Order</label>
-                                                        <input value="{{$page_type != 'Create' ? $image_gallery->order : ''}}" id="order" type="text"
-                                                               class="form-control" name="order" placeholder="Order">
-                                                    </div>
-                                                        @endif
+
+                                                    @if(auth()->user()->role_id==1)
+                                                        <div class="col-6 mb-3">
+                                                            <label for="order" class="form-label">Order</label>
+                                                            <input value="{{$page_type != 'Create' ? $image_gallery->order : ''}}" id="order" type="text"
+                                                                   class="form-control" name="order" placeholder="Order">
+                                                            @error('order')
+                                                            <span style="color:red">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    @endif
                                                 </div>
+
                                             </div>
                                         </div>
 

@@ -16,10 +16,10 @@
                         <div class="">
                             <h4 class="m-0">Create Post</h4>
                         </div>
-                        <div class="">
-                            <select name="language" id="" class="form-control" >
-                                <option value="bn" >Bangla</option>
-                                <option value="en" >English</option>
+                        <div class="select-container">
+                            <select name="language" class=" btn btn-danger" id="language">
+                                <option value="bn">Bangla</option>
+                                <option value="en">English</option>
                             </select>
                         </div>
                         <div class="">

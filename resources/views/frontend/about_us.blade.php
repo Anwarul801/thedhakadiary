@@ -21,7 +21,7 @@
                                         </div>
                                         <div class="flex justify-center items-center gap-1.5">
                                             <p class="text-primary">{{__('lang.share_now')}}:</p>
-                                            <a href="#" class="social_icon text-sm"><i class="fa-solid fa-share"></i></a>
+                                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}" class="social_icon text-sm"><i class="fa-solid fa-share"></i></a>
                                         </div>
                                     </div>
                                 </div>

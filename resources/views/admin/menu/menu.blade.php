@@ -124,7 +124,7 @@
                                                 <form action="{{ route('menu.destroy', $menu->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="dropdown-item" onclick="return confirm('are you sure to delete this User?')"><i class="fa fa-trash"></i> DELETE</button>
+                                                    <button class="dropdown-item" onclick="return confirm('are you sure to delete this Menu?')"><i class="fa fa-trash"></i> DELETE</button>
                                                 </form>
                                         </div>
                                     </div>

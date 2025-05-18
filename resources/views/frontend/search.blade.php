@@ -35,10 +35,10 @@
                         <div class="lg:col-span-3 md:col-span-4 col-span-6">
                             <div class="news-card">
                                 <div class="thumbnail">
-                                    <a href="#"><img src="{{asset('storage')}}/{{$post->media->thumbnail??null}}" alt="Thumbnail"></a>
+                                    <a href="{{route('news_details', ['id' => $post->id, 'slug' => $post->slug])}}"><img src="{{asset('storage')}}/{{$post->media->thumbnail??null}}" alt="Thumbnail"></a>
                                 </div>
                                 <h1 class="title">
-                                    <a href="#">{{Str::limit($post->title, 100)}}</a>
+                                    <a href="{{route('news_details', ['id' => $post->id, 'slug' => $post->slug])}}">{{Str::limit($post->title, 100)}}</a>
                                 </h1>
                                 <div class="date">
                                     <p>{{isEnglish()?date_maker($post->publishing_date, 'd F, Y'): formatBanglaDate($post->publishing_date)}}</p>

@@ -214,6 +214,7 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'caption' => 'required',
             'news_details' => 'required',
             'source' => 'nullable | string | max:255',
         ]);

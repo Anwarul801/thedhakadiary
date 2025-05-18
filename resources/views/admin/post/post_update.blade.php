@@ -16,7 +16,7 @@
                                    <h4 class="m-0">Update Post</h4>
                                </div>
                            <div class="">
-                               <select name="language" id="" class="form-control" >
+                               <select name="language" id=""  class=" btn btn-danger" >
                                    <option value="bn" {{ $data->language == 'bn' ? 'selected' : '' }}>Bangla</option>
                                    <option value="en" {{ $data->language == 'en' ? 'selected' : '' }}>English</option>
                                </select>

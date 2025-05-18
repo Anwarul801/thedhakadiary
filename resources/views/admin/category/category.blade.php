@@ -32,23 +32,22 @@
 
                                 <form class="form-horizontal" action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
                                     @csrf
-{{--                                    <div class="form-group">--}}
-{{--                                            <label for="name">Select Parent Category</label>--}}
-{{--                                        <select class="form-control" name="parent_cat_id" id="">--}}
-{{--                                            <option selected disabled>Select Parent Category</option>--}}
-{{--                                            @foreach($cat_without_parent as $cat_w_p)--}}
-{{--                                                <option value="{{$cat_w_p->id}}">{{$cat_w_p->name}}</option>--}}
-{{--                                            @endforeach--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
                                     <div class="form-group">
-                                            <label for="name">Name *</label>
-                                            <input class="form-control" type="text" id="name" name="name" required="" placeholder="Category Name">
+                                        <label for="name">Name *</label>
+                                        <input class="form-control" type="text" id="name" name="name" required placeholder="Category Name">
+                                        @error('name')
+                                        <span style="color:red">{{ $message }}</span>
+                                        @enderror
                                     </div>
+
                                     <div class="form-group">
-                                            <label for="name">Name English</label>
-                                            <input class="form-control" type="text" id="name" name="name_en" placeholder="Category Name">
+                                        <label for="name_en">Name English</label>
+                                        <input class="form-control" type="text" id="name_en" name="name_en" placeholder="Category Name">
+                                        @error('name_en')
+                                        <span style="color:red">{{ $message }}</span>
+                                        @enderror
                                     </div>
+
                                     <div class="form-group account-btn text-center">
                                         <div class="col-12">
                                             <button class="btn width-lg btn-rounded btn-primary waves-effect waves-light" type="submit">Create Category</button>
@@ -61,7 +60,7 @@
                     </div><!-- /.modal-dialog -->
                 </div>
 
-                <div class="card-body">
+                <div class="card-body pb-5">
                     <table class="table table-bordered text-center" >
                         <tr>
                             <th>SL</th>
@@ -91,7 +90,7 @@
                                                 <form action="{{ route('category.destroy', $category->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="dropdown-item" onclick="return confirm('are you sure to delete this User?')"><i class="fa fa-trash"></i> DELETE</button>
+                                                    <button class="dropdown-item" onclick="return confirm('are you sure to delete this Category?')"><i class="fa fa-trash"></i> DELETE</button>
                                                 </form>
                                             @endif
                                         </div>
@@ -113,34 +112,30 @@
                                                     <form class="form-horizontal" action="{{ route('category.update', $category->id) }}" method="post" enctype="multipart/form-data">
                                                         @csrf
                                                         @method('PUT')
-{{--                                                        <div class="form-group">--}}
-{{--                                                            <label for="name">Select Parent Category</label>--}}
-{{--                                                            <select class="form-control" name="parent_cat_id" id="">--}}
-{{--                                                                <option selected disabled>Select Parent Category</option>--}}
-{{--                                                                @foreach($cat_without_parent as $cat_w_p)--}}
-{{--                                                                    <option {{$cat_w_p->cat_parent_id == $category->id ? 'selected' : ''}} value="{{$cat_w_p->id}}">{{$cat_w_p->name}}</option>--}}
-{{--                                                                @endforeach--}}
-{{--                                                            </select>--}}
-{{--                                                        </div>--}}
                                                         <div class="form-group">
                                                             <label for="name">Name *</label>
-                                                            <input value="{{$category->name}}" class="form-control" type="text" id="name" name="name" required="" placeholder="Category Name">
+                                                            <input value="{{$category->name}}" class="form-control" type="text" id="name" name="name" required placeholder="Category Name">
+                                                            @error('name')
+                                                            <span style="color:red">{{ $message }}</span>
+                                                            @enderror
                                                         </div>
+
                                                         <div class="form-group">
-                                                            <label for="name">Name English</label>
-                                                            <input value="{{$category->name_en}}" class="form-control" type="text" id="name" name="name_en" placeholder="Category Name">
+                                                            <label for="name_en">Name English</label>
+                                                            <input value="{{$category->name_en}}" class="form-control" type="text" id="name_en" name="name_en" placeholder="Category Name">
+                                                            @error('name_en')
+                                                            <span style="color:red">{{ $message }}</span>
+                                                            @enderror
                                                         </div>
+
                                                         <div class="form-group">
-                                                            <label for="name">Order *</label>
-                                                            <input value="{{$category->order}}" class="form-control" type="number" id="name" name="order" required="" placeholder="Order">
+                                                            <label for="order">Order *</label>
+                                                            <input value="{{$category->order}}" class="form-control" type="number" id="order" name="order" required placeholder="Order">
+                                                            @error('order')
+                                                            <span style="color:red">{{ $message }}</span>
+                                                            @enderror
                                                         </div>
-{{--                                                        <div class="form-group">--}}
-{{--                                                            <label for="name">Select Status *</label>--}}
-{{--                                                            <select class="form-control" name="status" id="">--}}
-{{--                                                                <option {{$category->status == 'Active' ? 'selected' : ''}} value="Active">Active</option>--}}
-{{--                                                                <option {{$category->status == 'In-Active' ? 'selected' : ''}} value="In-Active">In-Active</option>--}}
-{{--                                                            </select>--}}
-{{--                                                        </div>--}}
+
 
                                                         <div class="form-group account-btn text-center">
                                                             <div class="col-12">
