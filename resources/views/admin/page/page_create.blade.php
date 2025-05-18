@@ -21,10 +21,16 @@
                     <form class="form-horizontal" action="{{ route('page.store') }}" method="Post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Title *</label>
                                     <input class="form-control" type="text" id="name" name="name" required="" placeholder="Title">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name_en">Title English*</label>
+                                    <input class="form-control" type="text" id="name_en" name="name_en" required="" placeholder="Title">
                                 </div>
                             </div>
                         </div>
@@ -33,6 +39,12 @@
                                 <div class="form-group">
                                     <label for="name">Details</label>
                                     <textarea class="form-control" name="description" id="" cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Details English</label>
+                                    <textarea class="form-control" name="description_en" id="" cols="30" rows="10"></textarea>
                                 </div>
                             </div>
                         </div>

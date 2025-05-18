@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="flex justify-between items-center space-x-3 lg:py-4 md:py-3 py-2">
                     <div>
-                        <a href="index.html" class="main-logo"><img src="{{asset('storage')}}/{{getOptionData('logo')}}" alt="The Dhaka Diary"
+                        <a href="{{route('index_page')}}" class="main-logo"><img src="{{asset('storage')}}/{{getOptionData('logo')}}" alt="The Dhaka Diary"
                                                                     class="w-full" /></a>
                     </div>
                     <!-- Footer Social Icons -->
@@ -61,7 +61,7 @@
             <div class="md:py-6 py-3  px-4 sm:px-6 lg:px-8 border-t">
                 <div class="text-center">
                     <p class="text-primary font-playfair sm:text-base text-sm">Copyright © 2025 All Rights Reserved by <a
-                            href="https://innovait.com.bd" class="hover:underline">INNOVA IT</a>
+                            href="https://innovait.com.bd" target="_blank" class="hover:underline">INNOVA IT</a>
                     </p>
                 </div>
             </div>

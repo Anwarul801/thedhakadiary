@@ -36,6 +36,9 @@ class PostController extends Controller
         if ($request->status){
             $search[] = ['status', $request->status];
         }
+        if ($request->author_id){
+            $search[] = ['author_id', $request->author_id];
+        }
         if ($request->language){
             $search[] = ['language', $request->language];
         }
@@ -53,6 +56,7 @@ class PostController extends Controller
         }else{
             $data['posts'] = Post::where($search)->orderBy('id', 'DESC')->get();
         }
+        $data['authors'] = User::select('id', 'name', 'name_en')->where('role_id', 2)->get();
         $data['request'] = $request;
         return view('admin.post.post', $data);
     }
@@ -211,7 +215,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required',
             'news_details' => 'required',
-            'source' => 'required | string | max:255',
+            'source' => 'nullable | string | max:255',
         ]);
 
         $slug = Str::slug($request->title);
@@ -253,10 +257,10 @@ class PostController extends Controller
         $post->slug = $slug;
         $post->save();
 
-        if ($request->caption) {
+        if ($request->image) {
             $request->validate([
                 'caption' => 'required',
-                'image' => 'required | image',
+                'image' => 'nullable | image',
             ]);
             $media = new Media;
             $media->caption = $request->caption;
@@ -280,6 +284,10 @@ class PostController extends Controller
                 $media->xs_thumbnail = $xs_thumbnail;
                 $media->save();
             }
+        }else{
+            $media = Media::where('id', $post->media_id)->first();
+            $media->caption = $request->caption;
+            $media->save();
         }
 
 

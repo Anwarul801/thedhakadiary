@@ -29,6 +29,7 @@
                             <th style="width: 20%">Title</th>
                             <th>Status</th>
                             <th>Language</th>
+                            <th>Author</th>
                             <th>Hit</th>
                             <th>Action</th>
                         </tr>
@@ -56,6 +57,16 @@
                                 <option {{$request->hit == 'bn' ? 'selected' : ''}} value="bn">Bangla</option>
                             </select>
                         </td>
+                            @if(auth()->user()->role_id==1)
+                        <td>
+                            <select name="author_id" id="author_id" form="search_form" class="form-control">
+                                <option selected disabled>Select Author</option>
+                                @foreach($authors as $author)
+                                <option {{$request->author_id == $author->id ? 'selected' : ''}} value="{{$author->id}}">{{$author->name??$author->name_en}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                            @endif
                         <td>
                             <select name="hit" id="hit" form="search_form" class="form-control">
                                 <option selected disabled>Select Hit</option>
@@ -83,6 +94,9 @@
                                     @endif
                                 </td>
                                 <td>{{ $post->language=='bn'?'Bangla':'English'}}</td>
+                                @if(auth()->user()->role_id==1)
+                                <td>{{ $post->author->name??$post->author->name_en??null }}</td>
+                                @endif
                                 <td>{{ $post->hit == null ? 0 : $post->hit }}</td>
                                 <td>
                                     <!-- Example single danger button -->

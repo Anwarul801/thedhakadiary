@@ -24,7 +24,7 @@
             </li>
         @endforeach
         <li class="sidebar-item">
-            <a href="#" class="read-more-btn">{{__('lang.read_more')}} <i class="fa-solid fa-angle-right"></i></a>
+            <a href="{{route('last_published')}}" class="read-more-btn">{{__('lang.read_more')}} <i class="fa-solid fa-angle-right"></i></a>
         </li>
     </ul>
 
@@ -38,7 +38,7 @@
             </li>
         @endforeach
         <li class="sidebar-item">
-            <a href="#" class="read-more-btn">{{__('lang.read_more')}} <i class="fa-solid fa-angle-right"></i></a>
+            <a href="{{route('most_read')}}" class="read-more-btn">{{__('lang.read_more')}} <i class="fa-solid fa-angle-right"></i></a>
         </li>
     </ul>
 </div>

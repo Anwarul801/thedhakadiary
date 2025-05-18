@@ -81,7 +81,35 @@ class FrontendController extends Controller
     }
     public function news_details(Request $request, $id)
     {
-        $data['news'] = Post::where('id', $id)->firstOrFail();
+
+        if (auth()->check()){
+            if (auth()->user()->role_id==1){
+                $data['news'] = Post::where('id', $id)->firstOrFail();
+            }
+            if (auth()->user()->role_id==2){
+                $data['news'] = Post::where([[checkPost()],['id', $id], ['language', isEnglish()?'en':'bn']])->orWhere('author_id', auth()->id())->first();
+                if (!$data['news']) {
+                    if (isEnglish()){
+                        return redirect()->route('index_page')->with('error', 'This News is Not Available Please Read Another News');
+                    }else{
+                        return redirect()->route('index_page')->with('error', 'এই সংবাদটি উপলব্ধ নয় দয়া করে অন্য সংবাদ পড়ুন');
+                    }
+                }
+            }
+        }else{
+            $data['news'] = Post::where([[checkPost()],['id', $id], ['language', isEnglish()?'en':'bn']])->first();
+            if (!$data['news']) {
+                if (isEnglish()){
+                    return redirect()->route('index_page')->with('error', 'This News is Not Available Please Read Another News');
+                }else{
+                    return redirect()->route('index_page')->with('error', 'এই সংবাদটি উপলব্ধ নয় দয়া করে অন্য সংবাদ পড়ুন');
+                }
+            }
+        }
+
+
+
+
         if ($data['news']->video_id != null) {
             return redirect(route('video_details', ['id' => $data['news']->id, 'slug' => $data['news']->slug]));
         }
@@ -294,10 +322,18 @@ class FrontendController extends Controller
     }
 
 
-    public function last_published(Request $request)
+    public function last_published()
     {
-        $posts = Post::where([[checkPost()],['latest_news', 1]])->orderBy('id','DESC')->take(12)->get();
-        return view('frontend.last_published', compact('posts'));
+        $page_title = 'latest';
+        $posts = Post::where([[checkPost()],['latest_news', 1], ['language', isEnglish()?'en':'bn']])->orderBy('id','DESC')->paginate(12);
+        return view('frontend.last_published', compact('posts', 'page_title'));
+    }
+
+    public function most_read()
+    {
+        $page_title = 'most_read';
+        $posts = Post::where([[checkPost()], ['language', isEnglish()?'en':'bn']])->orderBy('hit','DESC')->paginate(12);
+        return view('frontend.last_published', compact('posts', 'page_title'));
     }
 
     public function printNews($id)

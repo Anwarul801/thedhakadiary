@@ -45,10 +45,10 @@
                                             <label for="caption">Caption *</label>
                                             <input class="form-control" type="text" id="caption" name="caption" required="" placeholder="Caption">
                                     </div>
-                                    <div class="form-group">
-                                            <label for="source">Source</label>
-                                            <input class="form-control" type="text" id="source" name="source" placeholder="Source">
-                                    </div>
+{{--                                    <div class="form-group">--}}
+{{--                                            <label for="source">Source</label>--}}
+{{--                                            <input class="form-control" type="text" id="source" name="source" placeholder="Source">--}}
+{{--                                    </div>--}}
                                     <div class="form-group">
                                             <label for="caption">Image : (640x427px) *</label>
                                             <input class="form-control" type="file" id="image" name="image" required="">
@@ -117,38 +117,38 @@
                                                     <form class="form-horizontal" action="{{ route('media.update', $m->id) }}" method="post" enctype="multipart/form-data">
                                                         @csrf
                                                         @method('PUT')
-                                                        <div class="form-group">
-                                                            <label for="caption">Select Photo Gallery</label>
-                                                            <select class="form-control" name="photo_gallery_id" id="">
-                                                                <option selected disabled>Select Photo Gallery</option>
-                                                                @foreach($pgs as $pg)
-                                                                    <option {{$pg->id == $m->photo_gallery_id ? 'selected' : ''}} value="{{$pg->id}}">{{$pg->title}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
+{{--                                                        <div class="form-group">--}}
+{{--                                                            <label for="caption">Select Photo Gallery</label>--}}
+{{--                                                            <select class="form-control" name="photo_gallery_id" id="">--}}
+{{--                                                                <option selected disabled>Select Photo Gallery</option>--}}
+{{--                                                                @foreach($pgs as $pg)--}}
+{{--                                                                    <option {{$pg->id == $m->photo_gallery_id ? 'selected' : ''}} value="{{$pg->id}}">{{$pg->title}}</option>--}}
+{{--                                                                @endforeach--}}
+{{--                                                            </select>--}}
+{{--                                                        </div>--}}
                                                         <div class="form-group">
                                                             <label for="caption">Caption *</label>
                                                             <input value="{{$m->caption}}" class="form-control" type="text" id="caption" name="caption" required="" placeholder="Caption">
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label for="source">Source</label>
-                                                            <input value="{{$m->source}}" class="form-control" type="text" id="source" name="source" placeholder="Source">
-                                                        </div>
+{{--                                                        <div class="form-group">--}}
+{{--                                                            <label for="source">Source</label>--}}
+{{--                                                            <input value="{{$m->source}}" class="form-control" type="text" id="source" name="source" placeholder="Source">--}}
+{{--                                                        </div>--}}
                                                         <div class="form-group">
                                                             <label for="caption">Image : (640x427px) *</label>
                                                             <input class="form-control" type="file" id="image" name="image">
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label for="name">Order *</label>
-                                                            <input value="{{$m->order}}" class="form-control" type="number" id="name" name="order" required="" placeholder="Order">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="name">Select Status *</label>
-                                                            <select class="form-control" name="status" id="">
-                                                                <option {{$m->status == 'Active' ? 'selected' : ''}} value="Active">Active</option>
-                                                                <option {{$m->status == 'In-Active' ? 'selected' : ''}} value="In-Active">In-Active</option>
-                                                            </select>
-                                                        </div>
+{{--                                                        <div class="form-group">--}}
+{{--                                                            <label for="name">Order *</label>--}}
+{{--                                                            <input value="{{$m->order}}" class="form-control" type="number" id="name" name="order" required="" placeholder="Order">--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="form-group">--}}
+{{--                                                            <label for="name">Select Status *</label>--}}
+{{--                                                            <select class="form-control" name="status" id="">--}}
+{{--                                                                <option {{$m->status == 'Active' ? 'selected' : ''}} value="Active">Active</option>--}}
+{{--                                                                <option {{$m->status == 'In-Active' ? 'selected' : ''}} value="In-Active">In-Active</option>--}}
+{{--                                                            </select>--}}
+{{--                                                        </div>--}}
 
                                                         <div class="form-group account-btn text-center">
                                                             <div class="col-12">

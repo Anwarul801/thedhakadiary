@@ -46,6 +46,7 @@
                     <th scope="col">
                         <input type="checkbox" id="select-all"> <!-- Select All Checkbox -->
                     </th>
+                    <th scope="col">{{ __('Time') }}</th>
                     <th scope="col">{{ __('Name') }}</th>
                     <th scope="col">{{ __('Email') }}</th>
                     <th scope="col">{{ __('Phone') }}</th>
@@ -58,6 +59,8 @@
                     <tr>
                         <td>
                             <input form="delete-form" type="checkbox" name="ids[]" value="{{ $message->id }}"> <!-- Checkbox for each row -->
+                        </td>
+                        <td>{{ \Carbon\Carbon::parse($message->created_at)->diffForHumans() }}
                         </td>
                         <td>{{ $message->name }}</td>
                         <td>{{ $message->email }}</td>

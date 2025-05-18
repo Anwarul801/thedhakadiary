@@ -26,5 +26,6 @@ class AuthorMiddleware
             return redirect()->route('index_page')->with('error', 'You Are Not Eligible to access this page');
         }else{
             return redirect()->route('index_page')->with('error', 'আপনি এই পৃষ্ঠাটি অ্যাক্সেস করার যোগ্য নন।');
-        }    }
+        }
+    }
 }

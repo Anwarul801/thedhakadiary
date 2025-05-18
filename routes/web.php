@@ -50,6 +50,7 @@ Route::get('/archive/', [FrontendController::class, 'archive'])->name('archive')
 Route::get('/print_news/{id}', [FrontendController::class, 'printNews'])->name('print_news');
 Route::get('/print_all_news', [FrontendController::class, 'print_all_news'])->name('post.print_all');
 Route::get('/last_published/', [FrontendController::class, 'last_published'])->name('last_published');
+Route::get('/most_read', [FrontendController::class, 'most_read'])->name('most_read');
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 

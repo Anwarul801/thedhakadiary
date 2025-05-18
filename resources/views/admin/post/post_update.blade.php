@@ -31,7 +31,7 @@
                             <div class="row">
                                 <div class="col-md-12 justify-content-start">
                                     <div class=" form-group">
-                                        <label style="margin-right: 10px;" for="shoulder">Title</label>
+                                        <label style="margin-right: 10px;" for="shoulder">Title *</label>
                                         <input required type="text" name="title" id="title" value="{{$data->title}}" class="form-control" placeholder="News Title">
                                     </div>
                                 </div>
@@ -44,7 +44,7 @@
                                 @if(auth()->user()->role_id==1)
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="author_id">Select Author *</label>
+                                        <label for="author_id">Select Author </label>
                                         <select class="form-control" name="author_id" id="author_id">
                                             <option selected disabled>Select Author</option>
                                             @foreach($authors as $auth)
@@ -270,12 +270,13 @@
                             <span>Update Feature Image</span>
                         </h4>
                     </div>
+                    <img src="{{asset('storage')}}/{{$data->media->thumbnail??null}}" alt="">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="caption">Caption</label>
-                                    <input value="{{old('caption')}}" class="form-control" type="text" id="caption" name="caption" placeholder="Caption">
+                                    <input value="{{$data->media->caption}}" class="form-control" type="text" id="caption" name="caption" placeholder="Caption">
                                 </div>
                             </div>
                             <div class="col-md-12">
