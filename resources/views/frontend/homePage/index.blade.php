@@ -353,11 +353,13 @@
             </div>
         </section>
         <!-- footer ad area -->
+        @isset($ad6)
                 <div class="ad-full footer_ad hidden">
                     <div class="footer-wraper">
                        @include('layouts.partials.ads.banner_ad', ['ad' => $ad6, 'showClose' => true])
                     </div>
                 </div>
+        @endisset
         <!-- footer ad area end-->
     </main>
 @endsection

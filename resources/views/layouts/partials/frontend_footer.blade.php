@@ -1,3 +1,26 @@
+<style>
+    .footer-text {
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .footer-text .developer {
+        display: inline;
+    }
+
+    @media (max-width: 600px) {
+        .footer-text {
+            white-space: normal;
+        }
+
+        .footer-text .developer {
+            display: block;
+            margin-top: 5px;
+        }
+    }
+
+</style>
+
 <footer class="section-padding-top">
     <div class="footer-wrap bg-stock-color text-gray-800">
         <!-- Footer Top Bar -->
@@ -60,9 +83,14 @@
         <div class="container">
             <div class="md:py-6 py-3  px-4 sm:px-6 lg:px-8 border-t">
                 <div class="text-center">
-                    <p class="text-primary font-playfair sm:text-base text-sm">Copyright © 2025 All Rights Reserved by <a
-                            href="https://innovait.com.bd" target="_blank" class="hover:underline">INNOVA IT</a>
+{{--                    <p class="text-primary font-playfair sm:text-base text-sm">Copyright © 2025 All Rights Reserved | <span class="d-sm-block">Developed by <a--}}
+{{--                                href="https://innovait.com.bd" target="_blank" class="hover:underline">INNOVA IT</a></span>--}}
+{{--                    </p>--}}
+                    <p class="footer-text text-primary font-playfair sm:text-base text-sm">
+                        Copyright © 2025 All Rights Reserved
+                        <span class="developer">| Developed by <a href="https://innovait.com.bd" target="_blank" class="hover:underline">INNOVA IT</a></span>
                     </p>
+
                 </div>
             </div>
         </div>

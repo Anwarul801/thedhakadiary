@@ -58,25 +58,19 @@ class OptionController extends Controller
     public function uploadImage($option, $request)
     {
         $imageFields = [
-            'logo'             => [342, 60],
-            'favicon'          => [65, 65],
-            'shared_image'     => [940, 788],
+            'logo',
+            'favicon',
+            'shared_image',
         ];
 
         $field = $option->title;
 
-        if (array_key_exists($field, $imageFields) && $request->has($field)) {
+        if (in_array($field, $imageFields) && $request->has($field)) {
             $request->validate([
                 $field => 'image',
             ]);
             Storage::delete($option->value);
             $uploaded = $request->file($field)->store('options');
-            $path  = public_path('storage/' . $uploaded);
-
-            [$width, $height] = $imageFields[$field];
-
-            Image::make($path)->resize($width, $height)->save();
-
             $option->update([
                 'value' => $uploaded
             ]);
