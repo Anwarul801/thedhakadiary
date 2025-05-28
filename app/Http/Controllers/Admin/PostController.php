@@ -115,6 +115,7 @@ class PostController extends Controller
 
         $post = new Post();
         $post->title = $request->title;
+        $post->sub_headline = $request->sub_headline;
         $post->subtitle = $request->subtitle;
         $post->video_duration = $request->video_check ?  $request->video_duration : null;
         $post->video_id = $request->video_check ?  $request->video_id : null;
@@ -223,6 +224,7 @@ class PostController extends Controller
 
         $post = Post::findOrFail($id);
         $post->title = $request->title;
+        $post->sub_headline = $request->sub_headline;
         $post->subtitle = $request->subtitle;
         $post->video_duration = $request->video_check ?  $request->video_duration : null;
         $post->video_id = $request->video_check ?  $request->video_id : null;

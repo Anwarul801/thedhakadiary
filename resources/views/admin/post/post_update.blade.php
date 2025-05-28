@@ -31,8 +31,14 @@
                             <div class="row">
                                 <div class="col-md-12 justify-content-start">
                                     <div class=" form-group">
-                                        <label style="margin-right: 10px;" for="shoulder">Title *</label>
-                                        <input required type="text" name="title" id="title" value="{{$data->title}}" class="form-control" placeholder="News Title">
+                                        <label style="margin-right: 10px;" for="shoulder">Headline *</label>
+                                        <input required type="text" name="title" id="title" value="{{$data->title}}" class="form-control" placeholder="News Headline">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 justify-content-start">
+                                    <div class=" form-group">
+                                        <label style="margin-right: 10px;" for="shoulder">Sub Headline </label>
+                                        <input type="text" name="sub_headline" id="sub_headline" value="{{$data->sub_headline}}" class="form-control" placeholder="News Sub Headline">
                                     </div>
                                 </div>
                                 <div class="col-md-12 justify-content-start">

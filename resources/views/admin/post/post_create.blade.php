@@ -32,8 +32,14 @@
                         <div class="row">
                             <div class="col-md-12 justify-content-start">
                                 <div class=" form-group">
-                                    <label style="margin-right: 10px;" for="title">Title*</label>
-                                    <input type="text" name="title" required value="{{old('title')}}" class="form-control">
+                                    <label style="margin-right: 10px;" for="title">Headline*</label>
+                                    <input type="text" name="title" required value="{{old('title')}}" class="form-control" placeholder="News Headline">
+                                </div>
+                            </div>
+                            <div class="col-md-12 justify-content-start">
+                                <div class=" form-group">
+                                    <label style="margin-right: 10px;" for="title">Sub Headline</label>
+                                    <input type="text" name="sub_headline" value="{{old('sub_headline')}}" class="form-control" placeholder="News Sub Headline">
                                 </div>
                             </div>
                             <div class="col-md-12 justify-content-start">
