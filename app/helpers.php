@@ -35,7 +35,7 @@ function formatBanglaDate($date) {
     $banglaDigits = ['0','1','2','3','4','5','6','7','8','9'];
     $banglaDigitsConverted = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
 
-    $formatted = \Carbon\Carbon::parse($date)->format('d F, Y');
+    $formatted = \Carbon\Carbon::parse($date)->format('d F Y');
     $formatted = str_replace(array_keys($months), array_values($months), $formatted);
     return str_replace($banglaDigits, $banglaDigitsConverted, $formatted);
 }
@@ -53,7 +53,7 @@ function getImageTag($id, $true = false){
         $returning_img = asset('storage/'. $media_image);
         $img = "<img class='img_full_image' src='$returning_img' alt='Media Image'>";
         $c_s = "<i>{$media->caption} </i>";
-        return "<div>$img <br> $c_s</div>";
+        return "<div class='text-center'>$img $c_s</div>";
     }
 }
 

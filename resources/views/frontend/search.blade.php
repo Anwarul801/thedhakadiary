@@ -41,7 +41,7 @@
                                     <a href="{{route('news_details', ['id' => $post->id, 'slug' => $post->slug])}}">{{Str::limit($post->title, 100)}}</a>
                                 </h1>
                                 <div class="date">
-                                    <p>{{isEnglish()?date_maker($post->publishing_date, 'd F, Y'): formatBanglaDate($post->publishing_date)}}</p>
+                                    <p>{{isEnglish()?date_maker($post->publishing_date, 'd F Y'): formatBanglaDate($post->publishing_date)}}</p>
 
                                 </div>
                             </div>

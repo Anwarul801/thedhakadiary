@@ -54,7 +54,7 @@
                                                 </div>
                                                 <h1 class="title"><a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}">{{Str::limit($news->title, 50)}}</a></h1>
                                                 <div class="date">
-                                                    <p>{{isEnglish()?date_maker($news->publishing_date, 'd F, Y'): formatBanglaDate($news->publishing_date)}}</p>
+                                                    <p>{{isEnglish()?date_maker($news->publishing_date, 'd F Y'): formatBanglaDate($news->publishing_date)}}</p>
 
                                                 </div>
                                             </div>

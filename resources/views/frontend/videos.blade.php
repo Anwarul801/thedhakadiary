@@ -25,7 +25,7 @@
                                     <a href="{{route('video_details', ['id' => $video->id, 'slug' => $video->slug])}}">{{Str::limit($video->title, 100)}}</a>
                                 </h1>
                                 <div class="date">
-                                    <p>{{isEnglish()?date_maker($video->publishing_date, 'd F, Y'):formatBanglaDate($video->publishing_date)}}</p>
+                                    <p>{{isEnglish()?date_maker($video->publishing_date, 'd F Y'):formatBanglaDate($video->publishing_date)}}</p>
                                 </div>
                             </div>
                         </div>

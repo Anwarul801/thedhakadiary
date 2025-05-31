@@ -37,7 +37,7 @@
                                             </p>
                                         </div>
                                         <div class="date">
-                                            <p>{{isEnglish()?date_maker($header_post->publishing_date, 'd F, Y'): formatBanglaDate($header_post->publishing_date)}}</p>
+                                            <p>{{isEnglish()?date_maker($header_post->publishing_date, 'd F Y'): formatBanglaDate($header_post->publishing_date)}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
                                                     <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{Str::limit($header_post->title, 100)}}</a>
                                                 </h1>
                                                 <div class="date">
-                                                    <p>{{isEnglish()?date_maker($header_post->publishing_date, 'd F, Y'): formatBanglaDate($header_post->publishing_date)}}</p>
+                                                    <p>{{isEnglish()?date_maker($header_post->publishing_date, 'd F Y'): formatBanglaDate($header_post->publishing_date)}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -91,7 +91,7 @@
                                                 href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{Str::limit($header_post->title, 100)}}</a>
                                         </h1>
                                         <div class="date">
-                                            <p>{{isEnglish()?date_maker($header_post->publishing_date, 'd F, Y'): formatBanglaDate($header_post->publishing_date)}}</p>
+                                            <p>{{isEnglish()?date_maker($header_post->publishing_date, 'd F Y'): formatBanglaDate($header_post->publishing_date)}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -171,7 +171,7 @@
                                         <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}">{{Str::limit($news->title, 100)}}</a>
                                     </h1>
                                     <div class="date">
-                                        <p>{{isEnglish()?date_maker($news->publishing_date, 'd F, Y'): formatBanglaDate($news->publising_date)}}</p>
+                                        <p>{{isEnglish()?date_maker($news->publishing_date, 'd F Y'): formatBanglaDate($news->publising_date)}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -220,7 +220,7 @@
                                     <a href="{{route('video_details', ['id' => $video->id, 'slug' => $video->slug])}}">{{Str::limit($video->title, 100)}}</a>
                                 </h1>
                                 <div class="date">
-                                    <p>{{isEnglish()?date_maker($video->publishing_date, 'd F, Y'): formatBanglaDate($video->publising_date)}}</p>
+                                    <p>{{isEnglish()?date_maker($video->publishing_date, 'd F Y'): formatBanglaDate($video->publising_date)}}</p>
 
                                 </div>
                             </div>
@@ -267,7 +267,7 @@
 
                                             <p>
                                                 @if ($postDateTime->diffInHours($now) > 24)
-                                                    {{ isEnglish() ? $postDateTime->format('d F, Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
+                                                    {{ isEnglish() ? $postDateTime->format('d F Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
                                                 @else
                                                     {{ isEnglish() ? $postDateTime->diffForHumans() : bangla_number($postDateTime->diffForHumans()) }}
                                                 @endif
@@ -301,7 +301,7 @@
                                     <div class="date">
                                         <p>
                                             @if ($postDateTime->diffInHours($now) > 24)
-                                                {{ isEnglish() ? $postDateTime->format('d F, Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
+                                                {{ isEnglish() ? $postDateTime->format('d F Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
                                             @else
                                                 {{ isEnglish() ? $postDateTime->diffForHumans() : bangla_number($postDateTime->diffForHumans()) }}
                                             @endif
@@ -337,7 +337,7 @@
                                             <div class="date">
                                                 <p>
                                                     @if ($postDateTime->diffInHours($now) > 24)
-                                                        {{ isEnglish() ? $postDateTime->format('d F, Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
+                                                        {{ isEnglish() ? $postDateTime->format('d F Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
                                                     @else
                                                         {{ isEnglish() ? $postDateTime->diffForHumans() : bangla_number($postDateTime->diffForHumans()) }}
                                                     @endif

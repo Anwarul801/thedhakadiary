@@ -56,6 +56,7 @@
                                              class="w-1/2 m-auto hidden print:block break-after-avoid mb-3"/>
                                     </div>
                                     <!-- only print logo end -->
+                                    <span class="">{{$news->sub_headline}}</span>
                                     <h1 class="page-title">{{$news->title}}</h1>
                                     <div class="flex justify-between items-end flex-wrap gap-3">
                                         <div

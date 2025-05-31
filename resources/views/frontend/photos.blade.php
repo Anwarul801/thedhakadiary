@@ -37,7 +37,7 @@
                                     <div class="date">
                                         <p>
                                             @if ($postDateTime->diffInHours($now) > 24)
-                                                {{ isEnglish() ? $postDateTime->format('d F, Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
+                                                {{ isEnglish() ? $postDateTime->format('d F Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
                                             @else
                                                 {{ isEnglish() ? $postDateTime->diffForHumans() : bangla_number($postDateTime->diffForHumans()) }}
                                             @endif
@@ -71,7 +71,7 @@
                                                 <div class="date">
                                                     <p>
                                                         @if ($postDateTime->diffInHours($now) > 24)
-                                                            {{ isEnglish() ? $postDateTime->format('d F, Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
+                                                            {{ isEnglish() ? $postDateTime->format('d F Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
                                                         @else
                                                             {{ isEnglish() ? $postDateTime->diffForHumans() : bangla_number($postDateTime->diffForHumans()) }}
                                                         @endif
@@ -114,7 +114,7 @@
                                         <div class="date">
                                             <p>
                                                 @if ($postDateTime->diffInHours($now) > 24)
-                                                    {{ isEnglish() ? $postDateTime->format('d F, Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
+                                                    {{ isEnglish() ? $postDateTime->format('d F Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
                                                 @else
                                                     {{ isEnglish() ? $postDateTime->diffForHumans() : bangla_number($postDateTime->diffForHumans()) }}
                                                 @endif
@@ -156,7 +156,7 @@
                                     <div class="date">
                                         <p>
                                             @if ($postDateTime->diffInHours($now) > 24)
-                                                {{ isEnglish() ? $postDateTime->format('d F, Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
+                                                {{ isEnglish() ? $postDateTime->format('d F Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
                                             @else
                                                 {{ isEnglish() ? $postDateTime->diffForHumans() : bangla_number($postDateTime->diffForHumans()) }}
                                             @endif

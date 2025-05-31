@@ -15,7 +15,7 @@
                         <div class="date-wrap">
                             <p class="present">{{isEnglish()?date('d F Y') : formatBanglaDate(date('d F Y'))}}</p>
                             @isset($last_post)
-                            <p class="update">{{__('lang.updated_at')}} <span>{{isEnglish()?date_maker($last_post->updated_at??$last_post->created_at, 'd F, Y'):formatBanglaDate(date_maker($last_post->updated_at??$last_post->created_at, 'd F Y'))}}</span></p>
+                            <p class="update">{{__('lang.updated_at')}} <span>{{isEnglish()?date_maker($last_post->publishing_date, 'd F Y'):formatBanglaDate(date_maker($last_post->publishing_date, 'd F Y'))}}</span></p>
                             @endisset
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                                     <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}">{{$news->title}}</a>
                                 </h1>
                                 <div class="date">
-                                    <p>{{isEnglish()?date_maker($news->publishing_date, 'd F, Y'):formatBanglaDate(date_maker($news->publishing_date, 'd F Y'))}}</p>
+                                    <p>{{isEnglish()?date_maker($news->publishing_date, 'd F Y'):formatBanglaDate(date_maker($news->publishing_date, 'd F Y'))}}</p>
                                 </div>
                             </div>
                         </div>

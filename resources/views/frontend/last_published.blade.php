@@ -25,7 +25,7 @@
                                     <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}">{{$news->title}}</a>
                                 </h1>
                                 <div class="date">
-                                    <p>{{isEnglish()?date_maker($news->publishing_date, 'd F, Y'):formatBanglaDate(date_maker($news->publishing_date, 'd F Y'))}}</p>
+                                    <p>{{isEnglish()?date_maker($news->publishing_date, 'd F Y'):formatBanglaDate(date_maker($news->publishing_date, 'd F Y'))}}</p>
                                 </div>
                             </div>
                         </div>
