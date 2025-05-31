@@ -101,7 +101,6 @@ function get_bangla_day_name($english_day){
 
 function checkPost(){
     return [
-        ['publishing_date', '<=', date('Y-m-d')],
         ['status', 'Published']
     ];
 }
