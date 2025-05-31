@@ -128,6 +128,7 @@ class PostController extends Controller
             $post->author_id = auth()->user()->id;
             $post->status = "Pending";
         }
+        $post->source_designation = $request->source_designation;
         $post->shoulder = $request->shoulder;
         $post->media_id = $media->id;
         $post->news_details = $request->news_details;
@@ -236,6 +237,7 @@ class PostController extends Controller
             $post->source = 'AuthorMiddleware';
             $post->author_id = auth()->user()->id;
         }
+        $post->source_designation = $request->source_designation;
         $post->shoulder = $request->shoulder;
         $post->news_details = $request->news_details;
         $post->tags = $request->tags;
