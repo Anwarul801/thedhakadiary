@@ -82,7 +82,7 @@
                                                 $update_en = "Updated: ".date_maker($news->updated_at, 'd F Y').", ".$ago_en;
 
 
-                                               $created = Carbon::parse($news->created_at);
+                                               $created = Carbon::parse($news->publishing_date);
                                                 // Bangla Format
                                                 $date_bn = formatBanglaDate($created->format('d F Y'));
                                                 $time_bn = bangla_number($created->format('H:i'));
@@ -94,8 +94,8 @@
                                                 $create_en = "Published: {$date_en}, {$time_en}";
                                             @endphp
                                             <p class="update"><span
-                                                    class="updated">{{isEnglish()?$update_en:$update_bn}}</span> <span
-                                                    class="prokash hidden">{{isEnglish()?$create_en:$create_bn}}</span>
+                                                    class="updated">{{isEnglish()?$create_en:$create_bn}}</span> <span
+                                                    class="prokash hidden">{{isEnglish()?$update_en:$update_bn}}</span>
                                                 <img style="width: 20px; display: inline-block"
                                                      class="cursor-pointer update_prokash_btn ms-1 print:hidden"
                                                      src="{{asset('frontend/assets/image/up-and-down-arrow.png')}}"
