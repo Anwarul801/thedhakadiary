@@ -73,7 +73,7 @@
                                                 @elseif($news->source != 'None')
                                                     <a class="present inline-block">{{$news->source}}</a>
                                                 @endif
-                                                <p class="update">{{__('lang.site_title')}}</p>
+                                                <p class="update">{{$news->source_designation}}</p>
                                             </div>
                                             @php
                                                 $ago_bn = Carbon::parse($news->updated_at)->locale('bn')->diffForHumans();

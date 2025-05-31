@@ -147,6 +147,12 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label for="source_designation">Source Designation (if have?)</label>
+                                    <input value="{{$data->source_designation}}" class="form-control" type="text" id="source_designation" name="source_designation" placeholder="Source Designation">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label for="meta_keywords">Meta Keywords</label>
                                     <input value="{{$data->meta_keywords}}" class="form-control" type="text" id="meta_keywords" name="meta_keywords" placeholder="Meta Keywords">
                                 </div>
