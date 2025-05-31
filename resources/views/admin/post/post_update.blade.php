@@ -119,14 +119,14 @@
 
                                             </div>
                                             <div class="col-4">
-                                                <input type="radio" id="radio_7" onclick="showOthers('radio_7')" {{ $data->source == "AuthorMiddleware" ? "checked" : ""  }} value="Author" name="source">
+                                                <input type="radio" id="radio_7" onclick="showOthers('radio_7')" {{ $data->source == "Author" ? "checked" : ""  }} value="Author" name="source">
                                                 <label class="mt-2" for="radio_7">Author</label>
 
                                             </div>
                                             <div class="col-4 d-flex">
-                                                <input class="mr-1" type="radio" {{ $data->source != "own_reporter" && $data->source != "online_desk" && $data->source != "press_release" && $data->source != "online_reporter" && $data->source != "None" && $data->source != "AuthorMiddleware" ? "checked" : ""  }} id="radio_6" onclick="showOthers('radio_6')" value="Others" name="source">
+                                                <input class="mr-1" type="radio" {{ $data->source != "own_reporter" && $data->source != "online_desk" && $data->source != "press_release" && $data->source != "online_reporter" && $data->source != "None" && $data->source != "Author" ? "checked" : ""  }} id="radio_6" onclick="showOthers('radio_6')" value="Others" name="source">
                                                 <label class="mr-1 mt-2" for="radio_6">অন্যান্য</label>
-                                                <input id="others_input" class="form-control {{ $data->source != "own_reporter" && $data->source != "online_desk" && $data->source != "press_release" && $data->source != "online_reporter" && $data->source != "None" && $data->source != "AuthorMiddleware" ? "" : "d-none"  }}" type="text" value="{{ $data->source }}" name="onnanno" placeholder="অন্যান্য">
+                                                <input id="others_input" class="form-control {{ $data->source != "own_reporter" && $data->source != "online_desk" && $data->source != "press_release" && $data->source != "online_reporter" && $data->source != "None" && $data->source != "Author" ? "" : "d-none"  }}" type="text" value="{{ $data->source }}" name="onnanno" placeholder="অন্যান্য">
                                             </div>
 
                                             <script>
@@ -315,6 +315,7 @@
             selector: 'textarea#news_details',
             plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+            font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
             content_style: 'body { font-size:14pt; }',
         });
 

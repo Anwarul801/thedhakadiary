@@ -19,7 +19,7 @@
 
 {{--    Tynimc--}}
     <script src="{{ asset('admin') }}/js/tynimc.js" referrerpolicy="origin"></script>
-
+{{--    <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>--}}
     {{-- toastr --}}
     <link rel="stylesheet" href="{{asset('admin')}}/css/toastr.min.css">
 

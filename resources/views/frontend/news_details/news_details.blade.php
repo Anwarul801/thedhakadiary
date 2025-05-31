@@ -62,11 +62,16 @@
                                         <div
                                             class="date-wrap print:flex-auto print:flex print:justify-between print:items-end">
                                             <div>
-                                                @if($news->source == 'AuthorMiddleware'&&$news->author_id!= null)
+                                                @php
+                                                    $sources = ['own_reporter', 'online_desk', 'press_release', 'online_reporter'];
+                                                 @endphp
+                                                @if($news->source == 'Author' &&$news->author_id!= null)
                                                     <a href="{{route('author_news', ['id' => $news->author_id, 'name' => $news->author->name_en??null])}}"
                                                        class="present inline-block">{{isEnglish()?($news->author->name_en):($news->author->name??null)}}</a>
-                                                @elseif($news->source!='None')
+                                                @elseif(in_array($news->source, $sources))
                                                     <a class="present inline-block">{{__("lang.$news->source")}}</a>
+                                                @elseif($news->source != 'None')
+                                                    <a class="present inline-block">{{$news->source}}</a>
                                                 @endif
                                                 <p class="update">{{__('lang.site_title')}}</p>
                                             </div>
