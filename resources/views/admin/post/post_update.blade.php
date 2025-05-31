@@ -199,7 +199,7 @@
                                 @endif
                                 <div class="col-6">
                                     <label for="publishing_date">Publishing Date *</label>
-                                    <input value="{{$data->publishing_date}}" type="date" name="publishing_date" id="publishing_date" class="form-control">
+                                    <input value="{{$data->publishing_date}}" type="datetime-local" name="publishing_date" id="publishing_date" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">

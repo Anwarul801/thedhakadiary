@@ -18,6 +18,7 @@ use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageGalleryController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/set-publishing-dates/{password}', function () {
+    $posts = Post::all();
+    foreach ($posts as $post) {
+        $post->publishing_date = $post->created_at->format('Y-m-d\TH:i');
+        $post->save();
+    }
+    return 'All publishing_date fields have been updated successfully!';
+});
 
 Route::get('/', [FrontendController::class, 'index_page'])->name('index_page');
 Route::get('/change_lang', [FrontendController::class, 'change_lang'])->name('change_lang');

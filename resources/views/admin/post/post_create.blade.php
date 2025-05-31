@@ -181,7 +181,7 @@
                             @endif
                             <div class="col-6">
                                 <label for="publishing_date">Publishing Date *</label>
-                                <input value="{{date('Y-m-d')}}" type="date" name="publishing_date" required id="publishing_date" class="form-control">
+                                <input value="{{ date('Y-m-d\TH:i') }}" type="datetime-local" name="publishing_date" required id="publishing_date" class="form-control">
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
