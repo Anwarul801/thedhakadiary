@@ -85,20 +85,20 @@
                                                 <p class="update">{{ $news->source_designation }}</p>
                                             </div>
                                             @php
-                                                $ago_bn = Carbon::parse($news->updated_at)
+                                                $ago_bn = Carbon::parse($news->updating_date)
                                                     ->locale('bn')
                                                     ->diffForHumans();
                                                 $update_bn =
                                                     'আপডেট: ' .
-                                                    formatBanglaDate(date_maker($news->updated_at, 'd F Y')) .
+                                                    formatBanglaDate(date_maker($news->updating_date, 'd F Y')) .
                                                     ', ' .
                                                     bangla_number($ago_bn);
-                                                $ago_en = Carbon::parse($news->updated_at)
+                                                $ago_en = Carbon::parse($news->updating_date)
                                                     ->locale('en')
                                                     ->diffForHumans();
                                                 $update_en =
                                                     'Updated: ' .
-                                                    date_maker($news->updated_at, 'd F Y') .
+                                                    date_maker($news->updating_date, 'd F Y') .
                                                     ', ' .
                                                     $ago_en;
 
