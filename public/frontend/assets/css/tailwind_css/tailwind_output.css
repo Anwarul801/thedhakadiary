@@ -791,6 +791,9 @@
   .me-1 {
     margin-inline-end: calc(var(--spacing) * 1);
   }
+  .-mt-6 {
+    margin-top: calc(var(--spacing) * -6);
+  }
   .mt-0 {
     margin-top: calc(var(--spacing) * 0);
   }
