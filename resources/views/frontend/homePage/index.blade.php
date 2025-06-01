@@ -37,7 +37,7 @@
                                             </p>
                                         </div>
                                         <div class="date">
-                                            <p>{{isEnglish()?date_maker($header_post->publishing_date, 'd F Y'): formatBanglaDate($header_post->publishing_date)}}</p>
+                                            <p>{{format_publishing_date($header_post->publishing_date)}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
                                                     <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{Str::limit($header_post->title, 100)}}</a>
                                                 </h1>
                                                 <div class="date">
-                                                    <p>{{isEnglish()?date_maker($header_post->publishing_date, 'd F Y'): formatBanglaDate($header_post->publishing_date)}}</p>
+                                                    <p>{{format_publishing_date($header_post->publishing_date)}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -91,7 +91,7 @@
                                                 href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{Str::limit($header_post->title, 100)}}</a>
                                         </h1>
                                         <div class="date">
-                                            <p>{{isEnglish()?date_maker($header_post->publishing_date, 'd F Y'): formatBanglaDate($header_post->publishing_date)}}</p>
+                                            <p>{{format_publishing_date($header_post->publishing_date)}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -171,7 +171,7 @@
                                         <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}">{{Str::limit($news->title, 100)}}</a>
                                     </h1>
                                     <div class="date">
-                                        <p>{{isEnglish()?date_maker($news->publishing_date, 'd F Y'): formatBanglaDate($news->publising_date)}}</p>
+                                        <p>{{format_publishing_date($news->publishing_date)}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -220,7 +220,7 @@
                                     <a href="{{route('video_details', ['id' => $video->id, 'slug' => $video->slug])}}">{{Str::limit($video->title, 100)}}</a>
                                 </h1>
                                 <div class="date">
-                                    <p>{{isEnglish()?date_maker($video->publishing_date, 'd F Y'): formatBanglaDate($video->publising_date)}}</p>
+                                    <p>{{format_publishing_date($video->publishing_date)}}</p>
 
                                 </div>
                             </div>
@@ -247,11 +247,6 @@
                                 @if($loop->iteration==3)
                                     @break
                                 @endif
-                                @php
-
-                                    $postDateTime = Carbon::parse($photo->date_time);
-                                    $now = Carbon::now();
-                                @endphp
                                 <div class="md:col-span-12 col-span-6">
                                     <div class="news-card">
                                         <div class="image-thumbnail">
@@ -266,11 +261,7 @@
                                         <div class="date">
 
                                             <p>
-                                                @if ($postDateTime->diffInHours($now) > 24)
-                                                    {{ isEnglish() ? $postDateTime->format('d F Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
-                                                @else
-                                                    {{ isEnglish() ? $postDateTime->diffForHumans() : bangla_number($postDateTime->diffForHumans()) }}
-                                                @endif
+                                                {{format_publishing_date($photo->date_time)}}
                                             </p>
                                         </div>
                                     </div>
@@ -283,11 +274,6 @@
                             @if($loop->iteration!=3)
                                 @continue
                             @endif
-                            @php
-
-                                $postDateTime = Carbon::parse($photo->date_time);
-                                $now = Carbon::now();
-                            @endphp
                                 <div class="news-card">
                                     <div class="image-thumbnail">
                                         <a href="{{route('photo_details', ['id' => $photo->id, 'slug' => $photo->title_en])}}"><img
@@ -300,11 +286,7 @@
                                     </h1>
                                     <div class="date">
                                         <p>
-                                            @if ($postDateTime->diffInHours($now) > 24)
-                                                {{ isEnglish() ? $postDateTime->format('d F Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
-                                            @else
-                                                {{ isEnglish() ? $postDateTime->diffForHumans() : bangla_number($postDateTime->diffForHumans()) }}
-                                            @endif
+                                            {{format_publishing_date($photo->date_time)}}
                                         </p>
                                     </div>
                                 </div>
@@ -318,11 +300,6 @@
                                 @if($loop->iteration<4)
                                     @continue
                                 @endif
-                                @php
-
-                                    $postDateTime = Carbon::parse($photo->date_time);
-                                    $now = Carbon::now();
-                                @endphp
                                     <div class="md:col-span-12 col-span-6">
                                         <div class="news-card">
                                             <div class="image-thumbnail">
@@ -336,11 +313,7 @@
                                             </h1>
                                             <div class="date">
                                                 <p>
-                                                    @if ($postDateTime->diffInHours($now) > 24)
-                                                        {{ isEnglish() ? $postDateTime->format('d F Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
-                                                    @else
-                                                        {{ isEnglish() ? $postDateTime->diffForHumans() : bangla_number($postDateTime->diffForHumans()) }}
-                                                    @endif
+                                                    {{format_publishing_date($photo->date_time)}}
                                                 </p>
                                             </div>
                                         </div>
