@@ -143,8 +143,8 @@
                             <div class="md:col-span-8 col-span-12 md:mt-6 mt-4">
                                 <figure class="news-title-image md:mb-8 sm:mb-6 mb-4">
                                     <img src="{{asset('storage')}}/{{$news->media->image??null}}" alt="Thumbnail">
-                                    <figcaption
-                                        class="sm:text-base text-sm text-secondary text-center md:mt-3 mt-2 news-content">
+                                    <figcaption class="sm:text-base text-sm text-secondary bg-[#f8f9fa] text-center border-b border-[#dee2e6] py-2 news-content">
+                                        {{$news->media->caption_en??null}}
                                         {{$news->media->caption??null}}
                                     </figcaption>
                                 </figure>
