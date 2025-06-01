@@ -22,11 +22,18 @@
     <div class="shadow-top">
         <div class="container">
             <div class="block ">
-                <div class="flex justify-between items-center lg:py-6 sm:py-2.5 py-1 relative">
+                <div class="flex justify-between items-center lg:py-6 sm:py-2.5 relative">
+                     <!-- Mobile hamburger -->
+                    <div class="lg:hidden">
+                        <a href="javascript:;"
+                           class="mobile-menu-open text-primary text-2xl focus:outline-none transition-all duration-700 ease-in-out cursor-pointer !inline-block">
+                            <i class="fas fa-bars"></i>
+                        </a>
+                    </div>
                     <!-- Left menu -->
-                    <div class="header-horizontal-menu hidden lg:block">
-                        <ul class="menu-content hidden xl:space-x-5 lg:space-x-2.5 lg:flex items-center">
-                            <li class="active"><a href="{{route('index_page')}}" class="nav-link"><i class="fa-solid fa-house text-xl"></i></a>
+                    <div class="header-horizontal-menu lg:block overflow-x-scroll md:overflow-auto py-2">
+                        <ul class="menu-content xl:space-x-5 lg:space-x-4 flex flex-nowrap gap-4 items-center">
+                            <li class="active index-item"><a href="{{route('index_page')}}" class="nav-link"><i class="fa-solid fa-house text-xl"></i></a>
                             </li>
                             @foreach($menu_header as $menu)
                                 @if($loop->iteration == 9)
@@ -46,7 +53,7 @@
                                 $chunks = $menu_header->chunk(ceil(count($menu_header) / 4));
                              @endphp
                             <!-- Mega Menu Trigger Start -->
-                            <li class="menu-item-has-children has-sub-menu">
+                            <li class="menu-item-has-children has-sub-menu megamenu-trigger">
                                 <a href="#" class="nav-link"><i class="fa-solid fa-bars"></i></a>
                                 <ul class="mega-sub-menu">
                                     @forelse ($chunks as $chunk)
@@ -83,17 +90,11 @@
                         </ul>
                     </div>
 
-                    <!-- Mobile hamburger -->
-                    <div class="lg:hidden">
-                        <a href="javascript:;"
-                           class="mobile-menu-open text-primary text-2xl focus:outline-none transition-all duration-700 ease-in-out cursor-pointer">
-                            <i class="fas fa-bars"></i>
-                        </a>
-                    </div>
+                   
 
                     <!-- Right Icons -->
                     <div class="right_icon space-x-3 flex justify-center">
-                        <form action="{{ route('search') }}" method="GET" class="relative group w-fit" id="searchForm">
+                        <form action="{{ route('search') }}" method="GET" class="relative group w-fit !mr-0 !md:mr-2" id="searchForm">
                             <input id="searchInput" type="text" name="search" placeholder="{{ __('lang.search') }}"
                                    class="w-10 pr-10 pl-3 py-1 rounded-full focus:w-52 focus:pr-12 focus:outline-none focus:ring-1 focus:ring-primary transition-all duration-300 ease-in-out" />
 

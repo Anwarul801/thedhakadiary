@@ -245,6 +245,21 @@ li {
 
 /* news card end */
 
+.sidebar-folding-icons {
+    position: fixed;
+    top: 21%;
+    left: -60px;
+    opacity: 0;
+    visibility: hidden;
+    transition: left 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 9999;
+}
+
+.sidebar-folding-icons.folded {
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+}
 /* home page end */
 
 /* ============= Footer ============*/
@@ -466,7 +481,7 @@ li {
   @apply md:text-[16px] text-sm font-normal text-[#242424];
 
   p {
-    @apply md:mb-6 sm:mb-4 mb-2.5 last:mb-0;
+    @apply md:mb-6 sm:mb-4 mb-2.5 last:mb-0 !text-justify;
   }
 
   img {
