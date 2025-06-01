@@ -67,7 +67,7 @@
                                             <div class="image-content">
                                                 <h2 class="title">{{ isEnglish()?$image->caption_en:$image->caption  }}</h2>
                                                 <p class="photographer"><strong class="text-primary font-bold">{{__('lang.photographer')}}</strong> {{ isEnglish()?$image->photographer_en:$image->photographer  }} </p>
-                                                <p class="shoot-time">{{ isEnglish() ? $image->created_at->diffForHumans() : bangla_number($image->created_at->diffForHumans()) }}</p>
+                                                <p class="shoot-time">{{format_publishing_date($image->date_time_image)}}</p>
                                             </div>
                                         </div>
                                     @endforeach

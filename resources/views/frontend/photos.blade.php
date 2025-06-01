@@ -136,12 +136,6 @@
                     <div
                         class="grid grid-cols-12 md:gap-6 gap-4 md:pt-7.5 sm:pt-6 pt-4 border-t border-stock-color md:mt-6 mt-5">
                         @foreach($photos as $photo)
-
-                            @php
-
-                                $postDateTime = Carbon::parse($photo->date_time);
-                                $now = Carbon::now();
-                            @endphp
                             <div class="lg:col-span-3 md:col-span-4 col-span-6">
                                 <div class="news-card">
                                     <div class="image-thumbnail">
@@ -155,11 +149,7 @@
                                     </h1>
                                     <div class="date">
                                         <p>
-                                            @if ($postDateTime->diffInHours($now) > 24)
-                                                {{ isEnglish() ? $postDateTime->format('d F Y') : formatBanglaDate($postDateTime->format('d F Y')) }}
-                                            @else
-                                                {{ isEnglish() ? $postDateTime->diffForHumans() : bangla_number($postDateTime->diffForHumans()) }}
-                                            @endif
+                                            {{format_publishing_date($photo->date_time)}}
                                         </p>
                                     </div>
                                 </div>

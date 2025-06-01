@@ -57,7 +57,7 @@
                                             </a>
                                             <a href="{{route('news_details', ['id' => $newsItem->id, 'slug' => $newsItem->slug])}}">
                                                 <p class="short-des">{{Str::limit($newsItem->subtitle, 250)}}</p>
-                                                <p>{{isEnglish()?date_maker($newsItem->publishing_date, 'd F, Y'):formatBanglaDate($newsItem->publishing_date)}}</p>
+                                                <p>{{format_publishing_date($newsItem->publishing_date)}}</p>
                                             </a>
                                         </div>
                                     </div>
