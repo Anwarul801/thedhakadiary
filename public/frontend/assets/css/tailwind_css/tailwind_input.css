@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@100..900&display=swap");
 @import "tailwindcss";
+@source "../../../../../resources/views";
+
 
 body {
   @apply font-noto-bengali m-0 p-0 text-base;
