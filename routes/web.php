@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/set-publishing-dates/{password}', function () {
     $posts = Post::all();
     foreach ($posts as $post) {
-        $post->publishing_date = $post->created_at->format('Y-m-d\TH:i');
+        $post->updating_date = $post->updated_at->format('Y-m-d\TH:i');
         $post->save();
     }
     return 'All publishing_date fields have been updated successfully!';

@@ -224,6 +224,9 @@ class PostController extends Controller
         $slug = Str::slug($request->title);
 
         $post = Post::findOrFail($id);
+        if ($post->title != $request->title || $post->news_details != $request->news_details || $request->image){
+            $post->updating_date = date('Y-m-d\TH:i');
+        }
         $post->title = $request->title;
         $post->sub_headline = $request->sub_headline;
         $post->subtitle = $request->subtitle;
