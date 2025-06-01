@@ -141,7 +141,7 @@ function getImageTag($id, $true = false){
         }
         $returning_img = asset('storage/'. $media_image);
         $img = "<img class='img_full_image' src='$returning_img' alt='Media Image'>";
-        $c_s = "<i>{$media->caption} </i>";
+        $c_s = "<i class='block text-secondary bg-[#f8f9fa] text-center border-b border-[#dee2e6] py-2 -mt-6'>{$media->caption} </i>";
         return "<div class='text-center'>$img $c_s</div>";
     }
 }
