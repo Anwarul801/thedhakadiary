@@ -16,10 +16,7 @@
                 <div class="grid grid-cols-12 md:gap-6 gap-4">
                     <div class="xl:col-span-9 col-span-12">
                         <div class="grid grid-cols-12 md:gap-6 gap-4">
-                            @foreach($header_posts as $header_post)
-                                @if($loop->iteration==2)
-                                    @break
-                                @endif
+                            @foreach($header_posts->where('header_order', 1) as $header_post)
                                 <div class="xl:col-span-8 sm:col-span-7 col-span-12">
                                     <!-- news card -->
                                     <div class="news-card">
@@ -47,13 +44,7 @@
                                 <div class="grid grid-cols-12 md:gap-y-6 gap-4">
                                     <!-- First side news card -->
 
-                                    @foreach($header_posts as $header_post)
-                                        @if($loop->iteration==1)
-                                            @continue
-                                        @endif
-                                        @if($loop->iteration==4)
-                                            @break
-                                        @endif
+                                    @foreach($header_posts->whereIn('header_order', [2, 3]) as $header_post)
                                         <div class="sm:col-span-12 col-span-6">
                                             <div class="news-card">
                                                 <div class="thumbnail">
@@ -76,10 +67,7 @@
 
                         </div>
                         <div class="grid grid-cols-12 md:gap-6 gap-4 mt-4">
-                            @foreach($header_posts as $header_post)
-                                @if($loop->iteration<4)
-                                    @continue
-                                @endif
+                            @foreach($header_posts->whereIn('header_order', [4, 5, 6]) as $header_post)
                                 <div class="md:col-span-4 col-span-6">
                                     <div class="news-card">
                                         <div class="thumbnail">
