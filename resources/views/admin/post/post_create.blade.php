@@ -251,13 +251,33 @@
                     <h4 class="m-0">Select Sections</h4>
                 </div>
                 <div class="card-body" style="max-height: 250px; overflow-y: scroll">
-                    @foreach($sections as $section)
-                        <div class="mb-1">
-                            <input style="margin-right: 5px" id="section{{ $section->id }}" value="{{ $section->id }}" type="checkbox" name="sections[]"/>
-                            <label for="section{{ $section->id }}"> {{ $section->title }}</label>
-                        </div>
-                    @endforeach
+                    <div class="mb-1">
+                        <input style="margin-right: 5px" id="section_1" value="1"  type="radio" name="header_order"/>
+                        <label for="section_1"> Header Post 1</label>
+                    </div>
+                    <div class="mb-1">
+                        <input style="margin-right: 5px" id="section_2" value="2"  type="radio" name="header_order"/>
+                        <label for="section_2"> Header Post 2</label>
+                    </div>
+                    <div class="mb-1">
+                        <input style="margin-right: 5px" id="section_3" value="3"  type="radio" name="header_order"/>
+                        <label for="section_3"> Header Post 3</label>
+                    </div>
+                    <div class="mb-1">
+                        <input style="margin-right: 5px" id="section_4" value="4"  type="radio" name="header_order"/>
+                        <label for="section_4"> Header Post 4</label>
+                    </div>
+                    <div class="mb-1">
+                        <input style="margin-right: 5px" id="section_5" value="5"  type="radio" name="header_order"/>
+                        <label for="section_5"> Header Post 5</label>
+                    </div>
+                    <div class="mb-1">
+                        <input style="margin-right: 5px" id="section_6" value="6"  type="radio" name="header_order"/>
+                        <label for="section_6"> Header Post 6</label>
+                    </div>
                 </div>
+                <button type="button" class="btn btn-danger" onclick="resetRadio()"><i class="fas fa-sync-alt"></i> Uncheck</button>
+
             </div>
             @endif
             <div class="card">
@@ -343,6 +363,12 @@
     </div>
 @endsection
 @section('js')
+    <script>
+        function resetRadio() {
+            const radios = document.querySelectorAll('input[name="header_order"]');
+            radios.forEach(radio => radio.checked = false);
+        }
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Bootstrap JS -->

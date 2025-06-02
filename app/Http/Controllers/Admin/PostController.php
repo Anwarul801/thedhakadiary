@@ -69,7 +69,6 @@ class PostController extends Controller
     public function create(Request $request)
     {
         $data['categories'] = Category::where('parent_cat_id', null)->with("categories")->get();
-        $data['sections'] = Section::all();
         $data['authors'] = User::where('role_id', 2)->get();
         $data['request'] = $request;
         return view('admin.post.post_create', $data)->withShortcodes();
@@ -139,6 +138,7 @@ class PostController extends Controller
         $post->latest_news = $request->latest_news ?? 0;
         $post->breaking_news = $request->breaking_news ?? 0;
         $post->language = $request->language;
+        $post->header_order = $request->header_order??null;
         $post->save();
         $post->order = $post->id;
 
@@ -152,6 +152,14 @@ class PostController extends Controller
         $post->sections()->attach($request->sections);
         $post->save();
 
+        if ($request->header_order){
+            $previous_ordered_post = Post::where([['header_order', $request->header_order], ['id', '!=', $post->id]])->first();
+            if ($previous_ordered_post){
+                $previous_ordered_post->update([
+                    'header_order' => null,
+                ]);
+            }
+        }
         Toastr::Success('Data Added Successfully', 'Success');
         return redirect(route('post.index'));
     }
@@ -199,7 +207,6 @@ class PostController extends Controller
         $data['categories'] = Category::where('parent_cat_id', null)->with("categories")->get();
         $data['data'] = Post::with('categories')->findOrFail($id);
         $data['data_section'] = Post::with('sections')->findOrFail($id);
-        $data['sections'] = Section::all();
         $data['authors'] = User::where('role_id', 2)->get();
         $data['id'] = $id;
         return view('admin.post.post_update', $data);
@@ -251,6 +258,7 @@ class PostController extends Controller
         $post->breaking_news = $request->breaking_news ?? 0;
         $post->slug = null;
         $post->language = $request->language;
+        $post->header_order = $request->header_order??null;
         $post->order = $request->order;
         $post->categories()->detach();
         $post->sections()->detach();
@@ -298,7 +306,14 @@ class PostController extends Controller
             $media->save();
         }
 
-
+        if ($request->header_order){
+            $previous_ordered_post = Post::where([['header_order', $request->header_order], ['id', '!=', $post->id]])->first();
+            if ($previous_ordered_post){
+                $previous_ordered_post->update([
+                    'header_order' => null,
+                ]);
+            }
+        }
         Toastr::Success('Data Updated Successfully', 'Success');
         return redirect(route('post.index'));
     }

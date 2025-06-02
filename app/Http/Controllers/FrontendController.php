@@ -24,17 +24,7 @@ class FrontendController extends Controller
     }
     public function index_page(Request $request)
     {
-       $data['header_posts'] = Section::findOrFail(1)->posts()
-            ->select(
-                'posts.id',
-                'posts.order',
-                'posts.title',
-                'posts.slug',
-                'posts.subtitle',
-                'posts.media_id',
-                'posts.publishing_date',
-            )
-            ->where([[checkPost()],['language', isEnglish()?'en':'bn']])->orderBy('order', 'DESC')->take(6)->get();
+       $data['header_posts'] = Post::where([[checkPost()],['language', isEnglish()?'en':'bn'],['header_order', '!=', null]])->get();
 
         $data['categories'] = Category::where('status', 'active')
             ->whereHas('posts', function ($query) {
