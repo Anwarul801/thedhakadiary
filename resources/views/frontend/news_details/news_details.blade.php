@@ -249,7 +249,7 @@
                         class="fa-solid fa-magnifying-glass-plus"></i></a>
                 <a href="#" class="social_icon text-sm zoomOut" id=""><i
                         class="fa-solid fa-magnifying-glass-minus"></i></a>
-                <a href="#" class="social_icon text-sm" onclick="window.print()"><i
+                <a href="#" class="social_icon print_icon text-sm" onclick="window.print()"><i
                         class="fa-solid fa-print"></i></a>
             </div>
         </div>
@@ -351,24 +351,25 @@
         });
     </script>
     <script>
-        let lastScrollTop = 0;
-        const sidebar = document.querySelector('.sidebar-folding-icons');
-        let scrollTimeout;
+        let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+const sidebar = document.querySelector('.sidebar-folding-icons');
+let hideSidebarTimeout;
 
-        window.addEventListener('scroll', function() {
-            clearTimeout(scrollTimeout); // পূর্বের টাইমআউট ক্লিয়ার
+window.addEventListener('scroll', function () {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-            scrollTimeout = setTimeout(() => {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+ 
+    if (Math.abs(scrollTop - lastScrollTop) > 50) {
+        sidebar.classList.add('visible'); 
+        clearTimeout(hideSidebarTimeout);  
 
-                if (scrollTop > 100 && scrollTop > lastScrollTop) {
-                    sidebar.classList.add('folded');
-                } else if (scrollTop > 100 && scrollTop < lastScrollTop) {
-                    sidebar.classList.remove('folded');
-                }
+        
+        hideSidebarTimeout = setTimeout(() => {
+            sidebar.classList.remove('visible');
+        }, 2000);
 
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-            }, 50); // ৫০ms delay
-        });
+        lastScrollTop = scrollTop;
+    }
+});
     </script>
 @endsection

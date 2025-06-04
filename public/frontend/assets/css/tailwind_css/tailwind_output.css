@@ -2270,6 +2270,16 @@ li {
     line-height: var(--tw-leading, var(--text-base--line-height));
   }
 }
+.sidebar-folding-icons {
+  .social_icon {
+    &.print_icon {
+      display: none;
+      @media (width >= 992px) {
+        display: flex;
+      }
+    }
+  }
+}
 .ad-full {
   position: relative;
   margin-top: calc(var(--spacing) * 2);
@@ -2523,14 +2533,14 @@ li {
 .sidebar-folding-icons {
   position: fixed;
   top: 21%;
-  left: -60px;
+  right: -60px;
   opacity: 0;
   visibility: hidden;
-  transition: left 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+  transition: right 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
   z-index: 9999;
 }
-.sidebar-folding-icons.folded {
-  left: 0;
+.sidebar-folding-icons.visible {
+  right: 0;
   opacity: 1;
   visibility: visible;
 }
