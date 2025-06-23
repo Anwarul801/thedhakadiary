@@ -39,41 +39,94 @@ class OptionController extends Controller
      */
     public function store(Request $request)
     {
-        $options = Option::all();
-        foreach ($options as $option){
-            $field_name = $option->title;
+//        $options = Option::all();
+//        foreach ($options as $option){
+//            $field_name = $option->title;
+//
+//            if ($option->title == 'logo' || $option->title == 'favicon' || $option->title == 'shared_image'){
+//                $this->uploadImage($option, $request);
+//                continue;
+//            }
+//            $option->update([
+//                'value' => $request->$field_name
+//            ]);
+//        }
 
-            if ($option->title == 'logo' || $option->title == 'favicon' || $option->title == 'shared_image'){
-                $this->uploadImage($option, $request);
+        $existingOptions = Option::all()->keyBy('title');
+        foreach ($request->all() as $field => $value) {
+            if ($field == 'logo' || $field == 'favicon' || $field == 'shared_image'){
+                $this->uploadImage($field, $request);
                 continue;
             }
-            $option->update([
-                'value' => $request->$field_name
-            ]);
-        }
+
+            if ($existingOptions->has($field)) {
+                $existingOptions[$field]->update([
+                    'value' => $value
+                ]);
+            } else {
+                // Create new option
+                Option::create([
+                    'title' => $field,
+                    'value' => $value
+                ]);
+            }
+         }
         Toastr::success("Option Updated", "Success");
         return back();
     }
 
-    public function uploadImage($option, $request)
+    public function uploadImage($field, $request)
     {
+//        $imageFields = [
+//            'logo',
+//            'favicon',
+//            'shared_image',
+//        ];
+//        $option = Option::where('title', $field)->first();
+//
+//        $field = $option->title;
+//
+//        if (in_array($field, $imageFields) && $request->has($field)) {
+//            $request->validate([
+//                $field => 'image',
+//            ]);
+//            Storage::delete($option->value);
+//            $uploaded = $request->file($field)->store('options');
+//            $option->update([
+//                'value' => $uploaded
+//            ]);
+//        }
+
+
         $imageFields = [
-            'logo',
-            'favicon',
-            'shared_image',
+            'logo' => [342, 60],
+            'favicon' => [180, 180],
+            'shared_image' => [940, 788],
         ];
 
-        $field = $option->title;
+        foreach ($imageFields as $field => [$width, $height]) {
+            if ($request->hasFile($field)) {
 
-        if (in_array($field, $imageFields) && $request->has($field)) {
-            $request->validate([
-                $field => 'image',
-            ]);
-            Storage::delete($option->value);
-            $uploaded = $request->file($field)->store('options');
-            $option->update([
-                'value' => $uploaded
-            ]);
+                $request->validate([
+                    $field => 'image'
+                ]);
+
+                $option = Option::where('title', $field)->first();
+                if ($option && $option->value) {
+                    Storage::delete($option->value);
+                }
+                $path = $request->file($field)->store('options');
+                $publicPath = public_path('storage/' . $path);
+                Image::make($publicPath)->resize($width, $height)->save();
+                if ($option) {
+                    $option->update(['value' => $path]);
+                } else {
+                    Option::create([
+                        'title' => $field,
+                        'value' => $path
+                    ]);
+                }
+            }
         }
     }
 

@@ -40,7 +40,7 @@ class FrontendController extends Controller
                     'posts.media_id',
                     'posts.publishing_date',
                 )
-                ->where([[checkPost()],['language', isEnglish()?'en':'bn'],['video_id', null]])->take(4)->get();
+                ->where([[checkPost()],['language', isEnglish()?'en':'bn'],['video_id', null]])->orderBy('id', 'desc')->take(4)->get();
             return $category;
         });
 

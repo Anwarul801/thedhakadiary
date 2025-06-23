@@ -37,6 +37,8 @@
                         <li class="{{getOptionData('twitter')==null?'hidden':''}}"><a target="_blank" href="{{getOptionData('twitter')}}" class="social_icon f-social-icon"><i class="fa-brands fa-x-twitter"></i></a></li>
                         <li class="{{getOptionData('instagram')==null?'hidden':''}}"><a target="_blank" href="{{getOptionData('instagram')}}" class="social_icon f-social-icon"><i class="fa-brands fa-square-instagram"></i></a></li>
                         <li class="{{getOptionData('telegram')==null?'hidden':''}}"><a target="_blank" href="{{getOptionData('telegram')}}" class="social_icon f-social-icon"><i class="fa-solid fa-paper-plane"></i></a></li>
+                        <li class="{{getOptionData('youtube')==null?'hidden':''}}"><a target="_blank" href="{{getOptionData('youtube')}}" class="social_icon f-social-icon"><i class="fa-brands fa-youtube"></i></a></li>
+
                     </ul>
                 </div>
             </div>

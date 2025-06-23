@@ -53,7 +53,7 @@
                                     <input type="file" name="logo" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Favicon (65x65px)</label><br>
+                                    <label for="">Favicon (180x180px)</label><br>
                                     <img src="{{ asset('storage') }}/{{ getOptionData('favicon') }}" style="height: 50px; margin: 5px 0; background: black" alt="">
                                     <input type="file" name="favicon" class="form-control">
                                 </div>
@@ -99,6 +99,10 @@
                                 <div class="form-group">
                                     <label for="">WhatsApp</label>
                                     <input type="text" name="whats_app" value="{{ getOptionData('whats_app') }}" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Youtube</label>
+                                    <input type="text" name="youtube" value="{{ getOptionData('youtube') }}" class="form-control">
                                 </div>
                             </div>
                         </div>
