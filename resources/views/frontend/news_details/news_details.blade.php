@@ -60,7 +60,7 @@
                                             class="w-1/2 m-auto hidden print:block break-after-avoid mb-3" />
                                     </div>
                                     <!-- only print logo end -->
-                                    <span class="">{{ $news->sub_headline }}</span>
+                                    <span class="" style="font-size: 20px; font-weight: bolder;">{{ $news->sub_headline }}</span>
                                     <h1 class="page-title">{{ $news->title }}</h1>
                                     <div class="flex justify-between items-end flex-wrap gap-3">
                                         <div
@@ -75,12 +75,12 @@
                                                     ];
                                                 @endphp
                                                 @if ($news->source == 'Author' && $news->author_id != null)
-                                                    <a href="{{ route('author_news', ['id' => $news->author_id, 'name' => $news->author->name_en ?? null]) }}"
+                                                    <a style="font-size: 17px;" href="{{ route('author_news', ['id' => $news->author_id, 'name' => $news->author->name_en ?? null]) }}"
                                                         class="present inline-block">{{ isEnglish() ? $news->author->name_en : $news->author->name ?? null }}</a>
                                                 @elseif(in_array($news->source, $sources))
-                                                    <a class="present inline-block">{{ __("lang.$news->source") }}</a>
+                                                    <a style="font-size: 17px;" class="present inline-block">{{ __("lang.$news->source") }}</a>
                                                 @elseif($news->source != 'None')
-                                                    <a class="present inline-block">{{ $news->source }}</a>
+                                                    <a style="font-size: 17px;" class="present inline-block">{{ $news->source }}</a>
                                                 @endif
                                                 <p class="update">{{ $news->source_designation }}</p>
                                             </div>
