@@ -2297,7 +2297,7 @@ li {
     &.copyLinkBtn {
       display: flex;
       @media (width >= 992px) {
-        display: flex;
+        display: none;
       }
     }
   }
