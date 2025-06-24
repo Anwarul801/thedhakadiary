@@ -3274,7 +3274,6 @@ li {
   }
   p {
     margin-bottom: calc(var(--spacing) * 2.5);
-    text-align: justify !important;
     &:last-child {
       margin-bottom: calc(var(--spacing) * 0);
     }

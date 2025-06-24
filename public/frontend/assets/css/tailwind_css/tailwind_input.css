@@ -493,7 +493,7 @@ li {
   @apply md:text-[16px] text-sm font-normal text-[#242424];
 
   p {
-    @apply md:mb-6 sm:mb-4 mb-2.5 last:mb-0 !text-justify;
+    @apply md:mb-6 sm:mb-4 mb-2.5 last:mb-0;
   }
 
   img {
