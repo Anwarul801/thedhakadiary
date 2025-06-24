@@ -45,28 +45,31 @@
         </div>
         <div class="py-6 md:py-12 px-4 sm:px-6 lg:px-8">
             <div class="container">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
                     <!-- Column 1 -->
                     @php
                     $about_us = $pages->where('id', 1)->first();
                     $privacy_policy = $pages->where('id', 2)->first();
                     $terms_and_condition = $pages->where('id', 3)->first();
                     @endphp
-                    <ul class="space-y-3">
-                        <li><a href="{{route('page_view', ['id' => $about_us->id, 'slug' => $about_us->slug])}}" class="f-link">{{isEnglish()?$about_us->name_en:$about_us->name}}</a></li>
-                        <li><a href="{{route('contact_us')}}" class="f-link">{{__('lang.contact_us')}}</a></li>
-                    </ul>
-
-                    <!-- Column 2 -->
-                    <div class="">
-                        <ul class="space-y-3">
-                            <li><a href="{{route('page_view', ['id' => $privacy_policy->id, 'slug' => $privacy_policy->slug])}}" class="f-link">{{isEnglish()?$privacy_policy->name_en:$privacy_policy->name}}</a></li>
-                            <li><a href="{{route('page_view', ['id' => $terms_and_condition->id, 'slug' => $terms_and_condition->slug])}}" class="f-link">{{isEnglish()?$terms_and_condition->name_en:$terms_and_condition->name}}</a></li>
+                    
+                    <div class="col-span-2 grid grid-cols-2 gap-8">
+                        <ul class="space-y-3 order-2 md:order-1">
+                            <li><a href="{{route('page_view', ['id' => $about_us->id, 'slug' => $about_us->slug])}}" class="f-link">{{isEnglish()?$about_us->name_en:$about_us->name}}</a></li>
+                            <li><a href="{{route('contact_us')}}" class="f-link">{{__('lang.contact_us')}}</a></li>
                         </ul>
+
+                        <!-- Column 2 -->
+                        <div class="order-1 md:order-2">
+                            <ul class="space-y-3">
+                                <li><a href="{{route('page_view', ['id' => $privacy_policy->id, 'slug' => $privacy_policy->slug])}}" class="f-link">{{isEnglish()?$privacy_policy->name_en:$privacy_policy->name}}</a></li>
+                                <li><a href="{{route('page_view', ['id' => $terms_and_condition->id, 'slug' => $terms_and_condition->slug])}}" class="f-link">{{isEnglish()?$terms_and_condition->name_en:$terms_and_condition->name}}</a></li>
+                            </ul>
+                        </div>
                     </div>
 
                     <!-- Column 3 -->
-                    <div class="">
+                    <div class="col-span-2 md:col-span-1">
                         <h3 class="text-lg font-semibold mb-4 ">{{__('lang.editor')}} {{isEnglish()? getOptionData('editor_name_en'): getOptionData('editor_name')}}</h3>
                         <ul class="space-y-3">
                             <li class="flex items-center">

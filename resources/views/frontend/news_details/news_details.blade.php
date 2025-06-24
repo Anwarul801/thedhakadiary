@@ -154,6 +154,7 @@
                                                     class="fa-solid fa-magnifying-glass-minus"></i></a>
                                             <a href="#" class="social_icon text-sm" onclick="window.print()"><i
                                                     class="fa-solid fa-print"></i></a>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -227,21 +228,21 @@
                     $url = urlencode(url()->current());
                 @endphp
 
-                <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}" class="social_icon text-sm"
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}" class="social_icon text-sm hide_on_mobile"
                     target="_blank">
                     <i class="fa-brands fa-facebook-f"></i>
                 </a>
 
-                <a href="https://twitter.com/intent/tweet?url={{ $url }}" class="social_icon text-sm"
+                <a href="https://twitter.com/intent/tweet?url={{ $url }}" class="social_icon text-sm hide_on_mobile"
                     target="_blank">
                     <i class="fa-brands fa-x-twitter"></i>
                 </a>
 
-                <a href="https://www.instagram.com/" class="social_icon text-sm" target="_blank">
+                <a href="https://www.instagram.com/" class="social_icon text-sm hide_on_mobile" target="_blank">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
 
-                <a href="https://wa.me/?text={{ $url }}" class="social_icon text-sm" target="_blank">
+                <a href="https://wa.me/?text={{ $url }}" class="social_icon text-sm hide_on_mobile" target="_blank">
                     <i class="fa-brands fa-whatsapp"></i>
                 </a>
 
@@ -249,8 +250,14 @@
                         class="fa-solid fa-magnifying-glass-plus"></i></a>
                 <a href="#" class="social_icon text-sm zoomOut" id=""><i
                         class="fa-solid fa-magnifying-glass-minus"></i></a>
-                <a href="#" class="social_icon print_icon text-sm" onclick="window.print()"><i
+                <a href="#" class="social_icon hide_on_mobile text-sm" onclick="window.print()"><i
                         class="fa-solid fa-print"></i></a>
+                <a href="#" class="social_icon text-sm copyLinkBtn" id="copyLinkBtn">
+                    <i class="fa-solid fa-copy"></i>
+                </a>
+                <a href="#" class="social_icon text-sm shareBtn" id="shareBtn">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </a>
             </div>
         </div>
     </main>
@@ -292,13 +299,42 @@
         // Toggle prokash and updated
         document.querySelectorAll('.update_prokash_btn').forEach(function (btn) {
             btn.addEventListener('click', function () {
-                const parent = btn.closest('.update'); // parent .update block
+                const parent = btn.closest('.update');  
                 const updated = parent.querySelector('.updated');
                 const prokash = parent.querySelector('.prokash');
 
                 updated.classList.toggle('hidden');
                 prokash.classList.toggle('hidden');
             });
+        });
+
+
+
+        // Copy link & share functionality
+        const copyLinkBtn = document.getElementById('copyLinkBtn');
+        const shareBtn = document.getElementById('shareBtn');
+        const currentUrl = window.location.href;
+
+        // Copy to clipboard
+        copyLinkBtn?.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.clipboard.writeText(currentUrl)
+                .then(() => alert('Link copied to clipboard!'))
+                .catch(() => alert('Failed to copy the link.'));
+        });
+
+        // Native Share (only works in supported mobile browsers)
+        shareBtn?.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    text: 'Check this out!',
+                    url: currentUrl,
+                }).catch(err => console.log('Share failed:', err));
+            } else {
+                alert('Sharing not supported on this device.');
+            }
         });
     });
 </script>

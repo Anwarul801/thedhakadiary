@@ -133,8 +133,12 @@ li {
 
 .sidebar-folding-icons{
   .social_icon{
-    &.print_icon{
+    &.hide_on_mobile{
       @apply hidden lg:flex;
+    }
+    &.shareBtn,
+    &.copyLinkBtn{
+      @apply flex lg:flex;
     }
   }
 }
