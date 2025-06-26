@@ -29,7 +29,7 @@ class FrontendController extends Controller
         $data['categories'] = Category::where('status', 'active')
             ->whereHas('posts', function ($query) {
                 $query->where([[checkPost()],['language', isEnglish()?'en':'bn'],['video_id', null]]); // Filter posts as per your checkPost() logic
-            })
+            })->orderBy('order', 'asc')
             ->get();
         $data['categories'] = $data['categories']->map(function ($category) {
             $category->posts = $category->posts()

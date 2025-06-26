@@ -44,7 +44,7 @@
                                 <div class="grid grid-cols-12 md:gap-y-6 gap-4">
                                     <!-- First side news card -->
 
-                                    @foreach($header_posts->whereIn('header_order', [2, 3]) as $header_post)
+                                    @foreach($header_posts->whereIn('header_order', [2, 3])->sortby('header_order') as $header_post)
                                         <div class="sm:col-span-12 col-span-6">
                                             <div class="news-card">
                                                 <div class="thumbnail">
@@ -67,7 +67,7 @@
 
                         </div>
                         <div class="grid grid-cols-12 md:gap-6 gap-4 mt-4">
-                            @foreach($header_posts->whereIn('header_order', [4, 5, 6]) as $header_post)
+                            @foreach($header_posts->whereIn('header_order', [4, 5, 6])->sortby('header_order') as $header_post)
                                 <div class="md:col-span-4 col-span-6">
                                     <div class="news-card">
                                         <div class="thumbnail">
