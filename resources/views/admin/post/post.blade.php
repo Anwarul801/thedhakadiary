@@ -83,7 +83,7 @@
 {{--                        loop start--}}
                         @forelse($posts as $post)
                             <tr>
-                                <td>{{$loop->iteration}}</td>
+                                <td>{{ $posts->firstItem() + $loop->index }}</td>
                                 <td>{{ date_maker($post->created_at, 'd m, y', true)  }}</td>
                                 <td>{{ $post->title }}</td>
                                 <td>
@@ -122,6 +122,8 @@
                             </tr>
                         @endforelse
                     </table>
+                    <!-- pagination -->
+                        {{ $posts->appends(request()->query())->links() }}
                 </div>
             </div>
 

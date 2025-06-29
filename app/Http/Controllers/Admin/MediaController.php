@@ -19,7 +19,7 @@ class MediaController extends Controller
      */
     public function index()
     {
-        $data['media'] = Media::all();
+        $data['media'] = Media::paginate(50);
         $data['pgs'] = PhotoGallery::all();
         return view('admin.media.media', $data);
     }

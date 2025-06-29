@@ -76,7 +76,7 @@
                         </tr>
                         @forelse($media as $m)
                             <tr>
-                                <td>{{ $loop->iteration}}</td>
+                                <td>{{$media->firstItem() + $loop->index}}</td>
                                 <td>
                                     <a href="{{ asset('storage') }}/{{ $m->image }}" target="_blank">
                                         <img src="{{ asset('storage') }}/{{ $m->xs_thumbnail }}" style="height: 30px" alt="">
@@ -169,6 +169,7 @@
                             </tr>
                         @endforelse
                     </table>
+                    {{ $media->appends(request()->query())->links() }}
                 </div>
             </div>
 

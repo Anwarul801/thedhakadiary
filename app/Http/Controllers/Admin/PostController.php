@@ -47,14 +47,14 @@ class PostController extends Controller
         }
         if ($request->hit){
             if ($request->hit == 'ASC'){
-                $data['posts'] = Post::where($search)->orderBy('hit', 'ASC')->get();
+                $data['posts'] = Post::where($search)->orderBy('hit', 'ASC')->paginate(50);
             }
 
             if ($request->hit == 'DESC'){
-                $data['posts'] = Post::where($search)->orderBy('hit', 'Desc')->get();
+                $data['posts'] = Post::where($search)->orderBy('hit', 'Desc')->paginate(50);
             }
         }else{
-            $data['posts'] = Post::where($search)->orderBy('id', 'DESC')->get();
+            $data['posts'] = Post::where($search)->orderBy('id', 'DESC')->paginate(50);
         }
         $data['authors'] = User::select('id', 'name', 'name_en')->where('role_id', 2)->get();
         $data['request'] = $request;
