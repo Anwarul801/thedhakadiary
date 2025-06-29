@@ -296,7 +296,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="image">Image (648x486px)</label>
+                                <label for="image">Image (1200x630px)</label>
                                 <input class="form-control" type="file" id="image" name="image" required="">
                             </div>
                         </div>
@@ -340,7 +340,7 @@
                             <input class="form-control" type="text" id="caption" name="caption" required="" placeholder="Caption">
                         </div>
                         <div class="form-group">
-                            <label for="caption">Image : (648x486px)</label>
+                            <label for="caption">Image : (1200x630px)</label>
                             <input class="form-control" type="file" id="image" name="image" required="">
                         </div>
                         <div class="form-group account-btn text-center">
