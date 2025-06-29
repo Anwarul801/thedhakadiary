@@ -50,7 +50,7 @@
 {{--                                            <input class="form-control" type="text" id="source" name="source" placeholder="Source">--}}
 {{--                                    </div>--}}
                                     <div class="form-group">
-                                            <label for="caption">Image : (640x427px) *</label>
+                                            <label for="caption">Image : (1200x630px) *</label>
                                             <input class="form-control" type="file" id="image" name="image" required="">
                                     </div>
                                     <div class="form-group account-btn text-center">
@@ -135,7 +135,7 @@
 {{--                                                            <input value="{{$m->source}}" class="form-control" type="text" id="source" name="source" placeholder="Source">--}}
 {{--                                                        </div>--}}
                                                         <div class="form-group">
-                                                            <label for="caption">Image : (640x427px) *</label>
+                                                            <label for="caption">Image : (1200x630px) *</label>
                                                             <input class="form-control" type="file" id="image" name="image">
                                                         </div>
 {{--                                                        <div class="form-group">--}}
