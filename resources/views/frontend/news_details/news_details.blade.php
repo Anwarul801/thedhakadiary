@@ -32,7 +32,7 @@
     </style>
 @endsection
 @section('og_image')
-    {{ asset('storage') }}/{{ $news->media->image }}
+    {{ asset('storage') }}/{{ $news->media->share_image ?? $news->media->image ?? null }}
 @endsection
 @section('og_title')
     {{ $news->title }}
@@ -394,12 +394,12 @@ let hideSidebarTimeout;
 window.addEventListener('scroll', function () {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
- 
-    if (Math.abs(scrollTop - lastScrollTop) > 50) {
-        sidebar.classList.add('visible'); 
-        clearTimeout(hideSidebarTimeout);  
 
-        
+    if (Math.abs(scrollTop - lastScrollTop) > 50) {
+        sidebar.classList.add('visible');
+        clearTimeout(hideSidebarTimeout);
+
+
         hideSidebarTimeout = setTimeout(() => {
             sidebar.classList.remove('visible');
         }, 2000);

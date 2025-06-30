@@ -110,6 +110,28 @@ class PostController extends Controller
             $media->save();
         }
 
+        if ($request->hasFile('badge') && $request->hasFile('image')){
+            $mainImageFile = $request->file('image');
+            $badgeImageFile = $request->file('badge');
+            $mainImage = Image::make($mainImageFile)->resize(1280, 672);
+
+            $badgeImage = Image::make($badgeImageFile)->resize(1280, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $badgeHeight = $badgeImage->height();
+            $mainImage->insert($badgeImage, 'top-left', 0, 672 - $badgeHeight);
+            $filename = 'combined_' . time() . '.jpg';
+            $savePath = storage_path('app/public/combined/' . $filename);
+            if (!file_exists(dirname($savePath))) {
+                mkdir(dirname($savePath), 0755, true);
+            }
+            $mainImage->save($savePath);
+            $finalPath = asset('storage/combined/' . $filename);
+            $media->share_image = $finalPath;
+        }else{
+            $media->share_image =  $media->image;
+        }
+        $media->save();
         $slug = Str::slug($request->title);
 
         $post = new Post();
@@ -305,6 +327,36 @@ class PostController extends Controller
             $media->caption = $request->caption;
             $media->save();
         }
+
+        if ($request->hasFile('badge')){
+            if ($request->hasFile('main_image')) {
+                $mainImage = Image::make($request->file('main_image'))->resize(1280, 672);
+            } else {
+                $oldPath = storage_path('app/public/' . $media->image);
+                if (!file_exists($oldPath)) {
+                    Toastr::Error('Previous main image not found! Please upload a main image.', 'Error');
+                    return back();
+                }
+                $mainImage = Image::make($oldPath);
+            }
+            $badgeImageFile = $request->file('badge');
+            $badgeImage = Image::make($badgeImageFile)->resize(1280, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $badgeHeight = $badgeImage->height();
+            $mainImage->insert($badgeImage, 'top-left', 0, 672 - $badgeHeight);
+            $filename = 'combined_' . time() . '.jpg';
+            $savePath = storage_path('app/public/combined/' . $filename);
+            if (!file_exists(dirname($savePath))) {
+                mkdir(dirname($savePath), 0755, true);
+            }
+            $mainImage->save($savePath);
+            $finalPath = asset('storage/combined/' . $filename);
+            $media->share_image = $finalPath;
+        }else{
+            $media->share_image =  $media->image;
+        }
+        $media->save();
 
         if ($request->header_order){
             $previous_ordered_post = Post::where([['header_order', $request->header_order], ['id', '!=', $post->id]])->first();
