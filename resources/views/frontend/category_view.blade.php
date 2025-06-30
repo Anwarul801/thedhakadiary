@@ -27,12 +27,14 @@
                                 <div class="thumbnail">
                                     <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}">
                                         @php
-                                            $thumbnailPath = asset('storage/').$news->media->thumbnail??null;
+                                            $thumbnail = $news->media->thumbnail ?? null;
+                                            $thumbnailPath = $thumbnail ? public_path('storage/' . $thumbnail) : null;
                                         @endphp
-                                        @if (file_exists(public_path($thumbnailPath)))
-                                            <img src="{{ asset($thumbnailPath) }}" alt="Thumbnail">
+
+                                        @if ($thumbnailPath && file_exists($thumbnailPath))
+                                            <img src="{{ asset('storage/' . $thumbnail) }}" alt="Thumbnail">
                                         @else
-                                            <img src="{{ asset('storage') }}/{{$news->media->image??null}}" alt="Default Thumbnail">
+                                            <img src="{{ asset('storage/' . ($news->media->image ?? 'default.png')) }}" alt="Default Thumbnail">
                                         @endif
 
                                     </a>
