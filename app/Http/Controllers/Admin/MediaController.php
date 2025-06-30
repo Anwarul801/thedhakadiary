@@ -64,7 +64,7 @@ class MediaController extends Controller
             $image_public_path = public_path('storage/' . $image);
             $thumbnail_public_path = public_path('storage/' . $thumbnail);
             $xs_thumbnail_public_path = public_path('storage/' . $xs_thumbnail);
-            Image::make($image_public_path)->resize('1200', '630')->save();
+            Image::make($image_public_path)->resize('1280', '672')->save();
             Image::make($thumbnail_public_path)->resize('312', '163')->save();
             Image::make($xs_thumbnail_public_path)->resize('150', '78')->save();
             $media->image = $image;
@@ -146,7 +146,7 @@ class MediaController extends Controller
             $image_public_path = public_path('storage/' . $image);
             $thumbnail_public_path = public_path('storage/' . $thumbnail);
             $xs_thumbnail_public_path = public_path('storage/' . $xs_thumbnail);
-            Image::make($image_public_path)->resize('1200', '630')->save();
+            Image::make($image_public_path)->resize('1280', '672')->save();
             Image::make($thumbnail_public_path)->resize('312', '163')->save();
             Image::make($xs_thumbnail_public_path)->resize('150', '78')->save();
             $media->image = $image;
