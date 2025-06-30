@@ -7,6 +7,7 @@
     {{ $news->title }}
 @endsection
 @section('css')
+    
     <style>
         @media print {
             body * {
@@ -54,13 +55,17 @@
                             <div class="md:col-span-8 col-span-12">
                                 <div class="page-title-wrap border-b border-stock-color md:pb-6 pb-4">
                                     <!-- only print logo -->
-                                    <div class="border-b-[1px] border-gray-400 mb-3">
+                                    <div class="border-b-[1px] border-gray-400 mb-3 hidden print:block">
                                         <img src="{{ asset('frontend/assets') }}/image/main_logo_dark.png"
                                             alt="The Dhaka Diary"
                                             class="w-1/2 m-auto hidden print:block break-after-avoid mb-3" />
                                     </div>
                                     <!-- only print logo end -->
-                                    <span class="" style="font-size: 20px; font-weight: bolder;">{{ $news->sub_headline }}</span>
+                                    {{-- category --}}
+                                    <div class="">
+                                        <a href="#" class="text-[#007bff] border-b-2 border-[#007bff] mb-3 md:mb-4 inline-block font-bold text-lg md:text-xl">জেলা</a>
+                                    </div>
+                                    <span class="text-base md:text-xl text-[#595959] font-bold mb-2 block">{{ $news->sub_headline }}</span>
                                     <h1 class="page-title">{{ $news->title }}</h1>
                                     <div class="flex justify-between items-end flex-wrap gap-3">
                                         <div
@@ -264,7 +269,7 @@
 @endsection
 
 @section('js')
-
+    
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         const newsElements = document.querySelectorAll('.news-content');

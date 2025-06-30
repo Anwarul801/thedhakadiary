@@ -47,6 +47,9 @@
 		type: 'image',
 		gallery:{
 			enabled:true
+		},
+		image: {
+			titleSrc: 'title'
 		}
 	});
 

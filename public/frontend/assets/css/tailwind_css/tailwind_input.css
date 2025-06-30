@@ -532,7 +532,12 @@ li {
   h6 {
     @apply text-[18px];
   }
+  .img_full_image_caption{
+    @apply block text-secondary bg-[#f8f9fa] text-center border-b border-[#dee2e6] py-2 -mt-2 sm:-mt-4 md:-mt-6;
+  }
 }
+
+  
 
 /* ============PAGINATION============ */
 .pagination {
@@ -586,5 +591,19 @@ li {
 .video_thumbnail {
   iframe {
     @apply w-full h-[190px] xsm:h-[290px] md:h-[390px] lg:h-[490px];
+  }
+}
+
+.mfp-content{
+  @apply relative;
+  .mfp-title { 
+    padding: 16px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #00000098;
+    font-size: 20px;
+    line-height: 1.3;
   }
 }
