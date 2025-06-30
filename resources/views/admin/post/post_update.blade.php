@@ -312,7 +312,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="image">Image (1200x630px)</label>
+                                    <label for="image">Image (1280x672px)</label>
                                     <input class="form-control" type="file" id="image" name="image">
                                 </div>
                             </div>
