@@ -22,14 +22,7 @@
                                     <div class="news-card">
                                         <div class="thumbnail">
                                             <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">
-                                                @php
-                                                    $thumbnailPath = asset('storage/').$header_post->media->thumbnail??null;
-                                                @endphp
-                                                @if (file_exists(public_path($thumbnailPath)))
-                                                    <img src="{{ asset($thumbnailPath) }}" alt="Thumbnail">
-                                                @else
                                                     <img src="{{ asset('storage') }}/{{$header_post->media->image??null}}" alt="Default Thumbnail">
-                                                @endif
                                             </a>
                                         </div>
                                         <h1 class="title title-lg">
@@ -57,12 +50,14 @@
                                                 <div class="thumbnail">
                                                     <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">
                                                         @php
-                                                            $thumbnailPath = asset('storage/').$header_post->media->thumbnail??null;
+                                                            $thumbnail = $header_post->media->thumbnail ?? null;
+                                                            $thumbnailPath = $thumbnail ? public_path('storage/' . $thumbnail) : null;
                                                         @endphp
-                                                        @if (file_exists(public_path($thumbnailPath)))
-                                                            <img src="{{ asset($thumbnailPath) }}" alt="Thumbnail">
+
+                                                        @if ($thumbnailPath && file_exists($thumbnailPath))
+                                                            <img src="{{ asset('storage/' . $thumbnail) }}" alt="Thumbnail">
                                                         @else
-                                                            <img src="{{ asset('storage') }}/{{$header_post->media->image??null}}" alt="Default Thumbnail">
+                                                            <img src="{{ asset('storage/' . ($header_post->media->image ?? 'default.png')) }}" alt="Default Thumbnail">
                                                         @endif
                                                     </a>
                                                 </div>
@@ -87,12 +82,14 @@
                                         <div class="thumbnail">
                                             <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">
                                                 @php
-                                                    $thumbnailPath = asset('storage/').$header_post->media->thumbnail??null;
+                                                    $thumbnail = $header_post->media->thumbnail ?? null;
+                                                    $thumbnailPath = $thumbnail ? public_path('storage/' . $thumbnail) : null;
                                                 @endphp
-                                                @if (file_exists(public_path($thumbnailPath)))
-                                                    <img src="{{ asset($thumbnailPath) }}" alt="Thumbnail">
+
+                                                @if ($thumbnailPath && file_exists($thumbnailPath))
+                                                    <img src="{{ asset('storage/' . $thumbnail) }}" alt="Thumbnail">
                                                 @else
-                                                    <img src="{{ asset('storage') }}/{{$header_post->media->image??null}}" alt="Default Thumbnail">
+                                                    <img src="{{ asset('storage/' . ($header_post->media->image ?? 'default.png')) }}" alt="Default Thumbnail">
                                                 @endif
                                             </a>
                                         </div>
@@ -174,12 +171,14 @@
                                     <div class="thumbnail">
                                         <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}">
                                             @php
-                                                $thumbnailPath = asset('storage/').$news->media->thumbnail??null;
+                                                $thumbnail = $news->media->thumbnail ?? null;
+                                                $thumbnailPath = $thumbnail ? public_path('storage/' . $thumbnail) : null;
                                             @endphp
-                                            @if (file_exists(public_path($thumbnailPath)))
-                                                <img src="{{ asset($thumbnailPath) }}" alt="Thumbnail">
+
+                                            @if ($thumbnailPath && file_exists($thumbnailPath))
+                                                <img src="{{ asset('storage/' . $thumbnail) }}" alt="Thumbnail">
                                             @else
-                                                <img src="{{ asset('storage') }}/{{$news->media->image??null}}" alt="Default Thumbnail">
+                                                <img src="{{ asset('storage/' . ($news->media->image ?? 'default.png')) }}" alt="Default Thumbnail">
                                             @endif
                                         </a>
                                     </div>
