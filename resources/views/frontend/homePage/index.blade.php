@@ -152,7 +152,7 @@
                                 <div class="news-card">
                                     <div class="thumbnail">
                                         <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}"><img
-                                                src="{{asset('storage')}}/{{$news->media->thumbnail??null}}"
+                                                src="{{asset('storage')}}/{{$news->media->thumbnail??$news->media->image??null}}"
                                                 alt="Thumbnail"></a>
                                     </div>
                                     <h1 class="title">
