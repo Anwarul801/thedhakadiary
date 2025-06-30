@@ -4,6 +4,9 @@
 @section('page_title')
     {{isEnglish()?$photo->title_en:$photo->title}}
 @endsection
+@section('css')
+    <link rel="stylesheet" href="{{asset('frontend/assets')}}/css/magnific-popup.css">
+@endsection
 @section('main_content')
     <main class="site-content flex-1">
         <section class="image-gallery-details section_short-padding">
@@ -60,7 +63,7 @@
                                             <span class="img-number">{{ bangla_number($loop->iteration) }}/{{ bangla_number(count($photo->gallery_images)) }}</span>
                                             @endif
                                             <div class="image-wrap">
-                                                <a target="_blank" class="gallery-item" href="{{ asset($image->image) }}">
+                                                <a target="_blank" class="gallery-item" href="{{ asset($image->image) }}" title="{{ $image->caption }}">
                                                     <img src="{{ asset($image->image) }}" alt="Image">
                                                 </a>
                                             </div>
@@ -93,6 +96,7 @@
     </main>
 @endsection
 @section('js')
+    <script src="{{asset('frontend/assets')}}/js/magnific-popup.min.js"></script>
     <script>
         function showMoreGallery() {
             document.querySelectorAll('.extra-gallery').forEach(function(item) {

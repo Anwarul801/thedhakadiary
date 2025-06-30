@@ -27,9 +27,9 @@
     <link rel="stylesheet" href="{{asset('frontend/assets')}}/css/jquery-ui.min.css">
     <link rel="stylesheet" href="{{asset('frontend/assets')}}/css/sidebar-menu.css">
     <link rel="stylesheet" href="{{asset('frontend/assets')}}/css/mega-menu.css">
-    <link href="{{asset('frontend/assets')}}/css/tailwind_css/tailwind_output.css" rel="stylesheet">
-
+    
     @yield('css')
+    <link href="{{asset('frontend/assets')}}/css/tailwind_css/tailwind_output.css" rel="stylesheet">
 </head>
 
 <body class="site">
@@ -46,6 +46,7 @@
 <script src="{{asset('frontend/assets')}}/js/jquery-ui.min.js"></script>
 <script src="{{asset('frontend/assets')}}/js/menu.js"></script>
 <script src="{{asset('frontend/assets')}}/js/mega-menu.js"></script>
+@yield('js')
 <script src="{{asset('frontend/assets')}}/js/script.js"></script>
 <script>
     let alreadyShown = false;
@@ -85,7 +86,7 @@
         }
     }
 </script>
-@yield('js')
+
 
 </body>
 
