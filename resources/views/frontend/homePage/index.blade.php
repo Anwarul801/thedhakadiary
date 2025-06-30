@@ -21,9 +21,16 @@
                                     <!-- news card -->
                                     <div class="news-card">
                                         <div class="thumbnail">
-                                            <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}"><img
-                                                    src="{{asset('storage')}}/{{$header_post->media->image??null}}"
-                                                    alt="Thumbnail"></a>
+                                            <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">
+                                                @php
+                                                    $thumbnailPath = asset('storage/').$header_post->media->thumbnail??null;
+                                                @endphp
+                                                @if (file_exists(public_path($thumbnailPath)))
+                                                    <img src="{{ asset($thumbnailPath) }}" alt="Thumbnail">
+                                                @else
+                                                    <img src="{{ asset('storage') }}/{{$header_post->media->image??null}}" alt="Default Thumbnail">
+                                                @endif
+                                            </a>
                                         </div>
                                         <h1 class="title title-lg">
                                             <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{Str::limit($header_post->title, 100)}}</a>
@@ -48,9 +55,16 @@
                                         <div class="sm:col-span-12 col-span-6">
                                             <div class="news-card">
                                                 <div class="thumbnail">
-                                                    <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}"><img
-                                                            src="{{asset('storage')}}/{{$header_post->media->thumbnail??null}}"
-                                                            alt="Thumbnail"></a>
+                                                    <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">
+                                                        @php
+                                                            $thumbnailPath = asset('storage/').$header_post->media->thumbnail??null;
+                                                        @endphp
+                                                        @if (file_exists(public_path($thumbnailPath)))
+                                                            <img src="{{ asset($thumbnailPath) }}" alt="Thumbnail">
+                                                        @else
+                                                            <img src="{{ asset('storage') }}/{{$header_post->media->image??null}}" alt="Default Thumbnail">
+                                                        @endif
+                                                    </a>
                                                 </div>
                                                 <h1 class="title">
                                                     <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{Str::limit($header_post->title, 100)}}</a>
@@ -71,9 +85,16 @@
                                 <div class="md:col-span-4 col-span-6">
                                     <div class="news-card">
                                         <div class="thumbnail">
-                                            <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}"><img
-                                                    src="{{asset('storage')}}/{{$header_post->media->thumbnail??null}}"
-                                                    alt="Thumbnail"></a>
+                                            <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">
+                                                @php
+                                                    $thumbnailPath = asset('storage/').$header_post->media->thumbnail??null;
+                                                @endphp
+                                                @if (file_exists(public_path($thumbnailPath)))
+                                                    <img src="{{ asset($thumbnailPath) }}" alt="Thumbnail">
+                                                @else
+                                                    <img src="{{ asset('storage') }}/{{$header_post->media->image??null}}" alt="Default Thumbnail">
+                                                @endif
+                                            </a>
                                         </div>
                                         <h1 class="title"><a
                                                 href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{Str::limit($header_post->title, 100)}}</a>
@@ -151,9 +172,16 @@
                             <div class="lg:col-span-3 md:col-span-4 col-span-6">
                                 <div class="news-card">
                                     <div class="thumbnail">
-                                        <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}"><img
-                                                src="{{asset('storage')}}/{{$news->media->thumbnail??$news->media->image??null}}"
-                                                alt="Thumbnail"></a>
+                                        <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}">
+                                            @php
+                                                $thumbnailPath = asset('storage/').$news->media->thumbnail??null;
+                                            @endphp
+                                            @if (file_exists(public_path($thumbnailPath)))
+                                                <img src="{{ asset($thumbnailPath) }}" alt="Thumbnail">
+                                            @else
+                                                <img src="{{ asset('storage') }}/{{$news->media->image??null}}" alt="Default Thumbnail">
+                                            @endif
+                                        </a>
                                     </div>
                                     <h1 class="title">
                                         <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}">{{Str::limit($news->title, 100)}}</a>
