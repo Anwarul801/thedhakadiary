@@ -7,12 +7,14 @@ use App\Models\Category;
 use App\Models\ContactMessage;
 use App\Models\ImageGallery;
 use App\Models\Marque;
+use App\Models\Media;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\Section;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class FrontendController extends Controller
 {
@@ -354,4 +356,7 @@ class FrontendController extends Controller
         $data['posts'] = Post::all();
         return view('frontend.print_news_all', $data);
     }
+
+
+
 }

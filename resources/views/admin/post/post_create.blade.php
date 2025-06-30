@@ -300,6 +300,12 @@
                                 <input class="form-control" type="file" id="image" name="image" required="">
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="badge">Image Badge</label>
+                                <input class="form-control" type="file" id="badge" name="badge">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

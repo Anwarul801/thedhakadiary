@@ -2,7 +2,11 @@
 
 use App\Models\Media;
 use App\Models\Option;
+use App\Models\Post;
 use Carbon\Carbon;
+use Intervention\Image\Facades\Image;
+
+
 
 function getOptionData($title)
 {
@@ -127,10 +131,6 @@ if (!function_exists('convert_to_bangla')) {
     }
 }
 
-
-
-
-
 function getImageTag($id, $true = false){
     $media = Media::find($id);
     if($media){
@@ -222,3 +222,6 @@ function linkedin_share($link){
 function whatsapp_share($link){
     return "https://api.whatsapp.com/send?text={$link}";
 }
+
+
+
