@@ -133,7 +133,9 @@ class FrontendController extends Controller
         $data['ad1'] = Ad::where('placement_id', 8)->where('status', 'Active')->first();
         $data['ad2'] = Ad::where('placement_id', 9)->where('status', 'Active')->first();
         $data['ad3'] = Ad::where('placement_id', 10)->where('status', 'Active')->first();
-
+        $data['post_categories'] = $data['news']->categories()
+            ->select('categories.id', 'categories.name', 'categories.slug')
+            ->get();
         return view('frontend.news_details.news_details', $data)->withShortcodes();
     }
 
