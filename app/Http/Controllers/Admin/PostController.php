@@ -84,7 +84,7 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'news_details' => 'required',
+            'news_details' => 'required | string',
             'caption' => 'required | string | max:255',
             'image' => 'required | image',
             'source' => 'required | string | max:255',
@@ -152,7 +152,7 @@ class PostController extends Controller
         $post->source_designation = $request->source_designation;
         $post->shoulder = $request->shoulder;
         $post->media_id = $media->id;
-        $post->news_details = $request->news_details;
+        $post->news_details = htmlspecialchars($request->input('news_details'));
         $post->tags = $request->tags;
         $post->publishing_date = $request->publishing_date;
         $post->meta_keywords = $request->meta_keywords;
@@ -246,7 +246,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required',
             'caption' => 'required | string | max:255',
-            'news_details' => 'required',
+            'news_details' => 'required | string',
             'source' => 'nullable | string | max:255',
         ]);
 
@@ -271,7 +271,7 @@ class PostController extends Controller
         }
         $post->source_designation = $request->source_designation;
         $post->shoulder = $request->shoulder;
-        $post->news_details = $request->news_details;
+        $post->news_details = htmlspecialchars($request->input('news_details'));
         $post->tags = $request->tags;
         $post->publishing_date = $request->publishing_date;
         $post->meta_keywords = $request->meta_keywords;
