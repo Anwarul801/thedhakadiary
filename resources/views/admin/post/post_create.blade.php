@@ -86,7 +86,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="news_details">News Details *</label>
-                                    <textarea style="height: 600px" class="form-control" name="news_details" id="news_details" cols="30" rows="10">{!! old('news_details') !!}</textarea>
+                                    <textarea style="height: 600px" class="form-control" name="news_details" id="news_details" cols="30" rows="10">{{old('news_details')}}</textarea>
                                 </div>
                             </div>
                         </div>

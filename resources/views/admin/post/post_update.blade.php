@@ -85,7 +85,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="news_details">News Details *</label>
-                                        <textarea required class="form-control" name="news_details" id="news_details" cols="30" rows="10">{!! $data->news_details !!}</textarea>
+                                        <textarea required class="form-control" name="news_details" id="news_details" cols="30" rows="10">{{$data->news_details}}</textarea>
                                     </div>
                                 </div>
                             </div>
