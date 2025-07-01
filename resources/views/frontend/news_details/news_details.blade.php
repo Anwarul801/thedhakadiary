@@ -7,7 +7,7 @@
     {{ $news->title }}
 @endsection
 @section('css')
-    
+
     <style>
         @media print {
             body * {
@@ -63,7 +63,12 @@
                                     <!-- only print logo end -->
                                     {{-- category --}}
                                     <div class="">
-                                        <a href="#" class="text-[#007bff] border-b-2 border-[#007bff] mb-3 md:mb-4 inline-block font-bold text-lg md:text-xl">জেলা</a>
+                                        @foreach($post_categories as $category)
+                                            @if($loop->iteration == 2)
+                                                @break
+                                            @endif
+                                        <a href="{{route('category_view', $category->slug)}}" class="text-[#007bff] border-b-2 border-[#007bff] mb-3 md:mb-4 inline-block font-bold text-lg md:text-xl">{{isEnglish()?$category->name_en:$category->name}}</a>
+                                        @endforeach
                                     </div>
                                     <span class="text-base md:text-xl text-[#595959] font-bold mb-2 block">{{ $news->sub_headline }}</span>
                                     <h1 class="page-title">{{ $news->title }}</h1>
@@ -159,7 +164,7 @@
                                                     class="fa-solid fa-magnifying-glass-minus"></i></a>
                                             <a href="#" class="social_icon text-sm" onclick="window.print()"><i
                                                     class="fa-solid fa-print"></i></a>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -269,7 +274,7 @@
 @endsection
 
 @section('js')
-    
+
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         const newsElements = document.querySelectorAll('.news-content');
@@ -304,7 +309,7 @@
         // Toggle prokash and updated
         document.querySelectorAll('.update_prokash_btn').forEach(function (btn) {
             btn.addEventListener('click', function () {
-                const parent = btn.closest('.update');  
+                const parent = btn.closest('.update');
                 const updated = parent.querySelector('.updated');
                 const prokash = parent.querySelector('.prokash');
 
