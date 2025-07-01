@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>News Portal</title>
+    <title>INNOVA IT</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
@@ -29,9 +29,9 @@
 
                         <div class="text-center w-75 m-auto">
                             <a href="{{route('index_page')}}">
-                                <span><img src="{{ asset('admin') }}/images/logo-dark.png" alt="" height="18"></span>
+                                <span style="font-weight: bold; font-size: 30px">INNOVA IT</span>
                             </a>
-                            <h5 class="text-uppercase text-center font-bold mt-4">
+                            <h5 class="text-uppercase text-center font-bold mt-1">
                                 @yield('page_title')
                             </h5>
                         </div>

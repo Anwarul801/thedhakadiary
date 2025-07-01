@@ -19,7 +19,7 @@
     <meta property="og:image:type" content="image/jpeg">
     <meta name="instagram:card" content="@yield('og_subtitle', getOptionData('site_title'))">
     <meta name="instagram:title" content="@yield('og_title', getOptionData('site_title'))">
-    <meta name="instagram:description" content="@yield('meta_description', getOptionData('site_title'))"> 
+    <meta name="instagram:description" content="@yield('meta_description', getOptionData('site_title'))">
 
 
     <link rel="icon" href="{{asset('storage')}}/{{getOptionData('favicon')}}" type="image/gif" sizes="60x60">
@@ -27,11 +27,14 @@
     <link rel="stylesheet" href="{{asset('frontend/assets')}}/css/jquery-ui.min.css">
     <link rel="stylesheet" href="{{asset('frontend/assets')}}/css/sidebar-menu.css">
     <link rel="stylesheet" href="{{asset('frontend/assets')}}/css/mega-menu.css">
-    
+
     @yield('css')
     <link href="{{asset('frontend/assets')}}/css/tailwind_css/tailwind_output.css" rel="stylesheet">
 </head>
-
+{{--
+Developed By INNOVA IT
+Developer Profile: www.innovait.com.bd
+--}}
 <body class="site">
 <div class="scroll-area"><i class="fa-solid fa-angles-up"></i></div>
 {{--header area--}}
