@@ -85,12 +85,12 @@
                                                     ];
                                                 @endphp
                                                 @if ($news->source == 'Author' && $news->author_id != null)
-                                                    <a style="font-size: 17px;" href="{{ route('author_news', ['id' => $news->author_id, 'name' => $news->author->name_en ?? null]) }}"
+                                                    <a class="text-[14px] md:text-[17px] font-semibold" href="{{ route('author_news', ['id' => $news->author_id, 'name' => $news->author->name_en ?? null]) }}"
                                                         class="present inline-block">{{ isEnglish() ? $news->author->name_en : $news->author->name ?? null }}</a>
                                                 @elseif(in_array($news->source, $sources))
-                                                    <a style="font-size: 17px;" class="present inline-block">{{ __("lang.$news->source") }}</a>
+                                                    <a class="text-[14px] md:text-[17px] font-semibold" class="present inline-block">{{ __("lang.$news->source") }}</a>
                                                 @elseif($news->source != 'None')
-                                                    <a style="font-size: 17px;" class="present inline-block">{{ $news->source }}</a>
+                                                    <a class="text-[14px] md:text-[17px] font-semibold" class="present inline-block">{{ $news->source }}</a>
                                                 @endif
                                                 <p class="update">{{ $news->source_designation }}</p>
                                             </div>
@@ -162,6 +162,9 @@
                                                     class="fa-solid fa-magnifying-glass-plus"></i></a>
                                             <a href="#" class="social_icon text-sm zoomOut" id=""><i
                                                     class="fa-solid fa-magnifying-glass-minus"></i></a>
+                                            <a href="#" class="social_icon text-sm copyLinkBtn" id="copyLinkBtn">
+                                                <i class="fa-solid fa-copy"></i>
+                                            </a>
                                             <a href="#" class="social_icon text-sm" onclick="window.print()"><i
                                                     class="fa-solid fa-print"></i></a>
 
@@ -321,17 +324,20 @@
 
 
         // Copy link & share functionality
-        const copyLinkBtn = document.getElementById('copyLinkBtn');
+        const copyLinkBtn = document.querySelectorAll('.copyLinkBtn');
         const shareBtn = document.getElementById('shareBtn');
         const currentUrl = window.location.href;
 
         // Copy to clipboard
-        copyLinkBtn?.addEventListener('click', (e) => {
-            e.preventDefault();
-            navigator.clipboard.writeText(currentUrl)
-                .then(() => alert('Link copied to clipboard!'))
-                .catch(() => alert('Failed to copy the link.'));
+        copyLinkBtn?.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                navigator.clipboard.writeText(currentUrl)
+                    .then(() => alert('Link copied to clipboard!'))
+                    .catch(() => alert('Failed to copy the link.'));
+            });
         });
+        
 
         // Native Share (only works in supported mobile browsers)
         shareBtn?.addEventListener('click', (e) => {
