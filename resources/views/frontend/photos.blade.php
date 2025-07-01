@@ -67,6 +67,7 @@
             font-family: 'Font Awesome 5 Free';
             font-weight: 900;
             transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .swiper-button-prev::after {
@@ -94,6 +95,46 @@
         .swiper-button-next:hover::after {
             color: #fff;
             background-color: #1100ff;
+        }
+        .gallery-slide-item {
+            position: relative;
+            height: 426px;
+            background: black;
+            overflow: hidden;
+        }
+        @media (max-width: 1399px) {
+            .gallery-slide-item {
+                height: 380px;
+            }
+        }
+        /* @media (max-width: 1199px) {
+            .gallery-slide-item {
+                height: 325px;
+            }
+        } */
+        @media (max-width: 360px) {
+            .gallery-slide-item {
+                height: 238px;
+            }
+        }
+        .gallery-slide-item img {
+            width: auto;
+            height: 100%;
+            object-fit: contain;
+        }
+        .gallery-slide-item .image-caption {
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 5px 10px; 
+            font-size: 16px;
+            box-shadow: 0px 1px 10px rgba(255, 255, 255, 0.5);
+            width: 100%;
+        }
+        .gallery-slide-item .caption-text { 
+            
         }
     </style>
     <link rel="stylesheet" href="{{ asset('frontend/assets') }}/css/swiper-bundle.min.css">
@@ -131,26 +172,28 @@
                                     <!-- Swiper -->
 
                                     <div class="swiper mySwiper">
-                                        <div class="swiper-wrapper">
-                                            <div class="swiper-slide">
-                                                <a
-                                                    href="{{ route('photo_details', ['id' => $photo->id, 'slug' => $photo->title_en]) }}">
-                                                    <img src="{{ asset($photo->thumbnail) }}" alt="Thumbnail"
-                                                        class="w-full h-auto">
-                                                </a>
-                                            </div>
-
+                                        <div class="swiper-wrapper"> 
                                             @foreach ($photo->gallery_images as $key => $img)
-                                                @if ($key > 0 && $key <= 4)
+                                                @if ($key >= 0)
                                                     <div class="swiper-slide">
-                                                        <a
-                                                            href="{{ route('photo_details', ['id' => $photo->id, 'slug' => $photo->title_en]) }}">
-                                                            <img src="{{ asset($img->image) }}" alt="Gallery Image"
-                                                                class="w-full h-auto">
-                                                        </a>
+                                                        <div class="gallery-slide-item">
+                                                            <a
+                                                                href="{{ route('photo_details', ['id' => $photo->id, 'slug' => $photo->title_en]) }}">
+                                                                <img src="{{ asset($img->image) }}" alt="Gallery Image"
+                                                                    class="max-w-full w-auto h-full object-contain">
+                                                            </a>
+                                                            <figcaption class="image-caption">
+                                                                <div class="caption-text">{{ $img->caption }}</div>
+                                                            </figcaption>
+                                                        </div>
                                                     </div>
                                                 @endif
                                             @endforeach
+                                        </div>
+                                        <div class="news-card">
+                                            <h1 class="title title-lg">
+                                                <a href="{{route('photo_details', ['id' => $photo->id, 'slug' => $photo->title_en])}}">{{Str::limit(isEnglish()?$photo->title_en:$photo->title)}}</a>
+                                            </h1>
                                         </div>
 
                                         <div class="gallery_slider_control">
@@ -211,7 +254,8 @@
                                                 <h1 class="title">
                                                     <a
                                                         href="{{ route('photo_details', ['id' => $photo->id, 'slug' => $photo->title_en]) }}">
-                                                        {{ Str::limit(isEnglish() ? $photo->title_en : $photo->title) }} </a>
+                                                        {{ Str::limit(isEnglish() ? $photo->title_en : $photo->title) }}
+                                                    </a>
                                                 </h1>
                                                 <div class="date">
                                                     <p>
