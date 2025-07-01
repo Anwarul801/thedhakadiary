@@ -152,7 +152,7 @@ class PostController extends Controller
         $post->source_designation = $request->source_designation;
         $post->shoulder = $request->shoulder;
         $post->media_id = $media->id;
-        $post->news_details = htmlspecialchars($request->input('news_details'));
+        $post->news_details = $request->input('news_details');
         $post->tags = $request->tags;
         $post->publishing_date = $request->publishing_date;
         $post->meta_keywords = $request->meta_keywords;
@@ -271,7 +271,7 @@ class PostController extends Controller
         }
         $post->source_designation = $request->source_designation;
         $post->shoulder = $request->shoulder;
-        $post->news_details = htmlspecialchars($request->input('news_details'));
+        $post->news_details = $request->input('news_details');
         $post->tags = $request->tags;
         $post->publishing_date = $request->publishing_date;
         $post->meta_keywords = $request->meta_keywords;
