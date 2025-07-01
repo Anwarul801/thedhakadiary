@@ -67,7 +67,7 @@
                                             @if($loop->iteration == 2)
                                                 @break
                                             @endif
-                                        <a href="{{route('category_view', $category->slug)}}" class="text-[#007bff] border-b-2 border-[#007bff] mb-3 md:mb-4 inline-block font-bold text-lg md:text-xl">{{isEnglish()?$category->name_en:$category->name}}</a>
+                                        <a href="{{route('category_view', $category->slug)}}" class="text-[#007bff] hover:text-[#181823] border-b-2 border-[#007bff] hover:border-[#181823] transition-all duration-75 mb-3 md:mb-4 inline-block font-bold text-lg md:text-xl">{{isEnglish()?$category->name_en:$category->name}}</a>
                                         @endforeach
                                     </div>
                                     <span class="text-base md:text-xl text-[#595959] font-bold mb-2 block">{{ $news->sub_headline }}</span>
