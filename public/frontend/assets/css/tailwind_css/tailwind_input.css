@@ -2,7 +2,10 @@
 @import "tailwindcss";
 @source "../../../../../resources/views";
 
-
+/*{{--*/
+/*Developed By INNOVA IT*/
+/*Developer Profile: www.innovait.com.bd*/
+/*--}}*/
 body {
   @apply font-noto-bengali m-0 p-0 text-base;
 }
@@ -179,7 +182,7 @@ li {
     }
   }
 }
- 
+
 .footer_ad{
   position: fixed;
   bottom: 0;
@@ -537,7 +540,7 @@ li {
   }
 }
 
-  
+
 
 /* ============PAGINATION============ */
 .pagination {
@@ -596,7 +599,7 @@ li {
 
 .mfp-content{
   @apply relative;
-  .mfp-title { 
+  .mfp-title {
     padding: 16px;
     position: absolute;
     left: 0;

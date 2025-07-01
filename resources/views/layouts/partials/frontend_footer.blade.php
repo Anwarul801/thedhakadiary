@@ -52,7 +52,7 @@
                     $privacy_policy = $pages->where('id', 2)->first();
                     $terms_and_condition = $pages->where('id', 3)->first();
                     @endphp
-                    
+
                     <div class="col-span-2 grid grid-cols-2 gap-8">
                         <ul class="space-y-3 order-2 md:order-1">
                             <li><a href="{{route('page_view', ['id' => $about_us->id, 'slug' => $about_us->slug])}}" class="f-link">{{isEnglish()?$about_us->name_en:$about_us->name}}</a></li>
@@ -93,7 +93,10 @@
 {{--                    </p>--}}
                     <p class="footer-text text-primary font-playfair sm:text-base text-sm">
                         Copyright © 2025 All Rights Reserved
-                        <span class="developer">| Developed by <a href="https://innovait.com.bd" target="_blank" class="hover:underline">INNOVA IT</a></span>
+{{--
+Developed By INNOVA IT
+Developer Profile: www.innovait.com.bd
+--}}
                     </p>
 
                 </div>

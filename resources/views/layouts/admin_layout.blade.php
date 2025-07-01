@@ -154,13 +154,12 @@
         <!-- LOGO -->
         <div class="logo-box">
             <a href="{{ route('index_page') }}" target="_blank" class="logo text-center">
-                        <span class="logo-lg">
-                            <img src="{{ asset('admin') }}/images/logo-light.png" alt="" height="16">
-                            <!-- <span class="logo-lg-text-light">UBold</span> -->
+                        <span class="logo-lg" style="font-size: 30px; color: white; font-weight: bolder;">
+                           <i style="font-weight: bolder;">INNOVA IT</i>
                         </span>
-                <span class="logo-sm">
+                <span class="logo-sm" style="font-size: 30px; color: white; font-weight: bolder;">
                             <!-- <span class="logo-sm-text-dark">U</span> -->
-                            <img src="{{ asset('admin') }}/images/logo-sm.png" alt="" height="28">
+                            IN
                         </span>
             </a>
         </div>
