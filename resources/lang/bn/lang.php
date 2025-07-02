@@ -13,7 +13,7 @@ return [
     'editor' => 'সম্পাদক : ',
     'contact_us' => 'যোগাযোগ করুন',
     'latest_video' => 'সর্বশেষ ভিডিও',
-    'site_title' => 'দ্যা ঢাকা ডায়েরী',
+    'site_title' => 'দ্যা ঢাকা ডায়েরি',
     'others_news' => 'অন্যান্য খবর',
     'own_reporter' => 'নিজস্ব প্রতিবেদক',
     'online_desk' => 'অনলাইন ডেস্ক',
