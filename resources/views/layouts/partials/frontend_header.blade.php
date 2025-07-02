@@ -131,7 +131,7 @@
                     </div>
 
                     <div class="mobile-main-menu p-4">
-                        <ul class="space-y-2 md:flex lg:items-center flex-col">
+                        <ul class="space-y-2 grid grid-cols-2">
                             @foreach($menu_header as $menu)
                                 @if($menu->type == 'Category')
                                     <li><a href="{{ route('category_view', $menu->category->slug) }}" class="nav-link">{{ isEnglish()? $menu->title_en : $menu->title }}</a></li>

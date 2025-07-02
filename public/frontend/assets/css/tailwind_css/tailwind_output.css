@@ -1465,6 +1465,9 @@
     font-size: var(--text-xs);
     line-height: var(--tw-leading, var(--text-xs--line-height));
   }
+  .text-\[14px\] {
+    font-size: 14px;
+  }
   .leading-5 {
     --tw-leading: calc(var(--spacing) * 5);
     line-height: calc(var(--spacing) * 5);
@@ -1603,6 +1606,10 @@
     --tw-duration: 0ms;
     transition-duration: 0ms;
   }
+  .duration-75 {
+    --tw-duration: 75ms;
+    transition-duration: 75ms;
+  }
   .duration-150 {
     --tw-duration: 150ms;
     transition-duration: 150ms;
@@ -1635,10 +1642,24 @@
   .backface-hidden {
     backface-visibility: hidden;
   }
+  .hover\:border-\[\#181823\] {
+    &:hover {
+      @media (hover: hover) {
+        border-color: #181823;
+      }
+    }
+  }
   .hover\:bg-black {
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-black);
+      }
+    }
+  }
+  .hover\:text-\[\#181823\] {
+    &:hover {
+      @media (hover: hover) {
+        color: #181823;
       }
     }
   }
@@ -2026,6 +2047,11 @@
       line-height: var(--tw-leading, var(--text-xl--line-height));
     }
   }
+  .md\:text-\[17px\] {
+    @media (width >= 768px) {
+      font-size: 17px;
+    }
+  }
   .lg\:col-span-3 {
     @media (width >= 992px) {
       grid-column: span 3 / span 3;
@@ -2079,11 +2105,6 @@
   .lg\:grid-cols-4 {
     @media (width >= 992px) {
       grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-  }
-  .lg\:items-center {
-    @media (width >= 992px) {
-      align-items: center;
     }
   }
   .lg\:space-x-4 {
@@ -2358,9 +2379,6 @@ li {
     &.shareBtn,
     &.copyLinkBtn {
       display: flex;
-      @media (width >= 992px) {
-        display: none;
-      }
     }
   }
 }

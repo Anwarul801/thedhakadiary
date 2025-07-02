@@ -141,7 +141,7 @@ li {
     }
     &.shareBtn,
     &.copyLinkBtn{
-      @apply flex lg:hidden;
+      @apply flex;
     }
   }
 }

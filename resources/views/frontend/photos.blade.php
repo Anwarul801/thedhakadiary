@@ -15,7 +15,7 @@
 
         .autoplay-progress-bar {
             overflow: hidden;
-            z-index: 9999;
+            z-index: 9;
         }
 
         .progress-fill {
