@@ -135,7 +135,7 @@
                                         </div>
                                         <div class="flex justify-center items-center  gap-1.5 print:hidden">
                                             @php
-                                                $url = urlencode(url()->current());
+                                                $url = route('news_details', $news->id);
                                             @endphp
 
                                             <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}"
