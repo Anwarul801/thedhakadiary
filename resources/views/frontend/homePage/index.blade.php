@@ -1,7 +1,7 @@
 @php use Carbon\Carbon;use Illuminate\Support\Str; @endphp
 @extends('layouts.frontend_layout')
 @section('page_title')
-    {{isEnglish()? 'The Dhaka Diary' : 'দ্যা ঢাকা ডায়েরী'}}
+    {{isEnglish()? getOptionData('site_title_en') : getOptionData('site_title')}}
 @endsection
 @section('css')
 @endsection

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>@yield('page_title', 'The Dhaka Diary')</title>
+    <title>@yield('page_title', 'News')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="@yield('meta_description', getOptionData('site_title'))"/>
     <meta name="keywords" content="@yield('meta_keywords', getOptionData('site_title'))"/>

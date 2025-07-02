@@ -28,6 +28,10 @@
                                     <input type="text" value="{{ getOptionData('site_title') }}" name="site_title" class="form-control">
                                 </div>
                                 <div class="form-group">
+                                    <label for="">Site Title English</label>
+                                    <input type="text" value="{{ getOptionData('site_title_en') }}" name="site_title_en" class="form-control">
+                                </div>
+                                <div class="form-group">
                                     <label for="">Slogan</label>
                                     <input type="text" name="slogan" value="{{ getOptionData('slogan') }}" class="form-control">
                                 </div>
