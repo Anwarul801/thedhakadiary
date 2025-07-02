@@ -326,7 +326,7 @@
         // Copy link & share functionality
         const copyLinkBtn = document.querySelectorAll('.copyLinkBtn');
         const shareBtn = document.getElementById('shareBtn');
-        const currentUrl = window.location.href;
+        const currentUrl = @json(route('news_details', $news->id));
 
         // Copy to clipboard
         copyLinkBtn?.forEach(btn => {
@@ -337,7 +337,7 @@
                     .catch(() => alert('Failed to copy the link.'));
             });
         });
-        
+
 
         // Native Share (only works in supported mobile browsers)
         shareBtn?.addEventListener('click', (e) => {
