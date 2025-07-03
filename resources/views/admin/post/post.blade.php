@@ -31,6 +31,7 @@
                             <th>Language</th>
                             <th>Author</th>
                             <th>Hit</th>
+                            <th>Heading</th>
                             <th>Action</th>
                         </tr>
 {{--                        search start--}}
@@ -74,6 +75,9 @@
                                 <option {{$request->hit == 'DESC' ? 'selected' : ''}} value="DESC">Most Viewed</option>
                             </select>
                         </td>
+                            <td>
+
+                            </td>
                         <td>
                             <button type="submit" form="search_form" class="btn btn-outline-primary mb-2"><i class="fa fa-search"></i> Search</button>
                             <a href="{{ route('post.index') }}" class="btn btn-outline-danger mb-2">Reset</a>
@@ -98,6 +102,7 @@
                                 <td>{{ $post->author->name??$post->author->name_en??null }}</td>
                                 @endif
                                 <td>{{ $post->hit == null ? 0 : $post->hit }}</td>
+                                <td> {{$post->header_order}}</td>
                                 <td>
                                     <!-- Example single danger button -->
                                     <div class="btn-group">
