@@ -16,7 +16,7 @@
                 <div class="grid grid-cols-12 md:gap-6 gap-4">
                     <div class="xl:col-span-9 col-span-12">
                         <div class="grid grid-cols-12 md:gap-6 gap-4">
-                            @foreach($header_posts->where('header_order', 1) as $header_post)
+                            @forelse($header_posts->where('header_order', 1) as $header_post)
                                 <div class="xl:col-span-8 sm:col-span-7 col-span-12">
                                     <!-- news card -->
                                     <div class="news-card">
@@ -38,13 +38,16 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                                <div class="xl:col-span-8 sm:col-span-7 col-span-12">
+                                </div>
+                            @endforelse
 
                             <div class="xl:col-span-4 sm:col-span-5 col-span-12">
                                 <div class="grid grid-cols-12 md:gap-y-6 gap-4">
                                     <!-- First side news card -->
 
-                                    @foreach($header_posts->whereIn('header_order', [2, 3])->sortby('header_order') as $header_post)
+                                    @forelse($header_posts->whereIn('header_order', 2)->sortby('header_order') as $header_post)
                                         <div class="sm:col-span-12 col-span-6">
                                             <div class="news-card">
                                                 <div class="thumbnail">
@@ -69,14 +72,47 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    @empty
+                                        <div class="sm:col-span-12 col-span-6">
+                                        </div>
+                                    @endforelse
+
+                                    @forelse($header_posts->whereIn('header_order', 3)->sortby('header_order') as $header_post)
+                                        <div class="sm:col-span-12 col-span-6">
+                                            <div class="news-card">
+                                                <div class="thumbnail">
+                                                    <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">
+                                                        @php
+                                                            $thumbnail = $header_post->media->thumbnail ?? null;
+                                                            $thumbnailPath = $thumbnail ? public_path('storage/' . $thumbnail) : null;
+                                                        @endphp
+
+                                                        @if ($thumbnailPath && file_exists($thumbnailPath))
+                                                            <img src="{{ asset('storage/' . $thumbnail) }}" alt="Thumbnail">
+                                                        @else
+                                                            <img src="{{ asset('storage/' . ($header_post->media->image ?? 'default.png')) }}" alt="Default Thumbnail">
+                                                        @endif
+                                                    </a>
+                                                </div>
+                                                <h1 class="title">
+                                                    <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{Str::limit($header_post->title, 100)}}</a>
+                                                </h1>
+                                                <div class="date">
+                                                    <p>{{format_publishing_date($header_post->publishing_date)}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @empty
+                                        <div class="sm:col-span-12 col-span-6">
+                                        </div>
+                                    @endforelse
 
                                 </div>
                             </div>
 
                         </div>
                         <div class="grid grid-cols-12 md:gap-6 gap-4 mt-4">
-                            @foreach($header_posts->whereIn('header_order', [4, 5, 6])->sortby('header_order') as $header_post)
+                            @forelse($header_posts->whereIn('header_order', 4)->sortby('header_order') as $header_post)
                                 <div class="md:col-span-4 col-span-6">
                                     <div class="news-card">
                                         <div class="thumbnail">
@@ -101,7 +137,68 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                                <div class="md:col-span-4 col-span-6">
+                                </div>
+                            @endforelse
+                            @forelse($header_posts->whereIn('header_order', 5)->sortby('header_order') as $header_post)
+                                <div class="md:col-span-4 col-span-6">
+                                    <div class="news-card">
+                                        <div class="thumbnail">
+                                            <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">
+                                                @php
+                                                    $thumbnail = $header_post->media->thumbnail ?? null;
+                                                    $thumbnailPath = $thumbnail ? public_path('storage/' . $thumbnail) : null;
+                                                @endphp
+
+                                                @if ($thumbnailPath && file_exists($thumbnailPath))
+                                                    <img src="{{ asset('storage/' . $thumbnail) }}" alt="Thumbnail">
+                                                @else
+                                                    <img src="{{ asset('storage/' . ($header_post->media->image ?? 'default.png')) }}" alt="Default Thumbnail">
+                                                @endif
+                                            </a>
+                                        </div>
+                                        <h1 class="title"><a
+                                                href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{Str::limit($header_post->title, 100)}}</a>
+                                        </h1>
+                                        <div class="date">
+                                            <p>{{format_publishing_date($header_post->publishing_date)}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <div class="md:col-span-4 col-span-6">
+                                </div>
+                            @endforelse
+                            @forelse($header_posts->whereIn('header_order', 6)->sortby('header_order') as $header_post)
+                                <div class="md:col-span-4 col-span-6">
+                                    <div class="news-card">
+                                        <div class="thumbnail">
+                                            <a href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">
+                                                @php
+                                                    $thumbnail = $header_post->media->thumbnail ?? null;
+                                                    $thumbnailPath = $thumbnail ? public_path('storage/' . $thumbnail) : null;
+                                                @endphp
+
+                                                @if ($thumbnailPath && file_exists($thumbnailPath))
+                                                    <img src="{{ asset('storage/' . $thumbnail) }}" alt="Thumbnail">
+                                                @else
+                                                    <img src="{{ asset('storage/' . ($header_post->media->image ?? 'default.png')) }}" alt="Default Thumbnail">
+                                                @endif
+                                            </a>
+                                        </div>
+                                        <h1 class="title"><a
+                                                href="{{route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug])}}">{{Str::limit($header_post->title, 100)}}</a>
+                                        </h1>
+                                        <div class="date">
+                                            <p>{{format_publishing_date($header_post->publishing_date)}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <div class="md:col-span-4 col-span-6">
+                                </div>
+                            @endforelse
                         </div>
 
 
