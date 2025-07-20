@@ -56,8 +56,8 @@ a@php
                                     <!-- only print logo -->
                                     <div class="border-b-[1px] border-gray-400 mb-3 hidden print:block">
                                         <img src="{{ asset('frontend/assets') }}/image/main_logo_dark.png"
-                                            alt="The Dhaka Diary"
-                                            class="w-1/2 m-auto hidden print:block break-after-avoid mb-3" />
+                                             alt="The Dhaka Diary"
+                                             class="w-1/2 m-auto hidden print:block break-after-avoid mb-3"/>
                                     </div>
                                     <!-- only print logo end -->
                                     {{-- category --}}
@@ -67,7 +67,7 @@ a@php
                                                 @break
                                             @endif
                                             <a href="{{ route('category_view', $category->slug) }}"
-                                                class="text-[#007bff] hover:text-[#181823] border-b-2 border-[#007bff] hover:border-[#181823] transition-all duration-75 mb-3 md:mb-4 inline-block font-bold text-lg md:text-xl">{{ isEnglish() ? $category->name_en : $category->name }}</a>
+                                               class="text-[#007bff] hover:text-[#181823] border-b-2 border-[#007bff] hover:border-[#181823] transition-all duration-75 mb-3 md:mb-4 inline-block font-bold text-lg md:text-xl">{{ isEnglish() ? $category->name_en : $category->name }}</a>
                                         @endforeach
                                     </div>
                                     <span
@@ -87,14 +87,14 @@ a@php
                                                 @endphp
                                                 @if ($news->source == 'Author' && $news->author_id != null)
                                                     <a class="text-[14px] md:text-[17px] font-semibold"
-                                                        href="{{ route('author_news', ['id' => $news->author_id, 'name' => $news->author->name_en ?? null]) }}"
-                                                        class="present inline-block">{{ isEnglish() ? $news->author->name_en : $news->author->name ?? null }}</a>
+                                                       href="{{ route('author_news', ['id' => $news->author_id, 'name' => $news->author->name_en ?? null]) }}"
+                                                       class="present inline-block">{{ isEnglish() ? $news->author->name_en : $news->author->name ?? null }}</a>
                                                 @elseif(in_array($news->source, $sources))
                                                     <a class="text-[14px] md:text-[17px] font-semibold"
-                                                        class="present inline-block">{{ __("lang.$news->source") }}</a>
+                                                       class="present inline-block">{{ __("lang.$news->source") }}</a>
                                                 @elseif($news->source != 'None')
                                                     <a class="text-[14px] md:text-[17px] font-semibold"
-                                                        class="present inline-block">{{ $news->source }}</a>
+                                                       class="present inline-block">{{ $news->source }}</a>
                                                 @endif
                                                 <p class="update">{{ $news->source_designation }}</p>
                                             </div>
@@ -132,9 +132,9 @@ a@php
                                                 <span
                                                     class="prokash hidden">{{ isEnglish() ? $update_en : $update_bn }}</span>
                                                 <img style="width: 20px; display: inline-block"
-                                                    class="cursor-pointer update_prokash_btn ms-1 print:hidden"
-                                                    src="{{ asset('frontend/assets/image/up-and-down-arrow.png') }}"
-                                                    alt="">
+                                                     class="cursor-pointer update_prokash_btn ms-1 print:hidden"
+                                                     src="{{ asset('frontend/assets/image/up-and-down-arrow.png') }}"
+                                                     alt="">
                                             </p>
                                         </div>
                                         <div class="flex justify-center items-center  gap-1.5 print:hidden">
@@ -143,22 +143,22 @@ a@php
                                             @endphp
 
                                             <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}"
-                                                class="social_icon text-sm" target="_blank">
+                                               class="social_icon text-sm" target="_blank">
                                                 <i class="fa-brands fa-facebook-f"></i>
                                             </a>
 
                                             <a href="https://twitter.com/intent/tweet?url={{ $url }}"
-                                                class="social_icon text-sm" target="_blank">
+                                               class="social_icon text-sm" target="_blank">
                                                 <i class="fa-brands fa-x-twitter"></i>
                                             </a>
 
                                             <a href="https://www.instagram.com/" class="social_icon text-sm"
-                                                target="_blank">
+                                               target="_blank">
                                                 <i class="fa-brands fa-instagram"></i>
                                             </a>
 
                                             <a href="https://wa.me/?text={{ $url }}" class="social_icon text-sm"
-                                                target="_blank">
+                                               target="_blank">
                                                 <i class="fa-brands fa-whatsapp"></i>
                                             </a>
 
@@ -191,18 +191,20 @@ a@php
                                 <div class="text-area-card news-content">
                                     {!! $news->news_details !!}
                                 </div>
-                                <div class="news-tags print:hidden">
-                                    <div class="tag-title">
-                                        আরও পড়ুন
+                                @if($news->tags)
+                                    <div class="news-tags print:hidden">
+                                        <div class="tag-title">
+                                            আরও পড়ুন
+                                        </div>
+                                        <ul class="tag-list">
+                                            @foreach(explode(',', $news->tags) as $tag)
+                                                <li class="tag-item">
+                                                    <a class="tag-link" href="{{route('search')}}?search={{$tag}}">{{ trim($tag) }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                     </div>
-                                    <ul class="tag-list">
-                                        <li class="tag-item"><a class="tag-link" href="#">হামলা</a></li>
-                                        <li class="tag-item"><a class="tag-link" href="#">রাজনীতি</a></li>
-                                        <li class="tag-item"><a class="tag-link" href="#">বিএনপি</a></li>
-                                        <li class="tag-item"><a class="tag-link" href="#">চট্টগ্রাম</a></li>
-                                        <li class="tag-item"><a class="tag-link" href="#">বাঁশখালী</a></li>
-                                    </ul>
-                                </div>
+                                @endif
                             </div>
                             <div class="md:col-span-4 col-span-12 md:mt-0 mt-4 no_print">
                                 @include('layouts.partials.news_item.latest_news')
@@ -237,7 +239,7 @@ a@php
                     <!-- Card 1 -->
                     @foreach ($related_post as $rpost)
                         <a href="{{ route('news_details', ['id' => $rpost->id, 'slug' => $rpost->slug]) }}"
-                            class="otners-news-item">
+                           class="otners-news-item">
                             <h3 class="news-nmbr">{{ isEnglish() ? $loop->iteration : bangla_number($loop->iteration) }}
                             </h3>
                             <p class="news-title">{{ Str::limit($rpost->title, 50) }}</p>
@@ -258,12 +260,12 @@ a@php
                 @endphp
 
                 <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}"
-                    class="social_icon text-sm hide_on_mobile" target="_blank">
+                   class="social_icon text-sm hide_on_mobile" target="_blank">
                     <i class="fa-brands fa-facebook-f"></i>
                 </a>
 
                 <a href="https://twitter.com/intent/tweet?url={{ $url }}"
-                    class="social_icon text-sm hide_on_mobile" target="_blank">
+                   class="social_icon text-sm hide_on_mobile" target="_blank">
                     <i class="fa-brands fa-x-twitter"></i>
                 </a>
 
@@ -272,7 +274,7 @@ a@php
                 </a>
 
                 <a href="https://wa.me/?text={{ $url }}" class="social_icon text-sm hide_on_mobile"
-                    target="_blank">
+                   target="_blank">
                     <i class="fa-brands fa-whatsapp"></i>
                 </a>
 
@@ -295,13 +297,13 @@ a@php
 
 @section('js')
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const newsElements = document.querySelectorAll('.news-content');
             let fontSize = 1; // em
 
             // Handle all zoomIn buttons
             document.querySelectorAll('.zoomIn').forEach(button => {
-                button.addEventListener('click', function(e) {
+                button.addEventListener('click', function (e) {
                     e.preventDefault();
                     if (fontSize < 2) {
                         fontSize += 0.1;
@@ -314,7 +316,7 @@ a@php
 
             // Handle all zoomOut buttons
             document.querySelectorAll('.zoomOut').forEach(button => {
-                button.addEventListener('click', function(e) {
+                button.addEventListener('click', function (e) {
                     e.preventDefault();
                     if (fontSize > 0.6) {
                         fontSize -= 0.1;
@@ -326,8 +328,8 @@ a@php
             });
 
             // Toggle prokash and updated
-            document.querySelectorAll('.update_prokash_btn').forEach(function(btn) {
-                btn.addEventListener('click', function() {
+            document.querySelectorAll('.update_prokash_btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
                     const parent = btn.closest('.update');
                     const updated = parent.querySelector('.updated');
                     const prokash = parent.querySelector('.prokash');
@@ -336,7 +338,6 @@ a@php
                     prokash.classList.toggle('hidden');
                 });
             });
-
 
 
             // Copy link & share functionality
@@ -410,7 +411,7 @@ a@php
         });
     </script> --}}
     <script>
-        $(function() {
+        $(function () {
             var div_width = $('#get_width').width();
             var div_height = div_width * 56 / 100;
             $('#video_iframe').css({
@@ -423,7 +424,7 @@ a@php
         const sidebar = document.querySelector('.sidebar-folding-icons');
         let hideSidebarTimeout;
 
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
 
