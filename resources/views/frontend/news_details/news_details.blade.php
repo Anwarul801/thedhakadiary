@@ -1,4 +1,4 @@
-@php
+a@php
     use Carbon\Carbon;
     use Illuminate\Support\Str;
 @endphp
@@ -7,7 +7,6 @@
     {{ $news->title }}
 @endsection
 @section('css')
-
     <style>
         @media print {
             body * {
@@ -33,7 +32,7 @@
     </style>
 @endsection
 @section('og_image')
-    {{ asset('storage') }}/{{ $news->media->share_image ?? $news->media->image ?? null }}
+    {{ asset('storage') }}/{{ $news->media->share_image ?? ($news->media->image ?? null) }}
 @endsection
 @section('og_title')
     {{ $news->title }}
@@ -63,14 +62,16 @@
                                     <!-- only print logo end -->
                                     {{-- category --}}
                                     <div class="">
-                                        @foreach($post_categories as $category)
-                                            @if($loop->iteration == 2)
+                                        @foreach ($post_categories as $category)
+                                            @if ($loop->iteration == 2)
                                                 @break
                                             @endif
-                                        <a href="{{route('category_view', $category->slug)}}" class="text-[#007bff] hover:text-[#181823] border-b-2 border-[#007bff] hover:border-[#181823] transition-all duration-75 mb-3 md:mb-4 inline-block font-bold text-lg md:text-xl">{{isEnglish()?$category->name_en:$category->name}}</a>
+                                            <a href="{{ route('category_view', $category->slug) }}"
+                                                class="text-[#007bff] hover:text-[#181823] border-b-2 border-[#007bff] hover:border-[#181823] transition-all duration-75 mb-3 md:mb-4 inline-block font-bold text-lg md:text-xl">{{ isEnglish() ? $category->name_en : $category->name }}</a>
                                         @endforeach
                                     </div>
-                                    <span class="text-base md:text-xl text-[#595959] font-bold mb-2 block">{{ $news->sub_headline }}</span>
+                                    <span
+                                        class="text-base md:text-xl text-[#595959] font-bold mb-2 block">{{ $news->sub_headline }}</span>
                                     <h1 class="page-title">{{ $news->title }}</h1>
                                     <div class="flex justify-between items-end flex-wrap gap-3">
                                         <div
@@ -85,12 +86,15 @@
                                                     ];
                                                 @endphp
                                                 @if ($news->source == 'Author' && $news->author_id != null)
-                                                    <a class="text-[14px] md:text-[17px] font-semibold" href="{{ route('author_news', ['id' => $news->author_id, 'name' => $news->author->name_en ?? null]) }}"
+                                                    <a class="text-[14px] md:text-[17px] font-semibold"
+                                                        href="{{ route('author_news', ['id' => $news->author_id, 'name' => $news->author->name_en ?? null]) }}"
                                                         class="present inline-block">{{ isEnglish() ? $news->author->name_en : $news->author->name ?? null }}</a>
                                                 @elseif(in_array($news->source, $sources))
-                                                    <a class="text-[14px] md:text-[17px] font-semibold" class="present inline-block">{{ __("lang.$news->source") }}</a>
+                                                    <a class="text-[14px] md:text-[17px] font-semibold"
+                                                        class="present inline-block">{{ __("lang.$news->source") }}</a>
                                                 @elseif($news->source != 'None')
-                                                    <a class="text-[14px] md:text-[17px] font-semibold" class="present inline-block">{{ $news->source }}</a>
+                                                    <a class="text-[14px] md:text-[17px] font-semibold"
+                                                        class="present inline-block">{{ $news->source }}</a>
                                                 @endif
                                                 <p class="update">{{ $news->source_designation }}</p>
                                             </div>
@@ -187,6 +191,18 @@
                                 <div class="text-area-card news-content">
                                     {!! $news->news_details !!}
                                 </div>
+                                <div class="news-tags print:hidden">
+                                    <div class="tag-title">
+                                        আরও পড়ুন
+                                    </div>
+                                    <ul class="tag-list">
+                                        <li class="tag-item"><a class="tag-link" href="#">হামলা</a></li>
+                                        <li class="tag-item"><a class="tag-link" href="#">রাজনীতি</a></li>
+                                        <li class="tag-item"><a class="tag-link" href="#">বিএনপি</a></li>
+                                        <li class="tag-item"><a class="tag-link" href="#">চট্টগ্রাম</a></li>
+                                        <li class="tag-item"><a class="tag-link" href="#">বাঁশখালী</a></li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="md:col-span-4 col-span-12 md:mt-0 mt-4 no_print">
                                 @include('layouts.partials.news_item.latest_news')
@@ -241,13 +257,13 @@
                     $url = urlencode(url()->current());
                 @endphp
 
-                <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}" class="social_icon text-sm hide_on_mobile"
-                    target="_blank">
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}"
+                    class="social_icon text-sm hide_on_mobile" target="_blank">
                     <i class="fa-brands fa-facebook-f"></i>
                 </a>
 
-                <a href="https://twitter.com/intent/tweet?url={{ $url }}" class="social_icon text-sm hide_on_mobile"
-                    target="_blank">
+                <a href="https://twitter.com/intent/tweet?url={{ $url }}"
+                    class="social_icon text-sm hide_on_mobile" target="_blank">
                     <i class="fa-brands fa-x-twitter"></i>
                 </a>
 
@@ -255,7 +271,8 @@
                     <i class="fa-brands fa-instagram"></i>
                 </a>
 
-                <a href="https://wa.me/?text={{ $url }}" class="social_icon text-sm hide_on_mobile" target="_blank">
+                <a href="https://wa.me/?text={{ $url }}" class="social_icon text-sm hide_on_mobile"
+                    target="_blank">
                     <i class="fa-brands fa-whatsapp"></i>
                 </a>
 
@@ -277,83 +294,82 @@
 @endsection
 
 @section('js')
-
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const newsElements = document.querySelectorAll('.news-content');
-        let fontSize = 1; // em
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsElements = document.querySelectorAll('.news-content');
+            let fontSize = 1; // em
 
-        // Handle all zoomIn buttons
-        document.querySelectorAll('.zoomIn').forEach(button => {
-            button.addEventListener('click', function (e) {
+            // Handle all zoomIn buttons
+            document.querySelectorAll('.zoomIn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (fontSize < 2) {
+                        fontSize += 0.1;
+                        newsElements.forEach(el => {
+                            el.style.fontSize = fontSize + 'em';
+                        });
+                    }
+                });
+            });
+
+            // Handle all zoomOut buttons
+            document.querySelectorAll('.zoomOut').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (fontSize > 0.6) {
+                        fontSize -= 0.1;
+                        newsElements.forEach(el => {
+                            el.style.fontSize = fontSize + 'em';
+                        });
+                    }
+                });
+            });
+
+            // Toggle prokash and updated
+            document.querySelectorAll('.update_prokash_btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    const parent = btn.closest('.update');
+                    const updated = parent.querySelector('.updated');
+                    const prokash = parent.querySelector('.prokash');
+
+                    updated.classList.toggle('hidden');
+                    prokash.classList.toggle('hidden');
+                });
+            });
+
+
+
+            // Copy link & share functionality
+            const copyLinkBtn = document.querySelectorAll('.copyLinkBtn');
+            const shareBtn = document.getElementById('shareBtn');
+            const currentUrl = @json(route('news_details', $news->id));
+
+            // Copy to clipboard
+            copyLinkBtn?.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navigator.clipboard.writeText(currentUrl)
+                        .then(() => alert('Link copied to clipboard!'))
+                        .catch(() => alert('Failed to copy the link.'));
+                });
+            });
+
+
+            // Native Share (only works in supported mobile browsers)
+            shareBtn?.addEventListener('click', (e) => {
                 e.preventDefault();
-                if (fontSize < 2) {
-                    fontSize += 0.1;
-                    newsElements.forEach(el => {
-                        el.style.fontSize = fontSize + 'em';
-                    });
+                if (navigator.share) {
+                    navigator.share({
+                        title: document.title,
+                        text: 'Check this out!',
+                        url: currentUrl,
+                    }).catch(err => console.log('Share failed:', err));
+                } else {
+                    alert('Sharing not supported on this device.');
                 }
             });
         });
-
-        // Handle all zoomOut buttons
-        document.querySelectorAll('.zoomOut').forEach(button => {
-            button.addEventListener('click', function (e) {
-                e.preventDefault();
-                if (fontSize > 0.6) {
-                    fontSize -= 0.1;
-                    newsElements.forEach(el => {
-                        el.style.fontSize = fontSize + 'em';
-                    });
-                }
-            });
-        });
-
-        // Toggle prokash and updated
-        document.querySelectorAll('.update_prokash_btn').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                const parent = btn.closest('.update');
-                const updated = parent.querySelector('.updated');
-                const prokash = parent.querySelector('.prokash');
-
-                updated.classList.toggle('hidden');
-                prokash.classList.toggle('hidden');
-            });
-        });
-
-
-
-        // Copy link & share functionality
-        const copyLinkBtn = document.querySelectorAll('.copyLinkBtn');
-        const shareBtn = document.getElementById('shareBtn');
-        const currentUrl = @json(route('news_details', $news->id));
-
-        // Copy to clipboard
-        copyLinkBtn?.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                navigator.clipboard.writeText(currentUrl)
-                    .then(() => alert('Link copied to clipboard!'))
-                    .catch(() => alert('Failed to copy the link.'));
-            });
-        });
-
-
-        // Native Share (only works in supported mobile browsers)
-        shareBtn?.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (navigator.share) {
-                navigator.share({
-                    title: document.title,
-                    text: 'Check this out!',
-                    url: currentUrl,
-                }).catch(err => console.log('Share failed:', err));
-            } else {
-                alert('Sharing not supported on this device.');
-            }
-        });
-    });
-</script>
+    </script>
 
 
     {{-- <script>
@@ -404,24 +420,24 @@
     </script>
     <script>
         let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-const sidebar = document.querySelector('.sidebar-folding-icons');
-let hideSidebarTimeout;
+        const sidebar = document.querySelector('.sidebar-folding-icons');
+        let hideSidebarTimeout;
 
-window.addEventListener('scroll', function () {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-
-    if (Math.abs(scrollTop - lastScrollTop) > 50) {
-        sidebar.classList.add('visible');
-        clearTimeout(hideSidebarTimeout);
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
 
-        hideSidebarTimeout = setTimeout(() => {
-            sidebar.classList.remove('visible');
-        }, 2000);
+            if (Math.abs(scrollTop - lastScrollTop) > 50) {
+                sidebar.classList.add('visible');
+                clearTimeout(hideSidebarTimeout);
 
-        lastScrollTop = scrollTop;
-    }
-});
+
+                hideSidebarTimeout = setTimeout(() => {
+                    sidebar.classList.remove('visible');
+                }, 2000);
+
+                lastScrollTop = scrollTop;
+            }
+        });
     </script>
 @endsection
