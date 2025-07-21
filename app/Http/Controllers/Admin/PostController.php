@@ -126,8 +126,8 @@ class PostController extends Controller
                 mkdir(dirname($savePath), 0755, true);
             }
             $mainImage->save($savePath);
-            $finalPath = asset('storage/combined/' . $filename);
-            $media->share_image = $finalPath;
+            $relativePath = 'combined/' . $filename;
+            $media->share_image = $relativePath;
         }else{
             $media->share_image =  $media->image;
         }
@@ -351,8 +351,8 @@ class PostController extends Controller
                 mkdir(dirname($savePath), 0755, true);
             }
             $mainImage->save($savePath);
-            $finalPath = asset('storage/combined/' . $filename);
-            $media->share_image = $finalPath;
+            $relativePath = 'combined/' . $filename;
+            $media->share_image = $relativePath;
         }else{
             $media->share_image =  $media->image;
         }
