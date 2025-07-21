@@ -12,7 +12,7 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:site_name" content="@yield('og_subtitle', getOptionData('site_title'))">
     <meta property="og:image" content="@yield('og_image', asset('storage') .'/'. getOptionData('shared_image'))">
-    <meta property="og:image:secure_url" content="{{ asset('storage') }}/{{ getOptionData('logo') }}">
+    <meta property="og:image:secure_url" content="@yield('og_image', asset('storage') .'/'. getOptionData('logo'))">
     <meta property="og:image:width" content="940">
     <meta property="og:image:height" content="788">
     <meta property="og:image:alt" content="The Dhaka Diary">
