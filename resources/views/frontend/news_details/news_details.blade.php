@@ -31,18 +31,10 @@ a@php
         }
     </style>
 @endsection
-@section('og_image')
-    {{ asset('storage') }}/{{ $news->media->share_image ?? ($news->media->image ?? null) }}
-@endsection
-@section('og_title')
-    {{ $news->title }}
-@endsection
-@section('meta_keywords')
-    {{ $news->meta_keywords }}
-@endsection
-@section('meta_description')
-    {{ $news->meta_description }}
-@endsection
+@section('og_image'){{ asset('storage') }}/{{ $news->media->image ?? null }}@endsection
+@section('og_title'){{ $news->title }}@endsection
+@section('meta_keywords'){{ $news->meta_keywords }}@endsection
+@section('meta_description'){{ $news->meta_description }}@endsection
 @section('main_content')
     <main class="site-content flex-1">
         <section class="news-details_section section-padding">
