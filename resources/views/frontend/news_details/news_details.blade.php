@@ -40,7 +40,7 @@ a@php
 @section('og_image_type'){{$image_type}}@endsection
 @section('og_title'){{ $news->title }}@endsection
 @section('meta_keywords'){{ $news->meta_keywords }}@endsection
-@section('meta_description'){{ $news->meta_description?? Str::limit(strip_tags($news->content), 150) }}@endsection
+@section('meta_description'){{ $news->meta_description?? Str::limit(strip_tags($news->news_details), 150) }}@endsection
 @section('main_content')
     <main class="site-content flex-1">
         <section class="news-details_section section-padding">
