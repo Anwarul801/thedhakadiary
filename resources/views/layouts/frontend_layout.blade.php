@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\View; @endphp
 <!doctype html>
 <html>
 <head>
@@ -11,7 +12,18 @@
     <meta property="og:description" content="@yield('meta_description', getOptionData('site_title'))">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:site_name" content="@yield('og_subtitle', getOptionData('site_title'))">
-    <meta property="og:image" content="@yield('og_image', asset('storage') .'/'. getOptionData('shared_image'))">
+{{--    <meta property="og:image" content="@yield('og_image', asset('storage') .'/'. getOptionData('shared_image'))">--}}
+    @php
+        $ogImage = View::hasSection('og_image')
+            ? trim($__env->yieldContent('og_image'))
+            : getOptionData('shared_image');
+    @endphp
+
+    @if($ogImage)
+        <meta property="og:image" content="{{ asset('storage/' . $ogImage) }}">
+    @else
+        <meta property="og:image" content="{{ asset('image/og.jpg') }}">
+    @endif
     <meta property="og:image:secure_url" content="@yield('og_image', asset('storage') .'/'. getOptionData('logo'))">
     <meta property="og:image:width" content="940">
     <meta property="og:image:height" content="788">
