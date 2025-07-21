@@ -16,7 +16,7 @@
     <meta property="og:image:width" content="940">
     <meta property="og:image:height" content="788">
     <meta property="og:image:alt" content="The Dhaka Diary">
-    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:type" content="@yield('og_image_type', 'image/jpeg')">
     <meta name="instagram:card" content="@yield('og_subtitle', getOptionData('site_title'))">
     <meta name="instagram:title" content="@yield('og_title', getOptionData('site_title'))">
     <meta name="instagram:description" content="@yield('meta_description', getOptionData('site_title'))">

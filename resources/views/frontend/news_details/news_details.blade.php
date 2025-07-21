@@ -32,6 +32,12 @@ a@php
     </style>
 @endsection
 @section('og_image'){{ asset('storage') }}/{{ $news->media->image ?? null }}@endsection
+@php
+    $image = asset('storage').'/'.$news->media->image ?? null;
+        $extension = pathinfo($image, PATHINFO_EXTENSION);
+        $image_type = 'image/' . ($extension === 'jpg' ? 'jpeg' : ($extension??null));
+@endphp
+@section('og_image_type'){{$image_type}}@endsection
 @section('og_title'){{ $news->title }}@endsection
 @section('meta_keywords'){{ $news->meta_keywords }}@endsection
 @section('meta_description'){{ $news->meta_description }}@endsection
