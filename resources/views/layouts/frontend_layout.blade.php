@@ -1,6 +1,15 @@
 <!doctype html>
 <html>
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-586E7XS5NG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-586E7XS5NG');
+    </script>
     <meta charset="UTF-8">
     <title>@yield('page_title', 'News')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
