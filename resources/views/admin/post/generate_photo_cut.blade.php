@@ -56,6 +56,13 @@
             font-weight: 800;
             padding: 20px;
         }
+        .check_in_comment {
+            color: #ffffff;
+            font-size: 18px;
+            position: absolute;
+            right: 15px;
+            bottom: 70px;
+        }
     </style>
 </head>
 <body>
@@ -69,6 +76,7 @@
         <div class="title_wrapp">
             <h3 class="title">{{$post->title??null}}</h3>
         </div>
+        <h5 class="check_in_comment">বিস্তারিত কমেন্টে দেখুন</h5>
     </div>
 {{--use this image--}}
 
