@@ -39,7 +39,7 @@
         }
         .title_wrapp {
             width: 95.7%;
-            height: 235px; 
+            height: 235px;
             position: absolute;
             bottom: 67px;
             left: 0;
@@ -51,7 +51,7 @@
         .title{
             font-size: 35px;
             color: #ffffff;
-            text-transform: uppercase; 
+            text-transform: uppercase;
             text-align: center;
             font-weight: 800;
             padding: 20px;
@@ -63,6 +63,21 @@
             right: 15px;
             bottom: 70px;
         }
+
+        .button_group button {
+            padding: 8px 16px;
+            margin: 0 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+        }
+        .button_group button:hover {
+            background-color: #0056b3;
+        }
+
     </style>
 </head>
 <body>
@@ -78,11 +93,36 @@
         </div>
         <h5 class="check_in_comment">বিস্তারিত কমেন্টে দেখুন</h5>
     </div>
-{{--use this image--}}
+    <div class="button_group" style="margin-top: 10px; text-align:center;">
+        <button id="downloadBtn">Download Photo</button>
+        <button id="copyBtn">Copy Photo</button>
+    </div>
 
-{{--user this title--}}
 
-{{--use this date--}}
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script>
+        const postWrapper = document.querySelector('.post_generate_wrapp');
+
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            html2canvas(postWrapper).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'post_image.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        });
+
+        document.getElementById('copyBtn').addEventListener('click', () => {
+            html2canvas(postWrapper).then(canvas => {
+                canvas.toBlob(blob => {
+                    const item = new ClipboardItem({ 'image/png': blob });
+                    navigator.clipboard.write([item])
+                        .then(() => alert('Image copied to clipboard!'))
+                        .catch(err => alert('Failed to copy image: ' + err));
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
