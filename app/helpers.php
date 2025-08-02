@@ -63,6 +63,27 @@ if (!function_exists('format_publishing_date')) {
     }
 }
 
+if (!function_exists('bangla_date_from_iso')) {
+    function bangla_date_from_iso($isoDate)
+    {
+        $en = ['0','1','2','3','4','5','6','7','8','9','January','February','March','April','May','June','July','August','September','October','November','December'];
+        $bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯','জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+
+        // Parse ISO date using Carbon
+        $date = \Carbon\Carbon::parse($isoDate);
+
+        // Format as 'day month year'
+        $formatted = $date->format('d F Y'); // e.g., 22 June 2025
+
+        // Convert English digits/months to Bangla
+        return str_replace($en, $bn, $formatted);
+    }
+}
+
+
+
+
+
 if (!function_exists('format_bangla_date')) {
     function format_bangla_date($date)
     {

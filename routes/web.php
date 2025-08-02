@@ -56,6 +56,7 @@ Route::get('/pages/{id}/{slug?}', [FrontendController::class, 'page_view'])->nam
 Route::get('/category/{slug}', [FrontendController::class, 'category_view'])->name('category_view');
 Route::get('/search/', [FrontendController::class, 'search'])->name('search');
 Route::get('/archive/', [FrontendController::class, 'archive'])->name('archive');
+Route::get('/generate_photo_cut/{id}', [PostController::class, 'generate_photo_cut'])->name('generate_photo_cut');
 Route::get('/print_news/{id}', [FrontendController::class, 'printNews'])->name('print_news');
 Route::get('/print_all_news', [FrontendController::class, 'print_all_news'])->name('post.print_all');
 Route::get('/last_published/', [FrontendController::class, 'last_published'])->name('last_published');
