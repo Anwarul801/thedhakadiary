@@ -376,6 +376,18 @@ class PostController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
+
+
+    public function generate_photo_cut($id)
+    {
+        $post = Post::select(
+            'id',
+            'media_id',
+            'title',
+            'publishing_date',
+        )->where('id', $id)->first();
+        return view('admin.post.generate_photo_cut', compact('post'));
+    }
     public function destroy($id)
     {
         $post = Post::findOrFail($id);

@@ -111,6 +111,7 @@
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="{{route('news_details', ['id' => $post->id, 'slug' => $post->slug])}}?type=admin" target="_blank"><i class="fa fa-eye"></i> View</a>
+                                            <a class="dropdown-item" href="{{route('generate_photo_cut', $post->id)}}" target="_blank"><i class="fa fa-image"></i> Generate Photo</a>
                                             <a class="dropdown-item" href="{{route('post.edit', $post->id)}}"><i class="fa fa-edit"></i> EDIT</a>
                                                 <form action="{{ route('post.destroy', $post->id) }}" method="POST">
                                                     @csrf
