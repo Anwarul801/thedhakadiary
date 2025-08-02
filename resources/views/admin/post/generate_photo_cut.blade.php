@@ -20,7 +20,7 @@
             color: #ffffff;
             display: inline-block;
             position: absolute;
-            top: 6px;
+            top: 5px;
             right: 15px;
             font-size: 20px;
             font-weight: 600;
@@ -98,13 +98,23 @@
         <button id="copyBtn">Copy Photo</button>
     </div>
 
-
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script>
         const postWrapper = document.querySelector('.post_generate_wrapp');
 
+        function captureHighRes(callback) {
+            // Calculate scale: current wrapper size (720) to target size (1080)
+            const scale = 1080 / postWrapper.offsetWidth;
+
+            html2canvas(postWrapper, {
+                scale: scale, // Scale to match 1080 width
+                useCORS: true,
+                backgroundColor: null
+            }).then(canvas => callback(canvas));
+        }
+
         document.getElementById('downloadBtn').addEventListener('click', () => {
-            html2canvas(postWrapper).then(canvas => {
+            captureHighRes(canvas => {
                 const link = document.createElement('a');
                 link.download = 'post_image.png';
                 link.href = canvas.toDataURL('image/png');
@@ -113,7 +123,7 @@
         });
 
         document.getElementById('copyBtn').addEventListener('click', () => {
-            html2canvas(postWrapper).then(canvas => {
+            captureHighRes(canvas => {
                 canvas.toBlob(blob => {
                     const item = new ClipboardItem({ 'image/png': blob });
                     navigator.clipboard.write([item])
