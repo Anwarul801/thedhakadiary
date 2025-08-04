@@ -94,11 +94,11 @@
             font-family: "Noto Serif Bengali";
         }
 
-        .post_generate_wrapp_2 .date {
-            left: 15px;
-            top: 94.5%;
-            color: #000000;
-        }
+         .post_generate_wrapp_2 .date {
+             left: 15px;
+             top: 94.5%;
+             color: #000000;
+         }
 
         .post_generate_wrapp_2 .post_thumbnail {
             width: 720px;
@@ -116,7 +116,7 @@
             position: absolute;
             top: 0;
             right: 15px;
-            padding-top: 10px;                        
+            padding-top: 10px;
         }
 
         .post_generate_wrapp_2 h3 {
@@ -128,23 +128,37 @@
             text-align: center;
             font-family: "Poppins", sans-serif;
         }
+        .button_group {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .button_group button {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .button_group button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        .button_group button:active {
+            transform: scale(0.98);
+        }
+
     </style>
 </head>
 
 <body>
 
-    <div class="post_generate_wrapp">
-        <img src="{{ asset('frontend/assets/image/Photo-fream.png') }}" class="frame_img" alt="frame image">
-        <span class="date">{{ bangla_date_from_iso($post->publishing_date ?? null) }}</span>
-        <div class="post_thumbnail">
-            <img src="{{ asset('storage') }}/{{ $post->media->image ?? null }}" class="post_thumbnail_img"
-                alt="thumbnail">
-        </div>
-        <div class="title_wrapp">
-            <h3 class="title">{{ $post->title ?? null }}</h3>
-        </div>
-        <h5 class="check_in_comment">বিস্তারিত কমেন্টে দেখুন</h5>
-    </div>
     <div class="post_generate_wrapp post_generate_wrapp_2">
         <img src="{{ asset('frontend/assets/image/photo-frame-2.png') }}" class="frame_img" alt="frame image">
         <span class="date">{{ bangla_date_from_iso($post->publishing_date ?? null) }}</span>
@@ -205,3 +219,5 @@
 </body>
 
 </html>
+
+
