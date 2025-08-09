@@ -99,6 +99,7 @@
             color: #151a58;
             font-family: "kalpurush";
             line-height: 1.2;
+            font-size: 45px;
         }
 
         .post_generate_wrapp_2 .date {
