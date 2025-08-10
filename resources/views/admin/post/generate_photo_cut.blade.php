@@ -6,10 +6,16 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="{{ asset('frontend/assets') }}/css/tailwind_css/tailwind_output.css" rel="stylesheet">
+    {{-- <link href="{{ asset('frontend/assets') }}/css/tailwind_css/tailwind_output.css" rel="stylesheet"> --}}
     <title>Generate Photo Cut</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        @font-face {
+            font-family: "kalpurush";
+            src: url("{{ asset('frontend/assets/kalpurush/kalpurush.ttf') }}") format('truetype');
+        }
+
 
         .post_generate_wrapp {
             width: 720px;
@@ -91,14 +97,17 @@
 
         .post_generate_wrapp_2 .title {
             color: #151a58;
-            font-family: "Noto Serif Bengali";
+            font-family: "kalpurush";
+            line-height: 1.2;
+            font-size: 45px;
         }
 
-         .post_generate_wrapp_2 .date {
-             left: 15px;
-             top: 94.5%;
-             color: #000000;
-         }
+        .post_generate_wrapp_2 .date {
+            left: 15px;
+            top: 94%;
+            color: #000000;
+            font-family: "kalpurush";
+        }
 
         .post_generate_wrapp_2 .post_thumbnail {
             width: 720px;
@@ -111,7 +120,7 @@
         .post_generate_wrapp_2 .brand_title {
             background: #ede7e7;
             width: 95px;
-            height: 116px;
+            height: 105px;
             border-radius: 0 0 100px 100px;
             position: absolute;
             top: 0;
@@ -119,7 +128,7 @@
             padding-top: 10px;
         }
 
-        .post_generate_wrapp_2 h3 {
+        .post_generate_wrapp_2 .brand_title h3 {
             color: #151a58;
             text-transform: uppercase;
             font-size: 22px;
@@ -127,14 +136,17 @@
             line-height: 1.2;
             text-align: center;
             font-family: "Poppins", sans-serif;
+            margin: 0;
         }
+
         .button_group {
             margin-top: 10px;
             text-align: center;
         }
 
         .button_group button {
-            background-color: #4CAF50; /* Green */
+            background-color: #4CAF50;
+            /* Green */
             color: white;
             padding: 10px 20px;
             margin: 5px;
@@ -153,7 +165,6 @@
         .button_group button:active {
             transform: scale(0.98);
         }
-
     </style>
 </head>
 
@@ -219,5 +230,3 @@
 </body>
 
 </html>
-
-
