@@ -206,36 +206,36 @@
 
                     <div class="xl:col-span-3 col-span-12">
                         @include('layouts.partials.news_item.latest_news')
+                        @if(getOptionData('media_submission')=='Yes')
+                            <div class="send-video-wrap">
+                                <h1 class="title">{{__('lang.send_video_title')}}</h1>
 
-                        <div class="send-video-wrap">
-                            <h1 class="title">{{__('lang.send_video_title')}}</h1>
-
-                            <div class="using-mathod">
-                                <a href="https://wa.me/{{getOptionData('whats_app')}}" class="item">
-                                    <div class="left-part flex items-center gap-4">
-                                        <div class="left-icon">
-                                            <img src="{{asset('frontend/assets')}}/image/whatsapp.svg" alt="What's up">
+                                <div class="using-mathod">
+                                    <a href="https://wa.me/{{getOptionData('whats_app')}}" class="item">
+                                        <div class="left-part flex items-center gap-4">
+                                            <div class="left-icon">
+                                                <img src="{{asset('frontend/assets')}}/image/whatsapp.svg" alt="What's up">
+                                            </div>
+                                            <h3 class="name">{{__('lang.whatsapp')}}</h3>
                                         </div>
-                                        <h3 class="name">{{__('lang.whatsapp')}}</h3>
-                                    </div>
-                                    <div class="right-icon">
-                                        <img src="{{asset('frontend/assets')}}/image/arrow-right.svg" alt="arrow right">
-                                    </div>
-                                </a>
-                                <a href="mailto:{{getOptionData('email')}}" class="item">
-                                    <div class="left-part flex items-center gap-4">
-                                        <div class="left-icon">
-                                            <img src="{{asset('frontend/assets')}}/image/gmail.svg" alt="What's up">
+                                        <div class="right-icon">
+                                            <img src="{{asset('frontend/assets')}}/image/arrow-right.svg" alt="arrow right">
                                         </div>
-                                        <h3 class="name">{{__('lang.email')}}</h3>
-                                    </div>
-                                    <div class="right-icon">
-                                        <img src="{{asset('frontend/assets')}}/image/arrow-right.svg" alt="arrow right">
-                                    </div>
-                                </a>
+                                    </a>
+                                    <a href="mailto:{{getOptionData('email')}}" class="item">
+                                        <div class="left-part flex items-center gap-4">
+                                            <div class="left-icon">
+                                                <img src="{{asset('frontend/assets')}}/image/gmail.svg" alt="What's up">
+                                            </div>
+                                            <h3 class="name">{{__('lang.email')}}</h3>
+                                        </div>
+                                        <div class="right-icon">
+                                            <img src="{{asset('frontend/assets')}}/image/arrow-right.svg" alt="arrow right">
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-
+                        @endif
                         <!-- ad area start -->
                         @include('layouts.partials.ads.side_ad', ['ad' => $ad2])
                         <!-- ad area end -->
