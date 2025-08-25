@@ -108,6 +108,13 @@
                                     <label for="">Youtube</label>
                                     <input type="text" name="youtube" value="{{ getOptionData('youtube') }}" class="form-control">
                                 </div>
+                                <div class="form-group">
+                                    <label for="">Media Submission</label>
+                                    <select name="media_submission" id="" class="form-control">
+                                        <option value="Yes" {{getOptionData('media_submission')=='Yes'?'selected':''}}>Yes</option>
+                                        <option value="No" {{getOptionData('media_submission')=='No'?'selected':''}}>No</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="text-center">
