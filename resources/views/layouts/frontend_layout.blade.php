@@ -12,8 +12,10 @@
         gtag('config', 'G-VH8T2JZPW7');
     </script>
     <meta charset="UTF-8">
+
     <title>@yield('page_title', 'News')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="pushsdk" content="8ff59d6102defccff768ca21dfd87c4d">
     <meta name="description" content="@yield('meta_description', getOptionData('site_title'))"/>
     <meta name="keywords" content="@yield('meta_keywords', getOptionData('site_title'))"/>
     <meta property="og:locale" content="en_US">
