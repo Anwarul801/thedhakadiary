@@ -4,13 +4,7 @@
     <meta name="google-site-verification" content="google60a3a69764e01faf" />
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VH8T2JZPW7"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
 
-        gtag('config', 'G-VH8T2JZPW7');
-    </script>
     <meta charset="UTF-8">
 
     <title>@yield('page_title', 'News')</title>
