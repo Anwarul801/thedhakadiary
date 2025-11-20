@@ -1,10 +1,16 @@
 <!doctype html>
 <html>
 <head>
-    <meta name="google-site-verification" content="google60a3a69764e01faf" />
+    <meta name="google-site-verification" content="O2vXhgGjvMXe1G9A1XrQwfL_xSsYqrIfEnu4gGJjXDc" />
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VH8T2JZPW7"></script>
-
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VH8T2JZPW7');
+    </script>
     <meta charset="UTF-8">
 
     <title>@yield('page_title', 'News')</title>
@@ -38,7 +44,6 @@
 
     @yield('css')
     <link href="{{asset('frontend/assets')}}/css/tailwind_css/tailwind_output.css" rel="stylesheet">
-
 </head>
 {{--
 Developed By INNOVA IT
