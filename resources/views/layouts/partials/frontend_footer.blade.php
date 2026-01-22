@@ -70,7 +70,7 @@
 
                     <!-- Column 3 -->
                     <div class="col-span-2 md:col-span-1">
-                        <h3 class="text-lg font-semibold mb-4 ">{{__('lang.editor')}} {{isEnglish()? getOptionData('editor_name_en'): getOptionData('editor_name')}}</h3>
+{{--                        <h3 class="text-lg font-semibold mb-4 ">{{__('lang.editor')}} {{isEnglish()? getOptionData('editor_name_en'): getOptionData('editor_name')}}</h3>--}}
                         <ul class="space-y-3">
                             <li class="flex items-center">
                                 <i class="fa-solid fa-location-dot mr-2"></i>
