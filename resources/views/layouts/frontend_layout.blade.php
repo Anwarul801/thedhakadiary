@@ -1,7 +1,14 @@
 <!doctype html>
 <html>
 <head>
-
+    <meta name="google-site-verification" content="4WhxjqMJuja8s5JF3706UgNNqjLlcnlMwU6RwxXclMk" />
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-WX4KFQ35');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
 
     <title>@yield('page_title', 'News')</title>
@@ -41,6 +48,10 @@ Developed By INNOVA IT
 Developer Profile: www.innovait.com.bd
 --}}
 <body class="site">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WX4KFQ35"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <div class="scroll-area"><i class="fa-solid fa-angles-up"></i></div>
 {{--header area--}}
