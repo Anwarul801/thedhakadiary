@@ -1,6 +1,15 @@
 <!doctype html>
 <html>
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XYPC21P87J"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-XYPC21P87J');
+    </script>
     <meta name="google-site-verification" content="4WhxjqMJuja8s5JF3706UgNNqjLlcnlMwU6RwxXclMk" />
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -9,6 +18,8 @@
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-WX4KFQ35');</script>
     <!-- End Google Tag Manager -->
+
+
     <meta charset="UTF-8">
 
     <title>@yield('page_title', 'News')</title>
