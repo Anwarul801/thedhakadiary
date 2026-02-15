@@ -54,6 +54,9 @@
 
     @yield('css')
     <link href="{{asset('frontend/assets')}}/css/tailwind_css/tailwind_output.css" rel="stylesheet">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8398372781178295"
+            crossorigin="anonymous"></script>
 </head>
 {{--
 Developed By INNOVA IT
