@@ -10,6 +10,7 @@
 
         gtag('config', 'G-XYPC21P87J');
     </script>
+    <meta name="google-adsense-account" content="ca-pub-8398372781178295">
     <meta name="google-site-verification" content="4WhxjqMJuja8s5JF3706UgNNqjLlcnlMwU6RwxXclMk" />
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
