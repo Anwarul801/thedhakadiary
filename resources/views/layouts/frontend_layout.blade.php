@@ -72,7 +72,7 @@ Developer Profile: www.innovait.com.bd
 {{--header area--}}
 @include('layouts.partials.frontend_header')
 <!-- Adds 01 -->
-<div class="text-center">
+<div class="text-center my-1">
     <ins class="adsbygoogle"
          style="display:block"
          data-ad-client="ca-pub-8398372781178295"
@@ -88,6 +88,7 @@ Developer Profile: www.innovait.com.bd
 
 {{--main content--}}
 @yield('main_content')
+<div class="text-center my-1">
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-format="fluid"
@@ -97,7 +98,7 @@ Developer Profile: www.innovait.com.bd
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-
+</div>
 <!-- Footer Area -->
 @include('layouts.partials.frontend_footer')
 

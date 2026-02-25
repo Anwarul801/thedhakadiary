@@ -301,6 +301,7 @@
                     @include('layouts.partials.ads.banner_ad', ['ad' => $adWithIndex])
             @endif
         @endforeach
+        <div class="text-center my-1">
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-format="autorelaxed"
@@ -309,7 +310,7 @@
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-
+        </div>
         <!--=========Video_Section=========== -->
         <section class="video_section section_short-padding {{$videos->count() == 0 ? 'hidden' : ''}}">
             <div class="container">
@@ -348,7 +349,7 @@
                 </div>
             </div>
         </section>
-
+        <div class="text-center my-1">
         <ins class="adsbygoogle"
              style="display:block; text-align:center;"
              data-ad-layout="in-article"
@@ -358,6 +359,7 @@
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
+        </div>
         <!--=========Photo_Section=========== -->
         <section class="photo-section mt-4 {{$photos->count() == 0 ? 'hidden' : ''}}">
             <div class="container">
