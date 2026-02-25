@@ -72,15 +72,18 @@ Developer Profile: www.innovait.com.bd
 {{--header area--}}
 @include('layouts.partials.frontend_header')
 <!-- Adds 01 -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8398372781178295"
-     data-ad-slot="4226388991"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+<div class="text-center">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-8398372781178295"
+         data-ad-slot="4226388991"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+</div>
 
 
 {{--main content--}}
