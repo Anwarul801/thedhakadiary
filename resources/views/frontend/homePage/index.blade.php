@@ -301,7 +301,14 @@
                     @include('layouts.partials.ads.banner_ad', ['ad' => $adWithIndex])
             @endif
         @endforeach
-
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-format="autorelaxed"
+             data-ad-client="ca-pub-8398372781178295"
+             data-ad-slot="4172391014"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
 
         <!--=========Video_Section=========== -->
         <section class="video_section section_short-padding {{$videos->count() == 0 ? 'hidden' : ''}}">
@@ -342,6 +349,15 @@
             </div>
         </section>
 
+        <ins class="adsbygoogle"
+             style="display:block; text-align:center;"
+             data-ad-layout="in-article"
+             data-ad-format="fluid"
+             data-ad-client="ca-pub-8398372781178295"
+             data-ad-slot="8063534560"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
         <!--=========Photo_Section=========== -->
         <section class="photo-section mt-4 {{$photos->count() == 0 ? 'hidden' : ''}}">
             <div class="container">

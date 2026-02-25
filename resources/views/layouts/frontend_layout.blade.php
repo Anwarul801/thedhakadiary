@@ -82,17 +82,6 @@ Developer Profile: www.innovait.com.bd
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8398372781178295"
-        crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-8398372781178295"
-     data-ad-slot="8063534560"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 
 {{--main content--}}
 @yield('main_content')
@@ -105,14 +94,7 @@ Developer Profile: www.innovait.com.bd
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-8398372781178295"
-     data-ad-slot="4172391014"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+
 <!-- Footer Area -->
 @include('layouts.partials.frontend_footer')
 
