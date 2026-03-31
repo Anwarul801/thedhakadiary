@@ -7,8 +7,21 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-XYPC21P87J');
+    </script>
+
+    <!-- SWG (NEW ADD THIS) -->
+    <script async type="application/javascript"
+            src="https://news.google.com/swg/js/v1/swg-basic.js"></script>
+    <script>
+        (self.SWG_BASIC = self.SWG_BASIC || []).push( basicSubscriptions => {
+            basicSubscriptions.init({
+                type: "NewsArticle",
+                isPartOfType: ["Product"],
+                isPartOfProductId: "CAowzYDGDA:openaccess",
+                clientOptions: { theme: "light", lang: "en" },
+            });
+        });
     </script>
     <meta name="google-adsense-account" content="ca-pub-8398372781178295">
     <meta name="google-site-verification" content="4WhxjqMJuja8s5JF3706UgNNqjLlcnlMwU6RwxXclMk" />
