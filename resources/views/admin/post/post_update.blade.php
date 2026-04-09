@@ -291,6 +291,34 @@
                                 <input {{$data->header_order==6?'checked':''}} style="margin-right: 5px" id="section_6" value="6"  type="radio" name="header_order"/>
                                 <label for="section_6"> Header Post 6</label>
                             </div>
+                            <div class="mb-1">
+                                <input {{$data->header_order==7?'checked':''}} style="margin-right: 5px" id="section_7" value="7"  type="radio" name="header_order"/>
+                                <label for="section_7"> Header Post 7</label>
+                            </div>
+                            <div class="mb-1">
+                                <input {{$data->header_order==8?'checked':''}} style="margin-right: 5px" id="section_8" value="8"  type="radio" name="header_order"/>
+                                <label for="section_8"> Header Post 8</label>
+                            </div>
+                            <div class="mb-1">
+                                <input {{$data->header_order==9?'checked':''}} style="margin-right: 5px" id="section_9" value="9"  type="radio" name="header_order"/>
+                                <label for="section_9"> Header Post 9</label>
+                            </div>
+                            <div class="mb-1">
+                                <input {{$data->header_order==10?'checked':''}} style="margin-right: 5px" id="section_10" value="10"  type="radio" name="header_order"/>
+                                <label for="section_10"> Header Post 10</label>
+                            </div>
+                            <div class="mb-1">
+                                <input {{$data->header_order==11?'checked':''}} style="margin-right: 5px" id="section_11" value="11"  type="radio" name="header_order"/>
+                                <label for="section_11"> Header Post 11</label>
+                            </div>
+                            <div class="mb-1">
+                                <input {{$data->header_order==12?'checked':''}} style="margin-right: 5px" id="section_12" value="12"  type="radio" name="header_order"/>
+                                <label for="section_12"> Header Post 12</label>
+                            </div>
+                            <div class="mb-1">
+                                <input {{$data->header_order==13?'checked':''}} style="margin-right: 5px" id="section_13" value="13"  type="radio" name="header_order"/>
+                                <label for="section_13"> Header Post 13</label>
+                            </div>
                     </div>
                         <button type="button" class="btn btn-danger" onclick="resetRadio()"><i class="fas fa-sync-alt"></i> Uncheck</button>
                 </div>

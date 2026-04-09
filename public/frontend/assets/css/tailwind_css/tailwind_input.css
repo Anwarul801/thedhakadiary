@@ -252,7 +252,10 @@ li {
   .short-description p {
     @apply text-paragraph-color sm:text-[16px] text-[14px] sm:mb-3 mb-2 inline-block;
   }
-
+  .short-description_home p span{
+    @apply !text-[15px];
+    
+  }
   .date p {
     @apply text-secondary sm:text-[16px] text-[14px];
   }
