@@ -102,7 +102,7 @@
                                         </div>
                                         <div class="col-4">
                                             <input type="radio" id="radio_2" checked onclick="showOthers('radio_2')" value="online_desk" {{old('source') == 'online_desk' ? 'checked' : ''}} name="source">
-                                            <label class="mt-2" for="radio_2">অনলাইন ডেস্ক</label>
+                                            <label class="mt-2" for="radio_2">দ্য ঢাকা ডায়েরি ডেস্ক</label>
                                         </div>
                                         <div class="col-4">
                                             <input type="radio" id="radio_3" onclick="showOthers('radio_3')" value="press_release" {{old('source') == 'press_release' ? 'checked' : ''}} name="source">
@@ -292,6 +292,12 @@
                             <div class="form-group">
                                 <label for="caption">Caption</label>
                                 <input required value="{{old('caption')}}" class="form-control" type="text" id="caption" name="caption"  placeholder="Caption">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="media_source">Source/Credit</label>
+                                <input value="" class="form-control" type="text" id="media_source" name="media_source" placeholder="Source/Credit">
                             </div>
                         </div>
                         <div class="col-md-12">

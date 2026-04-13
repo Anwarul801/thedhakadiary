@@ -12,6 +12,8 @@ use App\Models\Section;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
@@ -88,9 +90,11 @@ class PostController extends Controller
             'caption' => 'required | string | max:255',
             'image' => 'required | image',
             'source' => 'required | string | max:255',
+            'media_source' => 'nullable | string | max:255',
         ]);
         $media = new Media;
         $media->caption = $request->caption;
+        $media->source = $request->media_source;
         $media->save();
         $media->order = $media->id;
         $media->save();
@@ -248,6 +252,7 @@ class PostController extends Controller
             'caption' => 'required | string | max:255',
             'news_details' => 'required | string',
             'source' => 'nullable | string | max:255',
+            'media_source' => 'nullable | string | max:255',
         ]);
 
         $slug = Str::slug($request->title);
@@ -302,6 +307,7 @@ class PostController extends Controller
             ]);
             $media = new Media;
             $media->caption = $request->caption;
+            $media->source = $request->media_source;
             $media->save();
             $post->media_id = $media->id;
             $post->save();
@@ -325,6 +331,7 @@ class PostController extends Controller
         }else{
             $media = Media::where('id', $post->media_id)->first();
             $media->caption = $request->caption;
+            $media->source = $request->media_source;
             $media->save();
         }
 

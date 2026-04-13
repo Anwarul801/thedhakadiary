@@ -101,7 +101,7 @@
                                             </div>
                                             <div class="col-4">
                                                 <input type="radio" id="radio_2" onclick="showOthers('radio_2')" {{ $data->source == "online_desk" ? "checked" : ""  }} value="online_desk" name="source">
-                                                <label class="mt-2" for="radio_2">অনলাইন ডেস্ক</label>
+                                                <label class="mt-2" for="radio_2">দ্য ঢাকা ডায়েরি ডেস্ক</label>
                                             </div>
                                             <div class="col-4">
                                                 <input type="radio" id="radio_3" onclick="showOthers('radio_3')" {{ $data->source == "press_release" ? "checked" : ""  }} value="press_release" name="source">
@@ -308,6 +308,12 @@
                                 <div class="form-group">
                                     <label for="caption">Caption</label>
                                     <input value="{{$data->media->caption}}" class="form-control" type="text" id="caption" name="caption" placeholder="Caption">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="media_source">Source/Credit</label>
+                                    <input value="{{$data->media->source}}" class="form-control" type="text" id="media_source" name="media_source" placeholder="Source/Credit">
                                 </div>
                             </div>
                             <div class="col-md-12">

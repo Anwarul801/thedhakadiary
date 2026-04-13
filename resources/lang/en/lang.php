@@ -15,7 +15,7 @@ return [
     'site_title' => 'The Dhaka Diary',
     'others_news' => 'Others News',
     'own_reporter' => 'Own Reporter',
-    'online_desk' => 'Online Desk',
+    'online_desk' => 'The Dhaka Diary Desk',
     'press_release' => 'Press Release',
     'online_reporter' => 'Online Reporter',
     'send_video_title' => 'Send us the news, pictures or videos captured by your eyes',
