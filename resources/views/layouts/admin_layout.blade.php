@@ -119,7 +119,7 @@
             <li class="dropdown notification-list">
                 <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <img src="{{ asset('admin') }}/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
-                    <span class="ml-1">{{auth()->user()->name}} <i class="mdi mdi-chevron-down"></i> </span>
+                    <span class="ml-1">{{auth()->user()->name}} </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                     <!-- item-->
@@ -140,12 +140,6 @@
                     </form>
 
                 </div>
-            </li>
-
-            <li class="dropdown notification-list">
-                <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
-                    <i class="fe-settings noti-icon"></i>
-                </a>
             </li>
 
 

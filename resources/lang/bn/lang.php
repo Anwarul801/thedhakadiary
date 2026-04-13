@@ -16,7 +16,7 @@ return [
     'site_title' => 'দ্যা ঢাকা ডায়েরি',
     'others_news' => 'অন্যান্য খবর',
     'own_reporter' => 'নিজস্ব প্রতিবেদক',
-    'online_desk' => 'অনলাইন ডেস্ক',
+    'online_desk' => 'দ্য ঢাকা ডায়েরি ডেস্ক',
     'press_release' => 'প্রেস বিজ্ঞপ্তি',
     'online_reporter' => 'অনলাইন প্রতিবেদক',
     'send_video_title' => 'আপনার চোখে ধরা পড়া খবর ছবি বা ভিডিও আমাদের পাঠান',
