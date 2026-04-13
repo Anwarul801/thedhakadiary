@@ -245,6 +245,9 @@ li {
     @apply lg:text-xl md:text-lg text-base text-primary-black font-[600] md:mt-4 mt-2 mb-2 inline-block transition-all duration-300 hover:underline;
   }
 
+  .title-sm {
+    @apply md:text-lg text-base md:mt-6 mt-4 mb-0 block leading-[1.5] ;
+  }
   .title-lg {
     @apply lg:text-3xl md:text-2xl text-xl md:mt-6 mt-4 md:mb-3 mb-2 block;
   }
@@ -278,6 +281,64 @@ li {
     opacity: 1;
     visibility: visible;
 }
+
+/* opinion section */
+.opinion-section {
+
+  .featured-card {
+    @apply bg-white md:mx-0 mx-8;
+
+    .featured-title {
+      @apply text-white bg-blue-900 px-3 py-2 text-lg md:text-2xl font-bold relative md:-left-14 -left-10;
+      .sholder {
+        @apply text-red-500;
+        &::after {
+          content: "\f111";
+          font-family: "Font Awesome 6 Free";
+          font-weight: 900;
+          @apply text-[6px] relative -top-[3px] text-red-500 ml-2;
+        }
+      }
+    }
+
+    .featured-desc {
+      @apply text-gray-700 mt-4 md:text-2xl text-lg leading-relaxed;
+    }
+
+    .author {
+      .name {
+        @apply font-semibold text-base;
+      }
+    }
+  }
+
+  .opinion-item {
+    @apply border-b border-gray-300 pb-4;
+
+    .icon {
+      @apply w-14 h-14 bg-gray-200 rounded-full;
+    }
+
+    .title {
+      @apply text-base md:text-lg font-semibold text-gray-800 hover:underline transition;
+      .sholder {
+        @apply text-red-500;
+        &::after {
+          content: "\f111";
+          font-family: "Font Awesome 6 Free";
+          font-weight: 900;
+          @apply text-[6px] relative -top-[3px] text-gray-400 ml-2;
+        }
+      }
+    }
+
+    .author-name {
+      @apply text-sm text-gray-500 mt-1;
+    }
+  }
+}
+/* opinion section end */
+
 /* home page end */
 
 /* ============= Footer ============*/
@@ -585,6 +646,15 @@ li {
   .news-card {
     .title {
       @apply mt-0 mb-0 font-normal;
+      .sholder {
+        @apply text-red-500;
+        &::after {
+          content: "\f111";
+          font-family: "Font Awesome 6 Free";
+          font-weight: 900;
+          @apply text-[6px] relative -top-[3px] text-gray-400 ml-2;
+        }
+      }
     }
   }
 
