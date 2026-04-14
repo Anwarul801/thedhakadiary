@@ -31,16 +31,26 @@
         }
     </style>
 @endsection
-@section('og_image'){{ asset('storage') }}/{{ $news->media->share_image ?? ($news->media->image ?? null) }}@endsection
+@section('og_image')
+    {{ asset('storage') }}/{{ $news->media->share_image ?? ($news->media->image ?? null) }}
+@endsection
 @php
-    $image = asset('storage').'/'. $news->media->share_image ?? ($news->media->image ?? null);
-        $extension = pathinfo($image, PATHINFO_EXTENSION);
-        $image_type = 'image/' . ($extension === 'jpg' ? 'jpeg' : ($extension??null));
+    $image = asset('storage') . '/' . $news->media->share_image ?? ($news->media->image ?? null);
+    $extension = pathinfo($image, PATHINFO_EXTENSION);
+    $image_type = 'image/' . ($extension === 'jpg' ? 'jpeg' : $extension ?? null);
 @endphp
-@section('og_image_type'){{$image_type}}@endsection
-@section('og_title'){{ $news->title }}@endsection
-@section('meta_keywords'){{ $news->meta_keywords }}@endsection
-@section('meta_description'){{ $news->meta_description?? Str::limit(strip_tags($news->news_details), 150) }}@endsection
+@section('og_image_type')
+    {{ $image_type }}
+@endsection
+@section('og_title')
+    {{ $news->title }}
+@endsection
+@section('meta_keywords')
+    {{ $news->meta_keywords }}
+@endsection
+@section('meta_description')
+    {{ $news->meta_description ?? Str::limit(strip_tags($news->news_details), 150) }}
+@endsection
 @section('main_content')
     <main class="site-content flex-1">
         <section class="news-details_section section-padding">
@@ -54,8 +64,8 @@
                                     <!-- only print logo -->
                                     <div class="border-b-[1px] border-gray-400 mb-3 hidden print:block">
                                         <img src="{{ asset('frontend/assets') }}/image/main_logo_dark.png"
-                                             alt="The Dhaka Diary"
-                                             class="w-1/2 m-auto hidden print:block break-after-avoid mb-3"/>
+                                            alt="The Dhaka Diary"
+                                            class="w-1/2 m-auto hidden print:block break-after-avoid mb-3" />
                                     </div>
                                     <!-- only print logo end -->
                                     {{-- category --}}
@@ -65,7 +75,7 @@
                                                 @break
                                             @endif
                                             <a href="{{ route('category_view', $category->slug) }}"
-                                               class="text-[#007bff] hover:text-[#181823] border-b-2 border-[#007bff] hover:border-[#181823] transition-all duration-75 mb-3 md:mb-4 inline-block font-bold text-lg md:text-xl">{{ isEnglish() ? $category->name_en : $category->name }}</a>
+                                                class="text-[#007bff] hover:text-[#181823] border-b-2 border-[#007bff] hover:border-[#181823] transition-all duration-75 mb-3 md:mb-4 inline-block font-bold text-lg md:text-xl">{{ isEnglish() ? $category->name_en : $category->name }}</a>
                                         @endforeach
                                     </div>
                                     <span
@@ -85,14 +95,14 @@
                                                 @endphp
                                                 @if ($news->source == 'Author' && $news->author_id != null)
                                                     <a class="text-[14px] md:text-[17px] font-semibold"
-                                                       href="{{ route('author_news', ['id' => $news->author_id, 'name' => $news->author->name_en ?? null]) }}"
-                                                       class="present inline-block">{{ isEnglish() ? $news->author->name_en : $news->author->name ?? null }}</a>
+                                                        href="{{ route('author_news', ['id' => $news->author_id, 'name' => $news->author->name_en ?? null]) }}"
+                                                        class="present inline-block">{{ isEnglish() ? $news->author->name_en : $news->author->name ?? null }}</a>
                                                 @elseif(in_array($news->source, $sources))
                                                     <a class="text-[14px] md:text-[17px] font-semibold"
-                                                       class="present inline-block">{{ __("lang.$news->source") }}</a>
+                                                        class="present inline-block">{{ __("lang.$news->source") }}</a>
                                                 @elseif($news->source != 'None')
                                                     <a class="text-[14px] md:text-[17px] font-semibold"
-                                                       class="present inline-block">{{ $news->source }}</a>
+                                                        class="present inline-block">{{ $news->source }}</a>
                                                 @endif
                                                 <p class="update">{{ $news->source_designation }}</p>
                                             </div>
@@ -130,9 +140,9 @@
                                                 <span
                                                     class="prokash hidden">{{ isEnglish() ? $update_en : $update_bn }}</span>
                                                 <img style="width: 20px; display: inline-block"
-                                                     class="cursor-pointer update_prokash_btn ms-1 print:hidden"
-                                                     src="{{ asset('frontend/assets/image/up-and-down-arrow.png') }}"
-                                                     alt="">
+                                                    class="cursor-pointer update_prokash_btn ms-1 print:hidden"
+                                                    src="{{ asset('frontend/assets/image/up-and-down-arrow.png') }}"
+                                                    alt="">
                                             </p>
                                         </div>
                                         <div class="flex justify-center items-center  gap-1.5 print:hidden">
@@ -141,22 +151,22 @@
                                             @endphp
 
                                             <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}"
-                                               class="social_icon text-sm" target="_blank">
+                                                class="social_icon text-sm" target="_blank">
                                                 <i class="fa-brands fa-facebook-f"></i>
                                             </a>
 
                                             <a href="https://twitter.com/intent/tweet?url={{ $url }}"
-                                               class="social_icon text-sm" target="_blank">
+                                                class="social_icon text-sm" target="_blank">
                                                 <i class="fa-brands fa-x-twitter"></i>
                                             </a>
 
                                             <a href="https://www.instagram.com/" class="social_icon text-sm"
-                                               target="_blank">
+                                                target="_blank">
                                                 <i class="fa-brands fa-instagram"></i>
                                             </a>
 
                                             <a href="https://wa.me/?text={{ $url }}" class="social_icon text-sm"
-                                               target="_blank">
+                                                target="_blank">
                                                 <i class="fa-brands fa-whatsapp"></i>
                                             </a>
 
@@ -178,26 +188,23 @@
                         <!-- Sub-grid here -->
                         <div class="grid grid-cols-12 md:gap-x-6 gap-x-4">
                             <div class="md:col-span-8 col-span-12 md:mt-6 mt-4">
-                                <figure class="news-title-image md:mb-8 sm:mb-6 mb-4">
+                                <figure class="news-title-image md:mb-8 sm:mb-6 mb-4 italic">
                                     <img src="{{ asset('storage') }}/{{ $news->media->image ?? null }}" alt="Thumbnail">
                                     <figcaption
-                                        class="sm:text-base text-sm text-secondary bg-[#f8f9fa] text-center border-b border-[#dee2e6] py-2 news-content">
-                                        {{ $news->media->caption_en ?? null }}
-                                        {{ $news->media->caption ?? null }}
+                                        class="sm:text-base text-sm text-secondary bg-[#f8f9fa] text-center border-b border-[#dee2e6] py-2 news-content"> 
+                                        {{ $news->media->caption ?? null }} {{ $news->media->source ? "© ".$news->media->source : null }}
                                     </figcaption>
                                 </figure>
                                 <div class="text-area-card news-content">
                                     {!! $news->news_details !!}
                                 </div>
-                                @if($news->tags)
+                                @if ($news->tags)
                                     <div class="news-tags print:hidden">
-                                        <div class="tag-title">
-                                            আরও পড়ুন
-                                        </div>
                                         <ul class="tag-list">
-                                            @foreach(explode(',', $news->tags) as $tag)
+                                            @foreach (explode(',', $news->tags) as $tag)
                                                 <li class="tag-item">
-                                                    <a class="tag-link" href="{{route('search')}}?search={{$tag}}">{{ trim($tag) }}</a>
+                                                    <a class="tag-link"
+                                                        href="{{ route('search') }}?search={{ $tag }}">{{ trim($tag) }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -231,17 +238,25 @@
 
         <section class="Others-news_section md:pb-12 sm:pb-8 pb-6 {{ $related_post->count() == 0 ? 'hidden' : '' }}">
             <div class="container">
-                <h2 class="others-news-title">{{ __('lang.others_news') }}</h2>
+                <h2 class="others-news-title">আরও পড়ুন</h2>
 
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                     <!-- Card 1 -->
                     @foreach ($related_post as $rpost)
-                        <a href="{{ route('news_details', ['id' => $rpost->id, 'slug' => $rpost->slug]) }}"
-                           class="otners-news-item">
-                            <h3 class="news-nmbr">{{ isEnglish() ? $loop->iteration : bangla_number($loop->iteration) }}
-                            </h3>
-                            <p class="news-title">{{ Str::limit($rpost->title, 50) }}</p>
-                        </a>
+                        <div class="news-card">
+                            <div class="thumbnail">
+                                <a href="{{ route('news_details', ['id' => $rpost->id, 'slug' => $rpost->slug]) }}">
+                                    <img src="{{ asset('storage') }}/{{ $news->media->image ?? 'default.jpg' }}"
+                                        alt="{{ $news->title ?? 'Thumbnail' }}">
+                                </a>
+                            </div>
+
+                            <h1 class="title">
+                                <a href="{{ route('news_details', ['id' => $rpost->id, 'slug' => $rpost->slug]) }}">
+                                    {{ Str::limit($rpost->title, 50) }}
+                                </a>
+                            </h1>
+                        </div>
                     @endforeach
 
 
@@ -258,12 +273,12 @@
                 @endphp
 
                 <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}"
-                   class="social_icon text-sm hide_on_mobile" target="_blank">
+                    class="social_icon text-sm hide_on_mobile" target="_blank">
                     <i class="fa-brands fa-facebook-f"></i>
                 </a>
 
                 <a href="https://twitter.com/intent/tweet?url={{ $url }}"
-                   class="social_icon text-sm hide_on_mobile" target="_blank">
+                    class="social_icon text-sm hide_on_mobile" target="_blank">
                     <i class="fa-brands fa-x-twitter"></i>
                 </a>
 
@@ -272,7 +287,7 @@
                 </a>
 
                 <a href="https://wa.me/?text={{ $url }}" class="social_icon text-sm hide_on_mobile"
-                   target="_blank">
+                    target="_blank">
                     <i class="fa-brands fa-whatsapp"></i>
                 </a>
 
@@ -295,13 +310,13 @@
 
 @section('js')
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const newsElements = document.querySelectorAll('.news-content');
             let fontSize = 1; // em
 
             // Handle all zoomIn buttons
             document.querySelectorAll('.zoomIn').forEach(button => {
-                button.addEventListener('click', function (e) {
+                button.addEventListener('click', function(e) {
                     e.preventDefault();
                     if (fontSize < 2) {
                         fontSize += 0.1;
@@ -314,7 +329,7 @@
 
             // Handle all zoomOut buttons
             document.querySelectorAll('.zoomOut').forEach(button => {
-                button.addEventListener('click', function (e) {
+                button.addEventListener('click', function(e) {
                     e.preventDefault();
                     if (fontSize > 0.6) {
                         fontSize -= 0.1;
@@ -326,8 +341,8 @@
             });
 
             // Toggle prokash and updated
-            document.querySelectorAll('.update_prokash_btn').forEach(function (btn) {
-                btn.addEventListener('click', function () {
+            document.querySelectorAll('.update_prokash_btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
                     const parent = btn.closest('.update');
                     const updated = parent.querySelector('.updated');
                     const prokash = parent.querySelector('.prokash');
@@ -409,7 +424,7 @@
         });
     </script> --}}
     <script>
-        $(function () {
+        $(function() {
             var div_width = $('#get_width').width();
             var div_height = div_width * 56 / 100;
             $('#video_iframe').css({
@@ -422,7 +437,7 @@
         const sidebar = document.querySelector('.sidebar-folding-icons');
         let hideSidebarTimeout;
 
-        window.addEventListener('scroll', function () {
+        window.addEventListener('scroll', function() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
 

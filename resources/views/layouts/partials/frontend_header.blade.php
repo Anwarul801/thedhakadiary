@@ -1,25 +1,25 @@
-<header class="header-bottom">
-    <!-- Top Bar -->
-    <div class="bg-black text-white text-sm">
-        <div class="container">
-            <div class="flex justify-between items-center lg:py-4 md:py-3 py-2">
-                <div>
-                    <a href="{{route('index_page')}}" class="main-logo"><img src="{{asset('storage')}}/{{getOptionData('logo')}}" alt="The Dhaka Diary"
-                                                                class="w-full" /></a>
-                </div>
-                <div class="flex items-center space-x-4 text-base">
-                    <span class="hidden sm:block">{{isEnglish()?date('d F Y, l'):bangla_number(\Carbon\Carbon::now()->locale('bn')->isoFormat('D MMMM YYYY, dddd'))}}</span>
-                    <div class="border-l border-gray-400 pl-2 flex items-center gap-1.5">
-                        <a href="{{route('change_lang')}}" class="appearance-none font-noto-bengali cursor-pointer"><i class="fa-solid fa-globe"></i>
-                            {{isEnglish()?' বাংলা ':'English '}}</a>
-                    </div>
+<div class="bg-black text-white text-sm">
+    <div class="container">
+        <div class="flex justify-between items-center lg:py-4 md:py-3 py-2">
+            <div>
+                <a href="{{route('index_page')}}" class="main-logo"><img src="{{asset('storage')}}/{{getOptionData('logo')}}" alt="The Dhaka Diary"
+                                                            class="w-full" /></a>
+            </div>
+            <div class="flex items-center space-x-4 text-base">
+                <span class="hidden sm:block">{{isEnglish()?date('d F Y, l'):bangla_number(\Carbon\Carbon::now()->locale('bn')->isoFormat('D MMMM YYYY, dddd'))}}</span>
+                <div class="border-l border-gray-400 pl-2 flex items-center gap-1.5">
+                    <a href="{{route('change_lang')}}" class="appearance-none font-noto-bengali cursor-pointer"><i class="fa-solid fa-globe"></i>
+                        {{isEnglish()?' বাংলা ':'English '}}</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<header class="header-bottom">
+    <!-- Top Bar -->
 
     <!-- Main Nav -->
-    <div class="shadow-top">
+    <div class="shadow-top ">
         <div class="container">
             <div class="block ">
                 <div class="flex justify-between items-center lg:py-6 sm:py-2.5 relative">

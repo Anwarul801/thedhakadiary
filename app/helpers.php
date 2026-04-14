@@ -161,8 +161,9 @@ function getImageTag($id, $true = false){
             $media_image = $media->image;
         }
         $returning_img = asset('storage/'. $media_image);
+        $mediaSource = $media->source ? "© ".$media->source : null;
         $img = "<img class='img_full_image' src='$returning_img' alt='Media Image'>";
-        $c_s = "<i class='img_full_image_caption'>{$media->caption} </i>";
+        $c_s = "<i class='img_full_image_caption'>{$media->caption} {$mediaSource} </i>";
         return "<div class='text-center'>$img $c_s</div>";
     }
 }

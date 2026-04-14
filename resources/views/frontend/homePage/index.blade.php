@@ -33,7 +33,9 @@
                                         </div>
                                         <h1 class="title title-lg">
                                             <a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">{{ Str::limit($header_post->title, 100) }}</a>
+                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">
+                                                <span class="sholder">জামায়াত কর্মী সাওদা সুমি</span>
+                                                {{ Str::limit($header_post->title, 100) }}</a>
                                         </h1>
                                         <div class="short-description">
                                             <p>
@@ -514,7 +516,8 @@
                             <!-- Item 1 -->
                             <div class="news-card flex gap-3 border-b pb-3 border-stock-color">
                                 <h1 class="title !mt-0 flex-1">
-                                    <a href="#"><span class="sholder">এম সাখাওয়াত হোসেনের কলাম</span> নতুন শিক্ষানীতিতে আসছে বড় পরিবর্তন</a>
+                                    <a href="#"><span class="sholder">এম সাখাওয়াত হোসেনের কলাম</span> নতুন
+                                        শিক্ষানীতিতে আসছে বড় পরিবর্তন</a>
                                 </h1>
                                 <div class="thumbnail w-32 flex-shrink-0">
                                     <a href="#">
@@ -889,6 +892,7 @@
             </div>
         </section>
         <!--======== Education & Campus Section end ====== -->
+
         <!--======== International Section ====== -->
         <section class="international_section section-padding-top">
             <div class="container">
@@ -901,7 +905,6 @@
                 </div>
 
                 <div class="grid grid-cols-12 lg:gap-4 gap-3 border-b pb-4 border-stock-color">
-
                     <!-- Center Big News -->
                     <div class="lg:col-span-6 col-span-12 lg:border-b-0 border-b lg:pb-0 pb-3 border-stock-color">
                         <div class="news-card">
@@ -912,7 +915,7 @@
                                 </a>
                             </div>
 
-                            <h1 class="lg:text-2xl text-xl font-semibold mt-3">
+                            <h1 class="lg:text-2xl text-xl font-semibold mt-3 mb-2">
                                 <a href="#">
                                     ডিজিটাল বাংলাদেশের পথে আরেক ধাপ এগিয়ে দেশ
                                 </a>
@@ -1462,65 +1465,72 @@
         <section class="opinion-section section-padding-top">
             <div class="container">
                 <div class="section-title-wrap">
-                        <h2 class="section-title">মতামত</h2>
-                        <div class="section-button-wrap">
-                            <a href="http://127.0.0.1:8000/category/mtamt-2" class="section_button">আরও পড়ুন <i class="fa-solid fa-angle-right"></i></a>
-                        </div>
+                    <h2 class="section-title">মতামত</h2>
+                    <div class="section-button-wrap">
+                        <a href="http://127.0.0.1:8000/category/mtamt-2" class="section_button">আরও পড়ুন <i
+                                class="fa-solid fa-angle-right"></i></a>
                     </div>
-                <div class="grid grid-cols-12 gap-6">
-    
+                </div>
+                <div class="grid grid-cols-12 gap-6 border-b pb-4 border-stock-color">
+
                     <!-- Left Featured Card -->
                     <div class="lg:col-span-4 col-span-12">
-                         
-                            <div class="featured-card p-6 border border-gray-300">
-        
-                                <h2 class="featured-title">
-                                    <a href="#">
-                                        <span class="sholder">এম সাখাওয়াত হোসেনের কলাম</span> ইরানে যুক্তরাষ্ট্রের একতরফা আধিপত্য হারানোর যুদ্ধ
-                                    </a>
-                                </h2>
-        
-                                <p class="featured-desc">
-                                    এই যুদ্ধে ইসরায়েলের উদ্দেশ্য হলো ইরানকে দুর্বল করা। ইরানে অনুগত শাসকরা ফিরলে তাদের বৃহত্তর
-                                    ইসরায়েলের স্বপ্ন বাস্তবায়ন সম্ভব।
-                                </p>
-        
-                                <div class="author flex items-center mt-6">
-                                    <img src="{{asset("frontend/assets/image/M_Shawkhat_Hossain.webp")}}" class="w-14 h-14 rounded-full" alt="thumbnail">
-                                    <div class="ml-3">
-                                        <p class="name">এম সাখাওয়াত হোসেন</p>
-                                        <p class="designation text-sm text-gray-500">নির্বাচন বিশ্লেষক, সাবেক সামরিক কর্মকর্তা</p>
-                                    </div>
+
+                        <div class="featured-card p-6 border border-gray-300">
+
+                            <h2 class="featured-title">
+                                <a href="#">
+                                    <span class="sholder">এম সাখাওয়াত হোসেনের কলাম</span> ইরানে যুক্তরাষ্ট্রের একতরফা
+                                    আধিপত্য হারানোর যুদ্ধ
+                                </a>
+                            </h2>
+
+                            <p class="featured-desc">
+                                এই যুদ্ধে ইসরায়েলের উদ্দেশ্য হলো ইরানকে দুর্বল করা। ইরানে অনুগত শাসকরা ফিরলে তাদের বৃহত্তর
+                                ইসরায়েলের স্বপ্ন বাস্তবায়ন সম্ভব।
+                            </p>
+
+                            <div class="author flex items-center mt-6">
+                                <img src="{{ asset('frontend/assets/image/M_Shawkhat_Hossain.webp') }}"
+                                    class="w-14 h-14 rounded-full" alt="thumbnail">
+                                <div class="ml-3">
+                                    <p class="name">এম সাখাওয়াত হোসেন</p>
+                                    <p class="designation text-sm text-gray-500">নির্বাচন বিশ্লেষক, সাবেক সামরিক কর্মকর্তা
+                                    </p>
                                 </div>
-        
-                            </div> 
+                            </div>
+
+                        </div>
                     </div>
-    
+
                     <!-- Right List -->
                     <div class="lg:col-span-8 col-span-12">
                         <div class="md:space-y-6 space-y-4">
-    
+
                             <!-- Item -->
                             <div class="opinion-item flex items-start gap-4">
                                 <div>
                                     <div class="icon">
-                                         <img src="{{asset("frontend/assets/image/M_Shawkhat_Hossain.webp")}}" class="w-14 h-14 rounded-full" alt="thumbnail">
+                                        <img src="{{ asset('frontend/assets/image/M_Shawkhat_Hossain.webp') }}"
+                                            class="w-14 h-14 rounded-full" alt="thumbnail">
                                     </div>
                                 </div>
                                 <div>
                                     <h3 class="title">
                                         <a href="#">
-                                            <span class="sholder">মতামত</span> ট্রাম্প যে কায়দায় নতুন ‘ভূরাজনীতি’ তৈরির চেষ্টা চালাতে পারেন                                            
+                                            <span class="sholder">মতামত</span> ট্রাম্প যে কায়দায় নতুন ‘ভূরাজনীতি’ তৈরির
+                                            চেষ্টা চালাতে পারেন
                                         </a>
                                     </h3>
                                     <p class="author-name">লেখা: বিশ্লেষক</p>
                                 </div>
                             </div>
-    
+
                             <div class="opinion-item flex items-start gap-4">
                                 <div>
                                     <div class="icon">
-                                         <img src="{{asset("frontend/assets/image/M_Shawkhat_Hossain.webp")}}" class="w-14 h-14 rounded-full" alt="thumbnail">
+                                        <img src="{{ asset('frontend/assets/image/M_Shawkhat_Hossain.webp') }}"
+                                            class="w-14 h-14 rounded-full" alt="thumbnail">
                                     </div>
                                 </div>
                                 <div>
@@ -1532,46 +1542,685 @@
                                     <p class="author-name">লেখা: ইমরান কবির</p>
                                 </div>
                             </div>
-    
+
                             <div class="opinion-item flex items-start gap-4">
                                 <div>
                                     <div class="icon">
-                                         <img src="{{asset("frontend/assets/image/M_Shawkhat_Hossain.webp")}}" class="w-14 h-14 rounded-full" alt="thumbnail">
+                                        <img src="{{ asset('frontend/assets/image/M_Shawkhat_Hossain.webp') }}"
+                                            class="w-14 h-14 rounded-full" alt="thumbnail">
                                     </div>
                                 </div>
                                 <div>
                                     <h3 class="title">
                                         <a href="#">
-                                            <span class="sholder">হাসান ফেরদৌসের কলাম</span> কেমন গেল মেয়র মামুনের প্রথম ১০০ দিন
+                                            <span class="sholder">হাসান ফেরদৌসের কলাম</span> কেমন গেল মেয়র মামুনের প্রথম
+                                            ১০০ দিন
                                         </a>
                                     </h3>
                                     <p class="author-name">হাসান ফেরদৌস</p>
                                 </div>
                             </div>
-    
+
                             <div class="opinion-item flex items-start gap-4">
                                 <div>
                                     <div class="icon">
-                                         <img src="{{asset("frontend/assets/image/M_Shawkhat_Hossain.webp")}}" class="w-14 h-14 rounded-full" alt="thumbnail">
+                                        <img src="{{ asset('frontend/assets/image/M_Shawkhat_Hossain.webp') }}"
+                                            class="w-14 h-14 rounded-full" alt="thumbnail">
                                     </div>
                                 </div>
                                 <div>
                                     <h3 class="title">
                                         <a href="#">
-                                            <span class="sholder">মতামত</span> পূর্ব ও মধ্য ইউরোপ: বাংলাদেশি অভিবাসনের নতুন করিডর
+                                            <span class="sholder">মতামত</span> পূর্ব ও মধ্য ইউরোপ: বাংলাদেশি অভিবাসনের নতুন
+                                            করিডর
                                         </a>
                                     </h3>
                                     <p class="author-name">লেখা: আলাপ আলোচনা</p>
                                 </div>
                             </div>
-    
+
                         </div>
                     </div>
-    
+
                 </div>
             </div>
         </section>
 
+        <!--======== সাক্ষাৎকার,সাহিত্য, ফিচার, ধর্ম  Section ====== -->
+        <section class="interview_feature_religion_section section-padding-top">
+            <div class="container">
+
+                <div class="grid grid-cols-12 lg:gap-4 gap-3 border-b pb-4 border-stock-color">
+
+                    <!-- left Side (3 items) -->
+                    <div class="xl:col-span-3 md:col-span-6 col-span-12 ">
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
+                            <h2 class="section-title"> <a href="http://127.0.0.1:8000/category/sakshattkar">সাক্ষাৎকার</a>
+                            </h2>
+                        </div>
+                        <div class="space-y-4 ">
+                            <!-- Item 1 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+                                <div class="thumbnail">
+                                    <img
+                                        src="http://127.0.0.1:8000/storage/media_thumbnail/IEnxf9OEwNkR27ONRycAS0ngO0NHleV0TJgac3Sl.jpg">
+                                </div>
+                                <h1 class="title">
+                                    <a href="#">ঢাকায় স্টার্টআপ ইকোসিস্টেম দ্রুত বৃদ্ধি পাচ্ছে</a>
+                                </h1>
+                            </div>
+                            <!-- Item 2 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                            <!-- Item 3 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                            <!-- Item 4 -->
+                            <div class="news-card border-b-0 pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="xl:col-span-3 md:col-span-6 col-span-12 ">
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
+                            <h2 class="section-title"> <a href="http://127.0.0.1:8000/category/sahitz">সাহিত্য</a></h2>
+                        </div>
+                        <div class="space-y-4 ">
+                            <!-- Item 1 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+                                <div class="thumbnail">
+                                    <img
+                                        src="http://127.0.0.1:8000/storage/media_thumbnail/IEnxf9OEwNkR27ONRycAS0ngO0NHleV0TJgac3Sl.jpg">
+                                </div>
+                                <h1 class="title">
+                                    <a href="#">ঢাকায় স্টার্টআপ ইকোসিস্টেম দ্রুত বৃদ্ধি পাচ্ছে</a>
+                                </h1>
+                            </div>
+                            <!-- Item 2 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                            <!-- Item 3 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                            <!-- Item 4 -->
+                            <div class="news-card border-b-0 pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="xl:col-span-3 md:col-span-6 col-span-12 ">
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
+                            <h2 class="section-title"> <a href="http://127.0.0.1:8000/category/ficar">ফিচার</a></h2>
+                        </div>
+                        <div class="space-y-4 ">
+                            <!-- Item 1 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+                                <div class="thumbnail">
+                                    <img
+                                        src="http://127.0.0.1:8000/storage/media_thumbnail/IEnxf9OEwNkR27ONRycAS0ngO0NHleV0TJgac3Sl.jpg">
+                                </div>
+                                <h1 class="title">
+                                    <a href="#">ঢাকায় স্টার্টআপ ইকোসিস্টেম দ্রুত বৃদ্ধি পাচ্ছে</a>
+                                </h1>
+                            </div>
+                            <!-- Item 2 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                            <!-- Item 3 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                            <!-- Item 4 -->
+                            <div class="news-card border-b-0 pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="xl:col-span-3 md:col-span-6 col-span-12 ">
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
+                            <h2 class="section-title"> <a href="http://127.0.0.1:8000/category/dhrm">ধর্ম</a></h2>
+                        </div>
+                        <div class="space-y-4 ">
+                            <!-- Item 1 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+                                <div class="thumbnail">
+                                    <img
+                                        src="http://127.0.0.1:8000/storage/media_thumbnail/IEnxf9OEwNkR27ONRycAS0ngO0NHleV0TJgac3Sl.jpg">
+                                </div>
+                                <h1 class="title">
+                                    <a href="#">ঢাকায় স্টার্টআপ ইকোসিস্টেম দ্রুত বৃদ্ধি পাচ্ছে</a>
+                                </h1>
+                            </div>
+                            <!-- Item 2 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                            <!-- Item 3 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                            <!-- Item 4 -->
+                            <div class="news-card border-b-0 pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!--======== সাক্ষাৎকার,সাহিত্য, ফিচার, ধর্ম Section end ====== -->
+
+        <!--======== অর্থনীতি, পরিবেশ, বিনোদন, চাকরির খবর  Section ====== -->
+        <section class="interview_feature_religion_section section-padding-top">
+            <div class="container">
+
+                <div class="grid grid-cols-12 lg:gap-4 gap-3 border-b pb-4 border-stock-color">
+
+                    <!-- left Side (3 items) -->
+                    <div class="xl:col-span-3 md:col-span-6 col-span-12 ">
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
+                            <h2 class="section-title"> <a href="http://127.0.0.1:8000/category/orthneeti">অর্থনীতি</a>
+                            </h2>
+                        </div>
+                        <div class="space-y-4 ">
+                            <!-- Item 1 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+                                <div class="thumbnail">
+                                    <img
+                                        src="http://127.0.0.1:8000/storage/media_thumbnail/IEnxf9OEwNkR27ONRycAS0ngO0NHleV0TJgac3Sl.jpg">
+                                </div>
+                                <h1 class="title">
+                                    <a href="#">ঢাকায় স্টার্টআপ ইকোসিস্টেম দ্রুত বৃদ্ধি পাচ্ছে</a>
+                                </h1>
+                            </div>
+                            <!-- Item 2 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                            <!-- Item 3 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                            <!-- Item 4 -->
+                            <div class="news-card border-b-0 pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="xl:col-span-3 md:col-span-6 col-span-12 ">
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
+                            <h2 class="section-title"> <a
+                                    href="http://127.0.0.1:8000/category/abhawa-oo-pribes">পরিবেশ</a></h2>
+                        </div>
+                        <div class="space-y-4 ">
+                            <!-- Item 1 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+                                <div class="thumbnail">
+                                    <img
+                                        src="http://127.0.0.1:8000/storage/media_thumbnail/IEnxf9OEwNkR27ONRycAS0ngO0NHleV0TJgac3Sl.jpg">
+                                </div>
+                                <h1 class="title">
+                                    <a href="#">ঢাকায় স্টার্টআপ ইকোসিস্টেম দ্রুত বৃদ্ধি পাচ্ছে</a>
+                                </h1>
+                            </div>
+                            <!-- Item 2 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                            <!-- Item 3 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                            <!-- Item 4 -->
+                            <div class="news-card border-b-0 pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="xl:col-span-3 md:col-span-6 col-span-12 ">
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
+                            <h2 class="section-title"> <a href="http://127.0.0.1:8000/category/binodn">বিনোদন</a></h2>
+                        </div>
+                        <div class="space-y-4 ">
+                            <!-- Item 1 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+                                <div class="thumbnail">
+                                    <img
+                                        src="http://127.0.0.1:8000/storage/media_thumbnail/IEnxf9OEwNkR27ONRycAS0ngO0NHleV0TJgac3Sl.jpg">
+                                </div>
+                                <h1 class="title">
+                                    <a href="#">ঢাকায় স্টার্টআপ ইকোসিস্টেম দ্রুত বৃদ্ধি পাচ্ছে</a>
+                                </h1>
+                            </div>
+                            <!-- Item 2 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                            <!-- Item 3 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                            <!-- Item 4 -->
+                            <div class="news-card border-b-0 pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="xl:col-span-3 md:col-span-6 col-span-12 ">
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
+                            <h2 class="section-title"> <a href="http://127.0.0.1:8000/category/cakrir-khbr">চাকরির খবর</a>
+                            </h2>
+                        </div>
+                        <div class="space-y-4 ">
+                            <!-- Item 1 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+                                <div class="thumbnail">
+                                    <img
+                                        src="http://127.0.0.1:8000/storage/media_thumbnail/IEnxf9OEwNkR27ONRycAS0ngO0NHleV0TJgac3Sl.jpg">
+                                </div>
+                                <h1 class="title">
+                                    <a href="#">ঢাকায় স্টার্টআপ ইকোসিস্টেম দ্রুত বৃদ্ধি পাচ্ছে</a>
+                                </h1>
+                            </div>
+                            <!-- Item 2 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                            <!-- Item 3 -->
+                            <div class="news-card border-b pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                            <!-- Item 4 -->
+                            <div class="news-card border-b-0 pb-3 border-stock-color">
+
+                                <h1 class="title !my-0 flex-1">
+                                    <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে সম্ভাবনার নতুন
+                                        দিগন্ত। </a>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!--======== অর্থনীতি, পরিবেশ, বিনোদন, চাকরির খবর Section end ====== -->
+
+        <!--======== International Section ====== -->
+        <section class="international_section section-padding-top">
+            <div class="container">
+                <div class="grid grid-cols-12 lg:gap-4 gap-3 ">
+                    <div class="xl:col-span-6 col-span-12 lg:border-b-0 border-b lg:pb-0 pb-3 border-stock-color">
+                        <div class="section-title-wrap">
+                            <h2 class="section-title">ফ্যাক্টচেক</h2>
+                            <div class="section-button-wrap">
+                                <a href="http://127.0.0.1:8000/category/fzaktcek" class="section_button">আরও পড়ুন <i
+                                        class="fa-solid fa-angle-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-12 lg:gap-4 gap-3 ">
+                            <!-- Center Big News -->
+                            <div class="md:col-span-6 col-span-12 md:border-b-0 border-b md:pb-0 pb-3 border-stock-color">
+                                <div class="news-card">
+                                    <div class="thumbnail">
+                                        <a href="#">
+                                            <img src="http://127.0.0.1:8000/storage/media_thumbnail/g12mt60RjYydz3u53rE7uDRrnTkfTyG9fKKCYigp.jpg"
+                                                alt="thumbnail">
+                                        </a>
+                                    </div>
+
+                                    <h1 class="lg:text-2xl text-xl font-semibold mt-3 mb-2">
+                                        <a href="#">
+                                            ডিজিটাল বাংলাদেশের পথে আরেক ধাপ এগিয়ে দেশ
+                                        </a>
+                                    </h1>
+
+                                    <div class="short-description_home">
+                                        <p>
+                                            <a href="#">
+                                                সরকারের বিভিন্ন ডিজিটাল উদ্যোগ ও বেসরকারি খাতের অংশগ্রহণে দেশ দ্রুত
+                                                প্রযুক্তিনির্ভর
+                                                অর্থনীতির দিকে এগিয়ে যাচ্ছে। নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি
+                                                করছে
+                                                সম্ভাবনার নতুন দিগন্ত।
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Side (3 items) -->
+                            <div class="md:col-span-6 col-span-12 order-3 lg:border-l lg:pl-4 border-stock-color">
+                                <div class="space-y-4">
+                                    <!-- Item 1 -->
+                                    <div class="news-card border-b pb-3 border-stock-color">
+                                        <h1 class="title-sm !my-0 flex-1">
+                                            <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে
+                                                সম্ভাবনার নতুন
+                                                দিগন্ত। </a>
+                                        </h1>
+                                    </div>
+                                    <!-- Item 1 -->
+                                    <div class="news-card border-b pb-3 border-stock-color">
+                                        <h1 class="title-sm !my-0 flex-1">
+                                            <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে
+                                                সম্ভাবনার নতুন
+                                                দিগন্ত। </a>
+                                        </h1>
+                                    </div>
+                                    <!-- Item 1 -->
+                                    <div class="news-card border-b pb-3 border-stock-color">
+                                        <h1 class="title-sm !my-0 flex-1">
+                                            <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে
+                                                সম্ভাবনার নতুন
+                                                দিগন্ত। </a>
+                                        </h1>
+                                    </div>
+                                    <!-- Item 1 -->
+                                    <div class="news-card border-b-0 pb-3 border-stock-color">
+                                        <h1 class="title-sm !my-0 flex-1">
+                                            <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে
+                                                সম্ভাবনার নতুন
+                                                দিগন্ত। </a>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="xl:col-span-6 col-span-12 lg:border-b-0 border-b lg:pb-0 pb-3 border-stock-color">
+                        <div class="section-title-wrap">
+                            <h2 class="section-title">প্রতিবাদলিপি </h2>
+                            <div class="section-button-wrap">
+                                <a href="http://127.0.0.1:8000/category/prtibadlipi-oo-sngsodhnee" class="section_button">আরও পড়ুন <i
+                                        class="fa-solid fa-angle-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-12 lg:gap-4 gap-3 ">
+                            <!-- Center Big News -->
+                            <div class="md:col-span-6 col-span-12 md:border-b-0 border-b md:pb-0 pb-3 border-stock-color">
+                                <div class="news-card">
+                                    <div class="thumbnail">
+                                        <a href="#">
+                                            <img src="http://127.0.0.1:8000/storage/media_thumbnail/g12mt60RjYydz3u53rE7uDRrnTkfTyG9fKKCYigp.jpg"
+                                                alt="thumbnail">
+                                        </a>
+                                    </div>
+
+                                    <h1 class="lg:text-2xl text-xl font-semibold mt-3 mb-2">
+                                        <a href="#">
+                                            ডিজিটাল বাংলাদেশের পথে আরেক ধাপ এগিয়ে দেশ
+                                        </a>
+                                    </h1>
+
+                                    <div class="short-description_home">
+                                        <p>
+                                            <a href="#">
+                                                সরকারের বিভিন্ন ডিজিটাল উদ্যোগ ও বেসরকারি খাতের অংশগ্রহণে দেশ দ্রুত
+                                                প্রযুক্তিনির্ভর
+                                                অর্থনীতির দিকে এগিয়ে যাচ্ছে। নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি
+                                                করছে
+                                                সম্ভাবনার নতুন দিগন্ত।
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Side (3 items) -->
+                            <div class="md:col-span-6 col-span-12 order-3 lg:border-l lg:pl-4 border-stock-color">
+                                <div class="space-y-4">
+                                    <!-- Item 1 -->
+                                    <div class="news-card border-b pb-3 border-stock-color">
+                                        <h1 class="title-sm !my-0 flex-1">
+                                            <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে
+                                                সম্ভাবনার নতুন
+                                                দিগন্ত। </a>
+                                        </h1>
+                                    </div>
+                                    <!-- Item 1 -->
+                                    <div class="news-card border-b pb-3 border-stock-color">
+                                        <h1 class="title-sm !my-0 flex-1">
+                                            <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে
+                                                সম্ভাবনার নতুন
+                                                দিগন্ত। </a>
+                                        </h1>
+                                    </div>
+                                    <!-- Item 1 -->
+                                    <div class="news-card border-b pb-3 border-stock-color">
+                                        <h1 class="title-sm !my-0 flex-1">
+                                            <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে
+                                                সম্ভাবনার নতুন
+                                                দিগন্ত। </a>
+                                        </h1>
+                                    </div>
+                                    <!-- Item 1 -->
+                                    <div class="news-card border-b-0 pb-3 border-stock-color">
+                                        <h1 class="title-sm !my-0 flex-1">
+                                            <a href="#">নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে
+                                                সম্ভাবনার নতুন
+                                                দিগন্ত। </a>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+        <!--======== International Section end ====== -->
+
+        <!--=========Video_Section=========== -->
+        <section class="video_section section_short-padding {{ $videos->count() == 0 ? 'hidden' : '' }}">
+            <div class="container border-t pt-6 border-stock-color">
+                <div class="section-title-wrap">
+                    <h2 class="section-title">{{ __('lang.video') }}</h2>
+                    <div class="section-button-wrap">
+                        <a href="{{ route('videos') }}" class="section_button">{{ __('lang.see_more') }} <i
+                                class="fa-solid fa-angle-right"></i></a>
+                    </div>
+                </div>
+                <div class="grid grid-cols-12 md:gap-6 gap-4 border-b pb-4 border-stock-color">
+
+                    @php
+                        $mainVideo = $videos->first();
+                        $sideVideos = $videos->slice(1, 4);
+                    @endphp
+
+                    <!-- Main Left Video -->
+                    @if ($mainVideo)
+                        <div
+                            class="lg:col-span-6 col-span-12 lg:border-r lg:border-b-0 border-b lg:pr-4 lg:pb-0 pb-3 border-stock-color">
+                            <div class="news-card">
+                                <div class="video_thumbnail">
+                                    <a
+                                        href="{{ route('video_details', ['id' => $mainVideo->id, 'slug' => $mainVideo->slug]) }}">
+                                        <img src="{{ asset('storage') }}/{{ $mainVideo->media->thumbnail ?? null }}"
+                                            alt="Thumbnail">
+                                    </a>
+
+                                    <a href="{{ route('video_details', ['id' => $mainVideo->id, 'slug' => $mainVideo->slug]) }}"
+                                        class="video-icon-wrap">
+                                        <span class="video-icon animate-ripple-blue-vdo">
+                                            <i class="fa-solid fa-play"></i>
+                                        </span>
+                                    </a>
+
+                                    <span class="video_duration">{{ $mainVideo->video_duration }}</span>
+                                </div>
+
+                                <h1 class="title title-lg">
+                                    <a
+                                        href="{{ route('video_details', ['id' => $mainVideo->id, 'slug' => $mainVideo->slug]) }}">
+                                        {{ Str::limit($mainVideo->title, 120) }}
+                                    </a>
+                                </h1>
+
+                                {{-- <div class="short-description">
+                                    <p>
+                                        <a href="#">
+                                            {{ Str::limit($mainVideo->title, 80) }}
+                                        </a>
+                                    </p>
+                                </div> --}}
+
+                                {{-- <div class="short-description_home">
+                                    <p>
+                                        <a href="#">
+                                            {{ Str::limit($mainVideo->title, 150) }}
+                                        </a>
+                                    </p>
+                                </div> --}}
+                            </div>
+                        </div>
+                    @endif
+
+
+                    <!-- Right Side Videos -->
+                    <div class="lg:col-span-6 col-span-12">
+                        <div class="grid grid-cols-12 md:gap-y-4 lg:gap-4 gap-3">
+
+                            @foreach ($sideVideos as $index => $video)
+                                <div
+                                    class="sm:col-span-6 col-span-6 
+                    {{ $index % 2 == 0 ? 'border-r lg:pr-4 pr-3 border-stock-color' : '' }}">
+
+                                    <div class="news-card">
+                                        <div class="video_thumbnail">
+                                            <a
+                                                href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}">
+                                                <img src="{{ asset('storage') }}/{{ $video->media->thumbnail ?? null }}">
+                                            </a>
+
+                                            <a href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}"
+                                                class="video-icon-wrap">
+                                                <span class="video-icon animate-ripple-blue-vdo">
+                                                    <i class="fa-solid fa-play"></i>
+                                                </span>
+                                            </a>
+
+                                            <span class="video_duration">{{ $video->video_duration }}</span>
+                                        </div>
+
+                                        <h1 class="title">
+                                            <a
+                                                href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}">
+                                                {{ Str::limit($video->title, 80) }}
+                                            </a>
+                                        </h1>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
 
 
 
@@ -1794,8 +2443,8 @@
                     @include('layouts.partials.ads.banner_ad', ['ad' => $ad6, 'showClose' => true])
                 </div>
             </div>
-        @endisset
-        <!-- footer ad area end--> --}}
+        @endisset --}}
+        <!-- footer ad area end-->
     </main>
 @endsection
 
