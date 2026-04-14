@@ -779,6 +779,9 @@
   .mx-auto {
     margin-inline: auto;
   }
+  .\!my-0 {
+    margin-block: calc(var(--spacing) * 0) !important;
+  }
   .my-0 {
     margin-block: calc(var(--spacing) * 0);
   }
@@ -1256,6 +1259,10 @@
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
   }
+  .border-b-0 {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 0px;
+  }
   .border-b-2 {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 2px;
@@ -1407,6 +1414,9 @@
   }
   .pt-5 {
     padding-top: calc(var(--spacing) * 5);
+  }
+  .pt-6 {
+    padding-top: calc(var(--spacing) * 6);
   }
   .pt-20 {
     padding-top: calc(var(--spacing) * 20);
@@ -1888,6 +1898,11 @@
       grid-column: span 1 / span 1;
     }
   }
+  .md\:col-span-2 {
+    @media (width >= 768px) {
+      grid-column: span 2 / span 2;
+    }
+  }
   .md\:col-span-3 {
     @media (width >= 768px) {
       grid-column: span 3 / span 3;
@@ -2030,6 +2045,12 @@
       border-right-width: 0px;
     }
   }
+  .md\:border-b-0 {
+    @media (width >= 768px) {
+      border-bottom-style: var(--tw-border-style);
+      border-bottom-width: 0px;
+    }
+  }
   .md\:py-2 {
     @media (width >= 768px) {
       padding-block: calc(var(--spacing) * 2);
@@ -2063,6 +2084,11 @@
   .md\:pr-3 {
     @media (width >= 768px) {
       padding-right: calc(var(--spacing) * 3);
+    }
+  }
+  .md\:pb-0 {
+    @media (width >= 768px) {
+      padding-bottom: calc(var(--spacing) * 0);
     }
   }
   .md\:pb-6 {
@@ -2259,6 +2285,11 @@
   .xl\:col-span-3 {
     @media (width >= 1200px) {
       grid-column: span 3 / span 3;
+    }
+  }
+  .xl\:col-span-6 {
+    @media (width >= 1200px) {
+      grid-column: span 6 / span 6;
     }
   }
   .xl\:col-span-9 {
@@ -2710,6 +2741,21 @@ li {
       font-size: var(--text-xl);
       line-height: var(--tw-leading, var(--text-xl--line-height));
     }
+    .sholder {
+      color: var(--color-red-500);
+      &::after {
+        content: "\f111";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: relative;
+        top: -5px;
+        position: relative;
+        top: calc(3px * -1);
+        margin-left: calc(var(--spacing) * 2);
+        font-size: 6px;
+        color: var(--color-gray-400);
+      }
+    }
   }
   .title-sm {
     margin-top: calc(var(--spacing) * 4);
@@ -2725,6 +2771,21 @@ li {
     @media (width >= 768px) {
       font-size: var(--text-lg);
       line-height: var(--tw-leading, var(--text-lg--line-height));
+    }
+    .sholder {
+      color: var(--color-red-500);
+      &::after {
+        content: "\f111";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: relative;
+        top: -5px;
+        position: relative;
+        top: calc(3px * -1);
+        margin-left: calc(var(--spacing) * 2);
+        font-size: 6px;
+        color: var(--color-gray-400);
+      }
     }
   }
   .title-lg {
@@ -2746,6 +2807,19 @@ li {
     @media (width >= 992px) {
       font-size: var(--text-3xl);
       line-height: var(--tw-leading, var(--text-3xl--line-height));
+    }
+    .sholder {
+      color: var(--color-red-500);
+      &::after {
+        content: "\f111";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: relative;
+        top: calc(5px * -1);
+        margin-left: calc(var(--spacing) * 2);
+        font-size: 6px;
+        color: var(--color-gray-400);
+      }
     }
   }
   .short-description p {
