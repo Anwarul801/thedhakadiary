@@ -18,21 +18,31 @@ li {
   @apply flex flex-col justify-between min-h-screen;
 }
 
+ @font-face {
+  font-family: "Shurjo";
+  src: url(../../font/Shurjo/ShurjoWeb_400.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
 @font-face {
-  font-family: "PlayfairDisplay-VariableFont_wght";
-  src: url(../../font/playfiar-display/PlayfairDisplay-VariableFont_wght.eot)
-      format("embedded-opentype"),
-    url(../../font/playfiar-display/PlayfairDisplay-VariableFont_wght.ttf)
-      format("truetype"),
-    url(../../font/playfiar-display/PlayfairDisplay-VariableFont_wght.woff)
-      format("woff"),
-    url(../../font/playfiar-display/PlayfairDisplay-VariableFont_wght.woff)
-      format("svg");
+  font-family: "Shurjo";
+  src: url(../../font/Shurjo/ShurjoWeb_700.woff2) format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Shurjo";
+  src: url(../../font/Shurjo/Shurjo-bold.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal;
 }
 
 @theme {
   /* ==========FONT_FAMILY======== */
-  --font-noto-bengali: "Noto Serif Bengali";
+  /* --font-noto-bengali: "Noto Serif Bengali"; */
+  --font-noto-bengali: "Shurjo", sans-serif;
   --font-playfair: "PlayfairDisplay-VariableFont_wght";
 
   /* =========BREAK_POINT ======== */
@@ -251,7 +261,8 @@ li {
           font-weight: 900;
           position: relative;
           top: -5px;
-          @apply text-[6px] relative -top-[3px] text-gray-400 ml-2;
+          text-decoration: none;
+          @apply text-[6px] relative -top-[3px] text-gray-400 ml-2 hover:no-underline;
         }
       }
   }
@@ -588,10 +599,36 @@ li {
 
 /* ============TEXTAREA-CARD========= */
 .text-area-card {
-  @apply md:text-[16px] text-sm font-normal text-[#242424];
+  @apply md:text-[16px] text-base font-normal text-[#242424];
 
   p {
-    @apply md:mb-6 sm:mb-4 mb-2.5 last:mb-0;
+    @apply md:text-[16px] text-base md:mb-6 sm:mb-4 mb-2.5 last:mb-0;
+  }
+  span{
+    @apply md:!text-[16px] !text-base;
+  }
+  a{
+    @apply text-blue-600 underline underline-offset-2 decoration-1;
+
+    &:hover {
+      @apply text-blue-800 decoration-2;
+    }
+  }
+
+  blockquote {
+    @apply relative md:my-6 my-4 pl-5 md:pl-6 pr-4 py-3 
+           bg-gray-50 border-l-4 border-red-500 
+           italic text-gray-700 rounded-r;
+
+    p {
+      @apply mb-0;
+    }
+
+    /* Quote icon (optional stylish touch) */
+    &::before {
+      content: "“";
+      @apply absolute left-2 top-0 text-3xl text-red-400 font-bold;
+    }
   }
 
   img {

@@ -16,483 +16,120 @@
         <!-- ==========Top_Section ======== -->
         <section class="top_section section-padding-top">
             <div class="container">
-                <div class="grid grid-cols-12 md:gap-6 gap-4">
-                    <div class="xl:col-span-12 col-span-12 border-b pb-2 border-stock-color">
-                        <div class="grid grid-cols-12 md:gap-6 gap-4 border-b pb-4 border-stock-color">
-                            @forelse($header_posts->where('header_order', 1) as $header_post)
-                                <div
-                                    class="lg:col-span-6 col-span-12 lg:border-r lg:border-b-0 border-b lg:pr-4 lg:pb-0 pb-3 border-stock-color">
-                                    <!-- news card -->
-                                    <div class="news-card">
-                                        <div class="thumbnail">
-                                            <a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">
-                                                <img src="{{ asset('storage') }}/{{ $header_post->media->image ?? null }}"
-                                                    alt="Default Thumbnail">
-                                            </a>
-                                        </div>
-                                        <h1 class="title title-lg">
-                                            <a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">
-                                                <span class="sholder">জামায়াত কর্মী সাওদা সুমি</span>
-                                                {{ Str::limit($header_post->title, 100) }}</a>
-                                        </h1>
-                                        <div class="short-description">
-                                            <p>
-                                                <a
-                                                    href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">{{ $header_post->subtitle }}</a>
-                                            </p>
-                                        </div>
-                                        <div class="short-description_home">
-                                            <p>
-                                                <a
-                                                    href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">
-                                                    {!! \Illuminate\Support\Str::limit($header_post->news_details, 400) !!}
-                                                </a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            @empty
-                                <div class="lg:col-span-6 col-span-12">
-                                </div>
-                            @endforelse
+                <div class="border-b pb-2 border-stock-color">
 
-                            <div class="lg:col-span-6 col-span-12">
-                                <div class="grid grid-cols-12 md:gap-y-4 lg:gap-4 gap-3">
-                                    <!-- First side news card -->
+    <!-- TOP SECTION -->
+    <div class="flex flex-col lg:flex-row gap-4 border-b pb-4 border-stock-color">
 
-                                    @forelse($header_posts->whereIn('header_order', 2)->sortby('header_order') as $header_post)
-                                        <div class="sm:col-span-6 col-span-6 border-r lg:pr-4 pr-3 border-stock-color">
-                                            <div class="news-card">
-                                                <div class="thumbnail">
-                                                    <a
-                                                        href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">
-                                                        @php
-                                                            $thumbnail = $header_post->media->thumbnail ?? null;
-                                                            $thumbnailPath = $thumbnail
-                                                                ? public_path('storage/' . $thumbnail)
-                                                                : null;
-                                                        @endphp
+        <!-- LEFT BIG -->
+        @php
+            $mainPost = $header_posts->firstWhere('header_order', 1);
+        @endphp
 
-                                                        @if ($thumbnailPath && file_exists($thumbnailPath))
-                                                            <img src="{{ asset('storage/' . $thumbnail) }}"
-                                                                alt="Thumbnail">
-                                                        @else
-                                                            <img src="{{ asset('storage/' . ($header_post->media->image ?? 'default.png')) }}"
-                                                                alt="Default Thumbnail">
-                                                        @endif
-                                                    </a>
-                                                </div>
-                                                <h1 class="title">
-                                                    <a
-                                                        href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">{{ Str::limit($header_post->title, 100) }}</a>
-                                                </h1>
+        @isset($mainPost)
+            <div class="lg:w-1/2 w-full lg:border-r lg:pr-4 border-stock-color">
+                <div class="news-card">
 
-                                            </div>
-                                        </div>
-                                    @empty
-                                        <div class="sm:col-span-6 col-span-6">
-                                        </div>
-                                    @endforelse
-
-                                    @forelse($header_posts->whereIn('header_order', 3)->sortby('header_order') as $header_post)
-                                        <div class="sm:col-span-6 col-span-6">
-                                            <div class="news-card">
-                                                <div class="thumbnail">
-                                                    <a
-                                                        href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">
-                                                        @php
-                                                            $thumbnail = $header_post->media->thumbnail ?? null;
-                                                            $thumbnailPath = $thumbnail
-                                                                ? public_path('storage/' . $thumbnail)
-                                                                : null;
-                                                        @endphp
-
-                                                        @if ($thumbnailPath && file_exists($thumbnailPath))
-                                                            <img src="{{ asset('storage/' . $thumbnail) }}"
-                                                                alt="Thumbnail">
-                                                        @else
-                                                            <img src="{{ asset('storage/' . ($header_post->media->image ?? 'default.png')) }}"
-                                                                alt="Default Thumbnail">
-                                                        @endif
-                                                    </a>
-                                                </div>
-                                                <h1 class="title">
-                                                    <a
-                                                        href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">{{ Str::limit($header_post->title, 100) }}</a>
-                                                </h1>
-                                            </div>
-                                        </div>
-                                    @empty
-                                        <div class="sm:col-span-6 col-span-6">
-                                        </div>
-                                    @endforelse
-                                    @forelse($header_posts->whereIn('header_order', 4)->sortby('header_order') as $header_post)
-                                        <div class="sm:col-span-6 col-span-6 border-r lg:pr-4 pr-3 border-stock-color">
-                                            <div class="news-card">
-                                                <div class="thumbnail">
-                                                    <a
-                                                        href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">
-                                                        @php
-                                                            $thumbnail = $header_post->media->thumbnail ?? null;
-                                                            $thumbnailPath = $thumbnail
-                                                                ? public_path('storage/' . $thumbnail)
-                                                                : null;
-                                                        @endphp
-
-                                                        @if ($thumbnailPath && file_exists($thumbnailPath))
-                                                            <img src="{{ asset('storage/' . $thumbnail) }}"
-                                                                alt="Thumbnail">
-                                                        @else
-                                                            <img src="{{ asset('storage/' . ($header_post->media->image ?? 'default.png')) }}"
-                                                                alt="Default Thumbnail">
-                                                        @endif
-                                                    </a>
-                                                </div>
-                                                <h1 class="title">
-                                                    <a
-                                                        href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">{{ Str::limit($header_post->title, 100) }}</a>
-                                                </h1>
-                                            </div>
-                                        </div>
-                                    @empty
-                                        <div class="sm:col-span-6 col-span-6">
-                                        </div>
-                                    @endforelse
-                                    @forelse($header_posts->whereIn('header_order', 5)->sortby('header_order') as $header_post)
-                                        <div class="sm:col-span-6 col-span-6">
-                                            <div class="news-card">
-                                                <div class="thumbnail">
-                                                    <a
-                                                        href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">
-                                                        @php
-                                                            $thumbnail = $header_post->media->thumbnail ?? null;
-                                                            $thumbnailPath = $thumbnail
-                                                                ? public_path('storage/' . $thumbnail)
-                                                                : null;
-                                                        @endphp
-
-                                                        @if ($thumbnailPath && file_exists($thumbnailPath))
-                                                            <img src="{{ asset('storage/' . $thumbnail) }}"
-                                                                alt="Thumbnail">
-                                                        @else
-                                                            <img src="{{ asset('storage/' . ($header_post->media->image ?? 'default.png')) }}"
-                                                                alt="Default Thumbnail">
-                                                        @endif
-                                                    </a>
-                                                </div>
-                                                <h1 class="title">
-                                                    <a
-                                                        href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">{{ Str::limit($header_post->title, 100) }}</a>
-                                                </h1>
-                                            </div>
-                                        </div>
-                                    @empty
-                                        <div class="sm:col-span-6 col-span-6">
-                                        </div>
-                                    @endforelse
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-12 lg:gap-4 gap-3 mt-4">
-                            @forelse($header_posts->whereIn('header_order', 6)->sortby('header_order') as $header_post)
-                                <div
-                                    class="lg:col-span-3 md:col-span-4 col-span-6 border-r lg:pr-4 pr-3 border-stock-color">
-                                    <div class="news-card">
-                                        <div class="thumbnail">
-                                            <a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">
-                                                @php
-                                                    $thumbnail = $header_post->media->thumbnail ?? null;
-                                                    $thumbnailPath = $thumbnail
-                                                        ? public_path('storage/' . $thumbnail)
-                                                        : null;
-                                                @endphp
-
-                                                @if ($thumbnailPath && file_exists($thumbnailPath))
-                                                    <img src="{{ asset('storage/' . $thumbnail) }}" alt="Thumbnail">
-                                                @else
-                                                    <img src="{{ asset('storage/' . ($header_post->media->image ?? 'default.png')) }}"
-                                                        alt="Default Thumbnail">
-                                                @endif
-                                            </a>
-                                        </div>
-                                        <h1 class="title"><a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">{{ Str::limit($header_post->title, 100) }}</a>
-                                        </h1>
-                                    </div>
-                                </div>
-                            @empty
-                                <div
-                                    class="lg:col-span-3 md:col-span-4 col-span-6 border-r lg:pr-4 pr-3 border-stock-color">
-                                </div>
-                            @endforelse
-                            @forelse($header_posts->whereIn('header_order', 7)->sortby('header_order') as $header_post)
-                                <div
-                                    class="lg:col-span-3 md:col-span-4 col-span-6 md:border-r lg:pr-4 md:pr-3 border-stock-color">
-                                    <div class="news-card">
-                                        <div class="thumbnail">
-                                            <a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">
-                                                @php
-                                                    $thumbnail = $header_post->media->thumbnail ?? null;
-                                                    $thumbnailPath = $thumbnail
-                                                        ? public_path('storage/' . $thumbnail)
-                                                        : null;
-                                                @endphp
-
-                                                @if ($thumbnailPath && file_exists($thumbnailPath))
-                                                    <img src="{{ asset('storage/' . $thumbnail) }}" alt="Thumbnail">
-                                                @else
-                                                    <img src="{{ asset('storage/' . ($header_post->media->image ?? 'default.png')) }}"
-                                                        alt="Default Thumbnail">
-                                                @endif
-                                            </a>
-                                        </div>
-                                        <h1 class="title"><a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">{{ Str::limit($header_post->title, 100) }}</a>
-                                        </h1>
-                                    </div>
-                                </div>
-                            @empty
-                                <div
-                                    class="lg:col-span-3 md:col-span-4 col-span-6 border-r lg:pr-4 pr-3 border-stock-color">
-                                </div>
-                            @endforelse
-                            @forelse($header_posts->whereIn('header_order', 8)->sortby('header_order') as $header_post)
-                                <div
-                                    class="lg:col-span-3 md:col-span-4 col-span-6 lg:border-r md:border-r-0 border-r lg:pr-4 md:pr-0 pr-3 border-stock-color">
-                                    <div class="news-card">
-                                        <div class="thumbnail">
-                                            <a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">
-                                                @php
-                                                    $thumbnail = $header_post->media->thumbnail ?? null;
-                                                    $thumbnailPath = $thumbnail
-                                                        ? public_path('storage/' . $thumbnail)
-                                                        : null;
-                                                @endphp
-
-                                                @if ($thumbnailPath && file_exists($thumbnailPath))
-                                                    <img src="{{ asset('storage/' . $thumbnail) }}" alt="Thumbnail">
-                                                @else
-                                                    <img src="{{ asset('storage/' . ($header_post->media->image ?? 'default.png')) }}"
-                                                        alt="Default Thumbnail">
-                                                @endif
-                                            </a>
-                                        </div>
-                                        <h1 class="title"><a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">{{ Str::limit($header_post->title, 100) }}</a>
-                                        </h1>
-                                    </div>
-                                </div>
-                            @empty
-                                <div
-                                    class="lg:col-span-3 md:col-span-4 col-span-6 lg:border-r md:border-r-0 border-r lg:pr-4 md:pr-0 pr-3 border-stock-color">
-                                </div>
-                            @endforelse
-                            @forelse($header_posts->whereIn('header_order', 9)->sortby('header_order') as $header_post)
-                                <div
-                                    class="lg:col-span-3 md:col-span-4 col-span-6 lg:border-r-0 md:border-r border-r-0 lg:pr-0 md:pr-3 border-stock-color">
-                                    <div class="news-card">
-                                        <div class="thumbnail">
-                                            <a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">
-                                                @php
-                                                    $thumbnail = $header_post->media->thumbnail ?? null;
-                                                    $thumbnailPath = $thumbnail
-                                                        ? public_path('storage/' . $thumbnail)
-                                                        : null;
-                                                @endphp
-
-                                                @if ($thumbnailPath && file_exists($thumbnailPath))
-                                                    <img src="{{ asset('storage/' . $thumbnail) }}" alt="Thumbnail">
-                                                @else
-                                                    <img src="{{ asset('storage/' . ($header_post->media->image ?? 'default.png')) }}"
-                                                        alt="Default Thumbnail">
-                                                @endif
-                                            </a>
-                                        </div>
-                                        <h1 class="title"><a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">{{ Str::limit($header_post->title, 100) }}</a>
-                                        </h1>
-                                    </div>
-                                </div>
-                            @empty
-                                <div
-                                    class="lg:col-span-3 md:col-span-4 col-span-6 lg:border-r-0 md:border-r border-r-0 lg:pr-0 md:pr-3 border-stock-color">
-                                </div>
-                            @endforelse
-                            @forelse($header_posts->whereIn('header_order', 10)->sortby('header_order') as $header_post)
-                                <div
-                                    class="lg:col-span-3 md:col-span-4 col-span-6 border-r lg:pr-4 pr-3 border-stock-color">
-                                    <div class="news-card">
-                                        <div class="thumbnail">
-                                            <a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">
-                                                @php
-                                                    $thumbnail = $header_post->media->thumbnail ?? null;
-                                                    $thumbnailPath = $thumbnail
-                                                        ? public_path('storage/' . $thumbnail)
-                                                        : null;
-                                                @endphp
-
-                                                @if ($thumbnailPath && file_exists($thumbnailPath))
-                                                    <img src="{{ asset('storage/' . $thumbnail) }}" alt="Thumbnail">
-                                                @else
-                                                    <img src="{{ asset('storage/' . ($header_post->media->image ?? 'default.png')) }}"
-                                                        alt="Default Thumbnail">
-                                                @endif
-                                            </a>
-                                        </div>
-                                        <h1 class="title"><a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">{{ Str::limit($header_post->title, 100) }}</a>
-                                        </h1>
-                                    </div>
-                                </div>
-                            @empty
-                                <div
-                                    class="lg:col-span-3 md:col-span-4 col-span-6 border-r lg:pr-4 pr-3 border-stock-color">
-                                </div>
-                            @endforelse
-                            @forelse($header_posts->whereIn('header_order', 11)->sortby('header_order') as $header_post)
-                                <div
-                                    class="lg:col-span-3 md:col-span-4 col-span-6 lg:border-r lg:pr-4 pr-0 border-stock-color">
-                                    <div class="news-card">
-                                        <div class="thumbnail">
-                                            <a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">
-                                                @php
-                                                    $thumbnail = $header_post->media->thumbnail ?? null;
-                                                    $thumbnailPath = $thumbnail
-                                                        ? public_path('storage/' . $thumbnail)
-                                                        : null;
-                                                @endphp
-
-                                                @if ($thumbnailPath && file_exists($thumbnailPath))
-                                                    <img src="{{ asset('storage/' . $thumbnail) }}" alt="Thumbnail">
-                                                @else
-                                                    <img src="{{ asset('storage/' . ($header_post->media->image ?? 'default.png')) }}"
-                                                        alt="Default Thumbnail">
-                                                @endif
-                                            </a>
-                                        </div>
-                                        <h1 class="title"><a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">{{ Str::limit($header_post->title, 100) }}</a>
-                                        </h1>
-                                    </div>
-                                </div>
-                            @empty
-                                <div
-                                    class="lg:col-span-3 md:col-span-4 col-span-6 lg:border-r lg:pr-4 pr-0 border-stock-color">
-                                </div>
-                            @endforelse
-                            @forelse($header_posts->whereIn('header_order', 12)->sortby('header_order') as $header_post)
-                                <div
-                                    class="lg:col-span-3 md:col-span-4 col-span-6 border-r lg:pr-4 pr-3 border-stock-color">
-                                    <div class="news-card">
-                                        <div class="thumbnail">
-                                            <a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">
-                                                @php
-                                                    $thumbnail = $header_post->media->thumbnail ?? null;
-                                                    $thumbnailPath = $thumbnail
-                                                        ? public_path('storage/' . $thumbnail)
-                                                        : null;
-                                                @endphp
-
-                                                @if ($thumbnailPath && file_exists($thumbnailPath))
-                                                    <img src="{{ asset('storage/' . $thumbnail) }}" alt="Thumbnail">
-                                                @else
-                                                    <img src="{{ asset('storage/' . ($header_post->media->image ?? 'default.png')) }}"
-                                                        alt="Default Thumbnail">
-                                                @endif
-                                            </a>
-                                        </div>
-                                        <h1 class="title"><a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">{{ Str::limit($header_post->title, 100) }}</a>
-                                        </h1>
-                                    </div>
-                                </div>
-                            @empty
-                                <div
-                                    class="lg:col-span-3 md:col-span-4 col-span-6 border-r lg:pr-4 pr-3 border-stock-color">
-                                </div>
-                            @endforelse
-                            @forelse($header_posts->whereIn('header_order', 13)->sortby('header_order') as $header_post)
-                                <div class="lg:col-span-3 md:col-span-4 col-span-6">
-                                    <div class="news-card">
-                                        <div class="thumbnail">
-                                            <a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">
-                                                @php
-                                                    $thumbnail = $header_post->media->thumbnail ?? null;
-                                                    $thumbnailPath = $thumbnail
-                                                        ? public_path('storage/' . $thumbnail)
-                                                        : null;
-                                                @endphp
-
-                                                @if ($thumbnailPath && file_exists($thumbnailPath))
-                                                    <img src="{{ asset('storage/' . $thumbnail) }}" alt="Thumbnail">
-                                                @else
-                                                    <img src="{{ asset('storage/' . ($header_post->media->image ?? 'default.png')) }}"
-                                                        alt="Default Thumbnail">
-                                                @endif
-                                            </a>
-                                        </div>
-                                        <h1 class="title"><a
-                                                href="{{ route('news_details', ['id' => $header_post->id, 'slug' => $header_post->slug]) }}">{{ Str::limit($header_post->title, 100) }}</a>
-                                        </h1>
-                                    </div>
-                                </div>
-                            @empty
-                                <div class="lg:col-span-3 md:col-span-4 col-span-6">
-                                </div>
-                            @endforelse
-                        </div>
-
-
+                    <div class="thumbnail">
+                        <a href="{{ route('news_details', ['id' => $mainPost->id, 'slug' => $mainPost->slug]) }}">
+                            <img class="w-full h-[260px] object-cover"
+                                 src="{{ asset('storage/'.($mainPost->media->image ?? 'default.png')) }}">
+                        </a>
                     </div>
 
-                    {{-- <div class="xl:col-span-3 col-span-12">
-                        @include('layouts.partials.news_item.latest_news')
-                        @if (getOptionData('media_submission') == 'Yes')
-                            <div class="send-video-wrap">
-                                <h1 class="title">{{__('lang.send_video_title')}}</h1>
+                    <h1 class="title title-lg">
+                        <a href="{{ route('news_details', ['id' => $mainPost->id, 'slug' => $mainPost->slug]) }}">
+                            {{ Str::limit($mainPost->title, 100) }}
+                        </a>
+                    </h1>
 
-                                <div class="using-mathod">
-                                    <a href="https://wa.me/{{getOptionData('whats_app')}}" class="item">
-                                        <div class="left-part flex items-center gap-4">
-                                            <div class="left-icon">
-                                                <img src="{{asset('frontend/assets')}}/image/whatsapp.svg" alt="What's up">
-                                            </div>
-                                            <h3 class="name">{{__('lang.whatsapp')}}</h3>
-                                        </div>
-                                        <div class="right-icon">
-                                            <img src="{{asset('frontend/assets')}}/image/arrow-right.svg" alt="arrow right">
-                                        </div>
-                                    </a>
-                                    <a href="mailto:{{getOptionData('email')}}" class="item">
-                                        <div class="left-part flex items-center gap-4">
-                                            <div class="left-icon">
-                                                <img src="{{asset('frontend/assets')}}/image/gmail.svg" alt="What's up">
-                                            </div>
-                                            <h3 class="name">{{__('lang.email')}}</h3>
-                                        </div>
-                                        <div class="right-icon">
-                                            <img src="{{asset('frontend/assets')}}/image/arrow-right.svg" alt="arrow right">
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        @endif
-                        <!-- ad area start -->
-                        @include('layouts.partials.ads.side_ad', ['ad' => $ad2])
-                        <!-- ad area end -->
-                    </div> --}}
                 </div>
+            </div>
+        @endisset
+
+
+        <!-- RIGHT SIDE -->
+        <div class="lg:w-1/2 w-full grid grid-cols-2 gap-4">
+
+            @foreach([2,3,4,5] as $order)
+                @php
+                    $post = $header_posts->firstWhere('header_order', $order);
+                @endphp
+
+                @isset($post)
+                    <div class="
+                        news-card
+                        border-stock-color
+
+                        lg:border-r lg:pr-4
+                        even:lg:border-r-0
+                    ">
+
+                        <div class="thumbnail">
+                            <a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">
+                                <img class="w-full h-[120px] object-cover"
+                                     src="{{ asset('storage/'.($post->media->thumbnail ?? $post->media->image ?? 'default.png')) }}">
+                            </a>
+                        </div>
+
+                        <h1 class="title text-sm">
+                            <a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">
+                                {{ Str::limit($post->title, 70) }}
+                            </a>
+                        </h1>
+
+                    </div>
+                @endisset
+            @endforeach
+
+        </div>
+
+    </div>
+
+
+    <!-- BOTTOM GRID -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+
+        @foreach(range(6,13) as $order)
+            @php
+                $post = $header_posts->firstWhere('header_order', $order);
+            @endphp
+
+            @isset($post)
+                <div class="
+                    news-card
+                    border-stock-color
+
+                    border-r pr-3
+                    even:border-r-0
+
+                    md:border-r md:pr-3
+                    md:[&:nth-child(3n)]:border-r-0
+
+                    lg:border-r lg:pr-4
+                    lg:[&:nth-child(4n)]:border-r-0
+                ">
+
+                    <div class="thumbnail">
+                        <a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">
+                            <img class="w-full h-[120px] object-cover"
+                                 src="{{ asset('storage/'.($post->media->thumbnail ?? $post->media->image ?? 'default.png')) }}">
+                        </a>
+                    </div>
+
+                    <h1 class="title text-sm">
+                        <a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">
+                            {{ Str::limit($post->title, 70) }}
+                        </a>
+                    </h1>
+
+                </div>
+            @endisset
+        @endforeach
+
+    </div>
+
+</div>
             </div>
         </section>
 
@@ -2031,8 +1668,8 @@
                         <div class="section-title-wrap">
                             <h2 class="section-title">প্রতিবাদলিপি </h2>
                             <div class="section-button-wrap">
-                                <a href="http://127.0.0.1:8000/category/prtibadlipi-oo-sngsodhnee" class="section_button">আরও পড়ুন <i
-                                        class="fa-solid fa-angle-right"></i></a>
+                                <a href="http://127.0.0.1:8000/category/prtibadlipi-oo-sngsodhnee"
+                                    class="section_button">আরও পড়ুন <i class="fa-solid fa-angle-right"></i></a>
                             </div>
                         </div>
 
