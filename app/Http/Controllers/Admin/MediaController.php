@@ -17,9 +17,19 @@ class MediaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['media'] = Media::paginate(50);
+        $search = [];
+        if ($request->caption){
+            $search[] = ['caption','like','%'.$request->caption.'%'];
+        }
+        if ($request->code_id){
+            $search[] = ['id', $request->code_id];
+        }
+        if ($request->source){
+            $search[] = ['source','like','%'.$request->source.'%'];
+        }
+        $data['media'] = Media::where($search)->paginate(20);
         $data['pgs'] = PhotoGallery::all();
         return view('admin.media.media', $data);
     }
@@ -45,17 +55,11 @@ class MediaController extends Controller
         $request->validate([
             'caption' => 'required',
             'image' => 'required | image',
-            'photo_gallery_id' => 'integer',
-        ],[
-            'photo_gallery_id' => 'Photo Gallery Not Support'
         ]);
 
         $media = new Media;
         $media->caption = $request->caption;
         $media->source = $request->source;
-        $media->photo_gallery_id = $request->photo_gallery_id;
-        $media->save();
-        $media->order = $media->id;
         $media->save();
         if ($request->image){
             $image = $request->file("image")->store("media_image");
@@ -125,17 +129,10 @@ class MediaController extends Controller
 
         $request->validate([
             'caption' => 'required',
-            'order' => 'required | integer | max:2147483647',
-            'status' => 'required',
-            'photo_gallery_id' => 'integer',
-        ],[
-            'photo_gallery_id' => 'Photo Gallery Not Support'
         ]);
         $media = Media::findOrFail($id);
         $media->caption = $request->caption;
-        $media->photo_gallery_id = $request->photo_gallery_id;
         $media->source = $request->source;
-        $media->order = $request->order;
         if ($request->image){
             Storage::delete($media->image);
             Storage::delete($media->thumbnail);
