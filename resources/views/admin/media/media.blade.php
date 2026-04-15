@@ -32,23 +32,23 @@
 
                                 <form class="form-horizontal" action="{{ route('media.store') }}" method="post" enctype="multipart/form-data">
                                     @csrf
-                                    <div class="form-group">
-                                            <label for="caption">Select Photo Gallery</label>
-                                        <select class="form-control" name="photo_gallery_id" id="">
-                                            <option selected disabled>Select Photo Gallery</option>
-                                            @foreach($pgs as $pg)
-                                                <option value="{{$pg->id}}">{{$pg->title}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+{{--                                    <div class="form-group">--}}
+{{--                                            <label for="caption">Select Photo Gallery</label>--}}
+{{--                                        <select class="form-control" name="photo_gallery_id" id="">--}}
+{{--                                            <option selected disabled>Select Photo Gallery</option>--}}
+{{--                                            @foreach($pgs as $pg)--}}
+{{--                                                <option value="{{$pg->id}}">{{$pg->title}}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
                                     <div class="form-group">
                                             <label for="caption">Caption *</label>
                                             <input class="form-control" type="text" id="caption" name="caption" required="" placeholder="Caption">
                                     </div>
-{{--                                    <div class="form-group">--}}
-{{--                                            <label for="source">Source</label>--}}
-{{--                                            <input class="form-control" type="text" id="source" name="source" placeholder="Source">--}}
-{{--                                    </div>--}}
+                                    <div class="form-group">
+                                            <label for="source">Source/Credit</label>
+                                            <input class="form-control" type="text" id="source" name="source" placeholder="Source">
+                                    </div>
                                     <div class="form-group">
                                             <label for="caption">Image : (1280x672px) *</label>
                                             <input class="form-control" type="file" id="image" name="image" required="">
@@ -66,11 +66,55 @@
                 </div>
 
                 <div class="card-body">
+                    <form method="GET" action="" class="mb-3">
+                        <div class="row g-3">
+
+                            <!-- Caption -->
+                            <div class="col-md-3">
+                                <label class="form-label">Caption</label>
+                                <input type="text" name="caption" class="form-control"
+                                       placeholder="Search by caption"
+                                       value="{{ request('caption') }}">
+                            </div>
+
+                            <!-- Code ID -->
+                            <div class="col-md-3">
+                                <label class="form-label">Code ID</label>
+                                <input type="number" name="code_id" class="form-control"
+                                       placeholder="Enter ID"
+                                       value="{{ request('code_id') }}">
+                            </div>
+
+                            <!-- Source -->
+                            <div class="col-md-3">
+                                <label class="form-label">Source</label>
+                                <input type="text" name="source" class="form-control"
+                                       placeholder="Search by source"
+                                       value="{{ request('source') }}">
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="col-md-3">
+                                <label for="">Action</label><br>
+                                <div class="">
+                                    <button type="submit" class="btn btn-primary ">
+                                        <i class="fa fa-search"></i> Search
+                                    </button>
+                                    <a href="{{ url()->current() }}" class="btn btn-secondary">
+                                        Reset
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
                     <table class="table table-bordered text-center" >
                         <tr>
                             <th>SL</th>
                             <th>Photo</th>
                             <th>Caption</th>
+                            <th>Source/Credit</th>
+                            <th>Code ID</th>
                             <th>Copy Code</th>
                             <th>Action</th>
                         </tr>
@@ -83,6 +127,8 @@
                                     </a>
                                 </td>
                                 <td>{{ $m->caption }}</td>
+                                <td>{{ $m->source }}</td>
+                                <td>{{ $m->id }}</td>
 
                                 <td><button onclick="navigator.clipboard.writeText('[img id={{ "\"" . $m->id . "\"" }}]'); alert('Short Code copied')" class="btn btn-secondary">Copy Image ShortCode</button></td>
                                 <td>
@@ -130,10 +176,10 @@
                                                             <label for="caption">Caption *</label>
                                                             <input value="{{$m->caption}}" class="form-control" type="text" id="caption" name="caption" required="" placeholder="Caption">
                                                         </div>
-{{--                                                        <div class="form-group">--}}
-{{--                                                            <label for="source">Source</label>--}}
-{{--                                                            <input value="{{$m->source}}" class="form-control" type="text" id="source" name="source" placeholder="Source">--}}
-{{--                                                        </div>--}}
+                                                        <div class="form-group">
+                                                            <label for="source">Source/Credit</label>
+                                                            <input value="{{$m->source}}" class="form-control" type="text" id="source" name="source" placeholder="Source">
+                                                        </div>
                                                         <div class="form-group">
                                                             <label for="caption">Image : (1280x672px) *</label>
                                                             <input class="form-control" type="file" id="image" name="image">

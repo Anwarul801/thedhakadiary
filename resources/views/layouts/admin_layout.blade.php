@@ -119,7 +119,7 @@
             <li class="dropdown notification-list">
                 <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <img src="{{ asset('admin') }}/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
-                    <span class="ml-1">{{auth()->user()->name}} </span>
+                    <span class="ml-1">{{auth()->user()->name}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                     <!-- item-->
