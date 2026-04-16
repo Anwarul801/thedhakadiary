@@ -18,46 +18,61 @@
             <div class="container">
                 <div class="border-b pb-2 border-stock-color">
 
-    <!-- TOP SECTION -->
-    <div class="flex flex-col lg:flex-row gap-4 border-b pb-4 border-stock-color">
+                    <!-- TOP SECTION -->
+                    <div class="flex flex-col lg:flex-row gap-4 border-b pb-4 border-stock-color">
 
-        <!-- LEFT BIG -->
-        @php
-            $mainPost = $header_posts->firstWhere('header_order', 1);
-        @endphp
+                        <!-- LEFT BIG -->
+                        @php
+                            $mainPost = $header_posts->firstWhere('header_order', 1);
+                        @endphp
 
-        @isset($mainPost)
-            <div class="lg:w-1/2 w-full lg:border-r lg:pr-4 border-stock-color">
-                <div class="news-card">
+                        @isset($mainPost)
+                            <div class="lg:w-1/2 w-full lg:border-r lg:pr-4 border-stock-color">
+                                <div class="news-card">
 
-                    <div class="thumbnail">
-                        <a href="{{ route('news_details', ['id' => $mainPost->id, 'slug' => $mainPost->slug]) }}">
-                            <img class="w-full h-[260px] object-cover"
-                                 src="{{ asset('storage/'.($mainPost->media->image ?? 'default.png')) }}">
-                        </a>
-                    </div>
+                                    <div class="thumbnail">
+                                        <a
+                                            href="{{ route('news_details', ['id' => $mainPost->id, 'slug' => $mainPost->slug]) }}">
+                                            <img class="w-full h-[260px] object-cover"
+                                                src="{{ asset('storage/' . ($mainPost->media->image ?? 'default.png')) }}">
+                                        </a>
+                                    </div>
 
-                    <h1 class="title title-lg">
-                        <a href="{{ route('news_details', ['id' => $mainPost->id, 'slug' => $mainPost->slug]) }}">
-                            {{ Str::limit($mainPost->title, 100) }}
-                        </a>
-                    </h1>
+                                    <h1 class="title title-lg">
+                                        <a
+                                            href="{{ route('news_details', ['id' => $mainPost->id, 'slug' => $mainPost->slug]) }}">
+                                            {{ Str::limit($mainPost->title, 100) }}
+                                        </a>
+                                    </h1>
+                                    <div class="short-description_home">
+                                        <p>
+                                            <a
+                                                href="{{ route('news_details', ['id' => $mainPost->id, 'slug' => $mainPost->slug]) }}">
+                                                সরকারের বিভিন্ন ডিজিটাল উদ্যোগ ও বেসরকারি খাতের অংশগ্রহণে দেশ দ্রুত
+                                                প্রযুক্তিনির্ভর
+                                                অর্থনীতির দিকে এগিয়ে যাচ্ছে। নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি
+                                                করছে
+                                                সম্ভাবনার নতুন দিগন্ত।
+                                            </a>
+                                        </p>
+                                    </div>
 
-                </div>
-            </div>
-        @endisset
+                                </div>
+                            </div>
+                        @endisset
 
 
-        <!-- RIGHT SIDE -->
-        <div class="lg:w-1/2 w-full grid grid-cols-2 gap-4">
+                        <!-- RIGHT SIDE -->
+                        <div class="lg:w-1/2 w-full grid grid-cols-2 gap-4">
 
-            @foreach([2,3,4,5] as $order)
-                @php
-                    $post = $header_posts->firstWhere('header_order', $order);
-                @endphp
+                            @foreach ([2, 3, 4, 5] as $order)
+                                @php
+                                    $post = $header_posts->firstWhere('header_order', $order);
+                                @endphp
 
-                @isset($post)
-                    <div class="
+                                @isset($post)
+                                    <div
+                                        class="
                         news-card
                         border-stock-color
 
@@ -65,38 +80,39 @@
                         even:lg:border-r-0
                     ">
 
-                        <div class="thumbnail">
-                            <a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">
-                                <img class="w-full h-[120px] object-cover"
-                                     src="{{ asset('storage/'.($post->media->thumbnail ?? $post->media->image ?? 'default.png')) }}">
-                            </a>
+                                        <div class="thumbnail">
+                                            <a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">
+                                                <img class="w-full h-[120px] object-cover"
+                                                    src="{{ asset('storage/' . ($post->media->thumbnail ?? ($post->media->image ?? 'default.png'))) }}">
+                                            </a>
+                                        </div>
+
+                                        <h1 class="title text-sm">
+                                            <a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">
+                                                {{ Str::limit($post->title, 70) }}
+                                            </a>
+                                        </h1>
+
+                                    </div>
+                                @endisset
+                            @endforeach
+
                         </div>
 
-                        <h1 class="title text-sm">
-                            <a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">
-                                {{ Str::limit($post->title, 70) }}
-                            </a>
-                        </h1>
-
                     </div>
-                @endisset
-            @endforeach
-
-        </div>
-
-    </div>
 
 
-    <!-- BOTTOM GRID -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+                    <!-- BOTTOM GRID -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
 
-        @foreach(range(6,13) as $order)
-            @php
-                $post = $header_posts->firstWhere('header_order', $order);
-            @endphp
+                        @foreach (range(6, 13) as $order)
+                            @php
+                                $post = $header_posts->firstWhere('header_order', $order);
+                            @endphp
 
-            @isset($post)
-                <div class="
+                            @isset($post)
+                                <div
+                                    class="
                     news-card
                     border-stock-color
 
@@ -110,36 +126,36 @@
                     lg:[&:nth-child(4n)]:border-r-0
                 ">
 
-                    <div class="thumbnail">
-                        <a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">
-                            <img class="w-full h-[120px] object-cover"
-                                 src="{{ asset('storage/'.($post->media->thumbnail ?? $post->media->image ?? 'default.png')) }}">
-                        </a>
+                                    <div class="thumbnail">
+                                        <a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">
+                                            <img class="w-full h-[120px] object-cover"
+                                                src="{{ asset('storage/' . ($post->media->thumbnail ?? ($post->media->image ?? 'default.png'))) }}">
+                                        </a>
+                                    </div>
+
+                                    <h1 class="title text-sm">
+                                        <a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">
+                                            {{ Str::limit($post->title, 70) }}
+                                        </a>
+                                    </h1>
+
+                                </div>
+                            @endisset
+                        @endforeach
+
                     </div>
 
-                    <h1 class="title text-sm">
-                        <a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">
-                            {{ Str::limit($post->title, 70) }}
-                        </a>
-                    </h1>
-
                 </div>
-            @endisset
-        @endforeach
-
-    </div>
-
-</div>
             </div>
         </section>
 
-        <!--======== Entertainment Section ====== -->
-        <section class="entertainment_section section-padding-top">
+        <!--======== national Section ====== -->
+        <section class="national_section section_short-padding section-margin-top">
             <div class="container">
                 <div class="section-title-wrap">
                     <h2 class="section-title">জাতীয়</h2>
                     <div class="section-button-wrap">
-                        <a href="http://127.0.0.1:8000/category/jateey" class="section_button">আরও পড়ুন <i
+                        <a href="http://127.0.0.1:8000/category/jateey" class="section_button !bg-black !text-white">আরও পড়ুন <i
                                 class="fa-solid fa-angle-right"></i></a>
                     </div>
                 </div>
@@ -277,7 +293,7 @@
                 </div>
             </div>
         </section>
-        <!--======== Entertainment Section end ====== -->
+        <!--======== national Section end ====== -->
 
         <!--======== Politics Section ====== -->
         <section class="politics_section section-padding-top">
@@ -996,18 +1012,19 @@
         <!--======== whole_country Section ====== -->
         <section class="whole_country_section section-padding-top">
             <div class="container">
-                <div class="section-title-wrap">
-                    <h2 class="section-title">সারাদেশ</h2>
-                    <div class="section-button-wrap">
-                        <a href="http://127.0.0.1:8000/category/sarades" class="section_button">আরও পড়ুন <i
-                                class="fa-solid fa-angle-right"></i></a>
-                    </div>
-                </div>
+
                 <div class="grid grid-cols-12 md:gap-6 gap-4 border-b pb-4 border-stock-color">
 
                     <!-- Main Left News -->
                     <div
-                        class="lg:col-span-6 col-span-12 lg:border-r lg:border-b-0 border-b lg:pr-4 lg:pb-0 pb-3 border-stock-color">
+                        class="lg:col-span-7 col-span-12 lg:border-r lg:border-b-0 border-b lg:pr-4 lg:pb-0 pb-3 border-stock-color">
+                        <div class="section-title-wrap">
+                            <h2 class="section-title">সারাদেশ</h2>
+                            <div class="section-button-wrap">
+                                <a href="http://127.0.0.1:8000/category/sarades" class="section_button">আরও পড়ুন <i
+                                        class="fa-solid fa-angle-right"></i></a>
+                            </div>
+                        </div>
                         <div class="news-card">
                             <div class="thumbnail">
                                 <a href="#">
@@ -1035,61 +1052,91 @@
                     </div>
 
                     <!-- Right Side -->
-                    <div class="lg:col-span-6 col-span-12">
-                        <div class="grid grid-cols-12 md:gap-y-4 lg:gap-4 gap-3">
-
-                            <!-- Item 1 -->
-                            <div class="sm:col-span-6 col-span-6 border-r lg:pr-4 pr-3 border-stock-color">
-                                <div class="news-card">
-                                    <div class="thumbnail">
-                                        <img
-                                            src="http://127.0.0.1:8000/storage/media_thumbnail/ubRJHEndob5DqhAz37oQAyvzqj3m6TSUsVOVguUs.jpg">
-                                    </div>
-                                    <h1 class="title">
-                                        <a href="#">ঢাকায় স্টার্টআপ ইকোসিস্টেম দ্রুত বৃদ্ধি পাচ্ছে</a>
-                                    </h1>
-                                </div>
+                    <div class="lg:col-span-5 col-span-12">
+                        <div class="sidebar-card">
+                            <!-- Tab Header -->
+                            <div class="button_wrap">
+                                <button class="sidebar-button active-tab">
+                                    সর্বশেষ
+                                </button>
+                                <button class="sidebar-button">
+                                    সর্বাধিক পঠিত
+                                </button>
                             </div>
 
-                            <!-- Item 2 -->
-                            <div class="sm:col-span-6 col-span-6">
-                                <div class="news-card">
-                                    <div class="thumbnail">
-                                        <img
-                                            src="http://127.0.0.1:8000/storage/media_thumbnail/ubRJHEndob5DqhAz37oQAyvzqj3m6TSUsVOVguUs.jpg">
-                                    </div>
-                                    <h1 class="title">
-                                        <a href="#">ফ্রিল্যান্সিংয়ে বাংলাদেশের তরুণদের সাফল্য</a>
-                                    </h1>
-                                </div>
+                            <!-- সর্বশেষ Tab -->
+                            <div id="latest" class="tab-content flex flex-col justify-between">
+                                <ul class="md:space-y-6 space-y-4  ">
+                                    <li class="sidebar-item">
+                                        <span>১</span><a
+                                            href="https://thedhakadiary.com/news/16387/dhabite-hadir-grafiti-muche-deway-smalocnar-mukhe-chatrdl"
+                                            class="sidebar-link">ঢাবিতে হাদির গ্রাফিতি মুছে দেওয়ায় সমালোচনার মুখে ছ...</a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <span>২</span><a
+                                            href="https://thedhakadiary.com/news/16386/zuktrajze-asrye-bangladesish-bivinn-ovibaseeder-smkamee-seje-thakar-pramrs"
+                                            class="sidebar-link">যুক্তরাজ্যে আশ্রয়ে বাংলাদেশিসহ বিভিন্ন অভিবাসীদের...</a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <span>৩</span><a
+                                            href="https://thedhakadiary.com/news/16385/rased-prdhan-limit-krs-kre-bktbz-dicche-rased-khannn"
+                                            class="sidebar-link">রাশেদ প্রধান লিমিট ক্রস করে বক্তব্য দিচ্ছে: রাশেদ...</a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <span>৪</span><a
+                                            href="https://thedhakadiary.com/news/16384/iran-zuktrashtr-zuddh-kee-ghtte-zacche-smvabz-carti-drriszpt"
+                                            class="sidebar-link">ইরান-যুক্তরাষ্ট্র যুদ্ধ: কী ঘটতে যাচ্ছে— সম্ভাব্য...</a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <span>৫</span><a
+                                            href="https://thedhakadiary.com/news/16383/smartfon-bzbhare-barche-agam-bardhkz-blche-gbeshna"
+                                            class="sidebar-link">স্মার্টফোন ব্যবহারে বাড়ছে ‘আগাম বার্ধক্য’, বলছে গব...</a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <span>৫</span><a
+                                            href="https://thedhakadiary.com/news/16383/smartfon-bzbhare-barche-agam-bardhkz-blche-gbeshna"
+                                            class="sidebar-link">স্মার্টফোন ব্যবহারে বাড়ছে ‘আগাম বার্ধক্য’, বলছে গব...</a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <span>৫</span><a
+                                            href="https://thedhakadiary.com/news/16383/smartfon-bzbhare-barche-agam-bardhkz-blche-gbeshna"
+                                            class="sidebar-link">স্মার্টফোন ব্যবহারে বাড়ছে ‘আগাম বার্ধক্য’, বলছে গব...</a>
+                                    </li>                                     
+                                </ul>
+                                <a href="https://thedhakadiary.com/last_published" class="read-more-btn">আরও পড়ুন <i class="fa-solid fa-angle-right"></i></a>
                             </div>
 
-                            <!-- Item 3 -->
-                            <div class="sm:col-span-6 col-span-6 border-r lg:pr-4 pr-3 border-stock-color">
-                                <div class="news-card">
-                                    <div class="thumbnail">
-                                        <img
-                                            src="http://127.0.0.1:8000/storage/media_thumbnail/ubRJHEndob5DqhAz37oQAyvzqj3m6TSUsVOVguUs.jpg">
-                                    </div>
-                                    <h1 class="title">
-                                        <a href="#">আইটি সেক্টরে বাড়ছে চাকরির সুযোগ</a>
-                                    </h1>
-                                </div>
+                            <!-- সর্বাধিক পঠিত Tab -->
+                            <div id="popular" class="tab-content flex flex-col justify-between hidden">
+                                <ul  class="md:space-y-6 space-y-4 ">
+                                    <li class="sidebar-item">
+                                        <span>১</span><a
+                                            href="https://thedhakadiary.com/news/9324/oosman-hadi-vai-amar-ekjnme-dekha-sbce-sacca-biplbee"
+                                            class="sidebar-link">ওসমান হাদি ভাই: আমার একজনমে দেখা সবচে সাচ্চা বিপ্...</a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <span>২</span><a
+                                            href="https://thedhakadiary.com/news/11791/dhaka-8-asn-55-kendrer-flafl-prkas"
+                                            class="sidebar-link">ঢাকা-৮ আসন : ৫৫ কেন্দ্রের ফলাফল প্রকাশ</a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <span>৩</span><a
+                                            href="https://thedhakadiary.com/news/11064/sibir-netader-ekzoge-dhr-salare-post-nepthze-kee"
+                                            class="sidebar-link">শিবির নেতাদের একযোগে ‘ধর শালারে’ পোস্ট; নেপথ্যে কী...</a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <span>৪</span><a
+                                            href="https://thedhakadiary.com/news/7482/kzantin-rakhte-dui-lakh-taka-dabir-ovizog-dhabir-sufiya-kamal-hl-sngsder-vipir-biruddhe"
+                                            class="sidebar-link">ক্যান্টিন রাখতে দুই লাখ টাকা দাবির অভিযোগ ঢাবির সু...</a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <span>৫</span><a
+                                            href="https://thedhakadiary.com/news/10720/zsorer-jhikrgachay-voter-prcarnakale-jamayater-naree-netreeder-oopr-zubdler-hamla"
+                                            class="sidebar-link">যশোরের ঝিকরগাছায় ভোটের প্রচারণাকালে জামায়াতের নারী...</a>
+                                    </li> 
+                                </ul>
+                                <a href="https://thedhakadiary.com/most_read" class="read-more-btn">আরও পড়ুন <i class="fa-solid fa-angle-right"></i></a>
                             </div>
-
-                            <!-- Item 4 -->
-                            <div class="sm:col-span-6 col-span-6">
-                                <div class="news-card">
-                                    <div class="thumbnail">
-                                        <img
-                                            src="http://127.0.0.1:8000/storage/media_thumbnail/ubRJHEndob5DqhAz37oQAyvzqj3m6TSUsVOVguUs.jpg">
-                                    </div>
-                                    <h1 class="title">
-                                        <a href="#">বাংলাদেশে ই-কমার্স ব্যবসার প্রসার</a>
-                                    </h1>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
 
@@ -1099,16 +1146,16 @@
         </section>
         <!--======== whole_country Section end ====== -->
 
-        <section class="opinion-section section-padding-top">
+        <section class="opinion-section section_short-padding section-margin-top">
             <div class="container">
                 <div class="section-title-wrap">
                     <h2 class="section-title">মতামত</h2>
                     <div class="section-button-wrap">
-                        <a href="http://127.0.0.1:8000/category/mtamt-2" class="section_button">আরও পড়ুন <i
+                        <a href="http://127.0.0.1:8000/category/mtamt-2" class="section_button bg-black">আরও পড়ুন <i
                                 class="fa-solid fa-angle-right"></i></a>
                     </div>
                 </div>
-                <div class="grid grid-cols-12 gap-6 border-b pb-4 border-stock-color">
+                <div class="grid grid-cols-12 gap-6 border-b-0 pb-4 border-stock-color">
 
                     <!-- Left Featured Card -->
                     <div class="lg:col-span-4 col-span-12">
@@ -1402,7 +1449,7 @@
         <!--======== সাক্ষাৎকার,সাহিত্য, ফিচার, ধর্ম Section end ====== -->
 
         <!--======== অর্থনীতি, পরিবেশ, বিনোদন, চাকরির খবর  Section ====== -->
-        <section class="interview_feature_religion_section section-padding-top">
+        <section class="arthoniti_poribesh_binodon_chakrir_khobor_section section_short-padding section-margin-top">
             <div class="container">
 
                 <div class="grid grid-cols-12 lg:gap-4 gap-3 border-b pb-4 border-stock-color">

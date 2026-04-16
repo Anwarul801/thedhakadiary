@@ -1304,6 +1304,9 @@
   .border-white {
     border-color: var(--color-white);
   }
+  .\!bg-black {
+    background-color: var(--color-black) !important;
+  }
   .bg-\[\#EEEEEE\] {
     background-color: #EEEEEE;
   }
@@ -1549,6 +1552,9 @@
   }
   .text-wrap {
     text-wrap: wrap;
+  }
+  .\!text-white {
+    color: var(--color-white) !important;
   }
   .text-\[\#007bff\] {
     color: #007bff;
@@ -2140,9 +2146,19 @@
       grid-column: span 4 / span 4;
     }
   }
+  .lg\:col-span-5 {
+    @media (width >= 992px) {
+      grid-column: span 5 / span 5;
+    }
+  }
   .lg\:col-span-6 {
     @media (width >= 992px) {
       grid-column: span 6 / span 6;
+    }
+  }
+  .lg\:col-span-7 {
+    @media (width >= 992px) {
+      grid-column: span 7 / span 7;
     }
   }
   .lg\:col-span-8 {
@@ -2340,39 +2356,9 @@
       justify-content: space-between;
     }
   }
-  .\[\&\:nth-child\(2n\)\]\:border-r-0 {
-    &:nth-child(2n) {
-      border-right-style: var(--tw-border-style);
-      border-right-width: 0px;
-    }
-  }
-  .\[\&\:nth-child\(2n\)\]\:lg\:border-r-0 {
-    &:nth-child(2n) {
-      @media (width >= 992px) {
-        border-right-style: var(--tw-border-style);
-        border-right-width: 0px;
-      }
-    }
-  }
-  .\[\&\:nth-child\(3n\)\]\:md\:border-r-0 {
-    &:nth-child(3n) {
-      @media (width >= 768px) {
-        border-right-style: var(--tw-border-style);
-        border-right-width: 0px;
-      }
-    }
-  }
   .md\:\[\&\:nth-child\(3n\)\]\:border-r-0 {
     @media (width >= 768px) {
       &:nth-child(3n) {
-        border-right-style: var(--tw-border-style);
-        border-right-width: 0px;
-      }
-    }
-  }
-  .\[\&\:nth-child\(4n\)\]\:lg\:border-r-0 {
-    &:nth-child(4n) {
-      @media (width >= 992px) {
         border-right-style: var(--tw-border-style);
         border-right-width: 0px;
       }
@@ -2510,6 +2496,12 @@ li {
   padding-top: calc(var(--spacing) * 6);
   @media (width >= 768px) {
     padding-top: calc(var(--spacing) * 8);
+  }
+}
+.section-margin-top {
+  margin-top: calc(var(--spacing) * 6);
+  @media (width >= 768px) {
+    margin-top: calc(var(--spacing) * 8);
   }
 }
 .nav-link {
@@ -2913,6 +2905,7 @@ li {
   visibility: visible;
 }
 .opinion-section {
+  background-color: #dfe2e4;
   .featured-card {
     margin-inline: calc(var(--spacing) * 8);
     background-color: var(--color-white);
@@ -3023,6 +3016,12 @@ li {
     }
   }
 }
+.national_section {
+  background-color: #f0f0f0;
+}
+.arthoniti_poribesh_binodon_chakrir_khobor_section {
+  background-color: #f0f0f0;
+}
 .f-social-icon {
   border-color: var(--color-white);
   color: var(--color-white);
@@ -3047,12 +3046,23 @@ li {
   }
 }
 .sidebar-card {
-  max-height: 550px;
   width: 100%;
   background-color: var(--color-white);
   padding: calc(var(--spacing) * 3);
   --tw-shadow: 0px 2px 17px 0px var(--tw-shadow-color, #0000001a);
   box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  @media (width >= 576px) {
+    max-height: 400px;
+  }
+  @media (width >= 576px) {
+    min-height: 400px;
+  }
+  @media (width >= 768px) {
+    max-height: 600px;
+  }
+  @media (width >= 768px) {
+    min-height: 600px;
+  }
   .button_wrap {
     margin-bottom: calc(var(--spacing) * 3);
     display: flex;
@@ -3097,6 +3107,12 @@ li {
     border-color: var(--color-black);
     color: var(--color-primary);
   }
+  .tab-content {
+    min-height: 328px;
+    @media (width >= 768px) {
+      min-height: 528px;
+    }
+  }
   .sidebar-item {
     display: flex;
     align-items: center;
@@ -3126,6 +3142,7 @@ li {
     }
   }
   .read-more-btn {
+    margin-top: calc(var(--spacing) * 3);
     display: block;
     width: 100%;
     background-color: var(--color-stock-color);
