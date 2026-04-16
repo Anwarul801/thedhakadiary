@@ -380,6 +380,10 @@
                             <input class="form-control" type="text" id="caption" name="caption" required="" placeholder="Caption">
                         </div>
                         <div class="form-group">
+                            <label for="source">Source/Credit </label>
+                            <input class="form-control" type="text" id="source" name="source"  placeholder="Caption">
+                        </div>
+                        <div class="form-group">
                             <label for="caption">Image : (1280x672px)</label>
                             <input class="form-control" type="file" id="image" name="image" required="">
                         </div>

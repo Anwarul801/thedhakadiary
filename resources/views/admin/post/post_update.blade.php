@@ -359,12 +359,66 @@
                         </div>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="m-0 d-flex justify-content-between">
+                            <span>Media</span>
+                            <i class="fa fa-plus" data-toggle="modal" data-target="#create_media" style="background-color: black; color: white; height: 20px; width: 20px; border-radius: 50%; text-align: center; line-height: 20px; font-size: 12px; cursor:pointer;"></i>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row" id="media_container"></div>
+                    </div>
+                </div>
             </div>
     </div>
     </form>
 
+    <div id="create_media" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
 
+                <div class="modal-header text-center">
+                    <h4 class="m-0">
+                        Add a New Image (Media)
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
 
+                <div class="modal-body">
+
+                    <form class="form-horizontal" id="upload_media_form" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="type" value="ajax">
+                        <div class="form-group">
+                            <label for="caption">Caption *</label>
+                            <input class="form-control" type="text" id="caption" name="caption" required="" placeholder="Caption">
+                        </div>
+                        <div class="form-group">
+                            <label for="source">Source/Credit </label>
+                            <input class="form-control" type="text" id="source" name="source"  placeholder="Caption">
+                        </div>
+                        <div class="form-group">
+                            <label for="caption">Image : (1280x672px)</label>
+                            <input class="form-control" type="file" id="image" name="image" required="">
+                        </div>
+                        <div class="form-group account-btn text-center">
+                            <div class="col-12">
+                                <button class="btn width-lg btn-rounded btn-primary waves-effect waves-light" type="submit">Create Media</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+    {{-- loader--}}
+    <div class="popup" id="popup">
+        <div class="loader popup-inner">
+        </div>
+    </div>
 @endsection
 
 @section('js')
