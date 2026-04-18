@@ -10,11 +10,15 @@ class Post extends Model
     use HasFactory;
     protected $guarded = [];
     // relation with category table
+//    public function categories()
+//    {
+//        return $this->belongsToMany(Category::class);
+//    }
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class)
+            ->withPivot('position');
     }
-
     //relation with Section table
     public function sections()
     {

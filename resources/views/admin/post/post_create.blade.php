@@ -231,16 +231,29 @@
                 </div>
                 <div class="card-body" style="max-height: 250px; overflow-y: scroll">
                     @foreach($categories as $category)
-                        <div class="mb-1">
-                            <input {{$category->id == $request->id ? 'checked' : ''}} style="margin-right: 5px" id="cat_{{ $category->id }}" value="{{ $category->id }}" type="checkbox" name="categories[]"/>
-                            <label for="cat_{{ $category->id }}"> {{ $category->name }}</label>
+                        <div class="mb-2 category-item">
+                            <div>
+                                <input
+                                    type="checkbox"
+                                    name="categories[]"
+                                    value="{{ $category->id }}"
+                                    id="cat_{{ $category->id }}"
+                                    class="category-checkbox"
+                                    data-id="{{ $category->id }}"
+                                >
+                                <label for="cat_{{ $category->id }}"> {{ $category->name }}</label>
+                            </div>
 
-                            @foreach($category->categories as $child)
-                                <div class="mb-1" style="padding-left: 20px">
-                                    <input {{$category->id == $request->id ? 'checked' : ''}} style="margin-right: 5px" id="cat_{{ $child->id }}" value="{{ $child->id }}" type="checkbox" name="categories[]"/>
-                                    <label for="cat_{{ $child->id }}"> {{ $child->name }}</label>
-                                </div>
-                            @endforeach
+                            {{-- Position Input --}}
+                            <div class="mt-1 position-box" id="position_box_{{ $category->id }}" style="display:none;">
+                                <input
+                                    type="number"
+                                    name="positions[{{ $category->id }}]"
+                                    class="form-control form-control-sm"
+                                    placeholder="Enter position (e.g. 1,2,3)"
+                                    min="1"
+                                >
+                            </div>
                         </div>
                     @endforeach
                 </div>
@@ -492,6 +505,21 @@
                 document.getElementById("others_input").classList.add("d-none");
             }
         }
+    </script>
+    <script>
+        document.querySelectorAll('.category-checkbox').forEach(function(checkbox){
+            checkbox.addEventListener('change', function(){
+                let id = this.getAttribute('data-id');
+                let box = document.getElementById('position_box_' + id);
+
+                if(this.checked){
+                    box.style.display = 'block';
+                } else {
+                    box.style.display = 'none';
+                    box.querySelector('input').value = '';
+                }
+            });
+        });
     </script>
 @endsection
 

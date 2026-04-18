@@ -12,6 +12,7 @@ use App\Models\Section;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -174,7 +175,26 @@ class PostController extends Controller
 
         $post->slug = $slug;
 
-        $post->categories()->attach($request->categories);
+        foreach ($request->categories as $categoryId) {
+
+            $position = $request->positions[$categoryId] ?? null;
+
+            if ($position) {
+                DB::table('category_post')
+                    ->where('category_id', $categoryId)
+                    ->where('position', $position)
+                    ->delete();
+            }
+            DB::table('category_post')->updateOrInsert(
+                [
+                    'post_id' => $post->id,
+                    'category_id' => $categoryId,
+                ],
+                [
+                    'position' => $position
+                ]
+            );
+        }
         $post->sections()->attach($request->sections);
         $post->save();
 
@@ -287,9 +307,27 @@ class PostController extends Controller
         $post->language = $request->language;
         $post->header_order = $request->header_order??null;
         $post->order = $request->order;
-        $post->categories()->detach();
+        foreach ($request->categories as $categoryId) {
+
+            $position = $request->positions[$categoryId] ?? null;
+
+            if ($position) {
+                DB::table('category_post')
+                    ->where('category_id', $categoryId)
+                    ->where('position', $position)
+                    ->delete();
+            }
+            DB::table('category_post')->updateOrInsert(
+                [
+                    'post_id' => $post->id,
+                    'category_id' => $categoryId,
+                ],
+                [
+                    'position' => $position
+                ]
+            );
+        }
         $post->sections()->detach();
-        $post->categories()->attach($request->categories);
         $post->sections()->attach($request->sections);
         $post->updated_at = date('Y-m-d H:i:s');
         $post->save();
