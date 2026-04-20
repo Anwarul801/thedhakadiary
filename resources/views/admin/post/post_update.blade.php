@@ -278,9 +278,9 @@
                                      style="{{ ($selectedCategory && $isActive) ? '' : 'display:none;' }}">
 
                                     <input
-                                        type="number"
+                                        type="text"
                                         name="positions[{{ $category->id }}]"
-                                        class="form-control form-control-sm position-input"
+                                        class="form-control form-control-sm position-input number"
                                         placeholder="Max: {{ $category->max_position }}"
                                         min="1"
                                         max="{{ $category->max_position }}"
