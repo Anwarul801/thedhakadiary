@@ -77,7 +77,7 @@
                             <th>Home Page Status</th>
                             <th>Action</th>
                         </tr>
-                        @forelse($categories as $category)
+                        @forelse($categoriys as $category)
                             <tr>
                                 <td>{{ $loop->iteration}}</td>
                                 <td>{{ $category->name }}</td>

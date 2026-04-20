@@ -17,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data['categories'] = Category::orderBy('order', 'asc')->get();
+        $data['categoriys'] = Category::all();
 //        $data['cat_without_parent'] = Category::where('parent_cat_id', null)->get();
         return view('admin.category.category', $data);
     }

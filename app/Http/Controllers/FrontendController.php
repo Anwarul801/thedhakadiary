@@ -29,6 +29,26 @@ class FrontendController extends Controller
     {
        $data['header_posts'] = Post::where([[checkPost()],['language', isEnglish()?'en':'bn'],['header_order', '!=', null]])->get();
        $data['cat1'] = $this->getCategoryPosts(1);
+       $data['cat2'] = $this->getCategoryPosts(3);
+       $data['cat3'] = $this->getCategoryPosts(33);
+       $data['cat4'] = $this->getCategoryPosts(11);
+       $data['cat5'] = $this->getCategoryPosts(6);
+       $data['cat6'] = $this->getCategoryPosts(8);
+       $data['cat7'] = $this->getCategoryPosts(31);
+       $data['cat8'] = $this->getCategoryPosts(19);
+       $data['cat9'] = $this->getCategoryPosts(17);
+       $data['cat10'] = $this->getCategoryPosts(4);
+       $data['cat11'] = $this->getCategoryPosts(2);
+       $data['cat12'] = $this->getCategoryPosts(28);
+       $data['cat13'] = $this->getCategoryPosts(13);
+       $data['cat14'] = $this->getCategoryPosts(14);
+       $data['cat15'] = $this->getCategoryPosts(12);
+       $data['cat16'] = $this->getCategoryPosts(9);
+       $data['cat17'] = $this->getCategoryPosts(29);
+       $data['cat18'] = $this->getCategoryPosts(7);
+       $data['cat19'] = $this->getCategoryPosts(22);
+       $data['cat20'] = $this->getCategoryPosts(16);
+       $data['cat21'] = $this->getCategoryPosts(36);
         return view('frontend.homePage.index', $data);
     }
 
@@ -36,7 +56,8 @@ class FrontendController extends Controller
     {
         $posts = DB::table('category_post')
             ->join('posts', 'posts.id', '=', 'category_post.post_id')
-            ->leftJoin('media', 'media.id', '=', 'posts.media_id') // 🔥 media relation
+            ->leftJoin('media', 'media.id', '=', 'posts.media_id')
+            ->leftJoin('users', 'users.id', '=', 'posts.author_id')
             ->where('category_post.category_id', $categoryId)
             ->whereNotNull('category_post.position')
             ->orderBy('category_post.position')
@@ -46,7 +67,8 @@ class FrontendController extends Controller
                 'posts.title',
                 'posts.sub_headline',
                 'posts.subtitle',
-                'posts.author_id',
+                'users.name as author_name',
+                'users.designation as author_designation',
                 'media.image as image',
                 'media.thumbnail as thumbnail',
                 'media.xs_thumbnail as xs_thumbnail'
