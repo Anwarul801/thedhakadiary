@@ -11,7 +11,7 @@
 @section('main_content')
     <main class="site-content flex-1">
         <!-- ad area -->
-        @include('layouts.partials.ads.banner_ad', ['ad' => $ad1])
+{{--        @include('layouts.partials.ads.banner_ad', ['ad' => $ad1])--}}
         <!-- ad area end-->
         <!-- ==========Top_Section ======== -->
         <section class="top_section section-padding-top">
@@ -30,36 +30,27 @@
                             <div class="lg:w-1/2 w-full lg:border-r lg:pr-4 border-stock-color">
                                 <div class="news-card">
 
-                                    <div class="thumbnail">
-                                        <a
-                                            href="{{ route('news_details', ['id' => $mainPost->id, 'slug' => $mainPost->slug]) }}">
-                                            <img class="w-full h-[260px] object-cover"
-                                                src="{{ asset('storage/' . ($mainPost->media->image ?? 'default.png')) }}">
-                                        </a>
-                                    </div>
+                    <div class="thumbnail">
+                        <a href="{{ route('news_details', $mainPost->id) }}">
+                            <img class="w-full h-[260px] object-cover"
+                                 src="{{ asset('storage/'.($mainPost->media->image ?? 'default.png')) }}">
+                        </a>
+                    </div>
 
-                                    <h1 class="title title-lg">
-                                        <a
-                                            href="{{ route('news_details', ['id' => $mainPost->id, 'slug' => $mainPost->slug]) }}">
-                                            {{ Str::limit($mainPost->title, 100) }}
-                                        </a>
-                                    </h1>
-                                    <div class="short-description_home">
-                                        <p>
-                                            <a
-                                                href="{{ route('news_details', ['id' => $mainPost->id, 'slug' => $mainPost->slug]) }}">
-                                                সরকারের বিভিন্ন ডিজিটাল উদ্যোগ ও বেসরকারি খাতের অংশগ্রহণে দেশ দ্রুত
-                                                প্রযুক্তিনির্ভর
-                                                অর্থনীতির দিকে এগিয়ে যাচ্ছে। নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি
-                                                করছে
-                                                সম্ভাবনার নতুন দিগন্ত।
-                                            </a>
-                                        </p>
-                                    </div>
+                    <h1 class="title title-lg">
+                        <a href="{{ route('news_details', $mainPost->id) }}">
+                            {{ Str::limit($mainPost->title, 100) }}
+                        </a>
+                    </h1>
 
-                                </div>
-                            </div>
-                        @endisset
+                </div>
+            </div>
+        @else
+            <div class="lg:w-1/2 w-full lg:border-r lg:pr-4 border-stock-color">
+                <div class="news-card">
+                </div>
+            </div>
+        @endisset
 
 
                         <!-- RIGHT SIDE -->
@@ -70,32 +61,39 @@
                                     $post = $header_posts->firstWhere('header_order', $order);
                                 @endphp
 
-                                @isset($post)
-                                    <div
-                                        class="
-                        news-card
-                        border-stock-color
+                @if($post)
+                    <div class="
+            news-card
+            border-stock-color
+            lg:border-r lg:pr-4
+            even:lg:border-r-0
+        ">
 
-                        lg:border-r lg:pr-4
-                        even:lg:border-r-0
-                    ">
+                        <div class="thumbnail">
+                            <a href="{{ route('news_details', $post->id) }}">
+                                <img class="w-full h-[120px] object-cover"
+                                     src="{{ asset('storage/'.($post->media->thumbnail ?? $post->media->image ?? 'default.png')) }}">
+                            </a>
+                        </div>
 
-                                        <div class="thumbnail">
-                                            <a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">
-                                                <img class="w-full h-[120px] object-cover"
-                                                    src="{{ asset('storage/' . ($post->media->thumbnail ?? ($post->media->image ?? 'default.png'))) }}">
-                                            </a>
-                                        </div>
+                        <h1 class="title text-sm">
+                            <a href="{{ route('news_details', $post->id) }}">
+                                {{ Str::limit($post->title, 70) }}
+                            </a>
+                        </h1>
 
-                                        <h1 class="title text-sm">
-                                            <a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">
-                                                {{ Str::limit($post->title, 70) }}
-                                            </a>
-                                        </h1>
-
-                                    </div>
-                                @endisset
-                            @endforeach
+                    </div>
+                @else
+                    {{-- Empty placeholder --}}
+                    <div class="
+            news-card
+            border-stock-color
+            lg:border-r lg:pr-4
+            even:lg:border-r-0
+        ">
+                    </div>
+                @endif
+            @endforeach
 
                         </div>
 
@@ -110,38 +108,42 @@
                                 $post = $header_posts->firstWhere('header_order', $order);
                             @endphp
 
-                            @isset($post)
-                                <div
-                                    class="
-                    news-card
-                    border-stock-color
+            <div class="
+        news-card
+        border-stock-color
 
-                    border-r pr-3
-                    even:border-r-0
+        border-r pr-3
+        even:border-r-0
 
-                    md:border-r md:pr-3
-                    md:[&:nth-child(3n)]:border-r-0
+        md:border-r md:pr-3
+        md:[&:nth-child(3n)]:border-r-0
 
-                    lg:border-r lg:pr-4
-                    lg:[&:nth-child(4n)]:border-r-0
-                ">
+        lg:border-r lg:pr-4
+        lg:[&:nth-child(4n)]:border-r-0
+    ">
 
-                                    <div class="thumbnail">
-                                        <a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">
-                                            <img class="w-full h-[120px] object-cover"
-                                                src="{{ asset('storage/' . ($post->media->thumbnail ?? ($post->media->image ?? 'default.png'))) }}">
-                                        </a>
-                                    </div>
+                @if($post)
+                    <div class="thumbnail">
+                        <a href="{{ route('news_details', $post->id) }}">
+                            <img class="w-full h-[120px] object-cover"
+                                 src="{{ asset('storage/'.($post->media->thumbnail ?? $post->media->image ?? 'default.png')) }}">
+                        </a>
+                    </div>
 
-                                    <h1 class="title text-sm">
-                                        <a href="{{ route('news_details', ['id' => $post->id, 'slug' => $post->slug]) }}">
-                                            {{ Str::limit($post->title, 70) }}
-                                        </a>
-                                    </h1>
+                    <h1 class="title text-sm">
+                        <a href="{{ route('news_details', $post->id) }}">
+                            {{ Str::limit($post->title, 70) }}
+                        </a>
+                    </h1>
+                @else
+                    {{-- 🔥 Empty Slot --}}
+                    <div class="flex items-center justify-center h-[150px] bg-gray-100 text-gray-400 text-sm">
 
-                                </div>
-                            @endisset
-                        @endforeach
+                    </div>
+                @endif
+
+            </div>
+        @endforeach
 
                     </div>
 
@@ -165,128 +167,93 @@
                     <!-- Left Side (3 items) -->
                     <div class="lg:col-span-4 col-span-12 lg:order-1 order-2 lg:border-r lg:pr-4 border-stock-color">
                         <div class="space-y-4">
-
-                            <!-- Item 1 -->
-                            <div class="news-card flex gap-3 border-b pb-3 border-stock-color">
-                                <h1 class="title !mt-0 flex-1">
-                                    <a href="#"><span class="sholder">এম সাখাওয়াত হোসেনের কলাম</span> নতুন
-                                        শিক্ষানীতিতে আসছে বড় পরিবর্তন</a>
-                                </h1>
-                                <div class="thumbnail w-32 flex-shrink-0">
-                                    <a href="#">
-                                        <img class="w-full h-20 object-cover"
-                                            src="http://127.0.0.1:8000/storage/media_thumbnail/eecBrWMDsI1SeUknqRoI5kCkmTmvAWfTwi3CkprO.png"
-                                            alt="News Image">
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Item 2 -->
-                            <div class="news-card flex gap-3 border-b pb-3 border-stock-color">
-                                <h1 class="title !mt-0 flex-1">
-                                    <a href="#">প্রযুক্তি খাতে তরুণদের নতুন সুযোগ</a>
-                                </h1>
-                                <div class="thumbnail w-32 flex-shrink-0">
-                                    <a href="#">
-                                        <img class="w-full h-20 object-cover"
-                                            src="http://127.0.0.1:8000/storage/media_thumbnail/eecBrWMDsI1SeUknqRoI5kCkmTmvAWfTwi3CkprO.png"
-                                            alt="News Image">
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Item 3 -->
-                            <div class="news-card flex gap-3 lg:border-b-0 border-b pb-3 border-stock-color">
-                                <h1 class="title !mt-0 flex-1">
-                                    <a href="#">স্টার্টআপে বিনিয়োগ বাড়ছে দেশে</a>
-                                </h1>
-                                <div class="thumbnail w-32 flex-shrink-0">
-                                    <a href="#">
-                                        <img class="w-full h-20 object-cover"
-                                            src="http://127.0.0.1:8000/storage/media_thumbnail/eecBrWMDsI1SeUknqRoI5kCkmTmvAWfTwi3CkprO.png"
-                                            alt="News Image">
-                                    </a>
-                                </div>
-                            </div>
-
+                            @foreach(range(1,3) as $position)
+                                @isset($cat1[$position])
+                                    <div class="news-card flex gap-3 {{$position!=3?'border-b pb-3 border-stock-color':''}}">
+                                        <h1 class="title !mt-0 flex-1">
+                                            <a href="{{ route('news_details', $cat1[$position]->id) }}"><span class="sholder">{{$cat1[$position]->sub_headline}}</span>
+                                                {{$cat1[$position]->title}}</a>
+                                        </h1>
+                                        <div class="thumbnail w-32 flex-shrink-0">
+                                            <a href="{{ route('news_details', $cat1[$position]->id) }}">
+                                                <img class="w-full h-20 object-cover"
+                                                    src="{{asset('storage')}}/{{$cat1[$position]->xs_thumbnail}}"
+                                                    alt="News Image">
+                                            </a>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="news-card flex gap-3 border-b pb-3 border-stock-color">
+                                    </div>
+                                @endisset
+                            @endforeach
                         </div>
                     </div>
 
                     <!-- Center Big News -->
+                    @isset($cat1[4])
                     <div
                         class="lg:col-span-4 col-span-12 lg:order-2 order-1 lg:border-b-0 border-b lg:pb-0 pb-3 border-stock-color">
                         <div class="news-card">
                             <div class="thumbnail">
-                                <a href="#">
-                                    <img src="http://127.0.0.1:8000/storage/media_thumbnail/eecBrWMDsI1SeUknqRoI5kCkmTmvAWfTwi3CkprO.png"
-                                        alt="thumbnail">
+                                <a href="{{ route('news_details', $cat1[4]->id) }}">
+                                    <img src="{{asset('storage')}}/{{$cat1[4]->thumbnail}}"
+                                        alt="news thumbnail">
                                 </a>
                             </div>
 
                             <h1 class="lg:text-2xl text-xl font-semibold mt-3">
-                                <a href="#">
-                                    ডিজিটাল বাংলাদেশের পথে আরেক ধাপ এগিয়ে দেশ
+                                <a href="{{ route('news_details', $cat1[4]->id) }}">
+                                    {{$cat1[4]->title}}
                                 </a>
                             </h1>
 
                             <div class="short-description_home">
                                 <p>
-                                    <a href="#">
-                                        সরকারের বিভিন্ন ডিজিটাল উদ্যোগ ও বেসরকারি খাতের অংশগ্রহণে দেশ দ্রুত প্রযুক্তিনির্ভর
-                                        অর্থনীতির দিকে এগিয়ে যাচ্ছে। নতুন নতুন স্টার্টআপ ও ইনোভেশন তরুণদের জন্য তৈরি করছে
-                                        সম্ভাবনার নতুন দিগন্ত।
+                                    <a href="{{ route('news_details', $cat1[4]->id) }}">
+                                        {{$cat1[4]->subtitle}}
                                     </a>
                                 </p>
                             </div>
                         </div>
                     </div>
-
+                    @else
+                        <div
+                            class="lg:col-span-4 col-span-12 lg:order-2 order-1 lg:border-b-0 border-b lg:pb-0 pb-3 border-stock-color">
+                            <div class="news-card">
+                            </div>
+                        </div>
+                    @endisset
                     <!-- Right Side (3 items) -->
                     <div class="lg:col-span-4 col-span-12 order-3 lg:border-l lg:pl-4 border-stock-color">
                         <div class="space-y-4">
 
-                            <!-- Item 1 -->
-                            <div class="news-card flex gap-3 border-b pb-3 border-stock-color">
-                                <h1 class="title !mt-0 flex-1">
-                                    <a href="#">বিশ্ববাজারে রপ্তানি বাড়ছে বাংলাদেশের</a>
-                                </h1>
-                                <div class="thumbnail w-32 flex-shrink-0">
-                                    <a href="#">
-                                        <img class="w-full h-20 object-cover"
-                                            src="http://127.0.0.1:8000/storage/media_thumbnail/eecBrWMDsI1SeUknqRoI5kCkmTmvAWfTwi3CkprO.png"
-                                            alt="News Image">
-                                    </a>
-                                </div>
-                            </div>
+                            @foreach(range(5,7) as $position)
+                                @isset($cat1[$position])
+                                    <div class="news-card flex gap-3 {{$position!=3?'border-b pb-3 border-stock-color':''}}">
+                                        <h1 class="title !mt-0 flex-1">
+                                            <a href="{{ route('news_details', $cat1[$position]->id) }}"><span class="sholder">{{$cat1[$position]->sub_headline}}</span>
+                                                {{$cat1[$position]->title}}</a>
+                                        </h1>
+                                        <div class="thumbnail w-32 flex-shrink-0">
+                                            <a href="{{ route('news_details', $cat1[$position]->id) }}">
+                                                <img class="w-full h-20 object-cover"
+                                                     src="{{asset('storage')}}/{{$cat1[$position]->xs_thumbnail}}"
+                                                     alt="News Image">
+                                            </a>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="news-card flex gap-3 border-b pb-3 border-stock-color">
+                                        <h1 class="title !mt-0 flex-1">
 
-                            <!-- Item 2 -->
-                            <div class="news-card flex gap-3 border-b pb-3 border-stock-color">
-                                <h1 class="title !mt-0 flex-1">
-                                    <a href="#">নতুন সড়ক প্রকল্পে কমবে যানজট</a>
-                                </h1>
-                                <div class="thumbnail w-32 flex-shrink-0">
-                                    <a href="#">
-                                        <img class="w-full h-20 object-cover"
-                                            src="http://127.0.0.1:8000/storage/media_thumbnail/eecBrWMDsI1SeUknqRoI5kCkmTmvAWfTwi3CkprO.png"
-                                            alt="News Image">
-                                    </a>
-                                </div>
-                            </div>
+                                        </h1>
+                                        <div class="thumbnail w-32 flex-shrink-0">
 
-                            <!-- Item 3 -->
-                            <div class="news-card flex gap-3">
-                                <h1 class="title !mt-0 flex-1">
-                                    <a href="#">স্বাস্থ্যসেবায় আধুনিক প্রযুক্তির ব্যবহার বাড়ছে</a>
-                                </h1>
-                                <div class="thumbnail w-32 flex-shrink-0">
-                                    <a href="#">
-                                        <img class="w-full h-20 object-cover"
-                                            src="http://127.0.0.1:8000/storage/media_thumbnail/eecBrWMDsI1SeUknqRoI5kCkmTmvAWfTwi3CkprO.png"
-                                            alt="News Image">
-                                    </a>
-                                </div>
-                            </div>
-
+                                        </div>
+                                    </div>
+                                @endisset
+                            @endforeach
                         </div>
                     </div>
 
@@ -1798,113 +1765,113 @@
         <!--======== International Section end ====== -->
 
         <!--=========Video_Section=========== -->
-        <section class="video_section section_short-padding {{ $videos->count() == 0 ? 'hidden' : '' }}">
-            <div class="container border-t pt-6 border-stock-color">
-                <div class="section-title-wrap">
-                    <h2 class="section-title">{{ __('lang.video') }}</h2>
-                    <div class="section-button-wrap">
-                        <a href="{{ route('videos') }}" class="section_button">{{ __('lang.see_more') }} <i
-                                class="fa-solid fa-angle-right"></i></a>
-                    </div>
-                </div>
-                <div class="grid grid-cols-12 md:gap-6 gap-4 border-b pb-4 border-stock-color">
+{{--        <section class="video_section section_short-padding {{ $videos->count() == 0 ? 'hidden' : '' }}">--}}
+{{--            <div class="container border-t pt-6 border-stock-color">--}}
+{{--                <div class="section-title-wrap">--}}
+{{--                    <h2 class="section-title">{{ __('lang.video') }}</h2>--}}
+{{--                    <div class="section-button-wrap">--}}
+{{--                        <a href="{{ route('videos') }}" class="section_button">{{ __('lang.see_more') }} <i--}}
+{{--                                class="fa-solid fa-angle-right"></i></a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="grid grid-cols-12 md:gap-6 gap-4 border-b pb-4 border-stock-color">--}}
 
-                    @php
-                        $mainVideo = $videos->first();
-                        $sideVideos = $videos->slice(1, 4);
-                    @endphp
+{{--                    @php--}}
+{{--                        $mainVideo = $videos->first();--}}
+{{--                        $sideVideos = $videos->slice(1, 4);--}}
+{{--                    @endphp--}}
 
-                    <!-- Main Left Video -->
-                    @if ($mainVideo)
-                        <div
-                            class="lg:col-span-6 col-span-12 lg:border-r lg:border-b-0 border-b lg:pr-4 lg:pb-0 pb-3 border-stock-color">
-                            <div class="news-card">
-                                <div class="video_thumbnail">
-                                    <a
-                                        href="{{ route('video_details', ['id' => $mainVideo->id, 'slug' => $mainVideo->slug]) }}">
-                                        <img src="{{ asset('storage') }}/{{ $mainVideo->media->thumbnail ?? null }}"
-                                            alt="Thumbnail">
-                                    </a>
+{{--                    <!-- Main Left Video -->--}}
+{{--                    @if ($mainVideo)--}}
+{{--                        <div--}}
+{{--                            class="lg:col-span-6 col-span-12 lg:border-r lg:border-b-0 border-b lg:pr-4 lg:pb-0 pb-3 border-stock-color">--}}
+{{--                            <div class="news-card">--}}
+{{--                                <div class="video_thumbnail">--}}
+{{--                                    <a--}}
+{{--                                        href="{{ route('video_details', ['id' => $mainVideo->id, 'slug' => $mainVideo->slug]) }}">--}}
+{{--                                        <img src="{{ asset('storage') }}/{{ $mainVideo->media->thumbnail ?? null }}"--}}
+{{--                                            alt="Thumbnail">--}}
+{{--                                    </a>--}}
 
-                                    <a href="{{ route('video_details', ['id' => $mainVideo->id, 'slug' => $mainVideo->slug]) }}"
-                                        class="video-icon-wrap">
-                                        <span class="video-icon animate-ripple-blue-vdo">
-                                            <i class="fa-solid fa-play"></i>
-                                        </span>
-                                    </a>
+{{--                                    <a href="{{ route('video_details', ['id' => $mainVideo->id, 'slug' => $mainVideo->slug]) }}"--}}
+{{--                                        class="video-icon-wrap">--}}
+{{--                                        <span class="video-icon animate-ripple-blue-vdo">--}}
+{{--                                            <i class="fa-solid fa-play"></i>--}}
+{{--                                        </span>--}}
+{{--                                    </a>--}}
 
-                                    <span class="video_duration">{{ $mainVideo->video_duration }}</span>
-                                </div>
+{{--                                    <span class="video_duration">{{ $mainVideo->video_duration }}</span>--}}
+{{--                                </div>--}}
 
-                                <h1 class="title title-lg">
-                                    <a
-                                        href="{{ route('video_details', ['id' => $mainVideo->id, 'slug' => $mainVideo->slug]) }}">
-                                        {{ Str::limit($mainVideo->title, 120) }}
-                                    </a>
-                                </h1>
+{{--                                <h1 class="title title-lg">--}}
+{{--                                    <a--}}
+{{--                                        href="{{ route('video_details', ['id' => $mainVideo->id, 'slug' => $mainVideo->slug]) }}">--}}
+{{--                                        {{ Str::limit($mainVideo->title, 120) }}--}}
+{{--                                    </a>--}}
+{{--                                </h1>--}}
 
-                                {{-- <div class="short-description">
-                                    <p>
-                                        <a href="#">
-                                            {{ Str::limit($mainVideo->title, 80) }}
-                                        </a>
-                                    </p>
-                                </div> --}}
+{{--                                --}}{{-- <div class="short-description">--}}
+{{--                                    <p>--}}
+{{--                                        <a href="#">--}}
+{{--                                            {{ Str::limit($mainVideo->title, 80) }}--}}
+{{--                                        </a>--}}
+{{--                                    </p>--}}
+{{--                                </div> --}}
 
-                                {{-- <div class="short-description_home">
-                                    <p>
-                                        <a href="#">
-                                            {{ Str::limit($mainVideo->title, 150) }}
-                                        </a>
-                                    </p>
-                                </div> --}}
-                            </div>
-                        </div>
-                    @endif
+{{--                                --}}{{-- <div class="short-description_home">--}}
+{{--                                    <p>--}}
+{{--                                        <a href="#">--}}
+{{--                                            {{ Str::limit($mainVideo->title, 150) }}--}}
+{{--                                        </a>--}}
+{{--                                    </p>--}}
+{{--                                </div> --}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
 
 
-                    <!-- Right Side Videos -->
-                    <div class="lg:col-span-6 col-span-12">
-                        <div class="grid grid-cols-12 md:gap-y-4 lg:gap-4 gap-3">
+{{--                    <!-- Right Side Videos -->--}}
+{{--                    <div class="lg:col-span-6 col-span-12">--}}
+{{--                        <div class="grid grid-cols-12 md:gap-y-4 lg:gap-4 gap-3">--}}
 
-                            @foreach ($sideVideos as $index => $video)
-                                <div
-                                    class="sm:col-span-6 col-span-6 
-                    {{ $index % 2 == 0 ? 'border-r lg:pr-4 pr-3 border-stock-color' : '' }}">
+{{--                            @foreach ($sideVideos as $index => $video)--}}
+{{--                                <div--}}
+{{--                                    class="sm:col-span-6 col-span-6--}}
+{{--                    {{ $index % 2 == 0 ? 'border-r lg:pr-4 pr-3 border-stock-color' : '' }}">--}}
 
-                                    <div class="news-card">
-                                        <div class="video_thumbnail">
-                                            <a
-                                                href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}">
-                                                <img src="{{ asset('storage') }}/{{ $video->media->thumbnail ?? null }}">
-                                            </a>
+{{--                                    <div class="news-card">--}}
+{{--                                        <div class="video_thumbnail">--}}
+{{--                                            <a--}}
+{{--                                                href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}">--}}
+{{--                                                <img src="{{ asset('storage') }}/{{ $video->media->thumbnail ?? null }}">--}}
+{{--                                            </a>--}}
 
-                                            <a href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}"
-                                                class="video-icon-wrap">
-                                                <span class="video-icon animate-ripple-blue-vdo">
-                                                    <i class="fa-solid fa-play"></i>
-                                                </span>
-                                            </a>
+{{--                                            <a href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}"--}}
+{{--                                                class="video-icon-wrap">--}}
+{{--                                                <span class="video-icon animate-ripple-blue-vdo">--}}
+{{--                                                    <i class="fa-solid fa-play"></i>--}}
+{{--                                                </span>--}}
+{{--                                            </a>--}}
 
-                                            <span class="video_duration">{{ $video->video_duration }}</span>
-                                        </div>
+{{--                                            <span class="video_duration">{{ $video->video_duration }}</span>--}}
+{{--                                        </div>--}}
 
-                                        <h1 class="title">
-                                            <a
-                                                href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}">
-                                                {{ Str::limit($video->title, 80) }}
-                                            </a>
-                                        </h1>
-                                    </div>
-                                </div>
-                            @endforeach
+{{--                                        <h1 class="title">--}}
+{{--                                            <a--}}
+{{--                                                href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}">--}}
+{{--                                                {{ Str::limit($video->title, 80) }}--}}
+{{--                                            </a>--}}
+{{--                                        </h1>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            @endforeach--}}
 
-                        </div>
-                    </div>
+{{--                        </div>--}}
+{{--                    </div>--}}
 
-                </div>
-            </div>
-        </section>
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
 
 
 

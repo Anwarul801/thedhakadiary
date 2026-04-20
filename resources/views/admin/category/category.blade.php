@@ -47,6 +47,13 @@
                                         <span style="color:red">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    <div class="form-group">
+                                        <label for="max_position">Max Position</label>
+                                        <input value="" class="form-control" type="number" id="max_position" name="max_position" placeholder="Max Position">
+                                        @error('max_position')
+                                        <span style="color:red">{{ $message }}</span>
+                                        @enderror
+                                    </div>
 
                                     <div class="form-group account-btn text-center">
                                         <div class="col-12">
@@ -66,8 +73,8 @@
                             <th>SL</th>
                             <th>Name</th>
                             <th>Name English</th>
-{{--                            <th>Order</th>--}}
-{{--                            <th>Home Page Status</th>--}}
+                            <th>Max Position</th>
+                            <th>Home Page Status</th>
                             <th>Action</th>
                         </tr>
                         @forelse($categories as $category)
@@ -75,8 +82,8 @@
                                 <td>{{ $loop->iteration}}</td>
                                 <td>{{ $category->name }}</td>
                                 <td>{{ $category->name_en ?? '' }}</td>
-{{--                                <td>{{ $category->order ?? '' }}</td>--}}
-{{--                                <td><a class="btn btn-sm btn-{{$category->status=='Active'?'success':'danger'}}" href="{{route('category_status_change')}}?id={{$category->id}}">{{ $category->status ?? '' }}</a></td>--}}
+                                <td>{{ $category->max_position ?? '' }}</td>
+                                <td><a class="btn btn-sm btn-{{$category->status=='Active'?'success':'danger'}}" href="{{route('category_status_change')}}?id={{$category->id}}">{{ $category->status ?? '' }}</a></td>
                                 <td>
                                     <!-- Example single danger button -->
                                     <div class="btn-group">
@@ -128,13 +135,13 @@
                                                             @enderror
                                                         </div>
 
-{{--                                                        <div class="form-group">--}}
-{{--                                                            <label for="order">Order *</label>--}}
-{{--                                                            <input value="{{$category->order}}" class="form-control" type="number" id="order" name="order" required placeholder="Order">--}}
-{{--                                                            @error('order')--}}
-{{--                                                            <span style="color:red">{{ $message }}</span>--}}
-{{--                                                            @enderror--}}
-{{--                                                        </div>--}}
+                                                        <div class="form-group">
+                                                            <label for="max_position">Max Position</label>
+                                                            <input value="{{$category->max_position}}" class="form-control" type="number" id="max_position" name="max_position" placeholder="Max Position">
+                                                            @error('max_position')
+                                                            <span style="color:red">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
 
 
                                                         <div class="form-group account-btn text-center">

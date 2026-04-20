@@ -48,6 +48,7 @@ class CategoryController extends Controller
         $cat = new Category;
         $cat->name = $request->name;
         $cat->name_en = $request->name_en;
+        $cat->max_position = $request->max_position;
         $cat->save();
         if (Category::where('slug', $slug)->exists()){
             $slug = $slug . "-" . $cat->id;
@@ -108,12 +109,12 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'order' => ['required', 'integer', 'max:2147483647'],
         ]);
         $slug = Str::slug($request->name,'-');
         $cat = Category::findOrFail($id);
         $cat->name = $request->name;
         $cat->name_en = $request->name_en;
+        $cat->max_position = $request->max_position;
         $cat->order = $request->order;
         $cat->save();
         if (Category::where([['slug', $slug], ['id', '!=', $cat->id]])->exists()){
