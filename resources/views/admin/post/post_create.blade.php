@@ -231,6 +231,11 @@
                 </div>
                 <div class="card-body" style="max-height: 250px; overflow-y: scroll">
                     @foreach($categories as $category)
+
+                        @php
+                            $isActive = $category->status === 'Active';
+                        @endphp
+
                         <div class="mb-2 category-item">
                             <div>
                                 <input
@@ -240,21 +245,31 @@
                                     id="cat_{{ $category->id }}"
                                     class="category-checkbox"
                                     data-id="{{ $category->id }}"
+                                    data-max="{{ $category->max_position }}"
+                                    data-status="{{ $category->status }}"
                                 >
-                                <label for="cat_{{ $category->id }}"> {{ $category->name }}</label>
+                                <label for="cat_{{ $category->id }}">
+                                    {{ $category->name }}
+                                </label>
                             </div>
 
                             {{-- Position Input --}}
-                            <div class="mt-1 position-box" id="position_box_{{ $category->id }}" style="display:none;">
+                            <div class="mt-1 position-box"
+                                 id="position_box_{{ $category->id }}"
+                                 style="display:none;">
+
                                 <input
                                     type="number"
                                     name="positions[{{ $category->id }}]"
-                                    class="form-control form-control-sm"
-                                    placeholder="Enter position (e.g. 1,2,3)"
+                                    class="form-control form-control-sm position-input"
+                                    placeholder="Max: {{ $category->max_position }}"
                                     min="1"
+                                    max="{{ $category->max_position }}"
+                                    data-max="{{ $category->max_position }}"
                                 >
                             </div>
                         </div>
+
                     @endforeach
                 </div>
             </div>
@@ -507,16 +522,36 @@
         }
     </script>
     <script>
-        document.querySelectorAll('.category-checkbox').forEach(function(checkbox){
-            checkbox.addEventListener('change', function(){
-                let id = this.getAttribute('data-id');
+        document.querySelectorAll('.category-checkbox').forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+
+                let id = this.dataset.id;
+                let status = this.dataset.status;
                 let box = document.getElementById('position_box_' + id);
 
-                if(this.checked){
+                if (this.checked && status === 'Active') {
                     box.style.display = 'block';
                 } else {
                     box.style.display = 'none';
-                    box.querySelector('input').value = '';
+                }
+            });
+        });
+
+
+        // Max validation
+        document.querySelectorAll('.position-input').forEach(function (input) {
+            input.addEventListener('input', function () {
+
+                let max = parseInt(this.dataset.max);
+                let value = parseInt(this.value);
+
+                if (value > max) {
+                    alert('Max position is ' + max);
+                    this.value = max;
+                }
+
+                if (value < 1) {
+                    this.value = 1;
                 }
             });
         });

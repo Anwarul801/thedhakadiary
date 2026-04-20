@@ -14,6 +14,7 @@ use App\Models\Section;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 
 class FrontendController extends Controller
@@ -27,44 +28,80 @@ class FrontendController extends Controller
     public function index_page(Request $request)
     {
        $data['header_posts'] = Post::where([[checkPost()],['language', isEnglish()?'en':'bn'],['header_order', '!=', null]])->get();
-
-        $data['categories'] = Category::where('status', 'active')
-            ->whereHas('posts', function ($query) {
-                $query->where([[checkPost()],['language', isEnglish()?'en':'bn'],['video_id', null]]); // Filter posts as per your checkPost() logic
-            })->orderBy('order', 'asc')
-            ->get();
-        $data['categories'] = $data['categories']->map(function ($category) {
-            $category->posts = $category->posts()
-                ->select(
-                    'posts.id',
-                    'posts.title',
-                    'posts.slug',
-                    'posts.media_id',
-                    'posts.publishing_date',
-                )
-                ->where([[checkPost()],['language', isEnglish()?'en':'bn'],['video_id', null]])->orderBy('id', 'desc')->take(4)->get();
-            return $category;
-        });
-
-        $data['videos'] = Post::where('video_id', '!=', null)
-            ->where([[checkPost()],['language', isEnglish()?'en':'bn']])
-            ->orderBy('order', 'DESC')
-            ->take(4)
-            ->get();
-
-        $data['photos'] = ImageGallery::where('status', 'Active')->orderby('order', 'DESC')->take(5)->get();
-
-        $placementIds = [1, 2, 3, 4, 5, 6];
-        $ads = Ad::whereIn('placement_id', $placementIds)->where('status', 'Active')->get()->keyBy('placement_id');
-
-        $data['ad1'] = $ads[1] ?? null;
-        $data['ad2'] = $ads[2] ?? null;
-        $data['ad3'] = $ads[3] ?? null;
-        $data['ad4'] = $ads[4] ?? null;
-        $data['ad5'] = $ads[5] ?? null;
-        $data['ad6'] = $ads[6] ?? null;
+       $data['cat1'] = $this->getCategoryPosts(1);
         return view('frontend.homePage.index', $data);
     }
+
+    function getCategoryPosts($categoryId)
+    {
+        $posts = DB::table('category_post')
+            ->join('posts', 'posts.id', '=', 'category_post.post_id')
+            ->leftJoin('media', 'media.id', '=', 'posts.media_id') // 🔥 media relation
+            ->where('category_post.category_id', $categoryId)
+            ->whereNotNull('category_post.position')
+            ->orderBy('category_post.position')
+            ->select(
+                'category_post.position as position',
+                'posts.id',
+                'posts.title',
+                'posts.sub_headline',
+                'posts.subtitle',
+                'posts.author_id',
+                'media.image as image',
+                'media.thumbnail as thumbnail',
+                'media.xs_thumbnail as xs_thumbnail'
+            )
+            ->get();
+
+        $result = [];
+
+        foreach ($posts as $post) {
+            $result[$post->position] = $post;
+        }
+
+        return $result;
+    }
+//    public function index_page(Request $request)
+//    {
+//       $data['header_posts'] = Post::where([[checkPost()],['language', isEnglish()?'en':'bn'],['header_order', '!=', null]])->get();
+//
+//        $data['categories'] = Category::where('status', 'active')
+//            ->whereHas('posts', function ($query) {
+//                $query->where([[checkPost()],['language', isEnglish()?'en':'bn'],['video_id', null]]); // Filter posts as per your checkPost() logic
+//            })->orderBy('order', 'asc')
+//            ->get();
+//        $data['categories'] = $data['categories']->map(function ($category) {
+//            $category->posts = $category->posts()
+//                ->select(
+//                    'posts.id',
+//                    'posts.title',
+//                    'posts.slug',
+//                    'posts.media_id',
+//                    'posts.publishing_date',
+//                )
+//                ->where([[checkPost()],['language', isEnglish()?'en':'bn'],['video_id', null]])->orderBy('id', 'desc')->take(4)->get();
+//            return $category;
+//        });
+//
+//        $data['videos'] = Post::where('video_id', '!=', null)
+//            ->where([[checkPost()],['language', isEnglish()?'en':'bn']])
+//            ->orderBy('order', 'DESC')
+//            ->take(4)
+//            ->get();
+//
+//        $data['photos'] = ImageGallery::where('status', 'Active')->orderby('order', 'DESC')->take(5)->get();
+//
+//        $placementIds = [1, 2, 3, 4, 5, 6];
+//        $ads = Ad::whereIn('placement_id', $placementIds)->where('status', 'Active')->get()->keyBy('placement_id');
+//
+//        $data['ad1'] = $ads[1] ?? null;
+//        $data['ad2'] = $ads[2] ?? null;
+//        $data['ad3'] = $ads[3] ?? null;
+//        $data['ad4'] = $ads[4] ?? null;
+//        $data['ad5'] = $ads[5] ?? null;
+//        $data['ad6'] = $ads[6] ?? null;
+//        return view('frontend.homePage.index', $data);
+//    }
 
 
     public function contact_us()

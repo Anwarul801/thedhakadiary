@@ -251,6 +251,7 @@
                             @php
                                 $selectedCategory = $data->categories->where('id', $category->id)->first();
                                 $position = $selectedCategory ? $selectedCategory->pivot->position ?? '' : '';
+                                $isActive = $category->status === 'Active';
                             @endphp
 
                             <div class="mb-2 category-item">
@@ -262,23 +263,29 @@
                                         id="cat_{{ $category->id }}"
                                         class="category-checkbox"
                                         data-id="{{ $category->id }}"
+                                        data-max="{{ $category->max_position }}"
+                                        data-status="{{ $category->status }}"
                                         {{ $selectedCategory ? 'checked' : '' }}
                                     >
-                                    <label for="cat_{{ $category->id }}"> {{ $category->name }}</label>
+                                    <label for="cat_{{ $category->id }}">
+                                        {{ $category->name }}
+                                    </label>
                                 </div>
 
                                 {{-- Position Input --}}
                                 <div class="mt-1 position-box"
                                      id="position_box_{{ $category->id }}"
-                                     style="{{ $selectedCategory ? '' : 'display:none;' }}">
+                                     style="{{ ($selectedCategory && $isActive) ? '' : 'display:none;' }}">
 
                                     <input
                                         type="number"
                                         name="positions[{{ $category->id }}]"
-                                        class="form-control form-control-sm"
-                                        placeholder="Enter position (e.g. 1,2,3)"
+                                        class="form-control form-control-sm position-input"
+                                        placeholder="Max: {{ $category->max_position }}"
                                         min="1"
+                                        max="{{ $category->max_position }}"
                                         value="{{ $position }}"
+                                        data-max="{{ $category->max_position }}"
                                     >
                                 </div>
                             </div>
@@ -532,13 +539,34 @@
     <script>
         document.querySelectorAll('.category-checkbox').forEach(function (checkbox) {
             checkbox.addEventListener('change', function () {
+
                 let id = this.dataset.id;
+                let status = this.dataset.status;
                 let box = document.getElementById('position_box_' + id);
 
-                if (this.checked) {
+                if (this.checked && status === 'Active') {
                     box.style.display = 'block';
                 } else {
                     box.style.display = 'none';
+                }
+            });
+        });
+
+
+        // 🔥 Max Position Validation
+        document.querySelectorAll('.position-input').forEach(function (input) {
+            input.addEventListener('input', function () {
+
+                let max = parseInt(this.dataset.max);
+                let value = parseInt(this.value);
+
+                if (value > max) {
+                    alert('Max position is ' + max);
+                    this.value = max;
+                }
+
+                if (value < 1) {
+                    this.value = 1;
                 }
             });
         });

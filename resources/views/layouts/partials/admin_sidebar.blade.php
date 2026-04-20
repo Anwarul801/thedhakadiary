@@ -65,12 +65,12 @@
                             <span> Pages </span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('ad.index') }}">
-                            <i class="fe-video-off"></i>
-                            <span> Ad Management </span>
-                        </a>
-                    </li>
+{{--                    <li>--}}
+{{--                        <a href="{{ route('ad.index') }}">--}}
+{{--                            <i class="fe-video-off"></i>--}}
+{{--                            <span> Ad Management </span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                     <li>
                         <a href="{{ route('user.index') }}">
                             <i class="fe-user"></i>
