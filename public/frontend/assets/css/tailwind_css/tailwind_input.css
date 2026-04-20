@@ -135,6 +135,9 @@ li {
 .section-padding-top {
   @apply md:pt-8 pt-6;
 }
+.section-margin-top {
+  @apply md:mt-8 mt-6;
+}
 
 .nav-link {
   @apply text-base text-primary block;
@@ -326,7 +329,7 @@ li {
 
 /* opinion section */
 .opinion-section {
-
+  @apply bg-[#dfe2e4];
   .featured-card {
     @apply bg-white md:mx-0 mx-8;
 
@@ -380,7 +383,12 @@ li {
   }
 }
 /* opinion section end */
-
+.national_section{
+  @apply bg-[#f0f0f0];
+}
+.arthoniti_poribesh_binodon_chakrir_khobor_section{
+  @apply bg-[#f0f0f0];
+}
 /* home page end */
 
 /* ============= Footer ============*/
@@ -394,7 +402,7 @@ li {
 
 /* Sidebar_Card========== */
 .sidebar-card {
-  @apply bg-white shadow-around p-3 w-full max-h-[550px];
+  @apply bg-white shadow-around p-3 w-full md:max-h-[600px] sm:max-h-[400px] md:min-h-[600px] sm:min-h-[400px];
 
   .button_wrap {
     @apply flex justify-between items-center border-b border-deactive mb-3;
@@ -407,9 +415,12 @@ li {
   .active-tab {
     @apply border-black text-primary;
   }
-
+  .tab-content{
+    @apply md:min-h-[528px] min-h-[328px];
+  }
   .sidebar-item {
     @apply flex items-center gap-x-4;
+
   }
 
   .sidebar-link {
@@ -417,7 +428,7 @@ li {
   }
 
   .read-more-btn {
-    @apply md:text-base text-sm font-[600] text-center bg-stock-color block md:p-2.5 p-1.5 w-full transition-all duration-300 ease-in hover:bg-black hover:text-white;
+    @apply md:text-base text-sm font-[600] text-center bg-stock-color block md:p-2.5 p-1.5 w-full transition-all duration-300 ease-in hover:bg-black hover:text-white mt-3;
   }
 }
 
