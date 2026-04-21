@@ -106,43 +106,19 @@
                                                 @endif
                                                 <p class="update">{{ $news->source_designation }}</p>
                                             </div>
+
                                             @php
-                                                $ago_bn = Carbon::parse($news->updating_date)
-                                                    ->locale('bn')
-                                                    ->diffForHumans();
-                                                $update_bn =
-                                                    'আপডেট: ' .
-                                                    formatBanglaDate(date_maker($news->updating_date, 'd F Y')) .
-                                                    ', ' .
-                                                    bangla_number($ago_bn);
-                                                $ago_en = Carbon::parse($news->updating_date)
-                                                    ->locale('en')
-                                                    ->diffForHumans();
-                                                $update_en =
-                                                    'Updated: ' .
-                                                    date_maker($news->updating_date, 'd F Y') .
-                                                    ', ' .
-                                                    $ago_en;
-
-                                                $created = Carbon::parse($news->publishing_date);
-                                                // Bangla Format
-                                                $date_bn = formatBanglaDate($created->format('d F Y'));
-                                                $time_bn = bangla_number($created->format('H:i'));
-                                                $create_bn = "প্রকাশিত: {$date_bn}, {$time_bn}";
-
-                                                // English Format
-                                                $date_en = $created->format('d F Y');
-                                                $time_en = $created->format('H:i');
-                                                $create_en = "Published: {$date_en}, {$time_en}";
+                                                $time = newsTimeFormat($news);
                                             @endphp
-                                            <p class="update"><span
-                                                    class="updated">{{ isEnglish() ? $create_en : $create_bn }}</span>
-                                                <span
-                                                    class="prokash hidden">{{ isEnglish() ? $update_en : $update_bn }}</span>
+
+                                            <p class="update">
+                                                <span class="updated">{{ $time['create'] }}</span>
+                                                <span class="prokash hidden">{{ $time['update'] }}</span>
+
                                                 <img style="width: 20px; display: inline-block"
-                                                    class="cursor-pointer update_prokash_btn ms-1 print:hidden"
-                                                    src="{{ asset('frontend/assets/image/up-and-down-arrow.png') }}"
-                                                    alt="">
+                                                     class="cursor-pointer update_prokash_btn ms-1 print:hidden"
+                                                     src="{{ asset('frontend/assets/image/up-and-down-arrow.png') }}"
+                                                     alt="">
                                             </p>
                                         </div>
                                         <div class="flex justify-center items-center  gap-1.5 print:hidden">
@@ -191,7 +167,7 @@
                                 <figure class="news-title-image md:mb-8 sm:mb-6 mb-4 italic">
                                     <img src="{{ asset('storage') }}/{{ $news->media->image ?? null }}" alt="Thumbnail">
                                     <figcaption
-                                        class="sm:text-base text-sm text-secondary bg-[#f8f9fa] text-center border-b border-[#dee2e6] py-2 news-content"> 
+                                        class="sm:text-base text-sm text-secondary bg-[#f8f9fa] text-center border-b border-[#dee2e6] py-2 news-content">
                                         {{ $news->media->caption ?? null }} {{ $news->media->source ? "© ".$news->media->source : null }}
                                     </figcaption>
                                 </figure>
@@ -245,14 +221,14 @@
                     @foreach ($related_post as $rpost)
                         <div class="news-card">
                             <div class="thumbnail">
-                                <a href="{{ route('news_details', ['id' => $rpost->id, 'slug' => $rpost->slug]) }}">
-                                    <img src="{{ asset('storage') }}/{{ $news->media->image ?? 'default.jpg' }}"
+                                <a href="{{ route('news_details', $rpost->id) }}">
+                                    <img src="{{ asset('storage') }}/{{ $news->media->thumbnail ?? 'default.jpg' }}"
                                         alt="{{ $news->title ?? 'Thumbnail' }}">
                                 </a>
                             </div>
 
                             <h1 class="title">
-                                <a href="{{ route('news_details', ['id' => $rpost->id, 'slug' => $rpost->slug]) }}">
+                                <a href="{{ route('news_details', $rpost->id) }}">
                                     {{ Str::limit($rpost->title, 50) }}
                                 </a>
                             </h1>
