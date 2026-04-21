@@ -49,6 +49,16 @@ class FrontendController extends Controller
        $data['cat19'] = $this->getCategoryPosts(22);
        $data['cat20'] = $this->getCategoryPosts(16);
        $data['cat21'] = $this->getCategoryPosts(36);
+       $data['latest'] = Post::select('id', 'slug', 'title', 'media_id')->orderBy('id', 'DESC')->where([[checkPost()],['latest_news', 1],['language', isEnglish()?'en':'bn']])->take(10)->get();
+       $data['best_hit'] = Post::select('id', 'slug', 'title', 'media_id')
+            ->where('publishing_date', '>=', now()->subDays(3))
+            ->where([
+                [checkPost()],
+                ['language', isEnglish() ? 'en' : 'bn']
+            ])
+            ->orderBy('hit', 'DESC')
+            ->take(10)
+            ->get();
         return view('frontend.homePage.index', $data);
     }
 

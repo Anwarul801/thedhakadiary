@@ -1,7 +1,15 @@
 @php
     use App\Models\Post;use Illuminate\Support\Str;
-    $latest = Post::select('id', 'slug', 'title', 'media_id')->orderBy('id', 'DESC')->where([[checkPost()],['latest_news', 1],['language', isEnglish()?'en':'bn']])->take(5)->get();
-    $best_hit = Post::select('id', 'slug', 'title', 'media_id')->orderBy('hit', 'DESC')->where([[checkPost()],['language', isEnglish()?'en':'bn']])->take(5)->get();
+    $latest = Post::select('id', 'slug', 'title', 'media_id')->orderBy('id', 'DESC')->where([[checkPost()],['latest_news', 1],['language', isEnglish()?'en':'bn']])->take(10)->get();
+    $best_hit = Post::select('id', 'slug', 'title', 'media_id')
+    ->where('publishing_date', '>=', now()->subDays(3))
+    ->where([
+        [checkPost()],
+        ['language', isEnglish() ? 'en' : 'bn']
+    ])
+    ->orderBy('hit', 'DESC')
+    ->take(10)
+    ->get();
 @endphp
 <div class="sidebar-card">
     <!-- Tab Header -->

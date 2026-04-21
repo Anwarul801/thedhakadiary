@@ -21,6 +21,37 @@ if (!function_exists('isEnglish')) {
     }
 }
 
+
+
+function newsTimeFormat($news)
+{
+    $updated = Carbon::parse($news->updating_date)->timezone('Asia/Dhaka');
+    $created = Carbon::parse($news->publishing_date)->timezone('Asia/Dhaka');
+
+    // English
+    $update_en = "Updated: " .
+        $updated->format('d F Y') . ', ' .
+        $updated->diffForHumans();
+
+    $create_en = "Published: " .
+        $created->format('d F Y') . ', ' .
+        $created->format('H:i');
+
+    // Bangla
+    $update_bn = "আপডেট: " .
+        formatBanglaDate($updated->format('d F Y')) . ', ' .
+        bangla_number($updated->diffForHumans());
+
+    $create_bn = "প্রকাশিত: " .
+        formatBanglaDate($created->format('d F Y')) . ', ' .
+        bangla_number($created->format('H:i'));
+
+    return [
+        'update' => isEnglish() ? $update_en : $update_bn,
+        'create' => isEnglish() ? $create_en : $create_bn,
+    ];
+}
+
 function formatBanglaDate($date) {
     $months = [
         'January' => 'জানুয়ারি',

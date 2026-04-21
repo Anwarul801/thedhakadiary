@@ -907,75 +907,29 @@
                             <!-- সর্বশেষ Tab -->
                             <div id="latest" class="tab-content flex flex-col justify-between">
                                 <ul class="md:space-y-6 space-y-4  ">
-                                    <li class="sidebar-item">
-                                        <span>১</span><a
-                                            href="https://thedhakadiary.com/news/16387/dhabite-hadir-grafiti-muche-deway-smalocnar-mukhe-chatrdl"
-                                            class="sidebar-link">ঢাবিতে হাদির গ্রাফিতি মুছে দেওয়ায় সমালোচনার মুখে ছ...</a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <span>২</span><a
-                                            href="https://thedhakadiary.com/news/16386/zuktrajze-asrye-bangladesish-bivinn-ovibaseeder-smkamee-seje-thakar-pramrs"
-                                            class="sidebar-link">যুক্তরাজ্যে আশ্রয়ে বাংলাদেশিসহ বিভিন্ন অভিবাসীদের...</a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <span>৩</span><a
-                                            href="https://thedhakadiary.com/news/16385/rased-prdhan-limit-krs-kre-bktbz-dicche-rased-khannn"
-                                            class="sidebar-link">রাশেদ প্রধান লিমিট ক্রস করে বক্তব্য দিচ্ছে: রাশেদ...</a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <span>৪</span><a
-                                            href="https://thedhakadiary.com/news/16384/iran-zuktrashtr-zuddh-kee-ghtte-zacche-smvabz-carti-drriszpt"
-                                            class="sidebar-link">ইরান-যুক্তরাষ্ট্র যুদ্ধ: কী ঘটতে যাচ্ছে— সম্ভাব্য...</a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <span>৫</span><a
-                                            href="https://thedhakadiary.com/news/16383/smartfon-bzbhare-barche-agam-bardhkz-blche-gbeshna"
-                                            class="sidebar-link">স্মার্টফোন ব্যবহারে বাড়ছে ‘আগাম বার্ধক্য’, বলছে গব...</a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <span>৫</span><a
-                                            href="https://thedhakadiary.com/news/16383/smartfon-bzbhare-barche-agam-bardhkz-blche-gbeshna"
-                                            class="sidebar-link">স্মার্টফোন ব্যবহারে বাড়ছে ‘আগাম বার্ধক্য’, বলছে গব...</a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <span>৫</span><a
-                                            href="https://thedhakadiary.com/news/16383/smartfon-bzbhare-barche-agam-bardhkz-blche-gbeshna"
-                                            class="sidebar-link">স্মার্টফোন ব্যবহারে বাড়ছে ‘আগাম বার্ধক্য’, বলছে গব...</a>
-                                    </li>
+                                    @foreach($latest as $latest_item)
+                                        <li class="sidebar-item">
+                                            <span>{{isEnglish()?$loop->iteration:bangla_number($loop->iteration)}}</span><a
+                                                href="{{route('news_details', ['id' => $latest_item->id, 'slug' => $latest_item->slug])}}"
+                                                class="sidebar-link">{{Str::limit($latest_item->title, 50)}}</a>
+                                        </li>
+                                    @endforeach
                                 </ul>
-                                <a href="https://thedhakadiary.com/last_published" class="read-more-btn">আরও পড়ুন <i class="fa-solid fa-angle-right"></i></a>
+                                <a href="{{route('last_published')}}" class="read-more-btn">আরও পড়ুন <i class="fa-solid fa-angle-right"></i></a>
                             </div>
 
                             <!-- সর্বাধিক পঠিত Tab -->
                             <div id="popular" class="tab-content flex flex-col justify-between hidden">
                                 <ul  class="md:space-y-6 space-y-4 ">
-                                    <li class="sidebar-item">
-                                        <span>১</span><a
-                                            href="https://thedhakadiary.com/news/9324/oosman-hadi-vai-amar-ekjnme-dekha-sbce-sacca-biplbee"
-                                            class="sidebar-link">ওসমান হাদি ভাই: আমার একজনমে দেখা সবচে সাচ্চা বিপ্...</a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <span>২</span><a
-                                            href="https://thedhakadiary.com/news/11791/dhaka-8-asn-55-kendrer-flafl-prkas"
-                                            class="sidebar-link">ঢাকা-৮ আসন : ৫৫ কেন্দ্রের ফলাফল প্রকাশ</a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <span>৩</span><a
-                                            href="https://thedhakadiary.com/news/11064/sibir-netader-ekzoge-dhr-salare-post-nepthze-kee"
-                                            class="sidebar-link">শিবির নেতাদের একযোগে ‘ধর শালারে’ পোস্ট; নেপথ্যে কী...</a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <span>৪</span><a
-                                            href="https://thedhakadiary.com/news/7482/kzantin-rakhte-dui-lakh-taka-dabir-ovizog-dhabir-sufiya-kamal-hl-sngsder-vipir-biruddhe"
-                                            class="sidebar-link">ক্যান্টিন রাখতে দুই লাখ টাকা দাবির অভিযোগ ঢাবির সু...</a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <span>৫</span><a
-                                            href="https://thedhakadiary.com/news/10720/zsorer-jhikrgachay-voter-prcarnakale-jamayater-naree-netreeder-oopr-zubdler-hamla"
-                                            class="sidebar-link">যশোরের ঝিকরগাছায় ভোটের প্রচারণাকালে জামায়াতের নারী...</a>
-                                    </li>
+                                    @foreach($best_hit as $best_hit_item)
+                                        <li class="sidebar-item">
+                                            <span>{{isEnglish()?$loop->iteration:bangla_number($loop->iteration)}}</span><a
+                                                href="{{route('news_details', ['id' => $best_hit_item->id, 'slug' => $best_hit_item->slug])}}"
+                                                class="sidebar-link">{{Str::limit($best_hit_item->title, 50)}}</a>
+                                        </li>
+                                    @endforeach
                                 </ul>
-                                <a href="https://thedhakadiary.com/most_read" class="read-more-btn">আরও পড়ুন <i class="fa-solid fa-angle-right"></i></a>
+                                <a href="{{route('most_read')}}" class="read-more-btn">আরও পড়ুন <i class="fa-solid fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
