@@ -281,7 +281,7 @@
                         <div class="news-card">
                             <div class="thumbnail">
                                 <a href="{{route('news_details', $cat2[1]->id)}}">
-                                    <img src="{{asset('storage')}}/{{$cat1[1]->image}}"
+                                    <img src="{{asset('storage')}}/{{$cat2[1]->image}}"
                                         alt="news image">
                                 </a>
                             </div>
