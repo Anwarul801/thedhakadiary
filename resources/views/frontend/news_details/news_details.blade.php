@@ -107,13 +107,13 @@
                                                 <p class="update">{{ $news->source_designation }}</p>
                                             </div>
 
-                                            @php
-                                                $time = newsTimeFormat($news);
-                                            @endphp
+{{--                                            @php--}}
+{{--                                                $time = newsTimeFormat($news);--}}
+{{--                                            @endphp--}}
 
                                             <p class="update">
-                                                <span class="updated">{{ $time['create'] }}</span>
-                                                <span class="prokash hidden">{{ $time['update'] }}</span>
+                                                <span class="updated">{{ formatCreatedAt($news->created_at) }}</span>
+                                                <span class="prokash hidden">{{ formatUpdatedAt($news->updated_at) }}</span>
 
                                                 <img style="width: 20px; display: inline-block"
                                                      class="cursor-pointer update_prokash_btn ms-1 print:hidden"
