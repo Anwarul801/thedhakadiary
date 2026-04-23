@@ -906,7 +906,7 @@
 
                             <!-- সর্বশেষ Tab -->
                             <div id="latest" class="tab-content flex flex-col justify-between">
-                                <ul class="md:space-y-6 space-y-4  ">
+                                <ul class="md:space-y-6 space-y-4  max-h-[500px] overflow-y-scroll">
                                     @foreach($latest as $latest_item)
                                         <li class="sidebar-item">
                                             <span>{{isEnglish()?$loop->iteration:bangla_number($loop->iteration)}}</span><a
