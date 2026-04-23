@@ -27,7 +27,7 @@
         @foreach($latest as $latest_item)
             <li class="sidebar-item">
                 <span>{{isEnglish()?$loop->iteration:bangla_number($loop->iteration)}}</span><a
-                    href="{{route('news_details', ['id' => $latest_item->id, 'slug' => $latest_item->slug])}}"
+                    href="{{route('news_details', $latest_item->id)}}"
                     class="sidebar-link">{{Str::limit($latest_item->title, 50)}}</a>
             </li>
         @endforeach
@@ -41,7 +41,7 @@
         @foreach($best_hit as $best_hit_item)
             <li class="sidebar-item">
                 <span>{{isEnglish()?$loop->iteration:bangla_number($loop->iteration)}}</span><a
-                    href="{{route('news_details', ['id' => $best_hit_item->id, 'slug' => $best_hit_item->slug])}}"
+                    href="{{route('news_details', $best_hit_item->id)}}"
                     class="sidebar-link">{{Str::limit($best_hit_item->title, 50)}}</a>
             </li>
         @endforeach

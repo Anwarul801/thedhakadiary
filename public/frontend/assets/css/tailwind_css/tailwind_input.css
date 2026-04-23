@@ -402,8 +402,8 @@ li {
 
 /* Sidebar_Card========== */
 .sidebar-card {
-  @apply bg-white shadow-around p-3 w-full md:max-h-[600px] sm:max-h-[400px] md:min-h-[600px] sm:min-h-[400px];
-
+  @apply bg-white shadow-around p-3 w-full ;
+  /* @apply md:max-h-[600px] sm:max-h-[400px] md:min-h-[600px] sm:min-h-[400px]; */
   .button_wrap {
     @apply flex justify-between items-center border-b border-deactive mb-3;
   }
