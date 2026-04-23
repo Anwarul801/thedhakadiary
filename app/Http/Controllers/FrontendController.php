@@ -185,10 +185,20 @@ class FrontendController extends Controller
 
         foreach ($categories as $category) {
             $posts = $category->posts()
-                ->select('posts.id', 'posts.slug', 'posts.title')
+                ->leftJoin('media', 'media.id', '=', 'posts.media_id')
+                ->select(
+                    'posts.id',
+                    'posts.slug',
+                    'posts.title',
+                    'posts.media_id',
+                    'media.thumbnail as thumbnail'
+                )
                 ->where('posts.id', '!=', $data['news']->id)
-                ->where([[checkPost()], ['posts.language', isEnglish() ? 'en' : 'bn']])
-                ->latest()
+                ->where([
+                    ['posts.status', 'Published'],
+                    ['posts.language', isEnglish() ? 'en' : 'bn']
+                ])
+                ->orderBy('posts.created_at', 'desc')
                 ->take(5)
                 ->get();
 
@@ -197,7 +207,6 @@ class FrontendController extends Controller
                 break;
             }
         }
-
         $data['related_post'] = $related;
         $data['ad1'] = Ad::where('placement_id', 8)->where('status', 'Active')->first();
         $data['ad2'] = Ad::where('placement_id', 9)->where('status', 'Active')->first();
