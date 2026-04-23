@@ -47,13 +47,13 @@
                                         <span style="color:red">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label for="max_position">Max Position</label>
-                                        <input value="" class="form-control" type="number" id="max_position" name="max_position" placeholder="Max Position">
-                                        @error('max_position')
-                                        <span style="color:red">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="max_position">Max Position</label>--}}
+{{--                                        <input value="" class="form-control" type="number" id="max_position" name="max_position" placeholder="Max Position">--}}
+{{--                                        @error('max_position')--}}
+{{--                                        <span style="color:red">{{ $message }}</span>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
 
                                     <div class="form-group account-btn text-center">
                                         <div class="col-12">
@@ -74,7 +74,7 @@
                             <th>Name</th>
                             <th>Name English</th>
                             <th>Max Position</th>
-                            <th>Home Page Status</th>
+{{--                            <th>Home Page Status</th>--}}
                             <th>Action</th>
                         </tr>
                         @forelse($categoriys as $category)
@@ -83,7 +83,7 @@
                                 <td>{{ $category->name }}</td>
                                 <td>{{ $category->name_en ?? '' }}</td>
                                 <td>{{ $category->max_position ?? '' }}</td>
-                                <td><a class="btn btn-sm btn-{{$category->status=='Active'?'success':'danger'}}" href="{{route('category_status_change')}}?id={{$category->id}}">{{ $category->status ?? '' }}</a></td>
+{{--                                <td><a class="btn btn-sm btn-{{$category->status=='Active'?'success':'danger'}}" href="{{route('category_status_change')}}?id={{$category->id}}">{{ $category->status ?? '' }}</a></td>--}}
                                 <td>
                                     <!-- Example single danger button -->
                                     <div class="btn-group">
@@ -135,13 +135,13 @@
                                                             @enderror
                                                         </div>
 
-                                                        <div class="form-group">
-                                                            <label for="max_position">Max Position</label>
-                                                            <input value="{{$category->max_position}}" class="form-control" type="number" id="max_position" name="max_position" placeholder="Max Position">
-                                                            @error('max_position')
-                                                            <span style="color:red">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
+{{--                                                        <div class="form-group">--}}
+{{--                                                            <label for="max_position">Max Position</label>--}}
+{{--                                                            <input value="{{$category->max_position}}" class="form-control" type="number" id="max_position" name="max_position" placeholder="Max Position">--}}
+{{--                                                            @error('max_position')--}}
+{{--                                                            <span style="color:red">{{ $message }}</span>--}}
+{{--                                                            @enderror--}}
+{{--                                                        </div>--}}
 
 
                                                         <div class="form-group account-btn text-center">
