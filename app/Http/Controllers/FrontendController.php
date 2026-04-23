@@ -372,6 +372,7 @@ class FrontendController extends Controller
             )
                 ->where([['title', 'like', "%" . $request->search . "%"], ['language', isEnglish() ? 'en' : 'bn'], [checkPost()]])
                 ->orWhere([['tags', 'like', "%" . $request->search . "%"], ['language', isEnglish() ? 'en' : 'bn'], [checkPost()]])
+                ->orderby('posts.id', 'DESC')
                 ->paginate(20);
 
         return view('frontend.search', compact('posts'));
