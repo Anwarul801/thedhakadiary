@@ -25,7 +25,7 @@
                         <div class="lg:col-span-3 md:col-span-4 col-span-6">
                             <div class="news-card">
                                 <div class="thumbnail">
-                                    <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}">
+                                    <a href="{{route('news_details', $news->id)}}">
                                         @php
                                             $thumbnail = $news->media->thumbnail ?? null;
                                             $thumbnailPath = $thumbnail ? public_path('storage/' . $thumbnail) : null;
@@ -40,7 +40,7 @@
                                     </a>
                                 </div>
                                 <h1 class="title">
-                                    <a href="{{route('news_details', ['id' => $news->id, 'slug' => $news->slug])}}">{{$news->title}}</a>
+                                    <a href="{{route('news_details', $news->id)}}">{{$news->title}}</a>
                                 </h1>
                                 <div class="date">
                                     <p>{{format_publishing_date($news->publishing_date)}}</p>
