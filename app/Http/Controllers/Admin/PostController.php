@@ -174,7 +174,7 @@ class PostController extends Controller
         }
 
         $post->slug = $slug;
-
+        if (!empty($request->categories)){
         foreach ($request->categories as $categoryId) {
 
             $position = $request->positions[$categoryId] ?? null;
@@ -195,6 +195,7 @@ class PostController extends Controller
                 ]
             );
         }
+    }
         $post->sections()->attach($request->sections);
         $post->save();
 
@@ -307,6 +308,7 @@ class PostController extends Controller
         $post->language = $request->language;
         $post->header_order = $request->header_order??null;
         $post->order = $request->order;
+        if (!empty($request->categories)){
         foreach ($request->categories as $categoryId) {
 
             $position = $request->positions[$categoryId] ?? null;
@@ -327,6 +329,7 @@ class PostController extends Controller
                 ]
             );
         }
+      }
         $post->sections()->detach();
         $post->sections()->attach($request->sections);
         $post->updated_at = date('Y-m-d H:i:s');
