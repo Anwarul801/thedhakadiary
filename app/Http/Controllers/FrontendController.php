@@ -175,7 +175,9 @@ class FrontendController extends Controller
             return redirect(route('video_details', ['id' => $data['news']->id, 'slug' => $data['news']->slug]));
         }
         if ($request->type != 'admin') {
+            $data['news']->timestamps = false;
             $data['news']->increment('hit');
+            $data['news']->timestamps = true;
         }
 
         // Related post নেয়ার লজিক
