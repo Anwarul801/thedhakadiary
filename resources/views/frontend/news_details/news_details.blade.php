@@ -222,8 +222,8 @@
                         <div class="news-card">
                             <div class="thumbnail">
                                 <a href="{{ route('news_details', $rpost->id) }}">
-                                    <img src="{{ asset('storage') }}/{{ $news->media->thumbnail ?? 'default.jpg' }}"
-                                        alt="{{ $news->title ?? 'Thumbnail' }}">
+                                    <img src="{{ asset('storage') }}/{{ $rpost->media->thumbnail ?? 'default.jpg' }}"
+                                        alt="{{ $rpost->title ?? 'Thumbnail' }}">
                                 </a>
                             </div>
 
