@@ -1378,188 +1378,8 @@
         <!--======== International Section end ====== -->
 
         <!--=========Video_Section=========== -->
-{{--        <section class="video_section section_short-padding {{ $videos->count() == 0 ? 'hidden' : '' }}">--}}
-{{--            <div class="container border-t pt-6 border-stock-color">--}}
-{{--                <div class="section-title-wrap">--}}
-{{--                    <h2 class="section-title">{{ __('lang.video') }}</h2>--}}
-{{--                    <div class="section-button-wrap">--}}
-{{--                        <a href="{{ route('videos') }}" class="section_button">{{ __('lang.see_more') }} <i--}}
-{{--                                class="fa-solid fa-angle-right"></i></a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="grid grid-cols-12 md:gap-6 gap-4 border-b pb-4 border-stock-color">--}}
-
-{{--                    @php--}}
-{{--                        $mainVideo = $videos->first();--}}
-{{--                        $sideVideos = $videos->slice(1, 4);--}}
-{{--                    @endphp--}}
-
-{{--                    <!-- Main Left Video -->--}}
-{{--                    @if ($mainVideo)--}}
-{{--                        <div--}}
-{{--                            class="lg:col-span-6 col-span-12 lg:border-r lg:border-b-0 border-b lg:pr-4 lg:pb-0 pb-3 border-stock-color">--}}
-{{--                            <div class="news-card">--}}
-{{--                                <div class="video_thumbnail">--}}
-{{--                                    <a--}}
-{{--                                        href="{{ route('video_details', ['id' => $mainVideo->id, 'slug' => $mainVideo->slug]) }}">--}}
-{{--                                        <img src="{{ asset('storage') }}/{{ $mainVideo->media->thumbnail ?? null }}"--}}
-{{--                                            alt="Thumbnail">--}}
-{{--                                    </a>--}}
-
-{{--                                    <a href="{{ route('video_details', ['id' => $mainVideo->id, 'slug' => $mainVideo->slug]) }}"--}}
-{{--                                        class="video-icon-wrap">--}}
-{{--                                        <span class="video-icon animate-ripple-blue-vdo">--}}
-{{--                                            <i class="fa-solid fa-play"></i>--}}
-{{--                                        </span>--}}
-{{--                                    </a>--}}
-
-{{--                                    <span class="video_duration">{{ $mainVideo->video_duration }}</span>--}}
-{{--                                </div>--}}
-
-{{--                                <h1 class="title title-lg">--}}
-{{--                                    <a--}}
-{{--                                        href="{{ route('video_details', ['id' => $mainVideo->id, 'slug' => $mainVideo->slug]) }}">--}}
-{{--                                        {{ Str::limit($mainVideo->title, 120) }}--}}
-{{--                                    </a>--}}
-{{--                                </h1>--}}
-
-{{--                                --}}{{-- <div class="short-description">--}}
-{{--                                    <p>--}}
-{{--                                        <a href="#">--}}
-{{--                                            {{ Str::limit($mainVideo->title, 80) }}--}}
-{{--                                        </a>--}}
-{{--                                    </p>--}}
-{{--                                </div> --}}
-
-{{--                                --}}{{-- <div class="short-description_home">--}}
-{{--                                    <p>--}}
-{{--                                        <a href="#">--}}
-{{--                                            {{ Str::limit($mainVideo->title, 150) }}--}}
-{{--                                        </a>--}}
-{{--                                    </p>--}}
-{{--                                </div> --}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    @endif--}}
-
-
-{{--                    <!-- Right Side Videos -->--}}
-{{--                    <div class="lg:col-span-6 col-span-12">--}}
-{{--                        <div class="grid grid-cols-12 md:gap-y-4 lg:gap-4 gap-3">--}}
-
-{{--                            @foreach ($sideVideos as $index => $video)--}}
-{{--                                <div--}}
-{{--                                    class="sm:col-span-6 col-span-6--}}
-{{--                    {{ $index % 2 == 0 ? 'border-r lg:pr-4 pr-3 border-stock-color' : '' }}">--}}
-
-{{--                                    <div class="news-card">--}}
-{{--                                        <div class="video_thumbnail">--}}
-{{--                                            <a--}}
-{{--                                                href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}">--}}
-{{--                                                <img src="{{ asset('storage') }}/{{ $video->media->thumbnail ?? null }}">--}}
-{{--                                            </a>--}}
-
-{{--                                            <a href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}"--}}
-{{--                                                class="video-icon-wrap">--}}
-{{--                                                <span class="video-icon animate-ripple-blue-vdo">--}}
-{{--                                                    <i class="fa-solid fa-play"></i>--}}
-{{--                                                </span>--}}
-{{--                                            </a>--}}
-
-{{--                                            <span class="video_duration">{{ $video->video_duration }}</span>--}}
-{{--                                        </div>--}}
-
-{{--                                        <h1 class="title">--}}
-{{--                                            <a--}}
-{{--                                                href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}">--}}
-{{--                                                {{ Str::limit($video->title, 80) }}--}}
-{{--                                            </a>--}}
-{{--                                        </h1>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            @endforeach--}}
-
-{{--                        </div>--}}
-{{--                    </div>--}}
-
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </section>--}}
-
-
-
-        <!--========Dynamic category wise post====== -->
-        {{-- @php
-            $totalCategories = count($categories);
-            $totalAds = 3;
-            $interval = ceil($totalCategories / $totalAds); // প্রতি কতটা পরপর ad বসবে
-            $adIndex = 1;
-        @endphp
-        @foreach ($categories as $category)
-            <section class="education_section section_short-padding">
-                <div class="container">
-                    <div class="section-title-wrap">
-                        <h2 class="section-title">{{ isEnglish() ? $category->name_en : $category->name }}</h2>
-                        <div class="section-button-wrap">
-                            <a href="{{ route('category_view', $category->slug) }}"
-                                class="section_button">{{ __('lang.read_more') }} <i
-                                    class="fa-solid fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-12 md:gap-6 gap-4 md:pb-7.5 sm:pb-6 pb-4 border-b border-stock-color">
-                        @foreach ($category->posts as $news)
-                            <div class="lg:col-span-3 md:col-span-4 col-span-6">
-                                <div class="news-card">
-                                    <div class="thumbnail">
-                                        <a href="{{ route('news_details', ['id' => $news->id, 'slug' => $news->slug]) }}">
-                                            @php
-                                                $thumbnail = $news->media->thumbnail ?? null;
-                                                $thumbnailPath = $thumbnail
-                                                    ? public_path('storage/' . $thumbnail)
-                                                    : null;
-                                            @endphp
-
-                                            @if ($thumbnailPath && file_exists($thumbnailPath))
-                                                <img src="{{ asset('storage/' . $thumbnail) }}" alt="Thumbnail">
-                                            @else
-                                                <img src="{{ asset('storage/' . ($news->media->image ?? 'default.png')) }}"
-                                                    alt="Default Thumbnail">
-                                            @endif
-                                        </a>
-                                    </div>
-                                    <h1 class="title">
-                                        <a
-                                            href="{{ route('news_details', ['id' => $news->id, 'slug' => $news->slug]) }}">{{ Str::limit($news->title, 100) }}</a>
-                                    </h1>
-                                    <div class="date">
-                                        <p>{{ format_publishing_date($news->publishing_date) }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-
-                    </div>
-                </div>
-            </section>
-
-            @if ($loop->iteration % $interval === 0 && $adIndex <= $totalAds)
-                @php
-                    $adWithIndex = ${'ad' . ($adIndex + 2)};
-                    $adIndex++;
-                @endphp
-                @include('layouts.partials.ads.banner_ad', ['ad' => $adWithIndex])
-            @endif
-        @endforeach
-        <div class="text-center my-1">
-            <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed"
-                data-ad-client="ca-pub-8398372781178295" data-ad-slot="4172391014"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-        <!--=========Video_Section=========== -->
         <section class="video_section section_short-padding {{ $videos->count() == 0 ? 'hidden' : '' }}">
-            <div class="container">
+            <div class="container border-t pt-6 border-stock-color">
                 <div class="section-title-wrap">
                     <h2 class="section-title">{{ __('lang.video') }}</h2>
                     <div class="section-button-wrap">
@@ -1567,42 +1387,222 @@
                                 class="fa-solid fa-angle-right"></i></a>
                     </div>
                 </div>
-                <div class="grid grid-cols-12 md:gap-6 gap-4 md:pb-7.5 sm:pb-6 pb-4 border-b border-stock-color">
-                    @foreach ($videos as $video)
-                        <div class="lg:col-span-3 sm:col-span-6 col-span-12">
+                <div class="grid grid-cols-12 md:gap-6 gap-4 border-b pb-4 border-stock-color">
+
+                    @php
+                        $mainVideo = $videos->first();
+                        $sideVideos = $videos->slice(1, 4);
+                    @endphp
+
+                    <!-- Main Left Video -->
+                    @if ($mainVideo)
+                        <div
+                            class="lg:col-span-6 col-span-12 lg:border-r lg:border-b-0 border-b lg:pr-4 lg:pb-0 pb-3 border-stock-color">
                             <div class="news-card">
                                 <div class="video_thumbnail">
-                                    <a href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}"><img
-                                            src="{{ asset('storage') }}/{{ $video->media->thumbnail ?? null }}"
-                                            alt="Thumbnail"></a>
-                                    <a href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}"
-                                        class="video-icon-wrap">
-                                        <span class="video-icon animate-ripple-blue-vdo"><i
-                                                class="fa-solid fa-play"></i></span>
-                                    </a>
-                                    <span class="video_duration">{{ $video->video_duration }}</span>
-                                </div>
-                                <h1 class="title">
                                     <a
-                                        href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}">{{ Str::limit($video->title, 100) }}</a>
-                                </h1>
-                                <div class="date">
-                                    <p>{{ format_publishing_date($video->publishing_date) }}</p>
+                                        href="{{ route('video_details', ['id' => $mainVideo->id, 'slug' => $mainVideo->slug]) }}">
+                                        <img src="{{ asset('storage') }}/{{ $mainVideo->media->thumbnail ?? null }}"
+                                            alt="Thumbnail">
+                                    </a>
 
+                                    <a href="{{ route('video_details', ['id' => $mainVideo->id, 'slug' => $mainVideo->slug]) }}"
+                                        class="video-icon-wrap">
+                                        <span class="video-icon animate-ripple-blue-vdo">
+                                            <i class="fa-solid fa-play"></i>
+                                        </span>
+                                    </a>
+
+                                    <span class="video_duration">{{ $mainVideo->video_duration }}</span>
+                                </div>
+
+                                <h1 class="title title-lg">
+                                    <a
+                                        href="{{ route('video_details', ['id' => $mainVideo->id, 'slug' => $mainVideo->slug]) }}">
+                                        {{ Str::limit($mainVideo->title, 120) }}
+                                    </a>
+                                </h1>
+
+                                 <div class="short-description">
+                                    <p>
+                                        <a href="#">
+                                            {{ Str::limit($mainVideo->title, 80) }}
+                                        </a>
+                                    </p>
+                                </div>
+
+                                 <div class="short-description_home">
+                                    <p>
+                                        <a href="#">
+                                            {{ Str::limit($mainVideo->title, 150) }}
+                                        </a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @endif
+
+
+                    <!-- Right Side Videos -->
+                    <div class="lg:col-span-6 col-span-12">
+                        <div class="grid grid-cols-12 md:gap-y-4 lg:gap-4 gap-3">
+
+                            @foreach ($sideVideos as $index => $video)
+                                <div
+                                    class="sm:col-span-6 col-span-6
+                    {{ $index % 2 == 0 ? 'border-r lg:pr-4 pr-3 border-stock-color' : '' }}">
+
+                                    <div class="news-card">
+                                        <div class="video_thumbnail">
+                                            <a
+                                                href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}">
+                                                <img src="{{ asset('storage') }}/{{ $video->media->thumbnail ?? null }}">
+                                            </a>
+
+                                            <a href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}"
+                                                class="video-icon-wrap">
+                                                <span class="video-icon animate-ripple-blue-vdo">
+                                                    <i class="fa-solid fa-play"></i>
+                                                </span>
+                                            </a>
+
+                                            <span class="video_duration">{{ $video->video_duration }}</span>
+                                        </div>
+
+                                        <h1 class="title">
+                                            <a
+                                                href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}">
+                                                {{ Str::limit($video->title, 80) }}
+                                            </a>
+                                        </h1>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
-        <div class="text-center my-1">
-            <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article"
-                data-ad-format="fluid" data-ad-client="ca-pub-8398372781178295" data-ad-slot="8063534560"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
+
+
+
+        <!--========Dynamic category wise post====== -->
+{{--        --}}{{-- @php--}}
+{{--            $totalCategories = count($categories);--}}
+{{--            $totalAds = 3;--}}
+{{--            $interval = ceil($totalCategories / $totalAds); // প্রতি কতটা পরপর ad বসবে--}}
+{{--            $adIndex = 1;--}}
+{{--        @endphp--}}
+{{--        @foreach ($categories as $category)--}}
+{{--            <section class="education_section section_short-padding">--}}
+{{--                <div class="container">--}}
+{{--                    <div class="section-title-wrap">--}}
+{{--                        <h2 class="section-title">{{ isEnglish() ? $category->name_en : $category->name }}</h2>--}}
+{{--                        <div class="section-button-wrap">--}}
+{{--                            <a href="{{ route('category_view', $category->slug) }}"--}}
+{{--                                class="section_button">{{ __('lang.read_more') }} <i--}}
+{{--                                    class="fa-solid fa-angle-right"></i></a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="grid grid-cols-12 md:gap-6 gap-4 md:pb-7.5 sm:pb-6 pb-4 border-b border-stock-color">--}}
+{{--                        @foreach ($category->posts as $news)--}}
+{{--                            <div class="lg:col-span-3 md:col-span-4 col-span-6">--}}
+{{--                                <div class="news-card">--}}
+{{--                                    <div class="thumbnail">--}}
+{{--                                        <a href="{{ route('news_details', ['id' => $news->id, 'slug' => $news->slug]) }}">--}}
+{{--                                            @php--}}
+{{--                                                $thumbnail = $news->media->thumbnail ?? null;--}}
+{{--                                                $thumbnailPath = $thumbnail--}}
+{{--                                                    ? public_path('storage/' . $thumbnail)--}}
+{{--                                                    : null;--}}
+{{--                                            @endphp--}}
+
+{{--                                            @if ($thumbnailPath && file_exists($thumbnailPath))--}}
+{{--                                                <img src="{{ asset('storage/' . $thumbnail) }}" alt="Thumbnail">--}}
+{{--                                            @else--}}
+{{--                                                <img src="{{ asset('storage/' . ($news->media->image ?? 'default.png')) }}"--}}
+{{--                                                    alt="Default Thumbnail">--}}
+{{--                                            @endif--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                    <h1 class="title">--}}
+{{--                                        <a--}}
+{{--                                            href="{{ route('news_details', ['id' => $news->id, 'slug' => $news->slug]) }}">{{ Str::limit($news->title, 100) }}</a>--}}
+{{--                                    </h1>--}}
+{{--                                    <div class="date">--}}
+{{--                                        <p>{{ format_publishing_date($news->publishing_date) }}</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        @endforeach--}}
+
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </section>--}}
+
+{{--            @if ($loop->iteration % $interval === 0 && $adIndex <= $totalAds)--}}
+{{--                @php--}}
+{{--                    $adWithIndex = ${'ad' . ($adIndex + 2)};--}}
+{{--                    $adIndex++;--}}
+{{--                @endphp--}}
+{{--                @include('layouts.partials.ads.banner_ad', ['ad' => $adWithIndex])--}}
+{{--            @endif--}}
+{{--        @endforeach--}}
+{{--        <div class="text-center my-1">--}}
+{{--            <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed"--}}
+{{--                data-ad-client="ca-pub-8398372781178295" data-ad-slot="4172391014"></ins>--}}
+{{--            <script>--}}
+{{--                (adsbygoogle = window.adsbygoogle || []).push({});--}}
+{{--            </script>--}}
+{{--        </div>--}}
+{{--        <!--=========Video_Section=========== -->--}}
+{{--        <section class="video_section section_short-padding {{ $videos->count() == 0 ? 'hidden' : '' }}">--}}
+{{--            <div class="container">--}}
+{{--                <div class="section-title-wrap">--}}
+{{--                    <h2 class="section-title">{{ __('lang.video') }}</h2>--}}
+{{--                    <div class="section-button-wrap">--}}
+{{--                        <a href="{{ route('videos') }}" class="section_button">{{ __('lang.see_more') }} <i--}}
+{{--                                class="fa-solid fa-angle-right"></i></a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="grid grid-cols-12 md:gap-6 gap-4 md:pb-7.5 sm:pb-6 pb-4 border-b border-stock-color">--}}
+{{--                    @foreach ($videos as $video)--}}
+{{--                        <div class="lg:col-span-3 sm:col-span-6 col-span-12">--}}
+{{--                            <div class="news-card">--}}
+{{--                                <div class="video_thumbnail">--}}
+{{--                                    <a href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}"><img--}}
+{{--                                            src="{{ asset('storage') }}/{{ $video->media->thumbnail ?? null }}"--}}
+{{--                                            alt="Thumbnail"></a>--}}
+{{--                                    <a href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}"--}}
+{{--                                        class="video-icon-wrap">--}}
+{{--                                        <span class="video-icon animate-ripple-blue-vdo"><i--}}
+{{--                                                class="fa-solid fa-play"></i></span>--}}
+{{--                                    </a>--}}
+{{--                                    <span class="video_duration">{{ $video->video_duration }}</span>--}}
+{{--                                </div>--}}
+{{--                                <h1 class="title">--}}
+{{--                                    <a--}}
+{{--                                        href="{{ route('video_details', ['id' => $video->id, 'slug' => $video->slug]) }}">{{ Str::limit($video->title, 100) }}</a>--}}
+{{--                                </h1>--}}
+{{--                                <div class="date">--}}
+{{--                                    <p>{{ format_publishing_date($video->publishing_date) }}</p>--}}
+
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @endforeach--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
+{{--        <div class="text-center my-1">--}}
+{{--            <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article"--}}
+{{--                data-ad-format="fluid" data-ad-client="ca-pub-8398372781178295" data-ad-slot="8063534560"></ins>--}}
+{{--            <script>--}}
+{{--                (adsbygoogle = window.adsbygoogle || []).push({});--}}
+{{--            </script>--}}
+{{--        </div>--}}
         <!--=========Photo_Section=========== -->
         <section class="photo-section mt-4 {{ $photos->count() == 0 ? 'hidden' : '' }}">
             <div class="container">
@@ -1701,13 +1701,13 @@
             </div>
         </section>
         <!-- footer ad area -->
-        @isset($ad6)
-            <div class="ad-full footer_ad hidden">
-                <div class="footer-wraper">
-                    @include('layouts.partials.ads.banner_ad', ['ad' => $ad6, 'showClose' => true])
-                </div>
-            </div>
-        @endisset --}}
+{{--        @isset($ad6)--}}
+{{--            <div class="ad-full footer_ad hidden">--}}
+{{--                <div class="footer-wraper">--}}
+{{--                    @include('layouts.partials.ads.banner_ad', ['ad' => $ad6, 'showClose' => true])--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        @endisset --}}
         <!-- footer ad area end-->
     </main>
 @endsection

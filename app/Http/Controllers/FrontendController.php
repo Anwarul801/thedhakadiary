@@ -59,6 +59,13 @@ class FrontendController extends Controller
             ->orderBy('hit', 'DESC')
             ->take(10)
             ->get();
+                $data['videos'] = Post::where('video_id', '!=', null)
+            ->where([[checkPost()],['language', isEnglish()?'en':'bn']])
+            ->orderBy('order', 'DESC')
+            ->take(4)
+            ->get();
+
+        $data['photos'] = ImageGallery::where('status', 'Active')->orderby('order', 'DESC')->take(5)->get();
         return view('frontend.homePage.index', $data);
     }
 
