@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Author;
+use App\Models\Post;
 use App\Models\Type;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -44,10 +45,10 @@ class AuthorController extends Controller
     {
         $request->validate([
            'name_bn' =>'required | string | max:255',
-           'name_en' =>'required | string | max:255',
-           'email' =>'required | email | max:255',
+           'name_en' =>'nullable | string | max:255',
+           'email' =>'nullable | email | max:255',
            'profession' =>'required | string | max:255',
-           'type_id' =>'required | integer',
+//           'type_id' =>'required | integer',
         ]);
 
         $author = new Author;
@@ -55,7 +56,7 @@ class AuthorController extends Controller
         $author->name_en = $request->name_en;
         $author->email = $request->email;
         $author->profession = $request->profession;
-        $author->type_id = $request->type_id;
+        $author->type_id = 1;
         $author->details = $request->details;
         $author->save();
         $author->order = $author->id;
@@ -110,12 +111,12 @@ class AuthorController extends Controller
 
         $request->validate([
             'name_bn' =>'required | string | max:255',
-            'name_en' =>'required | string | max:255',
-            'email' =>'required | email | max:255',
+            'name_en' =>'nullable | string | max:255',
+            'email' =>'nullable | email | max:255',
             'profession' =>'required | string | max:255',
-            'type_id' =>'required | integer',
-            'order' => 'required | integer | max:2147483647',
-            'status' => 'required',
+//            'type_id' =>'required | integer',
+            'order' => 'nullable | integer | max:2147483647',
+            'status' => 'nullable',
         ]);
 
         $author = Author::findOrFail($id);
@@ -123,7 +124,7 @@ class AuthorController extends Controller
         $author->name_en = $request->name_en;
         $author->email = $request->email;
         $author->profession = $request->profession;
-        $author->type_id = $request->type_id;
+        $author->type_id = 1;
         $author->details = $request->details;
         $author->order = $request->order;
         if ($request->profile_picture){
@@ -150,6 +151,10 @@ class AuthorController extends Controller
      */
     public function destroy($id)
     {
+        if (Post::where('author_id', $id)->exists()){
+            Toastr::warning('This Author Not Deletable!', 'Warning');
+            return redirect(route('author.index'));
+        }
         $author = Author::findOrFail($id);
         Storage::delete($author->profile_picture);
         $author->delete();

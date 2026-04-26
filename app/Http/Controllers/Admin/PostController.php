@@ -72,7 +72,7 @@ class PostController extends Controller
     public function create(Request $request)
     {
         $data['categories'] = Category::where('parent_cat_id', null)->with("categories")->get();
-        $data['authors'] = User::where('role_id', 2)->get();
+        $data['authors'] = Author::get();
         $data['request'] = $request;
         return view('admin.post.post_create', $data)->withShortcodes();
     }
@@ -254,7 +254,7 @@ class PostController extends Controller
         $data['categories'] = Category::where('parent_cat_id', null)->with("categories")->get();
         $data['data'] = Post::with('categories')->findOrFail($id);
         $data['data_section'] = Post::with('sections')->findOrFail($id);
-        $data['authors'] = User::where('role_id', 2)->get();
+        $data['authors'] = Author::get();
         $data['id'] = $id;
         return view('admin.post.post_update', $data);
     }

@@ -74,7 +74,7 @@ class FrontendController extends Controller
         $posts = DB::table('category_post')
             ->join('posts', 'posts.id', '=', 'category_post.post_id')
             ->leftJoin('media', 'media.id', '=', 'posts.media_id')
-            ->leftJoin('users', 'users.id', '=', 'posts.author_id')
+            ->leftJoin('authors', 'authors.id', '=', 'posts.author_id')
             ->where('category_post.category_id', $categoryId)
             ->whereNotNull('category_post.position')
             ->orderBy('category_post.position')
@@ -84,8 +84,9 @@ class FrontendController extends Controller
                 'posts.title',
                 'posts.sub_headline',
                 'posts.subtitle',
-                'users.name as author_name',
-                'users.designation as author_designation',
+                'authors.name_bn as author_name',
+                'authors.profession as author_designation',
+                'authors.profile_picture as author_profile',
                 'media.image as image',
                 'media.thumbnail as thumbnail',
                 'media.xs_thumbnail as xs_thumbnail'

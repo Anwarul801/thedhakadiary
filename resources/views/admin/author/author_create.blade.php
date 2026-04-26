@@ -23,22 +23,22 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="name_en">Name English *</label>
-                                    <input value="{{old('name_en')}}" class="form-control" type="text" id="name_en" name="name_en" required="" placeholder="Name English">
+                                    <label for="name_bn">Name Bangla *</label>
+                                    <input value="{{old('name_bn')}}" class="form-control" type="text" id="name_bn" name="name_bn" required="" placeholder="Name Bangla">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="name_bn">Name Bangla *</label>
-                                    <input value="{{old('name_bn')}}" class="form-control" type="text" id="name_bn" name="name_bn" required="" placeholder="Name Bangla">
+                                    <label for="name_en">Name English </label>
+                                    <input value="{{old('name_en')}}" class="form-control" type="text" id="name_en" name="name_en" placeholder="Name English">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="email">Email *</label>
-                                    <input value="{{old('email')}}" class="form-control" type="email" id="email" name="email" required="" placeholder="Email">
+                                    <label for="email">Email </label>
+                                    <input value="{{old('email')}}" class="form-control" type="email" id="email" name="email" placeholder="Email">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -51,21 +51,21 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="profile_picture">Profile Picture</label>
+                                    <label for="profile_picture">Profile Picture (200x200px)</label>
                                     <input class="form-control" type="file" id="profile_picture" name="profile_picture">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="type_id">Author Type *</label>
-                                    <select class="form-control" name="type_id" id="type_id">
-                                        <option selected disabled>Select Type Of Author</option>
-                                        @foreach($types as $type)
-                                            <option value="{{$type->id}}">{{$type->title}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
+{{--                            <div class="col-md-6">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="type_id">Author Type *</label>--}}
+{{--                                    <select class="form-control" name="type_id" id="type_id">--}}
+{{--                                        <option selected disabled>Select Type Of Author</option>--}}
+{{--                                        @foreach($types as $type)--}}
+{{--                                            <option value="{{$type->id}}">{{$type->title}}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                         <div class="row">
                             <div class="col-md-12">

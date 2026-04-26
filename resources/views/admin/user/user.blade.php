@@ -35,7 +35,7 @@
                                 <td>{{ $user->name_en }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone_number }}</td>
-                                <td>{{ $user->role_id==1?'Admin':'Author' }}</td>
+                                <td>{{ $user->role_id==1?'Admin':'Operator' }}</td>
                                 <td>
                                     <!-- Example single danger button -->
                                     <div class="btn-group">

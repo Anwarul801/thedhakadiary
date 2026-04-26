@@ -28,7 +28,7 @@ class Post extends Model
     // relation with author table
     public function author()
     {
-        return $this->belongsTo(User::class, 'author_id', 'id');
+        return $this->belongsTo(Author::class, 'author_id', 'id');
     }
 
     // relation with media table

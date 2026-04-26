@@ -55,7 +55,7 @@
                                     <select class="form-control" name="author_id" id="author_id">
                                         <option selected disabled>Select Author</option>
                                         @foreach($authors as $auth)
-                                            <option value="{{$auth->id}}">{{$auth->name}}</option>
+                                            <option value="{{$auth->id}}">{{$auth->name_bn}}</option>
                                         @endforeach
                                     </select>
                                 </div>
