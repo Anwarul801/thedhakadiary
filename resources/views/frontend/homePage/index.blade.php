@@ -989,8 +989,8 @@
                             </p>
 
                             <div class="author flex items-center mt-6">
-                                @if($cat11[$position]->author_profile)
-                                    <img src="{{ asset('storage') }}/{{$cat11[$position]->author_profile}}"
+                                @if($cat11[1]->author_profile)
+                                    <img src="{{ asset('storage') }}/{{$cat11[1]->author_profile}}"
                                          class="w-14 h-14 rounded-full" alt="author image">
                                 @else
                                     <img src="{{ asset('frontend/assets/image/M_Shawkhat_Hossain.jpg') }}"
