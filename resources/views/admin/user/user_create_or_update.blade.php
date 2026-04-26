@@ -25,7 +25,7 @@
                                 <div class="form-group">
                                     <label for="role_id">Select Role *</label>
                                     <select class="form-control" name="role_id" id="role_id">
-                                        <option {{$page_type!='Create'&&$user->role_id==2?'selected':''}}  value="2">Author</option>
+                                        <option {{$page_type!='Create'&&$user->role_id==2?'selected':''}}  value="2">Operator</option>
                                         <option {{$page_type!='Create'&&$user->role_id==1?'selected':''}} value="1">Admin</option>
                                     </select>
                                 </div>

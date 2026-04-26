@@ -989,8 +989,13 @@
                             </p>
 
                             <div class="author flex items-center mt-6">
-                                <img src="{{ asset('frontend/assets/image/M_Shawkhat_Hossain.jpg') }}"
-                                    class="w-14 h-14 rounded-full" alt="thumbnail">
+                                @if($cat11[$position]->author_profile)
+                                    <img src="{{ asset('storage') }}/{{$cat11[$position]->author_profile}}"
+                                         class="w-14 h-14 rounded-full" alt="author image">
+                                @else
+                                    <img src="{{ asset('frontend/assets/image/M_Shawkhat_Hossain.jpg') }}"
+                                         class="w-14 h-14 rounded-full" alt="author image">
+                                @endif
                                 <div class="ml-3">
                                     <p class="name">{{$cat11[1]->author_name}}</p>
                                     <p class="designation text-sm text-gray-500">{{$cat11[1]->author_designation}}
@@ -1011,8 +1016,13 @@
                             <div class="opinion-item flex items-start gap-4">
                                 <div>
                                     <div class="icon">
-                                        <img src="{{ asset('frontend/assets/image/M_Shawkhat_Hossain.jpg') }}"
-                                            class="w-14 h-14 rounded-full" alt="thumbnail">
+                                        @if($cat11[$position]->author_profile)
+                                        <img src="{{ asset('storage') }}/{{$cat11[$position]->author_profile}}"
+                                            class="w-14 h-14 rounded-full" alt="author image">
+                                        @else
+                                            <img src="{{ asset('frontend/assets/image/M_Shawkhat_Hossain.jpg') }}"
+                                            class="w-14 h-14 rounded-full" alt="author image">
+                                        @endif
                                     </div>
                                 </div>
                                 <div>
@@ -1021,7 +1031,9 @@
                                             <span class="sholder">{{$cat11[$position]->sub_headline}}</span>{{$cat11[$position]->title}}
                                         </a>
                                     </h3>
+                                    @if ($cat11[$position]->author_name)
                                     <p class="author-name">লেখা: {{$cat11[$position]->author_name}}</p>
+                                        @endif
                                 </div>
                             </div>
                                 @else

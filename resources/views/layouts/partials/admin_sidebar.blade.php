@@ -42,6 +42,12 @@
                             <span> Categories </span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('author.index') }}">
+                            <i class="fe-user-plus"></i>
+                            <span> Author </span>
+                        </a>
+                    </li>
                 <li>
                     <a href="javascript: void(0);">
                         <i class="fe-edit"></i>

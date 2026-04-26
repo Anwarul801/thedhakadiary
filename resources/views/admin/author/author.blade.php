@@ -22,12 +22,14 @@
                         <tr>
                             <th>SL</th>
                             <th>Name</th>
+                            <th>Profession</th>
                             <th>Action</th>
                         </tr>
                         @forelse($authors as $author)
                             <tr>
                                 <td>{{ $loop->iteration}}</td>
-                                <td>{{ $author->name_en }} / {{$author->name_bn}}</td>
+                                <td>{{ $author->name_bn }}</td>
+                                <td>{{ $author->profession }}</td>
                                 <td>
                                     <!-- Example single danger button -->
                                     <div class="btn-group">
