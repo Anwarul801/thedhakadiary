@@ -893,7 +893,8 @@
 
                     <!-- Right Side -->
                     <div class="lg:col-span-5 col-span-12">
-                        <div class="sidebar-card">
+                        <div class="sidebar-card flex flex-col h-full">
+
                             <!-- Tab Header -->
                             <div class="button_wrap">
                                 <button class="sidebar-button active-tab">
@@ -905,32 +906,53 @@
                             </div>
 
                             <!-- সর্বশেষ Tab -->
-                            <div id="latest" class="tab-content flex flex-col justify-between">
-                                <ul class="md:space-y-6 space-y-4  max-h-[500px] overflow-y-scroll">
+                            <div id="latest" class="tab-content flex flex-col flex-1 min-h-0">
+
+                                <!-- Scrollable List -->
+                                <ul class="flex-1 min-h-0 md:space-y-6 space-y-4
+                       max-h-[260px] md:max-h-[500px]
+                       overflow-y-auto scroll-smooth">
                                     @foreach($latest as $latest_item)
                                         <li class="sidebar-item">
-                                            <span>{{isEnglish()?$loop->iteration:bangla_number($loop->iteration)}}</span><a
-                                                href="{{route('news_details', ['id' => $latest_item->id, 'slug' => $latest_item->slug])}}"
-                                                class="sidebar-link">{{Str::limit($latest_item->title, 50)}}</a>
+                                            <span>{{ isEnglish() ? $loop->iteration : bangla_number($loop->iteration) }}</span>
+                                            <a href="{{ route('news_details',  $latest_item->id) }}"
+                                               class="sidebar-link">
+                                                {{ Str::limit($latest_item->title, 50) }}
+                                            </a>
                                         </li>
                                     @endforeach
                                 </ul>
-                                <a href="{{route('last_published')}}" class="read-more-btn">আরও পড়ুন <i class="fa-solid fa-angle-right"></i></a>
+
+                                <!-- Button -->
+                                <a href="{{ route('last_published') }}" class="read-more-btn mt-3">
+                                    আরও পড়ুন <i class="fa-solid fa-angle-right"></i>
+                                </a>
                             </div>
 
                             <!-- সর্বাধিক পঠিত Tab -->
-                            <div id="popular" class="tab-content flex flex-col justify-between hidden">
-                                <ul  class="md:space-y-6 space-y-4 ">
+                            <div id="popular" class="tab-content flex flex-col flex-1 min-h-0 hidden">
+
+                                <!-- Scrollable List -->
+                                <ul class="flex-1 min-h-0 md:space-y-6 space-y-4
+                       max-h-[260px] md:max-h-[500px]
+                       overflow-y-auto scroll-smooth">
                                     @foreach($best_hit as $best_hit_item)
                                         <li class="sidebar-item">
-                                            <span>{{isEnglish()?$loop->iteration:bangla_number($loop->iteration)}}</span><a
-                                                href="{{route('news_details', ['id' => $best_hit_item->id, 'slug' => $best_hit_item->slug])}}"
-                                                class="sidebar-link">{{Str::limit($best_hit_item->title, 50)}}</a>
+                                            <span>{{ isEnglish() ? $loop->iteration : bangla_number($loop->iteration) }}</span>
+                                            <a href="{{ route('news_details', $best_hit_item->id) }}"
+                                               class="sidebar-link">
+                                                {{ Str::limit($best_hit_item->title, 50) }}
+                                            </a>
                                         </li>
                                     @endforeach
                                 </ul>
-                                <a href="{{route('most_read')}}" class="read-more-btn">আরও পড়ুন <i class="fa-solid fa-angle-right"></i></a>
+
+                                <!-- Button -->
+                                <a href="{{ route('most_read') }}" class="read-more-btn mt-3">
+                                    আরও পড়ুন <i class="fa-solid fa-angle-right"></i>
+                                </a>
                             </div>
+
                         </div>
                     </div>
 
