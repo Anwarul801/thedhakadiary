@@ -187,23 +187,8 @@
                                     </div>
                                 @endif
                             </div>
-                            <div class="md:col-span-4 col-span-12 md:mt-0 mt-4 no_print">
+                            <div class="md:col-span-4 col-span-12 md:mt-0 mt-4 no_print hidden md:block">
                                 @include('layouts.partials.news_item.latest_news')
-
-                                <!-- ad area start -->
-                                @include('layouts.partials.ads.side_ad', ['ad' => $ad1])
-
-                                <!-- ad area end -->
-                                <!-- ad area start -->
-                                @include('layouts.partials.ads.side_ad', ['ad' => $ad2])
-
-                                <!-- ad area end -->
-
-                                <!-- ad area start -->
-                                @include('layouts.partials.ads.side_ad', ['ad' => $ad3])
-
-                                <!-- ad area end -->
-
                             </div>
                         </div>
 
@@ -237,7 +222,9 @@
 
 
                 </div>
-
+                <div class="block md:hidden mt-6 no_print">
+                    @include('layouts.partials.news_item.latest_news')
+                </div>
             </div>
         </section>
         {{-- folding icons --}}
