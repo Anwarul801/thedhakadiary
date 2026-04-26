@@ -157,7 +157,7 @@
                 <div class="section-title-wrap">
                     <h2 class="section-title">জাতীয়</h2>
                     <div class="section-button-wrap">
-                        <a href="{{route('category_view', 'jateey')}}" class="section_button !bg-black !text-white">আরও পড়ুন <i
+                        <a href="{{route('category_view', 'jateey')}}" class="section_button  !bg-black !text-white hover:!bg-red-600 transition">আরও পড়ুন <i
                                 class="fa-solid fa-angle-right"></i></a>
                     </div>
                 </div>
@@ -760,8 +760,20 @@
 
                     <!-- left Side (3 items) -->
                     <div class="lg:col-span-4 col-span-12 ">
-                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
-                            <h2 class="section-title"> <a href="{{route('category_view', 'opradh')}}">অপরাধ</a></h2>
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4 flex justify-between items-center">
+
+                            <h2 class="section-title">
+                                <a href="{{ route('category_view', 'opradh') }}">
+                                    অপরাধ
+                                </a>
+                            </h2>
+
+                            <div class="section-button-wrap">
+                                <a href="{{ route('category_view', 'opradh') }}" class="section_button">
+                                    আরও পড়ুন <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+
                         </div>
                         <div class="space-y-4 ">
                             @foreach(range(1,4) as $position)
@@ -786,9 +798,20 @@
                         </div>
                     </div>
                     <div class="lg:col-span-4 col-span-12 ">
-                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
-                            <h2 class="section-title"> <a href="{{route('category_view', 'ain-adalt')}}">আইন আদালত</a>
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4 flex justify-between items-center">
+
+                            <h2 class="section-title">
+                                <a href="{{ route('category_view', 'ain-adalt') }}">
+                                    আইন আদালত
+                                </a>
                             </h2>
+
+                            <div class="section-button-wrap">
+                                <a href="{{ route('category_view', 'ain-adalt') }}" class="section_button">
+                                    আরও পড়ুন <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+
                         </div>
                         <div class="space-y-4 lg:border-l lg:pl-4 border-stock-color">
                             @foreach(range(1,4) as $position)
@@ -814,8 +837,20 @@
                         </div>
                     </div>
                     <div class="lg:col-span-4 col-span-12 ">
-                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
-                            <h2 class="section-title"> <a href="{{route('category_view', 'swasthz')}}">স্বাস্থ্য</a></h2>
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4 flex justify-between items-center">
+
+                            <h2 class="section-title">
+                                <a href="{{ route('category_view', 'swasthz') }}">
+                                    স্বাস্থ্য
+                                </a>
+                            </h2>
+
+                            <div class="section-button-wrap">
+                                <a href="{{ route('category_view', 'swasthz') }}" class="section_button">
+                                    আরও পড়ুন <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+
                         </div>
                         <div class="space-y-4 lg:border-l lg:pl-4 border-stock-color">
                             @foreach(range(1,4) as $position)
@@ -967,7 +1002,7 @@
                 <div class="section-title-wrap">
                     <h2 class="section-title">মতামত</h2>
                     <div class="section-button-wrap">
-                        <a href="{{route('category_view', 'mtamt-2')}}" class="section_button bg-black">আরও পড়ুন <i
+                        <a href="{{route('category_view', 'mtamt-2')}}" class="section_button  !bg-black !text-white hover:!bg-red-600 transition">আরও পড়ুন <i
                                 class="fa-solid fa-angle-right"></i></a>
                     </div>
                 </div>
@@ -1056,9 +1091,20 @@
 
                     <!-- left Side (3 items) -->
                     <div class="xl:col-span-3 md:col-span-6 col-span-12 ">
-                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
-                            <h2 class="section-title"> <a href="{{route('category_view', 'sakshattkar')}}">সাক্ষাৎকার</a>
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4 flex justify-between items-center">
+
+                            <h2 class="section-title">
+                                <a href="{{ route('category_view', 'sakshattkar') }}">
+                                    সাক্ষাৎকার
+                                </a>
                             </h2>
+
+                            <div class="section-button-wrap">
+                                <a href="{{ route('category_view', 'sakshattkar') }}" class="section_button">
+                                    আরও পড়ুন <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+
                         </div>
                         <div class="space-y-4 ">
                             @foreach(range(1,4) as $position)
@@ -1082,8 +1128,20 @@
                         </div>
                     </div>
                     <div class="xl:col-span-3 md:col-span-6 col-span-12 ">
-                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
-                            <h2 class="section-title"> <a href="{{route('category_view', 'sahitz')}}">সাহিত্য</a></h2>
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4 flex justify-between items-center">
+
+                            <h2 class="section-title">
+                                <a href="{{ route('category_view', 'sahitz') }}">
+                                    সাহিত্য
+                                </a>
+                            </h2>
+
+                            <div class="section-button-wrap">
+                                <a href="{{ route('category_view', 'sahitz') }}" class="section_button">
+                                    আরও পড়ুন <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+
                         </div>
                         <div class="space-y-4 ">
                             @foreach(range(1,4) as $position)
@@ -1107,8 +1165,20 @@
                         </div>
                     </div>
                     <div class="xl:col-span-3 md:col-span-6 col-span-12 ">
-                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
-                            <h2 class="section-title"> <a href="{{route('category_view', 'ficar')}}">ফিচার</a></h2>
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4 flex justify-between items-center">
+
+                            <h2 class="section-title">
+                                <a href="{{ route('category_view', 'ficar') }}">
+                                    ফিচার
+                                </a>
+                            </h2>
+
+                            <div class="section-button-wrap">
+                                <a href="{{ route('category_view', 'ficar') }}" class="section_button">
+                                    আরও পড়ুন <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+
                         </div>
                         <div class="space-y-4 ">
                             @foreach(range(1,4) as $position)
@@ -1132,8 +1202,20 @@
                         </div>
                     </div>
                     <div class="xl:col-span-3 md:col-span-6 col-span-12 ">
-                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
-                            <h2 class="section-title"> <a href="{{route('category_view', 'dhrm')}}">ধর্ম</a></h2>
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4 flex justify-between items-center">
+
+                            <h2 class="section-title">
+                                <a href="{{ route('category_view', 'dhrm') }}">
+                                    ধর্ম
+                                </a>
+                            </h2>
+
+                            <div class="section-button-wrap">
+                                <a href="{{ route('category_view', 'dhrm') }}" class="section_button">
+                                    আরও পড়ুন <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+
                         </div>
                         <div class="space-y-4 ">
                             @foreach(range(1,4) as $position)
@@ -1170,9 +1252,20 @@
 
                     <!-- left Side (3 items) -->
                     <div class="xl:col-span-3 md:col-span-6 col-span-12 ">
-                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
-                            <h2 class="section-title"> <a href="{{route('category_view', 'orthneeti')}}">অর্থনীতি</a>
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4 flex justify-between items-center">
+
+                            <h2 class="section-title">
+                                <a href="{{ route('category_view', 'orthneeti') }}">
+                                    অর্থনীতি
+                                </a>
                             </h2>
+
+                            <div class="section-button-wrap">
+                                <a href="{{ route('category_view', 'orthneeti') }}" class="section_button  !bg-black !text-white hover:!bg-red-600 transition">
+                                    আরও পড়ুন <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+
                         </div>
                         <div class="space-y-4">
                             @foreach(range(1,4) as $position)
@@ -1205,9 +1298,20 @@
                         </div>
                     </div>
                     <div class="xl:col-span-3 md:col-span-6 col-span-12 ">
-                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
-                            <h2 class="section-title"> <a
-                                    href="{{route('category_view', 'abhawa-oo-pribes')}}">পরিবেশ</a></h2>
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4 flex justify-between items-center">
+
+                            <h2 class="section-title">
+                                <a href="{{ route('category_view', 'abhawa-oo-pribes') }}">
+                                    পরিবেশ
+                                </a>
+                            </h2>
+
+                            <div class="section-button-wrap">
+                                <a href="{{ route('category_view', 'abhawa-oo-pribes') }}" class="section_button  !bg-black !text-white hover:!bg-red-600 transition">
+                                    আরও পড়ুন <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+
                         </div>
                         <div class="space-y-4">
                             @foreach(range(1,4) as $position)
@@ -1240,8 +1344,20 @@
                         </div>
                     </div>
                     <div class="xl:col-span-3 md:col-span-6 col-span-12 ">
-                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
-                            <h2 class="section-title"> <a href="{{route('category_view', 'binodn')}}">বিনোদন</a></h2>
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4 flex justify-between items-center">
+
+                            <h2 class="section-title">
+                                <a href="{{ route('category_view', 'binodn') }}">
+                                    বিনোদন
+                                </a>
+                            </h2>
+
+                            <div class="section-button-wrap">
+                                <a href="{{ route('category_view', 'binodn') }}" class="section_button  !bg-black !text-white hover:!bg-red-600 transition">
+                                    আরও পড়ুন <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+
                         </div>
                         <div class="space-y-4">
                             @foreach(range(1,4) as $position)
@@ -1274,9 +1390,23 @@
                         </div>
                     </div>
                     <div class="xl:col-span-3 md:col-span-6 col-span-12 ">
-                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
-                            <h2 class="section-title"> <a href="{{route('category_view', 'cakrir-khbr')}}">চাকরির খবর</a>
+                        <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4 flex justify-between items-center">
+
+                            <h2 class="section-title">
+                                <a href="{{ route('category_view', 'cakrir-khbr') }}">
+                                    চাকরির খবর
+                                </a>
                             </h2>
+
+                            <div class="section-button-wrap">
+                                <a href="{{ route('category_view', 'cakrir-khbr') }}"
+                                   class="section_button !bg-black !text-white hover:!bg-red-600 transition">
+
+                                    আরও পড়ুন <i class="fa-solid fa-angle-right"></i>
+
+                                </a>
+                            </div>
+
                         </div>
                         <div class="space-y-4">
                             @foreach(range(1,4) as $position)
