@@ -1364,18 +1364,31 @@
                             <!-- Right Side (3 items) -->
                             <div class="md:col-span-6 col-span-12 order-3 lg:border-l lg:pl-4 border-stock-color">
                                 <div class="space-y-4">
+
                                     @foreach(range(2,5) as $position)
-                                        @isset($cat20[$position])
-                                         <div class="news-card border-b{{$position==5?'-0':''}} pb-3 border-stock-color">
-                                        <h1 class="title-sm !my-0 flex-1">
-                                            <a href="{{route('news_details', $cat20[$position]->id)}}">{{$cat20[$position]->title}}</a>
-                                        </h1>
-                                    </div>
-                                        @else
-                                            <div class="news-card border-b{{$position==5?'-0':''}} pb-3 border-stock-color">
-                                            </div>
-                                        @endisset
+                                        <div class="news-card pb-3 {{ $position != 5 ? 'border-b border-gray-200' : '' }}">
+
+                                            @isset($cat20[$position])
+
+                                                <h1 class="title-sm !my-0 flex items-start gap-2 font-semibold">
+
+                        <span class="text-red-600 mt-1 text-sm">
+                            ●
+                        </span>
+
+                                                    <a href="{{ route('news_details', $cat20[$position]->id) }}" class="flex-1">
+                                                        {{ $cat20[$position]->title }}
+                                                    </a>
+
+                                                </h1>
+
+                                            @else
+                                                <div class="h-5"></div>
+                                            @endisset
+
+                                        </div>
                                     @endforeach
+
                                 </div>
                             </div>
                         </div>
@@ -1426,18 +1439,31 @@
                             <!-- Right Side (3 items) -->
                             <div class="md:col-span-6 col-span-12 order-3 lg:border-l lg:pl-4 border-stock-color">
                                 <div class="space-y-4">
+
                                     @foreach(range(2,5) as $position)
-                                        @isset($cat21[$position])
-                                         <div class="news-card border-b{{$position==5?'-0':''}} pb-3 border-stock-color">
-                                        <h1 class="title-sm !my-0 flex-1">
-                                            <a href="{{route('news_details', $cat21[$position]->id)}}">{{$cat21[$position]->title}}</a>
-                                        </h1>
-                                    </div>
-                                        @else
-                                            <div class="news-card border-b{{$position==5?'-0':''}} pb-3 border-stock-color">
-                                            </div>
-                                        @endisset
+                                        <div class="news-card pb-3 {{ $position != 5 ? 'border-b border-gray-200' : '' }}">
+
+                                            @isset($cat21[$position])
+
+                                                <h1 class="title-sm !my-0 flex items-start gap-2 font-semibold">
+
+                        <span class="text-red-600 mt-1 text-sm">
+                            ●
+                        </span>
+
+                                                    <a href="{{ route('news_details', $cat21[$position]->id) }}" class="flex-1">
+                                                        {{ $cat21[$position]->title }}
+                                                    </a>
+
+                                                </h1>
+
+                                            @else
+                                                <div class="h-5"></div>
+                                            @endisset
+
+                                        </div>
                                     @endforeach
+
                                 </div>
                             </div>
                         </div>
