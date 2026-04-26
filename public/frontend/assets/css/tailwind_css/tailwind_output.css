@@ -2043,9 +2043,19 @@
       margin-bottom: calc(var(--spacing) * 12);
     }
   }
+  .md\:block {
+    @media (width >= 768px) {
+      display: block;
+    }
+  }
   .md\:flex {
     @media (width >= 768px) {
       display: flex;
+    }
+  }
+  .md\:hidden {
+    @media (width >= 768px) {
+      display: none;
     }
   }
   .md\:max-h-\[500px\] {
