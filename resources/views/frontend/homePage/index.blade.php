@@ -162,14 +162,14 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-12 lg:gap-4 gap-3 border-b pb-4 border-stock-color">
+                <div class="grid grid-cols-12 lg:gap-4 gap-3 border-b pb-4 border-gray-300">
 
                     <!-- Left Side (3 items) -->
-                    <div class="lg:col-span-4 col-span-12 lg:order-1 order-2 lg:border-r lg:pr-4 border-stock-color">
+                    <div class="lg:col-span-4 col-span-12 lg:order-1 order-2 lg:border-r lg:pr-4 border-gray-300">
                         <div class="space-y-4">
                             @foreach(range(1,3) as $position)
                                 @isset($cat1[$position])
-                                    <div class="news-card flex gap-3 {{$position!=3?'border-b pb-3 border-stock-color':''}}">
+                                    <div class="news-card flex gap-3 {{$position!=3?'border-b pb-3 border-gray-300':''}}">
                                         <h1 class="title !mt-0 flex-1">
                                             <a href="{{ route('news_details', $cat1[$position]->id) }}"><span class="sholder">{{$cat1[$position]->sub_headline}}</span>
                                                 {{$cat1[$position]->title}}</a>
@@ -183,7 +183,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    <div class="news-card flex gap-3 {{$position!=3?'border-b pb-3 border-stock-color':''}}">
+                                    <div class="news-card flex gap-3 {{$position!=3?'border-b pb-3 border-gray-300':''}}">
                                     </div>
                                 @endisset
                             @endforeach
@@ -193,7 +193,7 @@
                     <!-- Center Big News -->
                     @isset($cat1[4])
                     <div
-                        class="lg:col-span-4 col-span-12 lg:order-2 order-1 lg:border-b-0 border-b lg:pb-0 pb-3 border-stock-color">
+                        class="lg:col-span-4 col-span-12 lg:order-2 order-1 lg:border-b-0 border-b lg:pb-0 pb-3 border-gray-300">
                         <div class="news-card">
                             <div class="thumbnail">
                                 <a href="{{ route('news_details', $cat1[4]->id) }}">
@@ -219,18 +219,18 @@
                     </div>
                     @else
                         <div
-                            class="lg:col-span-4 col-span-12 lg:order-2 order-1 lg:border-b-0 border-b lg:pb-0 pb-3 border-stock-color">
+                            class="lg:col-span-4 col-span-12 lg:order-2 order-1 lg:border-b-0 border-b lg:pb-0 pb-3 border-gray-300">
                             <div class="news-card">
                             </div>
                         </div>
                     @endisset
                     <!-- Right Side (3 items) -->
-                    <div class="lg:col-span-4 col-span-12 order-3 lg:border-l lg:pl-4 border-stock-color">
+                    <div class="lg:col-span-4 col-span-12 order-3 lg:border-l lg:pl-4 border-gray-300">
                         <div class="space-y-4">
 
                             @foreach(range(5,7) as $position)
                                 @isset($cat1[$position])
-                                    <div class="news-card flex gap-3 {{$position!=7?'border-b pb-3 border-stock-color':''}}">
+                                    <div class="news-card flex gap-3 {{$position!=7?'border-b pb-3 border-gray-300':''}}">
                                         <h1 class="title !mt-0 flex-1">
                                             <a href="{{ route('news_details', $cat1[$position]->id) }}"><span class="sholder">{{$cat1[$position]->sub_headline}}</span>
                                                 {{$cat1[$position]->title}}</a>
@@ -244,7 +244,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    <div class="news-card flex gap-3 {{$position!=7?'border-b pb-3 border-stock-color':''}}">
+                                    <div class="news-card flex gap-3 {{$position!=7?'border-b pb-3 border-gray-300':''}}">
                                         <h1 class="title !mt-0 flex-1">
 
                                         </h1>
@@ -1174,24 +1174,33 @@
                             <h2 class="section-title"> <a href="{{route('category_view', 'orthneeti')}}">অর্থনীতি</a>
                             </h2>
                         </div>
-                        <div class="space-y-4 ">
+                        <div class="space-y-4">
                             @foreach(range(1,4) as $position)
-                                @isset($cat16[$position])
-                                    <div class="news-card border-b{{$position==4?'-0':''}} pb-3 border-stock-color">
-                                        @if($position==1)
-                                            <div class="thumbnail">
+
+                                <div class="news-card pb-3 {{ $position != 4 ? 'border-b border-gray-300' : '' }}">
+
+                                    @isset($cat16[$position])
+
+                                        @if($position == 1)
+                                            <div class="thumbnail mb-2">
                                                 <img
-                                                    src="{{asset('storage')}}/{{$cat16[$position]->thumbnail}}" alt="news thumbnail">
+                                                    src="{{ asset('storage/'.$cat16[$position]->thumbnail) }}"
+                                                    alt="news thumbnail">
                                             </div>
                                         @endif
+
                                         <h1 class="title">
-                                            <a href="{{route('news_details', $cat16[$position]->id)}}">{{$cat16[$position]->title}}</a>
+                                            <a href="{{ route('news_details', $cat16[$position]->id) }}">
+                                                {{ $cat16[$position]->title }}
+                                            </a>
                                         </h1>
-                                    </div>
-                                @else
-                                    <div class="news-card border-b{{$position==4?'-0':''}} pb-3 border-stock-color">
-                                    </div>
-                                @endisset
+
+                                    @else
+                                        <div class="h-6"></div>
+                                    @endisset
+
+                                </div>
+
                             @endforeach
                         </div>
                     </div>
@@ -1200,24 +1209,33 @@
                             <h2 class="section-title"> <a
                                     href="{{route('category_view', 'abhawa-oo-pribes')}}">পরিবেশ</a></h2>
                         </div>
-                        <div class="space-y-4 ">
+                        <div class="space-y-4">
                             @foreach(range(1,4) as $position)
-                                @isset($cat17[$position])
-                                    <div class="news-card border-b{{$position==4?'-0':''}} pb-3 border-stock-color">
-                                        @if($position==1)
-                                            <div class="thumbnail">
+
+                                <div class="news-card pb-3 {{ $position != 4 ? 'border-b border-gray-300' : '' }}">
+
+                                    @isset($cat17[$position])
+
+                                        @if($position == 1 && isset($cat17[$position]->thumbnail))
+                                            <div class="thumbnail mb-2">
                                                 <img
-                                                    src="{{asset('storage')}}/{{$cat17[$position]->thumbnail}}" alt="news thumbnail">
+                                                    src="{{ asset('storage/'.$cat17[$position]->thumbnail) }}"
+                                                    alt="news thumbnail">
                                             </div>
                                         @endif
+
                                         <h1 class="title">
-                                            <a href="{{route('news_details', $cat17[$position]->id)}}">{{$cat17[$position]->title}}</a>
+                                            <a href="{{ route('news_details', $cat17[$position]->id) }}">
+                                                {{ $cat17[$position]->title }}
+                                            </a>
                                         </h1>
-                                    </div>
-                                @else
-                                    <div class="news-card border-b{{$position==4?'-0':''}} pb-3 border-stock-color">
-                                    </div>
-                                @endisset
+
+                                    @else
+                                        <div class="h-6"></div>
+                                    @endisset
+
+                                </div>
+
                             @endforeach
                         </div>
                     </div>
@@ -1225,24 +1243,33 @@
                         <div class="section-title-wrap lg:mt-0 md:mt-6 mt-4">
                             <h2 class="section-title"> <a href="{{route('category_view', 'binodn')}}">বিনোদন</a></h2>
                         </div>
-                        <div class="space-y-4 ">
+                        <div class="space-y-4">
                             @foreach(range(1,4) as $position)
-                                @isset($cat18[$position])
-                                    <div class="news-card border-b{{$position==4?'-0':''}} pb-3 border-stock-color">
-                                        @if($position==1)
-                                            <div class="thumbnail">
+
+                                <div class="news-card pb-3 {{ $position != 4 ? 'border-b border-gray-300' : '' }}">
+
+                                    @isset($cat18[$position])
+
+                                        @if($position == 1 && isset($cat18[$position]->thumbnail))
+                                            <div class="thumbnail mb-2">
                                                 <img
-                                                    src="{{asset('storage')}}/{{$cat18[$position]->thumbnail}}" alt="news thumbnail">
+                                                    src="{{ asset('storage/'.$cat18[$position]->thumbnail) }}"
+                                                    alt="news thumbnail">
                                             </div>
                                         @endif
+
                                         <h1 class="title">
-                                            <a href="{{route('news_details', $cat18[$position]->id)}}">{{$cat18[$position]->title}}</a>
+                                            <a href="{{ route('news_details', $cat18[$position]->id) }}">
+                                                {{ $cat18[$position]->title }}
+                                            </a>
                                         </h1>
-                                    </div>
-                                @else
-                                    <div class="news-card border-b{{$position==4?'-0':''}} pb-3 border-stock-color">
-                                    </div>
-                                @endisset
+
+                                    @else
+                                        <div class="h-6"></div>
+                                    @endisset
+
+                                </div>
+
                             @endforeach
                         </div>
                     </div>
@@ -1251,24 +1278,33 @@
                             <h2 class="section-title"> <a href="{{route('category_view', 'cakrir-khbr')}}">চাকরির খবর</a>
                             </h2>
                         </div>
-                        <div class="space-y-4 ">
+                        <div class="space-y-4">
                             @foreach(range(1,4) as $position)
-                                @isset($cat19[$position])
-                                    <div class="news-card border-b{{$position==4?'-0':''}} pb-3 border-stock-color">
-                                        @if($position==1)
-                                            <div class="thumbnail">
+
+                                <div class="news-card pb-3 {{ $position != 4 ? 'border-b border-gray-300' : '' }}">
+
+                                    @isset($cat19[$position])
+
+                                        @if($position == 1 && isset($cat19[$position]->thumbnail))
+                                            <div class="thumbnail mb-2">
                                                 <img
-                                                    src="{{asset('storage')}}/{{$cat19[$position]->thumbnail}}" alt="news thumbnail">
+                                                    src="{{ asset('storage/'.$cat19[$position]->thumbnail) }}"
+                                                    alt="news thumbnail">
                                             </div>
                                         @endif
+
                                         <h1 class="title">
-                                            <a href="{{route('news_details', $cat19[$position]->id)}}">{{$cat19[$position]->title}}</a>
+                                            <a href="{{ route('news_details', $cat19[$position]->id) }}">
+                                                {{ $cat19[$position]->title }}
+                                            </a>
                                         </h1>
-                                    </div>
-                                @else
-                                    <div class="news-card border-b{{$position==4?'-0':''}} pb-3 border-stock-color">
-                                    </div>
-                                @endisset
+
+                                    @else
+                                        <div class="h-6"></div>
+                                    @endisset
+
+                                </div>
+
                             @endforeach
                         </div>
                     </div>
