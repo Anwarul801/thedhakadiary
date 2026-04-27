@@ -69,14 +69,14 @@
 {{--                            </div>--}}
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="name">Details</label>
-                                    <textarea class="form-control" name="details" id="" cols="30" rows="10">{{$data->details}}</textarea>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="row">--}}
+{{--                            <div class="col-md-12">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="name">Details</label>--}}
+{{--                                    <textarea class="form-control" name="details" id="" cols="30" rows="10">{{$data->details}}</textarea>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="form-group account-btn text-center">
                             <div class="col-12">
                                 <button class="btn width-lg btn-rounded btn-primary" type="submit">Update Author</button>

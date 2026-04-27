@@ -1062,7 +1062,7 @@
                                 </div>
                                 <div>
                                     <h3 class="title">
-                                        <a href="#">
+                                        <a href="{{route('news_details', $cat11[$position]->id)}}">
                                             <span class="sholder">{{$cat11[$position]->sub_headline}}</span>{{$cat11[$position]->title}}
                                         </a>
                                     </h3>
