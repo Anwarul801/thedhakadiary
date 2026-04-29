@@ -28,7 +28,7 @@
             <li class="sidebar-item">
                 <span>{{isEnglish()?$loop->iteration:bangla_number($loop->iteration)}}</span><a
                     href="{{route('news_details', $latest_item->id)}}"
-                    class="sidebar-link">{{$latest_item->title)}}</a>
+                    class="sidebar-link">{{$latest_item->title}}</a>
             </li>
         @endforeach
         <li class="sidebar-item">
