@@ -290,15 +290,18 @@
                             <h1 class="title title-lg">
                                 <a href="{{route('news_details', $cat2[1]->id)}}">{{$cat2[1]->title}}</a>
                             </h1>
-                            <div class="short-description">
-                                <p>
-                                    <a href="{{route('news_details', $cat2[1]->id)}}">{{$cat2[1]->sub_headline}}</a>
-                                </p>
-                            </div>
+                            @if($cat2[1]->sub_headline)
+                                <div class="short-description">
+                                    <p>
+                                        <a href="{{route('news_details', $cat2[1]->id)}}">{{$cat2[1]->sub_headline}}</a>
+                                    </p>
+                                </div>
+                            @endif
+
                             <div class="short-description_home">
                                 <p>
                                     <a href="{{route('news_details', $cat2[1]->id)}}">
-                                        {{$cat2[1]->subtitle}}
+                                        {{$cat2[1]->subtitle ?? strip_tags(Str::limit($cat2[1]->news_details, 260))}}
                                     </a>
                                 </p>
                             </div>
