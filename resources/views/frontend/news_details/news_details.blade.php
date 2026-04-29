@@ -29,6 +29,50 @@
                 display: none !important;
             }
         }
+
+
+        .news-zoom-root {
+            --zoom-factor: 1;
+        }
+        .news-zoom-root :is(p, h1, h2, h3, h4, h5, h6, span, a, li, figcaption, .news-content,
+                           .text-area-card, .tag-list, .tag-item, .tag-link, .text-sm, .text-base):not(img) {
+            font-size: calc(1rem * var(--zoom-factor)) !important;
+        }
+        .news-zoom-root h1 {
+            font-size: calc(2rem * var(--zoom-factor)) !important;
+        }
+        .news-zoom-root h2 {
+            font-size: calc(1.8rem * var(--zoom-factor)) !important;
+        }
+        .news-zoom-root h3 {
+            font-size: calc(1.5rem * var(--zoom-factor)) !important;
+        }
+        .news-zoom-root .text-sm {
+            font-size: calc(0.875rem * var(--zoom-factor)) !important;
+        }
+        .news-zoom-root img {
+            max-width: 100%;
+            height: auto;
+            transform: none;
+        }
+        .news-zoom-root p, .news-zoom-root li {
+            line-height: calc(1.5 * var(--zoom-factor));
+        }
+        .zoom-trigger {
+            cursor: pointer;
+        }
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            list-style: none;
+            padding-left: 0;
+        }
+        .tag-item {
+            background-color: #eef2f6;
+            border-radius: 9999px;
+            padding: 0.25rem 0.75rem;
+        }
     </style>
 @endsection
 @section('og_image')
@@ -146,10 +190,11 @@
                                                 <i class="fa-brands fa-whatsapp"></i>
                                             </a>
 
-                                            <a href="#" class="social_icon text-sm zoomIn" id=""><i
+                                            <a href="#" class="social_icon text-sm zoomIn" id="zoomInBtn"><i
                                                     class="fa-solid fa-magnifying-glass-plus"></i></a>
-                                            <a href="#" class="social_icon text-sm zoomOut" id=""><i
+                                            <a href="#" class="social_icon text-sm zoomOut" id="zoomOutBtn"><i
                                                     class="fa-solid fa-magnifying-glass-minus"></i></a>
+                                            <span id="zoomLevelIndicator" class="text-xs bg-white px-2 py-1 rounded shadow-sm">100%</span>
                                             <a href="#" class="social_icon text-sm copyLinkBtn" id="copyLinkBtn">
                                                 <i class="fa-solid fa-copy"></i>
                                             </a>
@@ -163,7 +208,7 @@
                         </div>
                         <!-- Sub-grid here -->
                         <div class="grid grid-cols-12 md:gap-x-6 gap-x-4">
-                            <div class="md:col-span-8 col-span-12 md:mt-6 mt-4">
+                            <div class="md:col-span-8 col-span-12 md:mt-6 mt-4 news-zoom-root" id="newsZoomContainer">
                                 <figure class="news-title-image md:mb-8 sm:mb-6 mb-4 italic">
                                     <img src="{{ asset('storage') }}/{{ $news->media->image ?? null }}" alt="Thumbnail">
                                     <figcaption
@@ -273,35 +318,44 @@
 
 @section('js')
     <script>
+        const zoomContainer = document.getElementById('newsZoomContainer');
+        const MIN_ZOOM = 0.7;
+        const MAX_ZOOM = 1.6;
+        const ZOOM_STEP = 0.08;
+        let currentZoom = 1.0;
+
+        function applyZoom(zoomValue) {
+            let clamped = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, zoomValue));
+            currentZoom = clamped;
+            zoomContainer.style.setProperty('--zoom-factor', clamped);
+            document.getElementById('zoomLevelIndicator').textContent = `${Math.round(clamped * 100)}%`;
+        }
+
+        function zoomIn() {
+            let newZoom = currentZoom + ZOOM_STEP;
+            if (newZoom <= MAX_ZOOM) applyZoom(newZoom);
+        }
+
+        function zoomOut() {
+            let newZoom = currentZoom - ZOOM_STEP;
+            if (newZoom >= MIN_ZOOM) applyZoom(newZoom);
+        }
+
+        document.getElementById('zoomInBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            zoomIn();
+        });
+
+        document.getElementById('zoomOutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            zoomOut();
+        });
+
+        applyZoom(1.0);
+    </script>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const newsElements = document.querySelectorAll('.news-content');
-            let fontSize = 1; // em
 
-            // Handle all zoomIn buttons
-            document.querySelectorAll('.zoomIn').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (fontSize < 2) {
-                        fontSize += 0.1;
-                        newsElements.forEach(el => {
-                            el.style.fontSize = fontSize + 'em';
-                        });
-                    }
-                });
-            });
-
-            // Handle all zoomOut buttons
-            document.querySelectorAll('.zoomOut').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (fontSize > 0.6) {
-                        fontSize -= 0.1;
-                        newsElements.forEach(el => {
-                            el.style.fontSize = fontSize + 'em';
-                        });
-                    }
-                });
-            });
 
             // Toggle prokash and updated
             document.querySelectorAll('.update_prokash_btn').forEach(function(btn) {
@@ -349,7 +403,7 @@
     </script>
 
 
-    {{-- <script>
+     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const newsElements = document.querySelectorAll('.news-content');
             let fontSize = 1; // em
@@ -385,7 +439,7 @@
                 prokash.classList.toggle('hidden');
             });
         });
-    </script> --}}
+    </script>
     <script>
         $(function() {
             var div_width = $('#get_width').width();
