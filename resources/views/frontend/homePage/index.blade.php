@@ -266,12 +266,14 @@
 
         <!--======== Politics Section ====== -->
         <section class="politics_section section-padding-top">
+
             <div class="container">
-                <div class="section-title-wrap">
-                    <h2 class="section-title">রাজনীতি</h2>
-                    <div class="section-button-wrap">
-                        <a href="{{route('category_view', 'rajneeti')}}" class="section_button">আরও পড়ুন <i
-                                class="fa-solid fa-angle-right"></i></a>
+                <div class="design-2">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">রাজনীতি</h2>
+                        <div class="section-button-wrap">
+                            <a href="#" class="section_button">আরও পড়ুন <i class="fa-solid fa-angle-right"></i></a>
+                        </div>
                     </div>
                 </div>
                 <div class="grid grid-cols-12 md:gap-6 gap-4 border-b pb-4 border-stock-color">

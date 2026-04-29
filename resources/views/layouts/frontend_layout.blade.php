@@ -68,7 +68,34 @@
 
     @yield('css')
     <link href="{{asset('frontend/assets')}}/css/tailwind_css/tailwind_output.css" rel="stylesheet">
-
+    <style>
+        /* ডিজাইন ২: বোল্ড ও মডার্ন (উভয় পাশে বার ও গাঢ় ব্যাকগ্রাউন্ড) */
+        .design-2 .section-title-wrap {
+            background: #e2e8f0;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            border-left: 5px solid #0f172a;
+            border-right: 5px solid #0f172a;
+        }
+        .design-2 .section-title {
+            color: #0f172a;
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+        .design-2 .section_button {
+            background: #0f172a;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+        }
+        .design-2 .section_button:hover {
+            background: #334155;
+            gap: 0.7rem;
+        }
+        /**, .border, .border-b, .border-t, .border-l, .border-r, [class*="border-"] {*/
+        /*    border-color: #4a5568 !important;*/
+        /*}*/
+    </style>
 
 </head>
 {{--
