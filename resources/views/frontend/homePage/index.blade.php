@@ -270,7 +270,7 @@
             <div class="container">
                 <div class="design-2">
                     <div class="section-title-wrap">
-                        <h2 class="section-title">রাজনীতি</h2>
+                        <h2 class="section-title mt-1">রাজনীতি</h2>
                         <div class="section-button-wrap">
                             <a href="#" class="section_button">আরও পড়ুন <i class="fa-solid fa-angle-right"></i></a>
                         </div>
