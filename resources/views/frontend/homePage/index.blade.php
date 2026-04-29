@@ -1032,7 +1032,7 @@
                             </h2>
 
                             <p class="featured-desc">
-                                {{$cat11[1]->subtitle}}
+                                {{Str::limit($cat11[1]->subtitle, 100)}}
                             </p>
 
                             <div class="author flex items-center mt-6">
