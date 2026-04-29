@@ -92,9 +92,9 @@
             background: #334155;
             gap: 0.7rem;
         }
-        /**, .border, .border-b, .border-t, .border-l, .border-r, [class*="border-"] {*/
-        /*    border-color: #4a5568 !important;*/
-        /*}*/
+        *, .border, .border-b, .border-t, .border-l, .border-r, [class*="border-"] {
+            border-color: rgb(157 168 189 / 0.75) !important;
+        }
     </style>
 
 </head>
