@@ -61,18 +61,18 @@
         .zoom-trigger {
             cursor: pointer;
         }
-        .tag-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            list-style: none;
-            padding-left: 0;
-        }
-        .tag-item {
-            background-color: #eef2f6;
-            border-radius: 9999px;
-            padding: 0.25rem 0.75rem;
-        }
+        /*.tag-list {*/
+        /*    display: flex;*/
+        /*    flex-wrap: wrap;*/
+        /*    gap: 0.5rem;*/
+        /*    list-style: none;*/
+        /*    padding-left: 0;*/
+        /*}*/
+        /*.tag-item {*/
+        /*    background-color: #eef2f6;*/
+        /*    border-radius: 9999px;*/
+        /*    padding: 0.25rem 0.75rem;*/
+        /*}*/
     </style>
 @endsection
 @section('og_image')
