@@ -84,6 +84,7 @@ class FrontendController extends Controller
                 'posts.title',
                 'posts.sub_headline',
                 'posts.subtitle',
+                'posts.news_details',
                 'authors.name_bn as author_name',
                 'authors.profession as author_designation',
                 'authors.profile_picture as author_profile',

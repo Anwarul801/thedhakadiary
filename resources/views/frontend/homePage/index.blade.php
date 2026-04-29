@@ -42,7 +42,9 @@
                             {{ Str::limit($mainPost->title, 100) }}
                         </a>
                     </h1>
-
+                    <span>
+                            {!! $mainPost->subtitle ?? strip_tags( Str::limit($mainPost->news_details, 260) )!!}
+                        </span>
                 </div>
             </div>
         @else
@@ -78,7 +80,7 @@
 
                         <h1 class="title text-sm">
                             <a href="{{ route('news_details', $post->id) }}">
-                                {{ Str::limit($post->title, 70) }}
+                                {{ $post->title }}
                             </a>
                         </h1>
 
@@ -132,7 +134,7 @@
 
                     <h1 class="title text-sm">
                         <a href="{{ route('news_details', $post->id) }}">
-                            {{ Str::limit($post->title, 70) }}
+                            {{ $post->title }}
                         </a>
                     </h1>
                 @else
@@ -211,7 +213,7 @@
                             <div class="short-description_home">
                                 <p>
                                     <a href="{{ route('news_details', $cat1[4]->id) }}">
-                                        {{$cat1[4]->subtitle}}
+                                        {!! $cat1[4]->subtitle ?? strip_tags(Str::limit($cat1[4]->news_details, 240)) !!}
                                     </a>
                                 </p>
                             </div>
@@ -403,7 +405,7 @@
                                 <div class="short-description_home">
                                     <p>
                                         <a href="{{ route('news_details', $cat3[4]->id) }}">
-                                            {{$cat3[4]->subtitle}}
+                                            {{$cat3[4]->subtitle ?? strip_tags(Str::limit($cat3[4]->news_details, 260))}}
                                         </a>
                                     </p>
                                 </div>
@@ -512,7 +514,7 @@
                                 <div class="short-description_home">
                                     <p>
                                         <a href="{{ route('news_details', $cat4[4]->id) }}">
-                                            {{$cat4[4]->subtitle}}
+                                            {{$cat4[4]->subtitle ?? strip_tags(Str::limit($cat4[4]->news_details, 260))}}
                                         </a>
                                     </p>
                                 </div>
@@ -596,7 +598,7 @@
                             <div class="short-description_home">
                                 <p>
                                     <a href="{{route('news_details', $cat5[1]->id)}}">
-                                        {{$cat5[1]->subtitle}}
+                                        {{$cat5[1]->subtitle ?? strip_tags(Str::limit($cat5[1]->news_details, 260))}}
                                     </a>
                                 </p>
                             </div>
@@ -700,7 +702,7 @@
                                 <div class="short-description_home">
                                     <p>
                                         <a href="{{ route('news_details', $cat6[4]->id) }}">
-                                            {{$cat6[4]->subtitle}}
+                                            {{$cat6[4]->subtitle ?? strip_tags(Str::limit($cat6[4]->news_details, 260))}}
                                         </a>
                                     </p>
                                 </div>
@@ -1478,7 +1480,7 @@
                                     <div class="short-description_home">
                                         <p>
                                             <a href="{{route('news_details', $cat20[1]->id)}}">
-                                                {{$cat20[1]->subtitle}}
+                                                {{$cat20[1]->subtitle != null ? Str::limit($cat20[1]->subtitle, 150): strip_tags(Str::limit($cat20[1]->news_details, 150))}}
                                             </a>
                                         </p>
                                     </div>
@@ -1553,7 +1555,7 @@
                                     <div class="short-description_home">
                                         <p>
                                             <a href="{{route('news_details', $cat21[1]->id)}}">
-                                                {{$cat21[1]->subtitle}}
+                                                {{$cat21[1]->subtitle != null ? Str::limit($cat21[1]->subtitle, 150): strip_tags(Str::limit($cat21[1]->news_details, 150))}}
                                             </a>
                                         </p>
                                     </div>
