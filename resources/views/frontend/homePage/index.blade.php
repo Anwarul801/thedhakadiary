@@ -69,6 +69,7 @@
             border-stock-color
             lg:border-r lg:pr-4
             even:lg:border-r-0
+            {{in_array($loop->iteration, [1,2]) ? ' border-b' : ''}}
         ">
 
                         <div class="thumbnail">
@@ -110,19 +111,24 @@
                                 $post = $header_posts->firstWhere('header_order', $order);
                             @endphp
 
-            <div class="
-        news-card
-        border-stock-color
-
-        border-r pr-3
-        even:border-r-0
-
-        md:border-r md:pr-3
-        md:[&:nth-child(3n)]:border-r-0
-
-        lg:border-r lg:pr-4
-        lg:[&:nth-child(4n)]:border-r-0
-    ">
+                            <div class="
+    news-card
+    border-stock-color
+    border-r-0
+    md:border-r md:pr-3
+    lg:border-r lg:pr-4
+    lg:[&:nth-child(4n)]:border-r-0
+    @if($loop->iteration > 4)
+        lg:border-b-0
+        @else
+         border-b
+    @endif
+    @if($loop->iteration > 6)
+        md:border-b-0
+        @else
+         border-b
+    @endif
+">
 
                 @if($post)
                     <div class="thumbnail">
@@ -171,8 +177,7 @@
                         <div class="space-y-4">
                             @foreach(range(1,3) as $position)
                                 @isset($cat1[$position])
-                                    <div class="news-card flex gap-3 {{$position!=3?'border-b pb-3 border-gray-300':''}}">
-                                        <h1 class="title !mt-0 flex-1">
+                                    <div class="news-card flex gap-3 pb-3 border-b border-gray-300 {{$position==3 ? 'lg:border-b-0' : ''}}">                                        <h1 class="title !mt-0 flex-1">
                                             <a href="{{ route('news_details', $cat1[$position]->id) }}"><span class="sholder">{{$cat1[$position]->sub_headline}}</span>
                                                 {{$cat1[$position]->title}}</a>
                                         </h1>
@@ -270,7 +275,7 @@
             <div class="container">
                 <div class="design-2">
                     <div class="section-title-wrap">
-                        <h2 class="section-title mt-1">রাজনীতি</h2>
+                        <h2 class="section-title">রাজনীতি</h2>
                         <div class="section-button-wrap">
                             <a href="#" class="section_button">আরও পড়ুন <i class="fa-solid fa-angle-right"></i></a>
                         </div>
@@ -323,7 +328,7 @@
 
                             @foreach(range(2,5) as $position)
                                 @isset($cat2[$position])
-                                    <div class="sm:col-span-6 col-span-6 {{in_array($loop->iteration, [1,3]) ? 'border-r lg:pr-4 pr-3 border-stock-color' : ''}}">
+                                    <div class="sm:col-span-6 col-span-6 {{in_array($loop->iteration, [1,3]) ? 'border-r lg:pr-4 pr-3 border-stock-color' : ''}} {{in_array($loop->iteration, [1,2]) ? ' border-b' : ''}}">
                                         <div class="news-card">
                                             <div class="thumbnail">
                                                 <img
