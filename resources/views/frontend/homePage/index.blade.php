@@ -190,7 +190,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    <div class="news-card flex gap-3 {{$position!=3?'border-b pb-3 border-gray-300':''}}">
+                                    <div class="news-card flex gap-3 pb-3 border-b border-gray-300 {{$position==3 ? 'lg:border-b-0' : ''}}">
                                     </div>
                                 @endisset
                             @endforeach
@@ -373,7 +373,7 @@
                         <div class="space-y-4">
                             @foreach(range(1,3) as $position)
                                 @isset($cat3[$position])
-                                    <div class="news-card flex gap-3 {{$position!=3?'border-b pb-3 border-stock-color':''}}">
+                                        <div class="news-card flex gap-3 pb-3 border-b border-gray-300 {{$position==3 ? 'lg:border-b-0' : ''}}">
                                         <h1 class="title !mt-0 flex-1">
                                             <a href="{{ route('news_details', $cat3[$position]->id) }}"><span class="sholder">{{$cat3[$position]->sub_headline}}</span>
                                                 {{$cat3[$position]->title}}</a>
@@ -387,7 +387,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    <div class="news-card flex gap-3 {{$position!=3?'border-b pb-3 border-stock-color':''}}">
+                                    <div class="news-card flex gap-3 pb-3 border-b border-gray-300 {{$position==3 ? 'lg:border-b-0' : ''}}">
                                     </div>
                                 @endisset
                             @endforeach
@@ -482,7 +482,7 @@
                         <div class="space-y-4">
                             @foreach(range(1,3) as $position)
                                 @isset($cat4[$position])
-                                    <div class="news-card flex gap-3 {{$position!=3?'border-b pb-3 border-stock-color':''}}">
+                                    <div class="news-card flex gap-3 pb-3 border-b border-gray-300 {{$position==3 ? 'lg:border-b-0' : ''}}">
                                         <h1 class="title !mt-0 flex-1">
                                             <a href="{{ route('news_details', $cat4[$position]->id) }}"><span class="sholder">{{$cat4[$position]->sub_headline}}</span>
                                                 {{$cat4[$position]->title}}</a>
@@ -496,7 +496,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    <div class="news-card flex gap-3 {{$position!=3?'border-b pb-3 border-stock-color':''}}">
+                                    <div class="news-card flex gap-3 pb-3 border-b border-gray-300 {{$position==3 ? 'lg:border-b-0' : ''}}">
                                     </div>
                                 @endisset
                             @endforeach
@@ -670,7 +670,7 @@
                         <div class="space-y-4">
                             @foreach(range(1,3) as $position)
                                 @isset($cat6[$position])
-                                    <div class="news-card flex gap-3 {{$position!=3?'border-b pb-3 border-stock-color':''}}">
+                                    <div class="news-card flex gap-3 pb-3 border-b border-gray-300 {{$position==3 ? 'lg:border-b-0' : ''}}">
                                         <h1 class="title !mt-0 flex-1">
                                             <a href="{{ route('news_details', $cat6[$position]->id) }}"><span class="sholder">{{$cat6[$position]->sub_headline}}</span>
                                                 {{$cat6[$position]->title}}</a>
@@ -684,7 +684,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    <div class="news-card flex gap-3 {{$position!=3?'border-b pb-3 border-stock-color':''}}">
+                                    <div class="news-card flex gap-3 pb-3 border-b border-gray-300 {{$position==3 ? 'lg:border-b-0' : ''}}">
                                     </div>
                                 @endisset
                             @endforeach
