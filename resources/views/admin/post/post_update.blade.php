@@ -473,7 +473,7 @@
             plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
             font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
-            content_style: 'body { font-size: 14pt; text-align: justify; }',
+            content_style: 'body { font-size: 16pt; text-align: justify; }',
         });
 
         $(document).ready(function () {
