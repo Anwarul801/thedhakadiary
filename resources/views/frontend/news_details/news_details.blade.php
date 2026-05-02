@@ -34,32 +34,23 @@
         .news-zoom-root {
             --zoom-factor: 1;
         }
-        .news-zoom-root :is(p, h1, h2, h3, h4, h5, h6, span, a, li, figcaption, .news-content,
-                           .text-area-card, .tag-list, .tag-item, .tag-link, .text-sm, .text-base):not(img) {
-            font-size: calc(1rem * var(--zoom-factor)) !important;
+
+        .news-zoom-root .news-content {
+            transform: scale(var(--zoom-factor));
+            transform-origin: top left;
+            width: calc(100% / var(--zoom-factor));
         }
-        .news-zoom-root h1 {
-            font-size: calc(2rem * var(--zoom-factor)) !important;
-        }
-        .news-zoom-root h2 {
-            font-size: calc(1.8rem * var(--zoom-factor)) !important;
-        }
-        .news-zoom-root h3 {
-            font-size: calc(1.5rem * var(--zoom-factor)) !important;
-        }
-        .news-zoom-root .text-sm {
-            font-size: calc(0.875rem * var(--zoom-factor)) !important;
-        }
+
         .news-zoom-root img {
             max-width: 100%;
             height: auto;
-            transform: none;
         }
-        .news-zoom-root p, .news-zoom-root li {
-            line-height: calc(1.5 * var(--zoom-factor));
-        }
+
         .zoom-trigger {
             cursor: pointer;
+        }
+        .news-zoom-root .news-content {
+            transition: transform 0.2s ease;
         }
         /*.tag-list {*/
         /*    display: flex;*/
@@ -403,43 +394,7 @@
     </script>
 
 
-     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const newsElements = document.querySelectorAll('.news-content');
-            let fontSize = 1; // em
 
-            document.getElementById('zoomIn').addEventListener('click', function(e) {
-                e.preventDefault();
-                if (fontSize < 2) {
-                    fontSize += 0.1;
-                    newsElements.forEach(el => {
-                        el.style.fontSize = fontSize + 'em';
-                    });
-                }
-            });
-
-            document.getElementById('zoomOut').addEventListener('click', function(e) {
-                e.preventDefault();
-                if (fontSize > 0.6) {
-                    fontSize -= 0.1;
-                    newsElements.forEach(el => {
-                        el.style.fontSize = fontSize + 'em';
-                    });
-                }
-            });
-        });
-
-        document.querySelectorAll('.update_prokash_btn').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                const parent = btn.closest('.update'); // parent .update block
-                const updated = parent.querySelector('.updated');
-                const prokash = parent.querySelector('.prokash');
-
-                updated.classList.toggle('hidden');
-                prokash.classList.toggle('hidden');
-            });
-        });
-    </script>
     <script>
         $(function() {
             var div_width = $('#get_width').width();
