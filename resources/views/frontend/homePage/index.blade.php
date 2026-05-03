@@ -335,7 +335,7 @@
                                                     src="{{asset('storage')}}/{{$cat2[$position]->thumbnail}}">
                                             </div>
                                             <h1 class="title">
-                                                <a href="{{ route('news_details', $cat2[$position]->id) }}">{{$cat2[1]->title}}</a>
+                                                <a href="{{ route('news_details', $cat2[$position]->id) }}">{{$cat2[$position]->title}}</a>
                                             </h1>
                                         </div>
                                     </div>
