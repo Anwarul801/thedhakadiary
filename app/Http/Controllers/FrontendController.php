@@ -208,7 +208,7 @@ class FrontendController extends Controller
                     ['posts.language', isEnglish() ? 'en' : 'bn']
                 ])
                 ->orderBy('posts.created_at', 'desc')
-                ->take(5)
+                ->take(10)
                 ->get();
 
             if ($posts->isNotEmpty()) {
