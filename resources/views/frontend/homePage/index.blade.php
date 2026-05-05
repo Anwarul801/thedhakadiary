@@ -277,7 +277,7 @@
                     <div class="section-title-wrap">
                         <h2 class="section-title">রাজনীতি</h2>
                         <div class="section-button-wrap">
-                            <a href="#" class="section_button">আরও পড়ুন <i class="fa-solid fa-angle-right"></i></a>
+                            <a href="{{route('category_view', 'rajneeti')}}" class="section_button">আরও পড়ুন <i class="fa-solid fa-angle-right"></i></a>
                         </div>
                     </div>
                 </div>
