@@ -233,11 +233,11 @@
             </div>
         </section>
 
-        <section class="Others-news_section md:pb-12 sm:pb-8 pb-6 {{ $related_post->count() == 0 ? 'hidden' : '' }}">
+        <section class="Others-news_section md:pb-12 sm:pb-8 pb-6">
             <div class="container">
-                <h2 class="others-news-title">আরও পড়ুন</h2>
+                <h2 class="others-news-title {{ $related_post->count() == 0 ? 'hidden' : '' }}">আরও পড়ুন</h2>
 
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 {{ $related_post->count() == 0 ? 'hidden' : '' }}">
                     <!-- Card 1 -->
                     @foreach ($related_post as $rpost)
                         <div class="news-card">
