@@ -50,7 +50,7 @@ Route::get('/photos', [FrontendController::class, 'photos'])->name('photos');
 Route::get('/photo_details/{id}/{slug?}', [FrontendController::class, 'photo_details'])->name('photo_details');
 Route::get('/videos', [FrontendController::class, 'videos'])->name('videos');
 Route::get('/author/news/{id}/{name?}', [FrontendController::class, 'author_news'])->name('author_news');
-Route::get('/news/{id}', [FrontendController::class, 'news_details'])->name('news_details');
+Route::get('/news/{id}/{slug?}', [FrontendController::class, 'news_details'])->name('news_details');
 Route::get('/news/videos/{id}/{slug?}', [FrontendController::class, 'video_details'])->name('video_details');
 Route::get('/pages/{id}/{slug?}', [FrontendController::class, 'page_view'])->name('page_view');
 Route::get('/category/{slug}', [FrontendController::class, 'category_view'])->name('category_view');
