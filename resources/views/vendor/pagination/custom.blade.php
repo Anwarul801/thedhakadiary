@@ -1,3 +1,15 @@
+<style>
+    .pagination {
+        position: relative;
+        z-index: 999;
+    }
+
+    .pagination .page-link {
+        position: relative;
+        z-index: 999;
+    }
+</style>
+
 @if ($paginator->hasPages())
     <div class="col-span-12 text-center">
         <ul class="pagination justify-center">
