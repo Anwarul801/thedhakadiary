@@ -3851,10 +3851,10 @@ li {
     }
   }
   span {
-    font-size: var(--text-base) !important;
-    line-height: var(--tw-leading, var(--text-base--line-height)) !important;
+    font-size: var(--text-base);
+    line-height: var(--tw-leading, var(--text-base--line-height));
     @media (width >= 768px) {
-      font-size: 16px !important;
+      font-size: 16px;
     }
   }
   a {
