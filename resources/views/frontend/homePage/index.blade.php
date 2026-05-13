@@ -32,7 +32,7 @@
 
                     <div class="thumbnail">
                         <a href="{{ route('news_details', $mainPost->id) }}">
-                            <img class="w-full h-[260px] object-cover"
+                            <img class="w-full h-auto"
                                  src="{{ asset('storage/'.($mainPost->media->image ?? 'default.png')) }}">
                         </a>
                     </div>
@@ -74,7 +74,7 @@
 
                         <div class="thumbnail">
                             <a href="{{ route('news_details', $post->id) }}">
-                                <img class="w-full h-[120px] object-cover"
+                                <img class="w-full h-auto"
                                      src="{{ asset('storage/'.($post->media->thumbnail ?? $post->media->image ?? 'default.png')) }}">
                             </a>
                         </div>
@@ -133,7 +133,7 @@
                 @if($post)
                     <div class="thumbnail">
                         <a href="{{ route('news_details', $post->id) }}">
-                            <img class="w-full h-[120px] object-cover"
+                            <img class="w-full h-auto"
                                  src="{{ asset('storage/'.($post->media->thumbnail ?? $post->media->image ?? 'default.png')) }}">
                         </a>
                     </div>
