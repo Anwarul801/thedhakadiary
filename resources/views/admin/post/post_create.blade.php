@@ -463,6 +463,16 @@
                         el.style.fontSize = '16pt';
                     });
                 });
+                editor.on('submit', function() {
+                    var div = document.createElement('div');
+                    div.innerHTML = editor.getContent();
+                    div.querySelectorAll('p, li, td, th, h1, h2, h3, h4, h5, h6').forEach(function(el) {
+                        if (!el.style.fontSize) {
+                            el.style.fontSize = '16pt';
+                        }
+                    });
+                    editor.setContent(div.innerHTML, {no_events: true});
+                });
             },
         });
     </script>
