@@ -474,9 +474,11 @@
             toolbar: 'undo redo code | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
             font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
             content_style: 'body { font-size: 16pt; text-align: justify; }',
-            paste_postprocess: function(plugin, args) {
-                args.node.querySelectorAll('p, span, div, li, td, th, h1, h2, h3, h4, h5, h6').forEach(function(el) {
-                    el.style.fontSize = '16pt';
+            setup: function(editor) {
+                editor.on('PastePostProcess', function(e) {
+                    e.node.querySelectorAll('p, span, div, li, td, th, h1, h2, h3, h4, h5, h6').forEach(function(el) {
+                        el.style.fontSize = '16pt';
+                    });
                 });
             },
         });
