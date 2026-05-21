@@ -470,10 +470,15 @@
     <script>
         tinymce.init({
             selector: 'textarea#news_details',
-            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+            plugins: 'anchor autolink charmap code codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+            toolbar: 'undo redo code | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
             font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
             content_style: 'body { font-size: 16pt; text-align: justify; }',
+            paste_postprocess: function(plugin, args) {
+                args.node.querySelectorAll('p, span, div, li, td, th, h1, h2, h3, h4, h5, h6').forEach(function(el) {
+                    el.style.fontSize = '16pt';
+                });
+            },
         });
 
         $(document).ready(function () {
