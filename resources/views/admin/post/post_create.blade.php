@@ -457,6 +457,24 @@
             toolbar: "undo redo spellcheckdialog code | blocks fontfamily fontsize | bold italic underline forecolor backcolor | link image | align lineheight checklist bullist numlist | indent outdent | removeformat typography",
             content_style: 'body { font-size: 16pt; text-align: justify; }',
             font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
+            automatic_uploads: true,
+            images_upload_url: '{{ route("tinymce.upload") }}',
+            images_upload_handler: function(blobInfo, progress) {
+                return new Promise(function(resolve, reject) {
+                    var formData = new FormData();
+                    formData.append('file', blobInfo.blob(), blobInfo.filename());
+                    formData.append('_token', '{{ csrf_token() }}');
+                    fetch('{{ route("tinymce.upload") }}', {
+                        method: 'POST',
+                        body: formData,
+                    })
+                    .then(function(res) { return res.json(); })
+                    .then(function(data) {
+                        data.location ? resolve(data.location) : reject('Upload failed');
+                    })
+                    .catch(function() { reject('Upload error'); });
+                });
+            },
             setup: function(editor) {
                 editor.on('PastePostProcess', function(e) {
                     e.node.querySelectorAll('p, span, div, li, td, th, h1, h2, h3, h4, h5, h6').forEach(function(el) {

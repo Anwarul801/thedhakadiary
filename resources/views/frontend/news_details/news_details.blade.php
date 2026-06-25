@@ -205,7 +205,7 @@
                                     <img src="{{ asset('storage') }}/{{ $news->media->image ?? null }}" alt="Thumbnail">
                                     <figcaption
                                         class="sm:text-base text-sm text-secondary bg-[#f8f9fa] text-center border-b border-[#dee2e6] py-2 news-content">
-                                        <span style="font-style: normal !important;">{{ $news->media->caption ?? null }}</span> <i >{{ $news->media->source ? "© ".$news->media->source : null }}</i>
+                                        <span style="font-style: normal !important;">{{ $news->media->caption ?? null }}</span> <i>{{ $news->media->source ? "© ".$news->media->source : null }}</i>
                                     </figcaption>
                                 </figure>
                                 <div class="text-area-card news-content">

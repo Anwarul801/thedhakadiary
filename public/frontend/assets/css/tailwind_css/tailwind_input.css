@@ -685,6 +685,7 @@ li {
 
 
 
+
 /* ============PAGINATION============ */
 .pagination {
   @apply flex justify-center items-center gap-2.5;

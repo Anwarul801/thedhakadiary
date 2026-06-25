@@ -66,6 +66,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::resource('/post', PostController::class)->middleware('author');
 Route::resource('/image_gallery', ImageGalleryController::class)->middleware('author');
+Route::post('/tinymce/upload', [\App\Http\Controllers\Admin\MediaController::class, 'tinymceUpload'])->name('tinymce.upload')->middleware('author');
 Route::middleware('admin')->group(function (){
 Route::resource('/user', UserController::class);
 Route::resource('/category', CategoryController::class);

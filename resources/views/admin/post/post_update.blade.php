@@ -393,13 +393,57 @@
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="m-0 d-flex justify-content-between">
+                        <h4 class="m-0 d-flex justify-content-between align-items-center">
                             <span>Media</span>
-                            <i class="fa fa-plus" data-toggle="modal" data-target="#create_media" style="background-color: black; color: white; height: 20px; width: 20px; border-radius: 50%; text-align: center; line-height: 20px; font-size: 12px; cursor:pointer;"></i>
+                            <div class="d-flex gap-1">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" id="toggleLibraryBtn" onclick="toggleMediaLibrary()">
+                                    <i class="fa fa-images"></i> Library
+                                </button>
+                                <i class="fa fa-plus" data-bs-toggle="modal" data-bs-target="#create_media" style="background-color: black; color: white; height: 20px; width: 20px; border-radius: 50%; text-align: center; line-height: 20px; font-size: 12px; cursor:pointer;"></i>
+                            </div>
                         </h4>
                     </div>
-                    <div class="card-body">
-                        <div class="row" id="media_container"></div>
+                    <div class="card-body p-2">
+                        {{-- pre-load media already used in this post --}}
+                        @php
+                            preg_match_all('/\[img id=(\d+)\]/', $data->news_details ?? '', $matches);
+                            $usedMediaIds = array_unique($matches[1] ?? []);
+                            $usedMedia = \App\Models\Media::whereIn('id', $usedMediaIds)->get()->keyBy('id');
+                        @endphp
+
+                        <div class="row" id="media_container">
+                            @foreach($usedMediaIds as $mid)
+                                @if($usedMedia->has($mid))
+                                    @php $m = $usedMedia[$mid]; $thumb = asset('storage/'.$m->thumbnail); @endphp
+                                    <div class="mb-2 col-6" data-media-id="{{ $m->id }}"
+                                         data-caption="{{ $m->caption }}"
+                                         data-source="{{ $m->source }}"
+                                         data-thumbnail="{{ $thumb }}">
+                                        <img class="w-100 mb-1" src="{{ $thumb }}" alt="">
+                                        <small class="d-block text-muted text-truncate mb-1 media-caption" title="{{ $m->caption }}">{{ $m->caption }}</small>
+                                        <div class="d-flex gap-1">
+                                            <button type="button" class="btn btn-primary btn-sm flex-fill"
+                                                onclick="insertMediaShortcode('[img id={{ $m->id }}]')">
+                                                Insert <i class="fa fa-plus"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-warning btn-sm"
+                                                onclick="openMediaEdit('{{ $m->id }}', this.closest('[data-media-id]').dataset.caption, this.closest('[data-media-id]').dataset.source, this.closest('[data-media-id]').dataset.thumbnail)">
+                                                <i class="mdi mdi-pencil"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+
+                        {{-- media library panel (hidden by default) --}}
+                        <div id="mediaLibraryPanel" style="display:none;">
+                            <input type="text" id="mediaSearchInput" class="form-control form-control-sm mb-2" placeholder="Search caption...">
+                            <div class="row" id="mediaLibraryGrid" style="max-height:300px; overflow-y:auto;"></div>
+                            <div class="text-center mt-1">
+                                <button type="button" class="btn btn-sm btn-outline-primary" id="loadMoreBtn" onclick="loadMediaLibrary()" style="display:none;">Load More</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -414,7 +458,7 @@
                     <h4 class="m-0">
                         Add a New Image (Media)
                     </h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
                 </div>
 
                 <div class="modal-body">
@@ -446,6 +490,43 @@
         </div><!-- /.modal-dialog -->
     </div>
 
+    {{-- Edit Media Modal --}}
+    <div id="edit_media" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display:none;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="m-0">Edit Media</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-3">
+                        <img id="edit_media_preview" src="" alt="" class="img-fluid rounded" style="max-height:160px; object-fit:cover;">
+                    </div>
+                    <form id="edit_media_form" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" id="edit_media_id" name="media_id">
+                        <input type="hidden" name="_method" value="PUT">
+                        <div class="form-group">
+                            <label>Caption *</label>
+                            <input class="form-control" type="text" id="edit_caption" name="caption" required placeholder="Caption">
+                        </div>
+                        <div class="form-group">
+                            <label>Source/Credit</label>
+                            <input class="form-control" type="text" id="edit_source" name="source" placeholder="Source">
+                        </div>
+                        <div class="form-group">
+                            <label>Replace Image <small class="text-muted">(optional, 1280×672px)</small></label>
+                            <input class="form-control" type="file" id="edit_image" name="image" accept="image/*">
+                        </div>
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary waves-effect waves-light" type="submit">Update Media</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {{-- loader--}}
     <div class="popup" id="popup">
         <div class="loader popup-inner">
@@ -459,6 +540,118 @@
             const radios = document.querySelectorAll('input[name="header_order"]');
             radios.forEach(radio => radio.checked = false);
         }
+
+        function bsModal(id) {
+            return bootstrap.Modal.getOrCreateInstance(document.getElementById(id));
+        }
+
+        function openMediaEdit(id, caption, source, thumbnail) {
+            document.getElementById('edit_media_id').value = id;
+            document.getElementById('edit_caption').value = caption || '';
+            document.getElementById('edit_source').value = source || '';
+            document.getElementById('edit_media_preview').src = thumbnail;
+            document.getElementById('edit_image').value = '';
+            bsModal('edit_media').show();
+        }
+
+        $(document).ready(function() {
+            $('#edit_media_form').submit(function(e) {
+                e.preventDefault();
+                var id = document.getElementById('edit_media_id').value;
+                var formData = new FormData(this);
+                $.ajax({
+                    url: '/media/' + id,
+                    method: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                    success: function(data) {
+                        bsModal('edit_media').hide();
+                        var card = document.querySelector('[data-media-id="' + id + '"]');
+                        if (card) {
+                            card.querySelector('img').src = data.thumbnail + '?t=' + Date.now();
+                            card.querySelector('.media-caption').textContent = data.caption;
+                            card.dataset.caption = data.caption;
+                            card.dataset.source = data.source || '';
+                            card.dataset.thumbnail = data.thumbnail;
+                        }
+                        toastr.success('Media updated!', 'Success', { closeButton: true, progressBar: true, timeOut: 2000 });
+                    },
+                    error: function() {
+                        toastr.error('Update failed. Please try again.', 'Error');
+                    }
+                });
+            });
+        });
+
+        function insertMediaShortcode(shortcode) {
+            var editor = tinymce.get('news_details');
+            if (editor) {
+                editor.insertContent(shortcode);
+                toastr.success('Image inserted into editor', 'Done', { closeButton: true, progressBar: true, timeOut: 1500 });
+            } else {
+                navigator.clipboard.writeText(shortcode);
+                toastr.info('Shortcode copied to clipboard', 'Info', { closeButton: true, progressBar: true, timeOut: 1500 });
+            }
+        }
+
+        var mediaLibraryLoaded = false;
+        var mediaLibraryPage = 1;
+        var mediaSearchTimeout = null;
+
+        function toggleMediaLibrary() {
+            var panel = document.getElementById('mediaLibraryPanel');
+            if (panel.style.display === 'none') {
+                panel.style.display = 'block';
+                if (!mediaLibraryLoaded) loadMediaLibrary();
+            } else {
+                panel.style.display = 'none';
+            }
+        }
+
+        function loadMediaLibrary(reset) {
+            if (reset) {
+                mediaLibraryPage = 1;
+                document.getElementById('mediaLibraryGrid').innerHTML = '';
+                mediaLibraryLoaded = false;
+            }
+            var search = document.getElementById('mediaSearchInput').value;
+            $.ajax({
+                url: "{{ route('media.index') }}",
+                method: "GET",
+                data: { page: mediaLibraryPage, search: search, per_page: 12 },
+                headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                success: function(data) {
+                    mediaLibraryLoaded = true;
+                    var grid = document.getElementById('mediaLibraryGrid');
+                    $.each(data.data, function(i, m) {
+                        var shortcode = '[img id=' + m.id + ']';
+                        var card = '<div class="mb-2 col-6">'
+                            + '<img class="w-100 mb-1" src="' + m.thumbnail_url + '" style="height:60px;object-fit:cover;" alt="">'
+                            + '<small class="d-block text-muted text-truncate mb-1" title="' + m.caption + '">' + m.caption + '</small>'
+                            + '<button type="button" class="btn btn-sm btn-success form-control" onclick="insertMediaShortcode(\'' + shortcode + '\')">'
+                            + 'Insert <i class="fa fa-plus"></i></button>'
+                            + '</div>';
+                        grid.insertAdjacentHTML('beforeend', card);
+                    });
+                    var loadMoreBtn = document.getElementById('loadMoreBtn');
+                    if (data.next_page_url) {
+                        mediaLibraryPage++;
+                        loadMoreBtn.style.display = 'inline-block';
+                    } else {
+                        loadMoreBtn.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('mediaSearchInput').addEventListener('input', function() {
+                clearTimeout(mediaSearchTimeout);
+                mediaSearchTimeout = setTimeout(function() { loadMediaLibrary(true); }, 400);
+            });
+        });
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -474,6 +667,24 @@
             toolbar: 'undo redo code | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
             font_size_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
             content_style: 'body { font-size: 16pt; text-align: justify; }',
+            automatic_uploads: true,
+            images_upload_url: '{{ route("tinymce.upload") }}',
+            images_upload_handler: function(blobInfo, progress) {
+                return new Promise(function(resolve, reject) {
+                    var formData = new FormData();
+                    formData.append('file', blobInfo.blob(), blobInfo.filename());
+                    formData.append('_token', '{{ csrf_token() }}');
+                    fetch('{{ route("tinymce.upload") }}', {
+                        method: 'POST',
+                        body: formData,
+                    })
+                    .then(function(res) { return res.json(); })
+                    .then(function(data) {
+                        data.location ? resolve(data.location) : reject('Upload failed');
+                    })
+                    .catch(function() { reject('Upload error'); });
+                });
+            },
             setup: function(editor) {
                 editor.on('PastePostProcess', function(e) {
                     e.node.querySelectorAll('p, span, div, li, td, th, h1, h2, h3, h4, h5, h6').forEach(function(el) {
@@ -514,12 +725,27 @@
                     success: function (data) {
                         $("#upload_media_form")[0].reset();
                         myElement.classList.remove('f-in');
-                        $("#create_media").modal('hide');
+                        bsModal('create_media').hide();
                         toastr.success('Media Uploaded', 'Success', {
                             closeButton: true,
                             progressBar: true
                         });
-                        $("#media_container").append(data.response_html);
+                        var shortcode = '[img id=' + data.media_id + ']';
+                        var card = '<div class="mb-2 col-6"'
+                            + ' data-media-id="' + data.media_id + '"'
+                            + ' data-caption="' + data.caption + '"'
+                            + ' data-source=""'
+                            + ' data-thumbnail="' + data.thumbnail + '">'
+                            + '<img class="w-100 mb-1" src="' + data.thumbnail + '" alt="">'
+                            + '<small class="d-block text-muted text-truncate mb-1 media-caption">' + data.caption + '</small>'
+                            + '<div class="d-flex gap-1">'
+                            + '<button type="button" class="btn btn-primary btn-sm flex-fill" onclick="insertMediaShortcode(\'' + shortcode + '\')">'
+                            + 'Insert <i class=\'fa fa-plus\'></i></button>'
+                            + '<button type="button" class="btn btn-warning btn-sm"'
+                            + ' onclick="openMediaEdit(\'' + data.media_id + '\', this.closest(\'[data-media-id]\').dataset.caption, this.closest(\'[data-media-id]\').dataset.source, this.closest(\'[data-media-id]\').dataset.thumbnail)">'
+                            + '<i class=\'mdi mdi-pencil\'></i></button>'
+                            + '</div></div>';
+                        $("#media_container").append(card);
                     },
                     error: function (data){
                         myElement.classList.remove('f-in');
