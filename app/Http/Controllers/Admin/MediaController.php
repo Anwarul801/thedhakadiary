@@ -20,8 +20,9 @@ class MediaController extends Controller
     public function index(Request $request)
     {
         $search = [];
-        if ($request->caption){
-            $search[] = ['caption','like','%'.$request->caption.'%'];
+        if ($request->caption || $request->search){
+            $term = $request->caption ?? $request->search;
+            $search[] = ['caption','like','%'.$term.'%'];
         }
         if ($request->code_id){
             $search[] = ['id', $request->code_id];
@@ -29,9 +30,28 @@ class MediaController extends Controller
         if ($request->source){
             $search[] = ['source','like','%'.$request->source.'%'];
         }
-        $data['media'] = Media::where($search)->paginate(20);
+
+        $perPage = $request->per_page ? (int) $request->per_page : 20;
+        $media = Media::where($search)->latest()->paginate($perPage);
+
+        if ($request->ajax()) {
+            return response()->json($media->through(fn($m) => [
+                'id'            => $m->id,
+                'caption'       => $m->caption,
+                'thumbnail_url' => asset('storage/' . $m->thumbnail),
+            ]));
+        }
+
+        $data['media'] = $media;
         $data['pgs'] = PhotoGallery::all();
         return view('admin.media.media', $data);
+    }
+
+    public function tinymceUpload(Request $request)
+    {
+        $request->validate(['file' => 'required|image|max:10240']);
+        $path = $request->file('file')->store('editor_images');
+        return response()->json(['location' => asset('storage/' . $path)]);
     }
 
     /**
@@ -87,7 +107,10 @@ class MediaController extends Controller
                                 </div>";
             return response()->json([
                 "message" => "Media added Successfully",
-                "response_html" => $response_html
+                "response_html" => $response_html,
+                "media_id" => $media->id,
+                "thumbnail" => asset('storage/' . $media->thumbnail),
+                "caption" => $media->caption,
             ]);
         }
 
@@ -151,6 +174,16 @@ class MediaController extends Controller
             $media->xs_thumbnail = $xs_thumbnail;
         }
         $media->save();
+
+        if ($request->ajax()) {
+            return response()->json([
+                'message'   => 'Updated successfully',
+                'caption'   => $media->caption,
+                'source'    => $media->source,
+                'thumbnail' => asset('storage/' . $media->thumbnail),
+            ]);
+        }
+
         Toastr::Success('Data Updated Successfully', 'Success');
         return back();
     }

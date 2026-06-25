@@ -10,7 +10,7 @@
         <section class="section-padding">
             <div class="container">
                 <div class="page-title-wrap border-b border-stock-color md:pb-6 pb-4 md:mb-6 mb-4">
-                    <h1 class="page-title">{{ isEnglish()?$category->name_en:$category->name }}</h1>
+                    <h1 class="page-title"><a href="{{ route('category_view', $category->slug) }}">{{ isEnglish()?$category->name_en:$category->name }}</a></h1>
                     <div class="flex justify-between items-center gap-3">
                         <div class="date-wrap">
                             <p class="present">{{isEnglish()?date('d F Y') : formatBanglaDate(date('d F Y'))}}</p>

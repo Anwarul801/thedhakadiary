@@ -255,50 +255,52 @@ li {
   }
 
   .title {
-    @apply lg:text-xl md:text-lg text-base text-primary-black font-[600] md:mt-4 mt-2 mb-2 inline-block transition-all duration-300 hover:underline;
+    @apply lg:text-xl md:text-lg text-base text-primary-black font-[600] md:mt-4 mt-2 mb-2 inline-block transition-all duration-300 hover:text-[#38bdf8];
     .sholder {
         @apply text-red-500;
-        &::after {
+        &:empty { display: none; }
+        &:not(:empty)::after {
           content: "\f111";
           font-family: "Font Awesome 6 Free";
           font-weight: 900;
-          position: relative;
-          top: -5px;
           text-decoration: none;
-          @apply text-[6px] relative -top-[3px] text-gray-400 ml-2 hover:no-underline;
+          @apply text-[6px] relative -top-[3px] text-gray-400 ml-2;
         }
       }
   }
 
   .title-sm {
-    @apply md:text-lg text-base md:mt-6 mt-4 mb-0 block leading-[1.5] ;
+    @apply md:text-lg text-base md:mt-6 mt-4 mb-0 block leading-[1.5] transition-all duration-300 hover:text-[#38bdf8];
     .sholder {
         @apply text-red-500;
-        &::after {
+        &:empty { display: none; }
+        &:not(:empty)::after {
           content: "\f111";
           font-family: "Font Awesome 6 Free";
           font-weight: 900;
-          position: relative;
-          top: -5px;
           @apply text-[6px] relative -top-[3px] text-gray-400 ml-2;
         }
       }
   }
   .title-lg {
-    @apply lg:text-3xl md:text-2xl text-xl md:mt-6 mt-4 md:mb-3 mb-2 block;
+    @apply lg:text-3xl md:text-2xl text-xl md:mt-6 mt-4 md:mb-3 mb-2 block transition-all duration-300 hover:text-[#38bdf8];
     .sholder {
         @apply text-red-500;
-        &::after {
+        &:empty { display: none; }
+        &:not(:empty)::after {
           content: "\f111";
           font-family: "Font Awesome 6 Free";
-          font-weight: 900; 
+          font-weight: 900;
           @apply text-[6px] relative -top-[5px] text-gray-400 ml-2;
         }
       }
   }
 
   .short-description p {
-    @apply text-paragraph-color sm:text-[16px] text-[14px] sm:mb-3 mb-2 inline-block;
+    @apply sm:text-[16px] text-[14px] sm:mb-3 mb-2 inline-block;
+    a {
+      @apply text-red-600 font-semibold hover:text-red-700;
+    }
   }
   .short-description_home p span{
     @apply !text-[15px];
@@ -365,7 +367,7 @@ li {
     }
 
     .title {
-      @apply text-base md:text-lg font-semibold text-gray-800 hover:underline transition;
+      @apply text-base md:text-lg font-semibold text-gray-800 transition-all duration-300 hover:text-[#38bdf8];
       .sholder {
         @apply text-red-500;
         &::after {
@@ -435,7 +437,8 @@ li {
 /* Page_title============ */
 .page-title-wrap {
   .page-title {
-    @apply font-bold text-primary-black md:text-[32px] sm:text-[26px] text-[22px];
+    @apply font-bold text-primary-black md:text-[40px] sm:text-[30px] text-[24px] leading-snug md:leading-tight;
+    a { @apply transition-colors duration-300 hover:text-[#38bdf8]; }
   }
 
   .present {
@@ -598,7 +601,7 @@ li {
     }
   }
   .title {
-    @apply font-bold md:text-xl text-lg text-primary hover:underline transition-all duration-300;
+    @apply font-bold md:text-xl text-lg text-primary hover:text-[#38bdf8] transition-all duration-300;
   }
   .short-des {
     @apply sm:text-base text-sm text-[#4D4D4D] md:my-3 my-1.5;
@@ -682,6 +685,7 @@ li {
     @apply block text-secondary bg-[#f8f9fa] text-center border-b border-[#dee2e6] py-2 -mt-2 sm:-mt-4 md:-mt-6;
   }
 }
+
 
 
 

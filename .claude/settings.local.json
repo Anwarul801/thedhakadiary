@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.prothomalo.com)",
+      "Bash(npx tailwindcss *)",
+      "Bash(npx postcss *)",
+      "Bash(git checkout *)",
+      "Bash(node -e \"require\\('@tailwindcss/postcss'\\)\")",
+      "Bash(node -e ' *)",
+      "Bash(php artisan *)",
+      "WebFetch(domain:thedhakadiary.com)",
+      "Bash(node -e \"const postcss=require\\('postcss'\\); const tailwindcss=require\\('@tailwindcss/postcss'\\); const fs=require\\('fs'\\); const input=fs.readFileSync\\('public/frontend/assets/css/tailwind_css/tailwind_input.css','utf8'\\); postcss\\([tailwindcss]\\).process\\(input,{from:'public/frontend/assets/css/tailwind_css/tailwind_input.css',to:'public/frontend/assets/css/tailwind_css/tailwind_output.css'}\\).then\\(result=>{fs.writeFileSync\\('public/frontend/assets/css/tailwind_css/tailwind_output.css',result.css\\); console.log\\('Done'\\)}\\);\")"
+    ]
+  }
+}

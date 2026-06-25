@@ -1,7 +1,7 @@
 @php use Illuminate\Support\Str; @endphp
 @extends('layouts.frontend_layout')
 
-@section('page_title') {{ isEnglish()?$author->name_en:$author->name }} @endsection
+@section('page_title') {{ isEnglish()?$author->name_en:$author->name_bn }} @endsection
 
 @section('main_content')
     <main class="site-content flex-1">
@@ -13,31 +13,28 @@
                         <div class="grid grid-cols-12 md:gap-6 gap-4">
                             <div class="col-span-12">
                                 <div class="page-title-wrap border-b border-stock-color md:pb-6 pb-4">
-                                    <div class="flex justify-between items-end flex-wrap gap-3">
-                                        <div class="date-wrap">
-                                            <p class="present repoter-present">{{isEnglish()?$author->name_en:$author->name}}</p>
-                                            <p class="update">{{isEnglish()?$author->designation_en:$author->designation}}</p>
+                                    <div class="flex justify-between items-start flex-wrap gap-4">
+                                        <div class="flex items-start gap-4">
+                                            @if($author->profile_picture)
+                                                <img src="{{ asset('storage/' . $author->profile_picture) }}" alt="{{ $author->name_bn }}"
+                                                     class="w-20 h-20 rounded-full object-cover flex-shrink-0">
+                                            @endif
+                                            <div>
+                                                <p class="present repoter-present">{{ isEnglish() ? $author->name_en : $author->name_bn }}</p>
+                                                @if($author->profession)
+                                                    <p class="update">{{ $author->profession }}</p>
+                                                @endif
+                                                @if($author->details)
+                                                    <p class="text-sm text-gray-600 mt-2 max-w-xl">{{ $author->details }}</p>
+                                                @endif
+                                            </div>
                                         </div>
                                         <div class="flex justify-center items-center gap-1.5">
-                                            @php
-                                                $url = urlencode(url()->current());
-                                            @endphp
-
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}" class="social_icon text-sm" target="_blank">
-                                                <i class="fa-brands fa-facebook-f"></i>
-                                            </a>
-
-                                            <a href="https://twitter.com/intent/tweet?url={{ $url }}" class="social_icon text-sm" target="_blank">
-                                                <i class="fa-brands fa-x-twitter"></i>
-                                            </a>
-
-                                            <a href="https://www.instagram.com/" class="social_icon text-sm" target="_blank">
-                                                <i class="fa-brands fa-instagram"></i>
-                                            </a>
-
-                                            <a href="https://wa.me/?text={{ $url }}" class="social_icon text-sm" target="_blank">
-                                                <i class="fa-brands fa-whatsapp"></i>
-                                            </a>
+                                            @php $url = urlencode(url()->current()); @endphp
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}" class="social_icon text-sm" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                                            <a href="https://twitter.com/intent/tweet?url={{ $url }}" class="social_icon text-sm" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                                            <a href="https://www.instagram.com/" class="social_icon text-sm" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                                            <a href="https://wa.me/?text={{ $url }}" class="social_icon text-sm" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
                                         </div>
                                     </div>
                                 </div>

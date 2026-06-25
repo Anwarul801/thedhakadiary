@@ -39,6 +39,7 @@
 
                     <h1 class="title title-lg">
                         <a href="{{ route('news_details', $mainPost->id) }}">
+                            <span class="sholder">{{$mainPost->sub_headline}}</span>
                             {{ Str::limit($mainPost->title, 100) }}
                         </a>
                     </h1>
@@ -81,6 +82,7 @@
 
                         <h1 class="title text-sm">
                             <a href="{{ route('news_details', $post->id) }}">
+                                <span class="sholder">{{$post->sub_headline}}</span>
                                 {{ $post->title }}
                             </a>
                         </h1>
@@ -140,6 +142,7 @@
 
                     <h1 class="title text-sm">
                         <a href="{{ route('news_details', $post->id) }}">
+                            <span class="sholder">{{$post->sub_headline}}</span>
                             {{ $post->title }}
                         </a>
                     </h1>
@@ -335,7 +338,7 @@
                                                     src="{{asset('storage')}}/{{$cat2[$position]->thumbnail}}">
                                             </div>
                                             <h1 class="title">
-                                                <a href="{{ route('news_details', $cat2[$position]->id) }}">{{$cat2[$position]->title}}</a>
+                                                <a href="{{ route('news_details', $cat2[$position]->id) }}"><span class="sholder">{{$cat2[$position]->sub_headline}}</span>{{$cat2[$position]->title}}</a>
                                             </h1>
                                         </div>
                                     </div>
@@ -1035,7 +1038,7 @@
                                 {{Str::limit($cat11[1]->subtitle, 200)}}
                             </p>
 
-                            <div class="author flex items-center mt-6">
+                            <a href="{{ $cat11[1]->author_id ? route('author_news', $cat11[1]->author_id) : '#' }}" class="author flex items-center mt-6 hover:opacity-80 transition-opacity">
                                 @if($cat11[1]->author_profile)
                                     <img src="{{ asset('storage') }}/{{$cat11[1]->author_profile}}"
                                          class="w-14 h-14 rounded-full" alt="author image">
@@ -1044,11 +1047,10 @@
                                          class="w-14 h-14 rounded-full" alt="author image">
                                 @endif
                                 <div class="ml-3">
-                                    <p class="name">{{$cat11[1]->author_name}}</p>
-                                    <p class="designation text-sm text-gray-500">{{$cat11[1]->author_designation}}
-                                    </p>
+                                    <p class="name">{{ isEnglish() ? $cat11[1]->author_name_en : $cat11[1]->author_name }}</p>
+                                    <p class="designation text-sm text-gray-500">{{$cat11[1]->author_designation}}</p>
                                 </div>
-                            </div>
+                            </a>
 
                         </div>
                         @else
@@ -1061,7 +1063,7 @@
                             @foreach(range(2,5) as $position)
                                 @isset($cat11[$position])
                             <div class="opinion-item flex items-start gap-4">
-                                <div>
+                                <a href="{{ $cat11[$position]->author_id ? route('author_news', $cat11[$position]->author_id) : '#' }}" class="hover:opacity-80 transition-opacity flex-shrink-0">
                                     <div class="icon">
                                         @if($cat11[$position]->author_profile)
                                         <img src="{{ asset('storage') }}/{{$cat11[$position]->author_profile}}"
@@ -1071,7 +1073,7 @@
                                             class="w-14 h-14 rounded-full" alt="author image">
                                         @endif
                                     </div>
-                                </div>
+                                </a>
                                 <div>
                                     <h3 class="title">
                                         <a href="{{route('news_details', $cat11[$position]->id)}}">
@@ -1079,7 +1081,7 @@
                                         </a>
                                     </h3>
                                     @if ($cat11[$position]->author_name)
-                                    <p class="author-name">লেখা: {{$cat11[$position]->author_name}}</p>
+                                    <a href="{{ $cat11[$position]->author_id ? route('author_news', $cat11[$position]->author_id) : '#' }}" class="author-name hover:text-[#38bdf8] transition-colors">লেখা: {{ isEnglish() ? $cat11[$position]->author_name_en : $cat11[$position]->author_name }}</a>
                                         @endif
                                 </div>
                             </div>
