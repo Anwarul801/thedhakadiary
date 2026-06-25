@@ -160,6 +160,15 @@ Developer Profile: www.innovait.com.bd
 <script src="{{asset('frontend/assets')}}/js/menu.js"></script>
 <script src="{{asset('frontend/assets')}}/js/mega-menu.js"></script>
 @yield('js')
+<script>
+    function switchTab(tabId, btn) {
+        var card = btn.closest('.sidebar-card');
+        card.querySelectorAll('.tab-content').forEach(function(el) { el.style.display = 'none'; });
+        card.querySelectorAll('.sidebar-button').forEach(function(el) { el.classList.remove('active-tab'); });
+        document.getElementById(tabId).style.display = 'block';
+        btn.classList.add('active-tab');
+    }
+</script>
 <script src="{{asset('frontend/assets')}}/js/script.js"></script>
 <script>
     let alreadyShown = false;

@@ -49,14 +49,19 @@ class FrontendController extends Controller
        $data['cat19'] = $this->getCategoryPosts(22);
        $data['cat20'] = $this->getCategoryPosts(16);
        $data['cat21'] = $this->getCategoryPosts(36);
-       $data['latest'] = Post::select('id', 'slug', 'title', 'media_id')->orderBy('id', 'DESC')->where([[checkPost()],['latest_news', 1],['language', isEnglish()?'en':'bn']])->take(10)->get();
-       $data['best_hit'] = Post::select('id', 'slug', 'title', 'media_id')
-            ->where('publishing_date', '>=', now()->subDays(3))
-            ->where([
-                [checkPost()],
-                ['language', isEnglish() ? 'en' : 'bn']
-            ])
-            ->orderBy('hit', 'DESC')
+       $data['latest'] = Post::select('posts.id', 'posts.slug', 'posts.title', 'posts.media_id', 'media.xs_thumbnail as thumbnail')
+            ->leftJoin('media', 'media.id', '=', 'posts.media_id')
+            ->where('posts.status', 'Published')
+            ->where('posts.latest_news', 1)
+            ->where('posts.language', isEnglish() ? 'en' : 'bn')
+            ->orderBy('posts.id', 'DESC')
+            ->take(10)->get();
+       $data['best_hit'] = Post::select('posts.id', 'posts.slug', 'posts.title', 'posts.media_id', 'media.xs_thumbnail as thumbnail')
+            ->leftJoin('media', 'media.id', '=', 'posts.media_id')
+            ->where('posts.status', 'Published')
+            ->where('posts.publishing_date', '>=', now()->subDays(3))
+            ->where('posts.language', isEnglish() ? 'en' : 'bn')
+            ->orderBy('posts.hit', 'DESC')
             ->take(10)
             ->get();
                 $data['videos'] = Post::where('video_id', '!=', null)
