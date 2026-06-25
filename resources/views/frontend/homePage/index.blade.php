@@ -176,7 +176,7 @@
 
                     <!-- Portion 1: Big Campus News -->
                     @isset($cat4[4])
-                    <div class="lg:col-span-4 col-span-12 lg:border-r lg:pr-4 lg:border-b-0 border-b lg:pb-0 pb-3 border-stock-color">
+                    <div class="lg:col-span-5 col-span-12 lg:border-r lg:pr-4 lg:border-b-0 border-b lg:pb-0 pb-3 border-stock-color">
                         <div class="news-card">
                             <div class="thumbnail">
                                 <a href="{{ route('news_details', $cat4[4]->id) }}">
@@ -192,7 +192,7 @@
                         </div>
                     </div>
                     @else
-                    <div class="lg:col-span-4 col-span-12 lg:border-r lg:pr-4 border-stock-color">
+                    <div class="lg:col-span-5 col-span-12 lg:border-r lg:pr-4 border-stock-color">
                         <div class="news-card"></div>
                     </div>
                     @endisset
@@ -220,7 +220,7 @@
                     </div>
 
                     <!-- Portion 3: সর্বশেষ / সর্বাধিক পঠিত -->
-                    <div class="lg:col-span-4 col-span-12">
+                    <div class="lg:col-span-3 col-span-12">
                         @include('layouts.partials.news_item.latest_news')
                     </div>
 
