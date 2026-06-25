@@ -104,19 +104,19 @@
                                     </div>
                                     <!-- only print logo end -->
                                     {{-- category --}}
-                                    <div class="mb-3 md:mb-4">
+                                    <div class="mb-2 md:mb-3">
                                         @foreach ($post_categories as $category)
                                             @if ($loop->iteration == 2)
                                                 @break
                                             @endif
                                             <a href="{{ route('category_view', $category->slug) }}"
-                                                class="text-[#c0392b] hover:text-[#181823] border-b-2 border-[#c0392b] hover:border-[#181823] transition-all duration-75 inline-block font-bold text-base md:text-lg uppercase tracking-wide">{{ isEnglish() ? $category->name_en : $category->name }}</a>
+                                                class="text-[#1558b0] hover:text-[#0d3d7a] underline transition-colors duration-150 inline-block text-sm md:text-base">{{ isEnglish() ? $category->name_en : $category->name }}</a>
                                         @endforeach
                                     </div>
-                                    <h1 class="page-title mb-3 md:mb-4">{{ $news->title }}</h1>
                                     @if($news->sub_headline)
-                                    <p class="text-base md:text-[19px] text-[#444444] font-normal leading-relaxed mb-3 md:mb-4 border-l-4 border-[#c0392b] pl-3">{{ $news->sub_headline }}</p>
+                                    <p class="text-base md:text-xl text-[#595959] font-bold mb-2">{{ $news->sub_headline }}</p>
                                     @endif
+                                    <h1 class="page-title mb-3 md:mb-4">{{ $news->title }}</h1>
                                     <div class="flex justify-between items-end flex-wrap gap-3">
                                         <div
                                             class="date-wrap print:flex-auto print:flex print:justify-between print:items-end">
@@ -129,10 +129,9 @@
                                                         'online_reporter',
                                                     ];
                                                 @endphp
-                                                @if ($news->source == 'Author' && $news->author_id != null)
-                                                    <a class="text-[14px] md:text-[17px] font-semibold"
-                                                        href="{{ route('author_news', ['id' => $news->author_id, 'name' => $news->author->name_en ?? null]) }}"
-                                                        class="present inline-block">{{ isEnglish() ? $news->author->name_en : $news->author->name ?? null }}</a>
+                                                @if ($news->author_id != null)
+                                                    <a class="text-[14px] md:text-[17px] font-semibold hover:text-[#38bdf8] transition-colors duration-300"
+                                                        href="{{ route('author_news', ['id' => $news->author_id]) }}">{{ isEnglish() ? $news->author->name_en : $news->author->name_bn ?? null }}</a>
                                                 @elseif(in_array($news->source, $sources))
                                                     <a class="text-[14px] md:text-[17px] font-semibold"
                                                         class="present inline-block">{{ __("lang.$news->source") }}</a>

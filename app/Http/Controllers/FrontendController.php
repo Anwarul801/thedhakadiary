@@ -81,11 +81,13 @@ class FrontendController extends Controller
             ->select(
                 'category_post.position as position',
                 'posts.id',
+                'posts.author_id',
                 'posts.title',
                 'posts.sub_headline',
                 'posts.subtitle',
                 'posts.news_details',
                 'authors.name_bn as author_name',
+                'authors.name_en as author_name_en',
                 'authors.profession as author_designation',
                 'authors.profile_picture as author_profile',
                 'media.image as image',
@@ -249,17 +251,14 @@ class FrontendController extends Controller
 
     public function author_news($id)
     {
-        $data['author'] = User::where([['id', $id], ['role_id', 2]])->firstOrFail();
-        if(!$data['author']){
-            Toastr::error('AuthorMiddleware Not Found', 'Error');
-            return back();
-        }
+        $data['author'] = \App\Models\Author::findOrFail($id);
         $data['news'] = Post::select(
             'posts.id',
             'posts.title',
             'posts.slug',
             'posts.media_id',
             'posts.subtitle',
+            'posts.publishing_date',
         )->where('author_id', $id)
             ->where([[checkPost()], ['language', isEnglish() ? 'en' : 'bn']])
             ->orderBy('order', 'DESC')
