@@ -41,7 +41,7 @@
                 </li>
             @endforeach
         </ul>
-        <a href="{{route('last_published')}}" class="sidebar-all-btn">{{__('lang.read_more')}}</a>
+        <a href="{{route('last_published')}}" class="section_button !bg-black !text-white hover:!bg-red-600 transition block text-center mt-2 w-full">{{__('lang.read_more')}} <i class="fa-solid fa-angle-right"></i></a>
     </div>
 
     <!-- সর্বাধিক পঠিত Tab -->
@@ -58,6 +58,6 @@
                 </li>
             @endforeach
         </ul>
-        <a href="{{route('most_read')}}" class="sidebar-all-btn">{{__('lang.read_more')}}</a>
+        <a href="{{route('most_read')}}" class="section_button !bg-black !text-white hover:!bg-red-600 transition block text-center mt-2 w-full">{{__('lang.read_more')}} <i class="fa-solid fa-angle-right"></i></a>
     </div>
 </div>
