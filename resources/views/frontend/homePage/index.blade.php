@@ -39,6 +39,7 @@
 
                     <h1 class="title title-lg">
                         <a href="{{ route('news_details', $mainPost->id) }}">
+                            <span class="sholder">{{$mainPost->sub_headline}}</span>
                             {{ Str::limit($mainPost->title, 100) }}
                         </a>
                     </h1>
@@ -81,6 +82,7 @@
 
                         <h1 class="title text-sm">
                             <a href="{{ route('news_details', $post->id) }}">
+                                <span class="sholder">{{$post->sub_headline}}</span>
                                 {{ $post->title }}
                             </a>
                         </h1>
@@ -140,6 +142,7 @@
 
                     <h1 class="title text-sm">
                         <a href="{{ route('news_details', $post->id) }}">
+                            <span class="sholder">{{$post->sub_headline}}</span>
                             {{ $post->title }}
                         </a>
                     </h1>
@@ -335,7 +338,7 @@
                                                     src="{{asset('storage')}}/{{$cat2[$position]->thumbnail}}">
                                             </div>
                                             <h1 class="title">
-                                                <a href="{{ route('news_details', $cat2[$position]->id) }}">{{$cat2[$position]->title}}</a>
+                                                <a href="{{ route('news_details', $cat2[$position]->id) }}"><span class="sholder">{{$cat2[$position]->sub_headline}}</span>{{$cat2[$position]->title}}</a>
                                             </h1>
                                         </div>
                                     </div>
