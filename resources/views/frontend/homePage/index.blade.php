@@ -943,64 +943,50 @@
 
                     <!-- Right Side -->
                     <div class="lg:col-span-5 col-span-12">
-                        <div class="sidebar-card flex flex-col h-full">
+                        <div class="sidebar-card flex flex-col">
 
                             <!-- Tab Header -->
                             <div class="button_wrap">
-                                <button class="sidebar-button active-tab">
+                                <button class="sidebar-button active-tab" onclick="switchTab('latest', this)">
                                     সর্বশেষ
                                 </button>
-                                <button class="sidebar-button">
+                                <button class="sidebar-button" onclick="switchTab('popular', this)">
                                     সর্বাধিক পঠিত
                                 </button>
                             </div>
 
                             <!-- সর্বশেষ Tab -->
-                            <div id="latest" class="tab-content flex flex-col flex-1 min-h-0">
-
-                                <!-- Scrollable List -->
-                                <ul class="flex-1 min-h-0 md:space-y-6 space-y-4
-                       max-h-[260px] md:max-h-[500px]
-                       overflow-y-auto scroll-smooth">
+                            <div id="latest" class="tab-content">
+                                <ul class="sidebar-news-list">
                                     @foreach($latest as $latest_item)
-                                        <li class="sidebar-item">
-                                            <span>{{ isEnglish() ? $loop->iteration : bangla_number($loop->iteration) }}</span>
-                                            <a href="{{ route('news_details',  $latest_item->id) }}"
-                                               class="sidebar-link">
-                                                {{ Str::limit($latest_item->title, 50) }}
+                                        <li class="sidebar-news-item">
+                                            <a href="{{ route('news_details', $latest_item->id) }}" class="sidebar-news-link">
+                                                <div class="sidebar-news-thumb">
+                                                    <img src="{{ asset('storage') }}/{{ $latest_item->thumbnail }}" alt="{{ $latest_item->title }}" loading="lazy" onerror="this.style.display='none'">
+                                                </div>
+                                                <p class="sidebar-news-title">{{ Str::limit($latest_item->title, 60) }}</p>
                                             </a>
                                         </li>
                                     @endforeach
                                 </ul>
-
-                                <!-- Button -->
-                                <a href="{{ route('last_published') }}" class="read-more-btn mt-3">
-                                    আরও পড়ুন <i class="fa-solid fa-angle-right"></i>
-                                </a>
+                                <a href="{{ route('last_published') }}" class="sidebar-all-btn">সব খবর</a>
                             </div>
 
                             <!-- সর্বাধিক পঠিত Tab -->
-                            <div id="popular" class="tab-content flex flex-col flex-1 min-h-0 hidden">
-
-                                <!-- Scrollable List -->
-                                <ul class="flex-1 min-h-0 md:space-y-6 space-y-4
-                       max-h-[260px] md:max-h-[500px]
-                       overflow-y-auto scroll-smooth">
+                            <div id="popular" class="tab-content" style="display:none">
+                                <ul class="sidebar-news-list">
                                     @foreach($best_hit as $best_hit_item)
-                                        <li class="sidebar-item">
-                                            <span>{{ isEnglish() ? $loop->iteration : bangla_number($loop->iteration) }}</span>
-                                            <a href="{{ route('news_details', $best_hit_item->id) }}"
-                                               class="sidebar-link">
-                                                {{ Str::limit($best_hit_item->title, 50) }}
+                                        <li class="sidebar-news-item">
+                                            <a href="{{ route('news_details', $best_hit_item->id) }}" class="sidebar-news-link">
+                                                <div class="sidebar-news-thumb">
+                                                    <img src="{{ asset('storage') }}/{{ $best_hit_item->thumbnail }}" alt="{{ $best_hit_item->title }}" loading="lazy" onerror="this.style.display='none'">
+                                                </div>
+                                                <p class="sidebar-news-title">{{ Str::limit($best_hit_item->title, 60) }}</p>
                                             </a>
                                         </li>
                                     @endforeach
                                 </ul>
-
-                                <!-- Button -->
-                                <a href="{{ route('most_read') }}" class="read-more-btn mt-3">
-                                    আরও পড়ুন <i class="fa-solid fa-angle-right"></i>
-                                </a>
+                                <a href="{{ route('most_read') }}" class="sidebar-all-btn">সব খবর</a>
                             </div>
 
                         </div>

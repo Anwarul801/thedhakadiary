@@ -227,8 +227,10 @@
                                     </div>
                                 @endif
                             </div>
-                            <div class="md:col-span-4 col-span-12 md:mt-0 mt-4 no_print hidden md:block">
-                                @include('layouts.partials.news_item.latest_news')
+                            <div class="md:col-span-4 col-span-12 no_print hidden md:block" id="news-sidebar">
+                                <div style="position: sticky; top: 90px; padding-top: 24px;">
+                                    @include('layouts.partials.news_item.latest_news')
+                                </div>
                             </div>
                         </div>
 
