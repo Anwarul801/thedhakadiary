@@ -251,7 +251,7 @@
 
                             <h1 class="title">
                                 <a href="{{ route('news_details', $rpost->id) }}">
-                                    {{ Str::limit($rpost->title, 50) }}
+                                    {{ $rpost->title }}
                                 </a>
                             </h1>
                         </div>
