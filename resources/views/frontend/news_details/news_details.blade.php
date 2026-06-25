@@ -117,6 +117,10 @@
                                     <p class="text-xl md:text-2xl text-[#595959] font-extrabold mb-2">{{ $news->sub_headline }}</p>
                                     @endif
                                     <h1 class="page-title mb-3 md:mb-4">{{ $news->title }}</h1>
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <div class="w-8 h-[3px] bg-gray-900"></div>
+                                        <div class="flex-1 h-[1px] bg-gray-300"></div>
+                                    </div>
                                     <div class="flex justify-between items-end flex-wrap gap-3">
                                         <div
                                             class="date-wrap print:flex-auto print:flex print:justify-between print:items-end">

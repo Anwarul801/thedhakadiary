@@ -27,6 +27,7 @@
     --color-gray-600: oklch(44.6% 0.03 256.802);
     --color-gray-700: oklch(37.3% 0.034 259.733);
     --color-gray-800: oklch(27.8% 0.033 256.848);
+    --color-gray-900: oklch(21% 0.034 264.665);
     --color-black: #000000;
     --color-white: #ffffff;
     --spacing: 0.25rem;
@@ -978,6 +979,12 @@
   .h-100 {
     height: calc(var(--spacing) * 100);
   }
+  .h-\[1px\] {
+    height: 1px;
+  }
+  .h-\[3px\] {
+    height: 3px;
+  }
   .h-\[150px\] {
     height: 150px;
   }
@@ -1001,6 +1008,9 @@
   }
   .w-6 {
     width: calc(var(--spacing) * 6);
+  }
+  .w-8 {
+    width: calc(var(--spacing) * 8);
   }
   .w-10 {
     width: calc(var(--spacing) * 10);
@@ -1354,6 +1364,9 @@
   }
   .bg-gray-300 {
     background-color: var(--color-gray-300);
+  }
+  .bg-gray-900 {
+    background-color: var(--color-gray-900);
   }
   .bg-primary {
     background-color: var(--color-primary);
@@ -4221,6 +4234,9 @@ li {
       }
     }
   }
+}
+.sholder {
+  margin-right: calc(var(--spacing) * 1);
 }
 @property --tw-translate-x {
   syntax: "*";

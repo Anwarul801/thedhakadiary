@@ -782,8 +782,12 @@ li {
         &:hover{
           background-color: #000000;
           color: #ffffff;
-        }    
+        }
       }
     }
   }
+}
+
+.sholder {
+  @apply mr-1;
 }

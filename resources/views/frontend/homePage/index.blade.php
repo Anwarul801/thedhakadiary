@@ -1060,7 +1060,7 @@
                     <!-- Right List -->
                     <div class="lg:col-span-8 col-span-12">
                         <div class="md:space-y-6 space-y-4">
-                            @foreach(range(2,5) as $position)
+                            @foreach(range(2,6) as $position)
                                 @isset($cat11[$position])
                             <div class="opinion-item flex items-start gap-4">
                                 <a href="{{ $cat11[$position]->author_id ? route('author_news', $cat11[$position]->author_id) : '#' }}" class="hover:opacity-80 transition-opacity flex-shrink-0">

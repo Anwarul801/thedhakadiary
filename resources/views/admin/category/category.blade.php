@@ -135,13 +135,13 @@
                                                             @enderror
                                                         </div>
 
-{{--                                                        <div class="form-group">--}}
-{{--                                                            <label for="max_position">Max Position</label>--}}
-{{--                                                            <input value="{{$category->max_position}}" class="form-control" type="number" id="max_position" name="max_position" placeholder="Max Position">--}}
-{{--                                                            @error('max_position')--}}
-{{--                                                            <span style="color:red">{{ $message }}</span>--}}
-{{--                                                            @enderror--}}
-{{--                                                        </div>--}}
+                                                        <div class="form-group">
+                                                            <label for="max_position">Max Position</label>
+                                                            <input value="{{$category->max_position}}" class="form-control" type="number" id="max_position" name="max_position" placeholder="Max Position">
+                                                            @error('max_position')
+                                                            <span style="color:red">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
 
 
                                                         <div class="form-group account-btn text-center">
