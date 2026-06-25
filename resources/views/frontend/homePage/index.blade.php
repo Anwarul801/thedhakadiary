@@ -162,115 +162,72 @@
             </div>
         </section>
 
-        <!--======== national Section ====== -->
-        <section class="national_section section_short-padding section-margin-top">
+        <!--======== Campus Section ====== -->
+        <section class="edu_campus_section section_short-padding section-margin-top">
             <div class="container">
                 <div class="section-title-wrap">
-                    <h2 class="section-title">জাতীয়</h2>
+                    <h2 class="section-title">ক্যাম্পাস</h2>
                     <div class="section-button-wrap">
-                        <a href="{{route('category_view', 'jateey')}}" class="section_button  !bg-black !text-white hover:!bg-red-600 transition">আরও পড়ুন <i
-                                class="fa-solid fa-angle-right"></i></a>
+                        <a href="{{route('category_view', 'kzampas')}}" class="section_button !bg-black !text-white hover:!bg-red-600 transition">আরো পড়ুন <i class="fa-solid fa-angle-right"></i></a>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-12 lg:gap-4 gap-3 border-b pb-4 border-gray-300">
 
-                    <!-- Left Side (3 items) -->
-                    <div class="lg:col-span-4 col-span-12 lg:order-1 order-2 lg:border-r lg:pr-4 border-gray-300">
-                        <div class="space-y-4">
-                            @foreach(range(1,3) as $position)
-                                @isset($cat1[$position])
-                                    <div class="news-card flex gap-3 pb-3 border-b border-gray-300 {{$position==3 ? 'lg:border-b-0' : ''}}">                                        <h1 class="title !mt-0 flex-1">
-                                            <a href="{{ route('news_details', $cat1[$position]->id) }}"><span class="sholder">{{$cat1[$position]->sub_headline}}</span>
-                                                {{$cat1[$position]->title}}</a>
-                                        </h1>
-                                        <div class="thumbnail w-32 flex-shrink-0">
-                                            <a href="{{ route('news_details', $cat1[$position]->id) }}">
-                                                <img class="w-full h-20 object-cover"
-                                                    src="{{asset('storage')}}/{{$cat1[$position]->xs_thumbnail}}"
-                                                    alt="News Image">
-                                            </a>
-                                        </div>
-                                    </div>
-                                @else
-                                    <div class="news-card flex gap-3 pb-3 border-b border-gray-300 {{$position==3 ? 'lg:border-b-0' : ''}}">
-                                    </div>
-                                @endisset
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <!-- Center Big News -->
-                    @isset($cat1[4])
-                    <div
-                        class="lg:col-span-4 col-span-12 lg:order-2 order-1 lg:border-b-0 border-b lg:pb-0 pb-3 border-gray-300">
+                    <!-- Portion 1: Big Campus News -->
+                    @isset($cat4[4])
+                    <div class="lg:col-span-4 col-span-12 lg:border-r lg:pr-4 lg:border-b-0 border-b lg:pb-0 pb-3 border-stock-color">
                         <div class="news-card">
                             <div class="thumbnail">
-                                <a href="{{ route('news_details', $cat1[4]->id) }}">
-                                    <img src="{{asset('storage')}}/{{$cat1[4]->thumbnail}}"
-                                        alt="news thumbnail">
+                                <a href="{{ route('news_details', $cat4[4]->id) }}">
+                                    <img src="{{asset('storage')}}/{{$cat4[4]->thumbnail}}" alt="news thumbnail">
                                 </a>
                             </div>
-
                             <h1 class="lg:text-2xl text-xl font-semibold mt-3">
-                                <a href="{{ route('news_details', $cat1[4]->id) }}">
-                                    {{$cat1[4]->title}}
-                                </a>
+                                <a href="{{ route('news_details', $cat4[4]->id) }}">{{$cat4[4]->title}}</a>
                             </h1>
-
                             <div class="short-description_home">
-                                <p>
-                                    <a href="{{ route('news_details', $cat1[4]->id) }}">
-                                        {!! $cat1[4]->subtitle ?? strip_tags(Str::limit($cat1[4]->news_details, 240)) !!}
-                                    </a>
-                                </p>
+                                <p><a href="{{ route('news_details', $cat4[4]->id) }}">{{$cat4[4]->subtitle ?? strip_tags(Str::limit($cat4[4]->news_details, 260))}}</a></p>
                             </div>
                         </div>
                     </div>
                     @else
-                        <div
-                            class="lg:col-span-4 col-span-12 lg:order-2 order-1 lg:border-b-0 border-b lg:pb-0 pb-3 border-gray-300">
-                            <div class="news-card">
-                            </div>
-                        </div>
+                    <div class="lg:col-span-4 col-span-12 lg:border-r lg:pr-4 border-stock-color">
+                        <div class="news-card"></div>
+                    </div>
                     @endisset
-                    <!-- Right Side (3 items) -->
-                    <div class="lg:col-span-4 col-span-12 order-3 lg:border-l lg:pl-4 border-gray-300">
-                        <div class="space-y-4">
 
-                            @foreach(range(5,7) as $position)
-                                @isset($cat1[$position])
-                                    <div class="news-card flex gap-3 {{$position!=7?'border-b pb-3 border-gray-300':''}}">
+                    <!-- Portion 2: 3 Campus Items -->
+                    <div class="lg:col-span-4 col-span-12 lg:border-r lg:pr-4 border-stock-color">
+                        <div class="space-y-4">
+                            @foreach(range(5,8) as $position)
+                                @isset($cat4[$position])
+                                    <div class="news-card flex gap-3 {{$position!=8?'border-b pb-3 border-stock-color':''}}" >
                                         <h1 class="title !mt-0 flex-1">
-                                            <a href="{{ route('news_details', $cat1[$position]->id) }}"><span class="sholder">{{$cat1[$position]->sub_headline}}</span>
-                                                {{$cat1[$position]->title}}</a>
+                                            <a href="{{ route('news_details', $cat4[$position]->id) }}"><span class="sholder">{{$cat4[$position]->sub_headline}}</span>{{$cat4[$position]->title}}</a>
                                         </h1>
                                         <div class="thumbnail w-32 flex-shrink-0">
-                                            <a href="{{ route('news_details', $cat1[$position]->id) }}">
-                                                <img class="w-full h-20 object-cover"
-                                                     src="{{asset('storage')}}/{{$cat1[$position]->xs_thumbnail}}"
-                                                     alt="News Image">
+                                            <a href="{{ route('news_details', $cat4[$position]->id) }}">
+                                                <img class="w-full h-20 object-cover" src="{{asset('storage')}}/{{$cat4[$position]->xs_thumbnail}}" alt="News Image">
                                             </a>
                                         </div>
                                     </div>
                                 @else
-                                    <div class="news-card flex gap-3 {{$position!=7?'border-b pb-3 border-gray-300':''}}">
-                                        <h1 class="title !mt-0 flex-1">
-
-                                        </h1>
-                                        <div class="thumbnail w-32 flex-shrink-0">
-
-                                        </div>
-                                    </div>
+                                    <div class="news-card flex gap-3 {{$position!=8?'border-b pb-3 border-stock-color':''}}" ></div>
                                 @endisset
                             @endforeach
                         </div>
+                    </div>
+
+                    <!-- Portion 3: সর্বশেষ / সর্বাধিক পঠিত -->
+                    <div class="lg:col-span-4 col-span-12">
+                        @include('layouts.partials.news_item.latest_news')
                     </div>
 
                 </div>
             </div>
         </section>
-        <!--======== national Section end ====== -->
+        <!--======== Campus Section end ====== -->
 
         <!--======== Politics Section ====== -->
         <section class="politics_section section-padding-top">
@@ -468,33 +425,36 @@
                 </div>
             </div>
         </section>
-        <section class="edu_campus_section section-padding-top">
+
+
+
+        <!--======== national Section ====== -->
+        <section class="national_section section_short-padding section-margin-top">
             <div class="container">
                 <div class="section-title-wrap">
-                    <h2 class="section-title">ক্যাম্পাস</h2>
+                    <h2 class="section-title">জাতীয়</h2>
                     <div class="section-button-wrap">
-                        <a href="{{route('category_view', 'kzampas')}}" class="section_button">আরও পড়ুন <i
+                        <a href="{{route('category_view', 'jateey')}}" class="section_button  !bg-black !text-white hover:!bg-red-600 transition">আরও পড়ুন <i
                                 class="fa-solid fa-angle-right"></i></a>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-12 lg:gap-4 gap-3 border-b pb-4 border-stock-color">
+                <div class="grid grid-cols-12 lg:gap-4 gap-3 border-b pb-4 border-gray-300">
 
                     <!-- Left Side (3 items) -->
-                    <div class="lg:col-span-4 col-span-12 lg:order-1 order-2 lg:border-r lg:pr-4 border-stock-color">
+                    <div class="lg:col-span-4 col-span-12 lg:order-1 order-2 lg:border-r lg:pr-4 border-gray-300">
                         <div class="space-y-4">
                             @foreach(range(1,3) as $position)
-                                @isset($cat4[$position])
-                                    <div class="news-card flex gap-3 pb-3 border-b border-gray-300 {{$position==3 ? 'lg:border-b-0' : ''}}">
-                                        <h1 class="title !mt-0 flex-1">
-                                            <a href="{{ route('news_details', $cat4[$position]->id) }}"><span class="sholder">{{$cat4[$position]->sub_headline}}</span>
-                                                {{$cat4[$position]->title}}</a>
+                                @isset($cat1[$position])
+                                    <div class="news-card flex gap-3 pb-3 border-b border-gray-300 {{$position==3 ? 'lg:border-b-0' : ''}}">                                        <h1 class="title !mt-0 flex-1">
+                                            <a href="{{ route('news_details', $cat1[$position]->id) }}"><span class="sholder">{{$cat1[$position]->sub_headline}}</span>
+                                                {{$cat1[$position]->title}}</a>
                                         </h1>
                                         <div class="thumbnail w-32 flex-shrink-0">
-                                            <a href="{{ route('news_details', $cat4[$position]->id) }}">
+                                            <a href="{{ route('news_details', $cat1[$position]->id) }}">
                                                 <img class="w-full h-20 object-cover"
-                                                     src="{{asset('storage')}}/{{$cat4[$position]->xs_thumbnail}}"
-                                                     alt="News Image">
+                                                    src="{{asset('storage')}}/{{$cat1[$position]->xs_thumbnail}}"
+                                                    alt="News Image">
                                             </a>
                                         </div>
                                     </div>
@@ -507,60 +467,60 @@
                     </div>
 
                     <!-- Center Big News -->
-                    @isset($cat4[4])
-                        <div
-                            class="lg:col-span-4 col-span-12 lg:order-2 order-1 lg:border-b-0 border-b lg:pb-0 pb-3 border-stock-color">
-                            <div class="news-card">
-                                <div class="thumbnail">
-                                    <a href="{{ route('news_details', $cat4[4]->id) }}">
-                                        <img src="{{asset('storage')}}/{{$cat4[4]->thumbnail}}"
-                                             alt="news thumbnail">
-                                    </a>
-                                </div>
+                    @isset($cat1[4])
+                    <div
+                        class="lg:col-span-4 col-span-12 lg:order-2 order-1 lg:border-b-0 border-b lg:pb-0 pb-3 border-gray-300">
+                        <div class="news-card">
+                            <div class="thumbnail">
+                                <a href="{{ route('news_details', $cat1[4]->id) }}">
+                                    <img src="{{asset('storage')}}/{{$cat1[4]->thumbnail}}"
+                                        alt="news thumbnail">
+                                </a>
+                            </div>
 
-                                <h1 class="lg:text-2xl text-xl font-semibold mt-3">
-                                    <a href="{{ route('news_details', $cat4[4]->id) }}">
-                                        {{$cat4[4]->title}}
-                                    </a>
-                                </h1>
+                            <h1 class="lg:text-2xl text-xl font-semibold mt-3">
+                                <a href="{{ route('news_details', $cat1[4]->id) }}">
+                                    {{$cat1[4]->title}}
+                                </a>
+                            </h1>
 
-                                <div class="short-description_home">
-                                    <p>
-                                        <a href="{{ route('news_details', $cat4[4]->id) }}">
-                                            {{$cat4[4]->subtitle ?? strip_tags(Str::limit($cat4[4]->news_details, 260))}}
-                                        </a>
-                                    </p>
-                                </div>
+                            <div class="short-description_home">
+                                <p>
+                                    <a href="{{ route('news_details', $cat1[4]->id) }}">
+                                        {!! $cat1[4]->subtitle ?? strip_tags(Str::limit($cat1[4]->news_details, 240)) !!}
+                                    </a>
+                                </p>
                             </div>
                         </div>
+                    </div>
                     @else
                         <div
-                            class="lg:col-span-4 col-span-12 lg:order-2 order-1 lg:border-b-0 border-b lg:pb-0 pb-3 border-stock-color">
+                            class="lg:col-span-4 col-span-12 lg:order-2 order-1 lg:border-b-0 border-b lg:pb-0 pb-3 border-gray-300">
                             <div class="news-card">
                             </div>
                         </div>
                     @endisset
                     <!-- Right Side (3 items) -->
-                    <div class="lg:col-span-4 col-span-12 order-3 lg:border-l lg:pl-4 border-stock-color">
+                    <div class="lg:col-span-4 col-span-12 order-3 lg:border-l lg:pl-4 border-gray-300">
                         <div class="space-y-4">
 
                             @foreach(range(5,7) as $position)
-                                @isset($cat4[$position])
-                                    <div class="news-card flex gap-3 {{$position!=7?'border-b pb-3 border-stock-color':''}}">
+                                @isset($cat1[$position])
+                                    <div class="news-card flex gap-3 {{$position!=7?'border-b pb-3 border-gray-300':''}}">
                                         <h1 class="title !mt-0 flex-1">
-                                            <a href="{{ route('news_details', $cat4[$position]->id) }}"><span class="sholder">{{$cat4[$position]->sub_headline}}</span>
-                                                {{$cat4[$position]->title}}</a>
+                                            <a href="{{ route('news_details', $cat1[$position]->id) }}"><span class="sholder">{{$cat1[$position]->sub_headline}}</span>
+                                                {{$cat1[$position]->title}}</a>
                                         </h1>
                                         <div class="thumbnail w-32 flex-shrink-0">
-                                            <a href="{{ route('news_details', $cat4[$position]->id) }}">
+                                            <a href="{{ route('news_details', $cat1[$position]->id) }}">
                                                 <img class="w-full h-20 object-cover"
-                                                     src="{{asset('storage')}}/{{$cat4[$position]->xs_thumbnail}}"
+                                                     src="{{asset('storage')}}/{{$cat1[$position]->xs_thumbnail}}"
                                                      alt="News Image">
                                             </a>
                                         </div>
                                     </div>
                                 @else
-                                    <div class="news-card flex gap-3 {{$position!=7?'border-b pb-3 border-stock-color':''}}">
+                                    <div class="news-card flex gap-3 {{$position!=7?'border-b pb-3 border-gray-300':''}}">
                                         <h1 class="title !mt-0 flex-1">
 
                                         </h1>
@@ -573,11 +533,10 @@
                         </div>
                     </div>
 
-
                 </div>
             </div>
         </section>
-        <!--======== Education & Campus Section end ====== -->
+        <!--======== national Section end ====== -->
 
         <!--======== International Section ====== -->
         <section class="international_section section-padding-top">

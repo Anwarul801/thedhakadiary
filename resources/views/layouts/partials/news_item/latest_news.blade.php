@@ -1,15 +1,19 @@
 @php
     use App\Models\Post;use Illuminate\Support\Str;
-    $latest = Post::select('id', 'slug', 'title', 'media_id')->orderBy('id', 'DESC')->where([[checkPost()],['latest_news', 1],['language', isEnglish()?'en':'bn']])->take(10)->get();
-    $best_hit = Post::select('id', 'slug', 'title', 'media_id')
-    ->where('publishing_date', '>=', now()->subDays(3))
-    ->where([
-        [checkPost()],
-        ['language', isEnglish() ? 'en' : 'bn']
-    ])
-    ->orderBy('hit', 'DESC')
-    ->take(10)
-    ->get();
+    $latest = Post::select('posts.id', 'posts.slug', 'posts.title', 'posts.media_id', 'media.xs_thumbnail as thumbnail')
+        ->leftJoin('media', 'media.id', '=', 'posts.media_id')
+        ->where('posts.status', 'Published')
+        ->where('posts.latest_news', 1)
+        ->where('posts.language', isEnglish() ? 'en' : 'bn')
+        ->orderBy('posts.id', 'DESC')
+        ->take(10)->get();
+    $best_hit = Post::select('posts.id', 'posts.slug', 'posts.title', 'posts.media_id', 'media.xs_thumbnail as thumbnail')
+        ->leftJoin('media', 'media.id', '=', 'posts.media_id')
+        ->where('posts.publishing_date', '>=', now()->subDays(3))
+        ->where('posts.status', 'Published')
+        ->where('posts.language', isEnglish() ? 'en' : 'bn')
+        ->orderBy('posts.hit', 'DESC')
+        ->take(10)->get();
     $uid = uniqid('sidebar_');
 @endphp
 <div class="sidebar-card">
@@ -25,27 +29,35 @@
 
     <!-- সর্বশেষ Tab -->
     <div id="{{$uid}}_latest" class="tab-content">
-        <ul class="latest-news-scroll-list">
+        <ul class="sidebar-news-list">
             @foreach($latest as $latest_item)
-                <li class="sidebar-item">
-                    <span>{{isEnglish()?$loop->iteration:bangla_number($loop->iteration)}}</span>
-                    <a href="{{route('news_details', $latest_item->id)}}" class="sidebar-link">{{$latest_item->title}}</a>
+                <li class="sidebar-news-item">
+                    <a href="{{route('news_details', $latest_item->id)}}" class="sidebar-news-link">
+                        <div class="sidebar-news-thumb">
+                            <img src="{{ asset('storage') }}/{{ $latest_item->thumbnail }}" alt="{{ $latest_item->title }}" loading="lazy" onerror="this.style.display='none'">
+                        </div>
+                        <p class="sidebar-news-title">{{ Str::limit($latest_item->title, 60) }}</p>
+                    </a>
                 </li>
             @endforeach
         </ul>
-        <a href="{{route('last_published')}}" class="read-more-btn">{{__('lang.read_more')}} <i class="fa-solid fa-angle-right"></i></a>
+        <a href="{{route('last_published')}}" class="sidebar-all-btn">{{__('lang.read_more')}}</a>
     </div>
 
     <!-- সর্বাধিক পঠিত Tab -->
     <div id="{{$uid}}_popular" class="tab-content" style="display:none">
-        <ul class="latest-news-scroll-list">
+        <ul class="sidebar-news-list">
             @foreach($best_hit as $best_hit_item)
-                <li class="sidebar-item">
-                    <span>{{isEnglish()?$loop->iteration:bangla_number($loop->iteration)}}</span>
-                    <a href="{{route('news_details', $best_hit_item->id)}}" class="sidebar-link">{{$best_hit_item->title}}</a>
+                <li class="sidebar-news-item">
+                    <a href="{{route('news_details', $best_hit_item->id)}}" class="sidebar-news-link">
+                        <div class="sidebar-news-thumb">
+                            <img src="{{ asset('storage') }}/{{ $best_hit_item->thumbnail }}" alt="{{ $best_hit_item->title }}" loading="lazy" onerror="this.style.display='none'">
+                        </div>
+                        <p class="sidebar-news-title">{{ Str::limit($best_hit_item->title, 60) }}</p>
+                    </a>
                 </li>
             @endforeach
         </ul>
-        <a href="{{route('most_read')}}" class="read-more-btn">{{__('lang.read_more')}} <i class="fa-solid fa-angle-right"></i></a>
+        <a href="{{route('most_read')}}" class="sidebar-all-btn">{{__('lang.read_more')}}</a>
     </div>
 </div>
