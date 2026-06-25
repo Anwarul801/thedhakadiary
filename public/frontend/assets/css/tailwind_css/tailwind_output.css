@@ -76,7 +76,6 @@
     --color-primary-black: #181823;
     --color-secondary: #666666;
     --color-stock-color: #eeeeee;
-    --color-paragraph-color: #4d4d4d;
     --color-deactive: #999999;
     --color-softbg: #f5f5f5;
     --color-ad-close: #02adcd;
@@ -3254,6 +3253,18 @@ li {
     @media (width >= 768px) {
       --tw-leading: var(--leading-tight);
       line-height: var(--leading-tight);
+    }
+    a {
+      transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+      transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+      transition-duration: var(--tw-duration, var(--default-transition-duration));
+      --tw-duration: 300ms;
+      transition-duration: 300ms;
+      &:hover {
+        @media (hover: hover) {
+          color: #38bdf8;
+        }
+      }
     }
   }
   .present {
