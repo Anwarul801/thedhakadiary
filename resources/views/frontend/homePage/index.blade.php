@@ -166,7 +166,7 @@
         <section class="edu_campus_section section_short-padding section-margin-top">
             <div class="container">
                 <div class="section-title-wrap">
-                    <h2 class="section-title">ক্যাম্পাস</h2>
+                    <h2 class="section-title">ক্যাম্পাস ও ছাত্ররাজনীতি</h2>
                     <div class="section-button-wrap">
                         <a href="{{route('category_view', 'kzampas')}}" class="section_button !bg-black !text-white hover:!bg-red-600 transition">আরো পড়ুন <i class="fa-solid fa-angle-right"></i></a>
                     </div>

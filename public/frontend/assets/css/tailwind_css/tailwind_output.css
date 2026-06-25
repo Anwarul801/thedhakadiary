@@ -3168,10 +3168,10 @@ li {
     background-color: var(--color-gray-100);
     padding-block: calc(var(--spacing) * 3);
     text-align: center;
-    font-size: var(--text-base);
-    line-height: var(--tw-leading, var(--text-base--line-height));
-    --tw-font-weight: var(--font-weight-semibold);
-    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-xl);
+    line-height: var(--tw-leading, var(--text-xl--line-height));
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
     color: var(--color-gray-500);
     transition-property: all;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
@@ -3180,7 +3180,7 @@ li {
     transition-duration: 200ms;
     &:hover {
       @media (hover: hover) {
-        color: var(--color-gray-900);
+        color: #38bdf8;
       }
     }
   }
@@ -3206,14 +3206,14 @@ li {
       border-color: var(--color-gray-100);
     }
     &::-webkit-scrollbar {
-      width: 6px;
+      width: 3px;
     }
     &::-webkit-scrollbar-thumb {
-      background: #94a3b8;
+      background: #cbd5e1;
       border-radius: 4px;
     }
     &::-webkit-scrollbar-track {
-      background: #f1f5f9;
+      background: #f8fafc;
     }
   }
   .sidebar-news-item {
@@ -3256,10 +3256,12 @@ li {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
-    font-size: 16px;
+    font-size: 13px;
+    --tw-leading: 1.6;
     line-height: 1.6;
-    font-weight: 500;
-    color: #1f2937;
+    --tw-font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-800);
     &:hover {
       color: var(--color-red-600);
     }
@@ -3289,18 +3291,6 @@ li {
       }
     }
   }
-  .latest-news-scroll-list {
-    max-height: 520px;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    padding: 8px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .latest-news-scroll-list::-webkit-scrollbar { width: 6px; }
-  .latest-news-scroll-list::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
-  .latest-news-scroll-list::-webkit-scrollbar-track { background: #f1f5f9; }
   .sidebar-item {
     display: flex;
     align-items: center;
