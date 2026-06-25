@@ -412,7 +412,7 @@ li {
 
   .sidebar-button {
     font-family: 'Noto Sans Bengali', 'Shurjo', sans-serif;
-    @apply cursor-pointer flex-1 text-center text-base text-gray-500 font-semibold py-3 bg-gray-100 border-b-2 border-transparent hover:text-gray-900 transition-all duration-200;
+    @apply cursor-pointer flex-1 text-center text-xl text-gray-500 font-bold py-3 bg-gray-100 border-b-2 border-transparent hover:text-[#38bdf8] transition-all duration-200;
   }
 
   .active-tab {
