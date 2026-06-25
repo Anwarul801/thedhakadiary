@@ -200,9 +200,9 @@
                     <!-- Portion 2: 3 Campus Items -->
                     <div class="lg:col-span-4 col-span-12 lg:border-r lg:pr-4 border-stock-color">
                         <div class="space-y-4">
-                            @foreach(range(5,8) as $position)
+                            @foreach([5, 6, 7, 1] as $position)
                                 @isset($cat4[$position])
-                                    <div class="news-card flex gap-3 {{$position!=8?'border-b pb-3 border-stock-color':''}}" >
+                                    <div class="news-card flex gap-3 {{!$loop->last?'border-b pb-3 border-stock-color':''}}" >
                                         <h1 class="title !mt-0 flex-1">
                                             <a href="{{ route('news_details', $cat4[$position]->id) }}"><span class="sholder">{{$cat4[$position]->sub_headline}}</span>{{$cat4[$position]->title}}</a>
                                         </h1>
@@ -213,7 +213,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    <div class="news-card flex gap-3 {{$position!=8?'border-b pb-3 border-stock-color':''}}" ></div>
+                                    <div class="news-card flex gap-3 {{!$loop->last?'border-b pb-3 border-stock-color':''}}" ></div>
                                 @endisset
                             @endforeach
                         </div>
