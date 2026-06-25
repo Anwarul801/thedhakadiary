@@ -289,7 +289,7 @@ class FrontendController extends Controller
     }
     public function photo_details($id)
     {
-        $data['photo'] = ImageGallery::with('gallery_images')->where('id', $id)->first();
+        $data['photo'] = ImageGallery::with('gallery_images', 'author')->where('id', $id)->first();
         $data['side_ad'] = Ad::where('placement_id', 15)->where('status', 'Active')->first();
         return view('frontend.photo_details', $data);
     }

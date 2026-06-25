@@ -20,9 +20,9 @@
                                     <div class="flex justify-between items-end gap-3">
                                         <div class="date-wrap">
                                             <p class="present repoter-present"><i class="fa-solid fa-user mr-1.5"></i>{{__('lang.reporter')}}
-                                                {{isEnglish()?$photo->author->name_en:$photo->author->name}}
+                                                {{isEnglish()?$photo->author?->name_en:$photo->author?->name}}
                                             </p>
-                                            <p class="update"> {{isEnglish()?$photo->author->designation_en:$photo->author->designation}} </p>
+                                            <p class="update"> {{isEnglish()?$photo->author?->designation_en:$photo->author?->designation}} </p>
                                         </div>
                                         <div class="flex justify-center items-center gap-1.5">
                                             @php
