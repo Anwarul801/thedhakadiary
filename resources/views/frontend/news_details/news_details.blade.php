@@ -110,11 +110,11 @@
                                                 @break
                                             @endif
                                             <a href="{{ route('category_view', $category->slug) }}"
-                                                class="text-[#1558b0] hover:text-[#0d3d7a] underline transition-colors duration-150 inline-block text-sm md:text-base">{{ isEnglish() ? $category->name_en : $category->name }}</a>
+                                                class="text-[#1558b0] hover:text-[#0d3d7a] underline transition-colors duration-150 inline-block text-base md:text-lg font-bold">{{ isEnglish() ? $category->name_en : $category->name }}</a>
                                         @endforeach
                                     </div>
                                     @if($news->sub_headline)
-                                    <p class="text-base md:text-xl text-[#595959] font-bold mb-2">{{ $news->sub_headline }}</p>
+                                    <p class="text-xl md:text-2xl text-[#595959] font-extrabold mb-2">{{ $news->sub_headline }}</p>
                                     @endif
                                     <h1 class="page-title mb-3 md:mb-4">{{ $news->title }}</h1>
                                     <div class="flex justify-between items-end flex-wrap gap-3">

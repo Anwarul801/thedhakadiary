@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use App\Models\Media;
 use App\Models\Option;
@@ -80,43 +80,9 @@ if (!function_exists('formatUpdatedAt')) {
         $day = bangla_number($carbon->format('d'));
         $month = $bnMonths[$carbon->month - 1];
         $year = bangla_number($carbon->year);
+        $time = bangla_number($carbon->format('H:i'));
 
-        // diffForHumans থেকে ডিফারেন্স পাওয়া
-        $diff = $carbon->diffForHumans(now(), ['parts' => 1]);
-
-        // বাংলায় কনভার্ট করার জন্য অ্যারে
-        $replacements = [
-            'seconds' => 'সেকেন্ড',
-            'second' => 'সেকেন্ড',
-            'minutes' => 'মিনিট',
-            'minute' => 'মিনিট',
-            'hours' => 'ঘন্টা',
-            'hour' => 'ঘন্টা',
-            'days' => 'দিন',
-            'day' => 'দিন',
-            'weeks' => 'সপ্তাহ',
-            'week' => 'সপ্তাহ',
-            'months' => 'মাস',
-            'month' => 'মাস',
-            'years' => 'বছর',
-            'year' => 'বছর',
-            'ago' => ''
-        ];
-
-        // রিপ্লেসমেন্ট করা
-        $bnDiff = str_replace(array_keys($replacements), array_values($replacements), $diff);
-
-        // সংখ্যাগুলো বাংলায় কনভার্ট করা
-        $bnDiff = preg_replace_callback('/\d+/', function($matches) {
-            $bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-            $enDigits = range(0, 9);
-            return str_replace($enDigits, $bnDigits, $matches[0]);
-        }, $bnDiff);
-
-        // অতিরিক্ত স্পেস ক্লিন করা
-        $bnDiff = trim(preg_replace('/\s+/', ' ', $bnDiff));
-
-        return "আপডেট: {$day} {$month} {$year}, {$bnDiff}";
+        return "আপডেট: {$day} {$month} {$year}, {$time}";
     }
 }
 
