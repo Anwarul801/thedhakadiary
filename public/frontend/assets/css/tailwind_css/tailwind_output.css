@@ -3256,7 +3256,7 @@ li {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
-    font-size: 13px;
+    font-size: 16px;
     --tw-leading: 1.6;
     line-height: 1.6;
     --tw-font-weight: var(--font-weight-medium);
@@ -3970,7 +3970,7 @@ li {
     color: var(--color-blue-600);
     text-decoration-line: underline;
     text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
+    text-underline-offset: 8px;
     &:hover {
       color: var(--color-blue-800);
       text-decoration-thickness: 2px;

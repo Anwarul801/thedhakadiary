@@ -445,7 +445,7 @@ li {
 
   .sidebar-news-title {
     font-family: 'Noto Sans Bengali', 'Shurjo', sans-serif;
-    @apply text-[13px] text-gray-800 font-medium leading-[1.6] line-clamp-3;
+    @apply text-[16px] text-gray-800 font-medium leading-[1.6] line-clamp-3;
     &:hover { @apply text-red-600; }
   }
 
@@ -655,7 +655,7 @@ li {
     @apply md:!text-[16px] !text-base;
   }
   a{
-    @apply text-blue-600 underline underline-offset-2 decoration-1;
+    @apply text-blue-600 underline underline-offset-8 decoration-1;
 
     &:hover {
       @apply text-blue-800 decoration-2;
