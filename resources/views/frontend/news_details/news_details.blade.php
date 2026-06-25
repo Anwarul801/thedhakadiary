@@ -104,18 +104,19 @@
                                     </div>
                                     <!-- only print logo end -->
                                     {{-- category --}}
-                                    <div class="">
+                                    <div class="mb-3 md:mb-4">
                                         @foreach ($post_categories as $category)
                                             @if ($loop->iteration == 2)
                                                 @break
                                             @endif
                                             <a href="{{ route('category_view', $category->slug) }}"
-                                                class="text-[#007bff] hover:text-[#181823] border-b-2 border-[#007bff] hover:border-[#181823] transition-all duration-75 mb-3 md:mb-4 inline-block font-bold text-lg md:text-xl">{{ isEnglish() ? $category->name_en : $category->name }}</a>
+                                                class="text-[#c0392b] hover:text-[#181823] border-b-2 border-[#c0392b] hover:border-[#181823] transition-all duration-75 inline-block font-bold text-base md:text-lg uppercase tracking-wide">{{ isEnglish() ? $category->name_en : $category->name }}</a>
                                         @endforeach
                                     </div>
-                                    <span
-                                        class="text-base md:text-xl text-[#595959] font-bold mb-2 block">{{ $news->sub_headline }}</span>
-                                    <h1 class="page-title">{{ $news->title }}</h1>
+                                    <h1 class="page-title mb-3 md:mb-4">{{ $news->title }}</h1>
+                                    @if($news->sub_headline)
+                                    <p class="text-base md:text-[19px] text-[#444444] font-normal leading-relaxed mb-3 md:mb-4 border-l-4 border-[#c0392b] pl-3">{{ $news->sub_headline }}</p>
+                                    @endif
                                     <div class="flex justify-between items-end flex-wrap gap-3">
                                         <div
                                             class="date-wrap print:flex-auto print:flex print:justify-between print:items-end">
